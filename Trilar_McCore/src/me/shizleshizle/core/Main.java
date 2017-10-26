@@ -120,7 +120,7 @@ public class Main extends JavaPlugin {
 	public static int maxhomes;
 	public static int tpTime;
 	public static int maxHealth;
-	 
+	
 	public void onEnable(){
 		long time = System.currentTimeMillis();
 		Logger l = getLogger();
