@@ -158,12 +158,12 @@ public class Prefix {
 		return ChatColor.translateAlternateColorCodes('&', prefix);
 	}
 	
-	public static String getRawPrefix(PermGroup pg) {
+	public static String getRawPrefix(PermGroup p) {
 		String prefix = "";
 		try {
 			Main.sql.getReady();
 			Statement s = Main.sql.getConnection().createStatement();
-			ResultSet rs = s.executeQuery("SELECT * FROM groupprefix WHERE `group`='" + pg.toString().toLowerCase() + "'");
+			ResultSet rs = s.executeQuery("SELECT * FROM groupprefix WHERE `group`='" + p.toString().toLowerCase() + "'");
 			if (rs.next()) {
 				prefix = rs.getString("prefix");
 			}
