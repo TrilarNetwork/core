@@ -176,7 +176,7 @@ public class PermAttachments {
 			for (String pe : PermissionGroup.getPermissions(PermGroup.VIP)) {
 				pa.setPermission(new Permission(pe), true);
 			}
-		
+		}
 		if (Perm.hasPerm(p, PermGroup.MEMBER)) {
 			for (String pe : PermissionGroup.getPermissions(PermGroup.MEMBER)) {
 				pa.setPermission(new Permission(pe), true);
