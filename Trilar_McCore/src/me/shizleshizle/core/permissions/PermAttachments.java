@@ -148,32 +148,47 @@ public class PermAttachments {
 			ArrayList<String> perms = new ArrayList<>();
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MEMBER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.BUILDER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.VIP4));
 			for (String pe : perms) {
 				pa.setPermission(new Permission(pe), true);
 			}
 		}
 		if (Perm.hasPerm(p, PermGroup.VIP4)) {
-			for (String pe : PermissionGroup.getPermissions(PermGroup.VIP4)) {
+			ArrayList<String> perms = new ArrayList<>();
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.VIP4));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.VIP3));
+			for (String pe : perms) {
 				pa.setPermission(new Permission(pe), true);
 			}
 		}
 		if (Perm.hasPerm(p, PermGroup.VIP3)) {
-			for (String pe : PermissionGroup.getPermissions(PermGroup.VIP3)) {
+			ArrayList<String> perms = new ArrayList<>();
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.VIP3));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.VIP2));
+			for (String pe : perms) {
 				pa.setPermission(new Permission(pe), true);
 			}
 		}
 		if (Perm.hasPerm(p, PermGroup.VIP2)) {
-			for (String pe : PermissionGroup.getPermissions(PermGroup.VIP2)) {
+			ArrayList<String> perms = new ArrayList<>();
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.VIP2));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.VIP1));
+			for (String pe : perms) {
 				pa.setPermission(new Permission(pe), true);
 			}
 		}
 		if (Perm.hasPerm(p, PermGroup.VIP1)) {
-			for (String pe : PermissionGroup.getPermissions(PermGroup.VIP1)) {
+			ArrayList<String> perms = new ArrayList<>();
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.VIP1));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.VIP));
+			for (String pe : perms) {
 				pa.setPermission(new Permission(pe), true);
 			}
 		}
 		if (Perm.hasPerm(p, PermGroup.VIP)) {
-			for (String pe : PermissionGroup.getPermissions(PermGroup.VIP)) {
+			ArrayList<String> perms = new ArrayList<>();
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.MEMBER));
+			for (String pe : perms) {
 				pa.setPermission(new Permission(pe), true);
 			}
 		}
