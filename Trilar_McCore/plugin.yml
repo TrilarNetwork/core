@@ -1,0 +1,168 @@
+name: Trilar_Core
+main: me.shizleshizle.core.Main
+version: 0.0.1
+author: [shizleshizle, iMelvin]
+commands:
+#home
+  delhome:
+    description: Delete a home.
+  home:
+    description: Teleport to your home.
+  sethome:
+    description: Set a home.
+#teleportation
+  tp:
+    description: Teleport yourself or others.
+    aliases: [teleport]
+  tpa:
+    description: Send a teleport request to a player.
+  tpaccept:
+    description: Accept a teleport request from a player.
+    aliases: [tpyes, tpconfirm, tpja]
+  tpahere:
+    description: Send a request to make a player teleport to you.
+  tpdeny:
+    description: Deny a teleport request from a player.
+    aliases: [tpno, tpcancel, tpnee]
+  tphere:
+    description: Teleport a player to you.
+  tpo:
+    description: Override a players TpToggle and teleport to him/her.
+  tpohere:
+    description: Override a players TpToggle and teleport him/her to you.
+  tppos:
+    description: Teleport to a certain location.
+  tptoggle:
+    description: Toggle teleportation to you.
+#econ
+  balance:
+    description: Check your balance.
+  pay:
+    description: Pay someone money.
+#warps
+  removewarp:
+    description: Remove a Warp.
+    aliases: [deletewarp, delwarp, dwarp]
+  setwarp:
+    description: Set a Warp to your Location.
+    aliases: [swarp]
+  warp:
+    description: Teleport to a Warp.
+#spawn
+  spawn:
+    description: Go to spawn.
+  setspawn:
+    description: set spawn.
+  removespawn:
+    description: remove spawn.
+#gewone commands
+  afk:
+    description: Toggle AFK.
+  back:
+    description: Go to your previous location.
+  broadcast:
+    description: Send a message to everyone on the server.
+  chatcolor:
+    description: Change your ChatColor.
+  clearchat:
+    description: Clear the chat.
+  clearinventory:
+    description: Clear an inventory.
+    aliases: [clear, ci]
+  commandspy:
+    description: See all commandspy commands.
+    aliases: [cspy]
+  enchant:
+    description: Enchant an item
+  enderchest:
+    description: Open an enderchest
+    aliases: [echest, ec]
+  feed:
+    description: Feed yourself or others.
+  fly:
+    description: Toggle fly.
+  freeze:
+    description: Freeze a player.
+  gamemode:
+    description: Change your gamemode.
+    aliases: [gm]
+  gms:
+    description: Change your gamemode.
+    aliases: [gms]
+  gmc:
+    description: Change your gamemode.
+    aliases: [gmc]
+  gmsp:
+    description: Change your gamemode.
+    aliases: [gmsp]
+  gma:
+    description: Change your gamemode.
+    aliases: [gma]
+  getpos:
+    description: Get a players position.
+  god:
+    description: Toggle god mode.
+  hat:
+    description: Set an item as your hat.
+  heal:
+    description: Heal yourself or others.
+  help:
+    description: Get some info.
+  invsee:
+    description: Open someone inventory.
+  kill:
+    description: Kill a player.
+  list:
+    description: List all online player(s).
+  lockdown:
+    description: Toggle lockdown mode.
+  me:
+    description: Talk in third person.
+  nickname:
+    description: Change your nickname.
+    aliases: [nick]
+  permission:
+    description: View or change peoples permission(s).
+  prefix:
+    description: View or change peoples prefix.
+  rank:
+    description: Change a persons rank.
+  reload:
+    description: Reload the plugin
+  repair:
+    description: Repair one or more items.
+  regels:
+    description: View the rules.
+  skull:
+    description: Get yourself a skull.
+  speed:
+    description: Change your fly or walk speed.
+  staff:
+    description: View online staff.
+    aliases: [stafflist, sl]
+  suicide:
+    description: Kill yourself.
+  time:
+    description: Change the timeline like the Flash.
+  day:
+    description: Change the time to day because you dont like night.
+  night:
+    description: Change the time to night because you dont like day.
+  ptime:
+    description: Change your personal time.
+  vanish:
+    description: View/hide yourself.
+    aliases: [v]
+  whois:
+    description: View a player and they settings
+  wild:
+    description: Teleport somewhere random.
+  workbench:
+    description: Open a workbench.
+  weather:
+    description: Change the weather.
+    aliases: [clear, downfall]
+  sun:
+    description: Change it to sun.
+  storm:
+    description: Change it to storm.
