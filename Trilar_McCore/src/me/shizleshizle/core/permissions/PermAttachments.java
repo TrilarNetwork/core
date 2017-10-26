@@ -152,6 +152,31 @@ public class PermAttachments {
 				pa.setPermission(new Permission(pe), true);
 			}
 		}
+		if (Perm.hasPerm(p, PermGroup.VIP4)) {
+			for (String pe : PermissionGroup.getPermissions(PermGroup.VIP4)) {
+				pa.setPermission(new Permission(pe), true);
+			}
+		}
+		if (Perm.hasPerm(p, PermGroup.VIP3)) {
+			for (String pe : PermissionGroup.getPermissions(PermGroup.VIP3)) {
+				pa.setPermission(new Permission(pe), true);
+			}
+		}
+		if (Perm.hasPerm(p, PermGroup.VIP2)) {
+			for (String pe : PermissionGroup.getPermissions(PermGroup.VIP2)) {
+				pa.setPermission(new Permission(pe), true);
+			}
+		}
+		if (Perm.hasPerm(p, PermGroup.VIP1)) {
+			for (String pe : PermissionGroup.getPermissions(PermGroup.VIP1)) {
+				pa.setPermission(new Permission(pe), true);
+			}
+		}
+		if (Perm.hasPerm(p, PermGroup.VIP)) {
+			for (String pe : PermissionGroup.getPermissions(PermGroup.VIP)) {
+				pa.setPermission(new Permission(pe), true);
+			}
+		
 		if (Perm.hasPerm(p, PermGroup.MEMBER)) {
 			for (String pe : PermissionGroup.getPermissions(PermGroup.MEMBER)) {
 				pa.setPermission(new Permission(pe), true);
