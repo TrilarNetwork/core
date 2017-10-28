@@ -14,10 +14,10 @@ public class AutoB {
 	private static int i = 0;
 	
 	public static void broadcast() {
-		if (b) {
-			new BukkitRunnable() {
-				@Override
-				public void run() {
+		new BukkitRunnable() {
+			@Override
+			public void run() {
+				if (b) {
 					Bukkit.broadcastMessage(ChatColor.GOLD + "<=====================>");
 					Bukkit.broadcastMessage(" ");
 					Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', msgs.get(i)).trim());
@@ -27,9 +27,11 @@ public class AutoB {
 					if (i > msgs.size()) {
 						i = 0;
 					}
+				} else {
+					this.cancel();
 				}
-			}.runTaskTimer(Main.p, Main.abdelay*20, 20);
-		}
+			}
+		}.runTaskTimer(Main.p, Main.abdelay*20, 20);
 	}
 	
 	public static void enable() {
