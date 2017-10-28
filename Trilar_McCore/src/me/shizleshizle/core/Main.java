@@ -12,6 +12,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import me.shizleshizle.core.commands.AB;
 import me.shizleshizle.core.commands.Afk;
 import me.shizleshizle.core.commands.Back;
 import me.shizleshizle.core.commands.Balance;
@@ -93,6 +94,7 @@ import me.shizleshizle.core.objects.ChatColorHandler;
 import me.shizleshizle.core.permissions.PermUser;
 import me.shizleshizle.core.permissions.PermissionGroup;
 import me.shizleshizle.core.permissions.Prefix;
+import me.shizleshizle.core.utils.AutoB;
 import me.shizleshizle.core.utils.Cooldowns;
 import net.md_5.bungee.api.ChatColor;
 import net.milkbowl.vault.Vault;
@@ -110,6 +112,7 @@ public class Main extends JavaPlugin {
 	public static Economy econ = null;
 	public static MySQLManager sql;
 	public static Plugin p;
+	public static boolean lockdown = false;
 	public static boolean remove;
 	public static String host;
 	public static String db;
@@ -120,6 +123,7 @@ public class Main extends JavaPlugin {
 	public static int maxhomes;
 	public static int tpTime;
 	public static int maxHealth;
+	public static int abdelay;
 	 
 	public void onEnable(){
 		long time = System.currentTimeMillis();
@@ -170,7 +174,13 @@ public class Main extends JavaPlugin {
 		getCommand("setwarp").setExecutor(new Setwarps());
 		getCommand("warp").setExecutor(new Warp());		
 		
+		//weather
+		getCommand("weather").setExecutor(new Weather());
+		getCommand("sun").setExecutor(new Weather());
+		getCommand("storm").setExecutor(new Weather());
+		
 		//regular
+		getCommand("autobroadcaster").setExecutor(new AB());
 		getCommand("afk").setExecutor(new Afk());
 		getCommand("back").setExecutor(new Back());
 		getCommand("broadcast").setExecutor(new Broadcast());
@@ -213,7 +223,6 @@ public class Main extends JavaPlugin {
 		getCommand("whois").setExecutor(new WhoIs());
 		getCommand("wild").setExecutor(new Wild());
 		getCommand("workbench").setExecutor(new Workbench());
-		getCommand("weather").setExecutor(new Weather());
 		if (checkVault()) {
 			getCommand("balance").setExecutor(new Balance());
 			getCommand("pay").setExecutor(new Pay());
@@ -237,6 +246,7 @@ public class Main extends JavaPlugin {
 		pm.registerEvents(new PlayerQuit(), this);
 		pm.registerEvents(new PlayerTeleport(), this);
 		Cooldowns.runCooldown();
+		AutoB.broadcast();
 		long fin = System.currentTimeMillis() - time;
 		l.info("Core >> successfully enabled! (" + fin + " ms)");
 	}
@@ -260,6 +270,7 @@ public class Main extends JavaPlugin {
 		maxhomes = c.getConfig().getInt("settings.maxhomes");
 		tpTime = c.getConfig().getInt("settings.teleportWaitTime");
 		maxHealth = c.getConfig().getInt("settings.maxHealth");
+		abdelay = c.getConfig().getInt("settings.autoBroadcastDelay");
 	}
 	
 	private boolean checkVault() {

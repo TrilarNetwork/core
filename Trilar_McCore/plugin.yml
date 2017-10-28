@@ -10,6 +10,13 @@ commands:
     description: Teleport to your home.
   sethome:
     description: Set a home.
+#spawn
+  spawn:
+    description: Go to spawn.
+  setspawn:
+    description: set spawn.
+  removespawn:
+    description: remove spawn.
 #teleportation
   tp:
     description: Teleport yourself or others.
@@ -34,6 +41,16 @@ commands:
     description: Teleport to a certain location.
   tptoggle:
     description: Toggle teleportation to you.
+#time
+  time:
+    description: Change the timeline like the Flash.
+  day:
+    description: Change the time to day because you dont like night.
+  night:
+    description: Change the time to night because you dont like day.
+  ptime:
+    description: Change your personal time.
+    aliases: [playertime]
 #econ
   balance:
     description: Check your balance.
@@ -48,24 +65,32 @@ commands:
     aliases: [swarp]
   warp:
     description: Teleport to a Warp.
-#spawn
-  spawn:
-    description: Go to spawn.
-  setspawn:
-    description: set spawn.
-  removespawn:
-    description: remove spawn.
+#weather
+  weather:
+    description: Change the weather.
+  sun:
+    description: Change it to sun.
+    aliases: [clear]
+  storm:
+    description: Change it to storm.
+    aliases: [rain, downfall]
 #gewone commands
+  autobroadcaster:
+    description: Toggle Auto-Broadcaster
+    aliases: [ab, autob, autobroadcast]
   afk:
     description: Toggle AFK.
   back:
     description: Go to your previous location.
   broadcast:
     description: Send a message to everyone on the server.
+    aliases: [bc]
   chatcolor:
     description: Change your ChatColor.
+    aliases: [chatc]
   clearchat:
     description: Clear the chat.
+    aliases: [clearc]
   clearinventory:
     description: Clear an inventory.
     aliases: [clear, ci]
@@ -88,16 +113,12 @@ commands:
     aliases: [gm]
   gms:
     description: Change your gamemode.
-    aliases: [gms]
   gmc:
     description: Change your gamemode.
-    aliases: [gmc]
   gmsp:
     description: Change your gamemode.
-    aliases: [gmsp]
   gma:
     description: Change your gamemode.
-    aliases: [gma]
   getpos:
     description: Get a players position.
   god:
@@ -142,14 +163,6 @@ commands:
     aliases: [stafflist, sl]
   suicide:
     description: Kill yourself.
-  time:
-    description: Change the timeline like the Flash.
-  day:
-    description: Change the time to day because you dont like night.
-  night:
-    description: Change the time to night because you dont like day.
-  ptime:
-    description: Change your personal time.
   vanish:
     description: View/hide yourself.
     aliases: [v]
@@ -159,10 +172,4 @@ commands:
     description: Teleport somewhere random.
   workbench:
     description: Open a workbench.
-  weather:
-    description: Change the weather.
-    aliases: [clear, downfall]
-  sun:
-    description: Change it to sun.
-  storm:
-    description: Change it to storm.
+    aliases: [wb]

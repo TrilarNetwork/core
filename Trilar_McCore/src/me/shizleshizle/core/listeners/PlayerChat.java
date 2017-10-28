@@ -6,6 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
+import me.shizleshizle.core.commands.Lockdown;
 import me.shizleshizle.core.objects.User;
 import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermGroup;
@@ -17,6 +18,13 @@ public class PlayerChat implements Listener {
 		User p = new User(e.getPlayer());
 		e.setCancelled(true);
 		String msg = e.getMessage();
+		if (Perm.hasPerm(p, PermGroup.ADMIN)) {
+			if (e.getMessage().equalsIgnoreCase("!panic")) {
+				Lockdown.initiateLockdown();
+			} else if (e.getMessage().contains("!panic")) { 
+				Lockdown.initiateLockdown();
+			}
+		}
 		if (Perm.hasPerm(p, PermGroup.HELPER)) {
 			msg = ChatColor.translateAlternateColorCodes('&', msg);
 		}

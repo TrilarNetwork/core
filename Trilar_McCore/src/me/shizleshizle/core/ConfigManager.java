@@ -2,6 +2,7 @@ package me.shizleshizle.core;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -90,14 +91,17 @@ public class ConfigManager {
 		if (!this.config.contains("settings.maxHealth")) {
 			this.config.set("settings.maxHealth", 60);
 		}
-		if (!this.config.contains("settings.removeOnQuit")) {
-			this.config.set("settings.removeOnQuit", false);
-		}
 		if (!this.config.contains("settings.maxhomes")) {
 			this.config.set("settings.maxhomes", 1);
 		}
 		if (!this.config.contains("settings.teleportWaitTime")) {
 			this.config.set("settings.teleportWaitTime", 5);
+		}
+		if (!this.config.contains("settings.autoBroadcastDelay")) {
+			this.config.set("settings.autoBroadcastDelay", 60);
+		}
+		if (!this.config.contains("settings.removeOnQuit")) {
+			this.config.set("settings.removeOnQuit", false);
 		}
 		if (!this.config.contains("settings.database.hostname")) {
 			this.config.set("settings.database.hostname", "185.211.51.30");
@@ -113,6 +117,9 @@ public class ConfigManager {
 		}
 		if (!this.config.contains("settings.database.password")) {
 			this.config.set("settings.database.password", "Pedo1234");
+		}
+		if (!this.config.contains("settings.broadcastMessages")) {
+			this.config.set("settings.broadcastMessages", Arrays.asList("&6Welcome to &eTrilar&6!", "&6Do you have any questions? Feel free to ask!", "&6See a bug? Visit the forum and tell us!"));
 		}
 	}
 	
