@@ -41,6 +41,17 @@ commands:
     description: Teleport to a certain location.
   tptoggle:
     description: Toggle teleportation to you.
+#tickets
+  checkticket:
+    description: Look up a ticket and its info.
+  closeticket:
+    description: Close or reopen a ticket.
+  taketicket:
+    description: Teleport to a ticket.
+  ticket: 
+    description: Create a ticket.
+  tickets:
+    description: View all (your) tickets.  
 #time
   time:
     description: Change the timeline like the Flash.

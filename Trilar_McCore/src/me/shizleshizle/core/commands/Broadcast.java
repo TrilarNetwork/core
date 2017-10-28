@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermGroup;
@@ -39,5 +40,13 @@ public class Broadcast implements CommandExecutor {
 			}
 		}
 		return false;
+	}
+	
+	public static void broadcastToStaff(String msg) {
+		for (Player p : Bukkit.getOnlinePlayers()) {
+			if (Perm.hasPerm(p.getName(), PermGroup.HELPER)) {
+				p.sendMessage(ChatColor.translateAlternateColorCodes('&', msg));
+			}
+		}
 	}
 }

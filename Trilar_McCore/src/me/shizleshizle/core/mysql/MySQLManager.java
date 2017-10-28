@@ -25,8 +25,11 @@ public class MySQLManager extends MySQL {
 			openConnection();
 			Statement s = getConnection().createStatement();
 			Statement s1 = getConnection().createStatement();
+			Statement s2 = getConnection().createStatement();
 			s.executeUpdate("CREATE TABLE IF NOT EXISTS player_ranks (player varchar(32), rank varchar(50))");
 			s1.executeUpdate("CREATE TABLE IF NOT EXISTS player_ips (player varchar(32), ip varchar(32))");
+			s2.executeUpdate("CREATE TABLE IF NOT EXISTS tickets (id INTEGER AUTO_INCREMENT PRIMARY KEY, owner varchar(32), status varchar(32), description varchar(128), "
+					+ "x double, y double, z double, world varchar(128))");
 			s.close();
 			s1.close();
 		} catch (SQLException e) {

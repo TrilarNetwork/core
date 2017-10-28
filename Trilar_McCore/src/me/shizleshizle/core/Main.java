@@ -68,6 +68,11 @@ import me.shizleshizle.core.commands.teleportation.Tpo;
 import me.shizleshizle.core.commands.teleportation.Tpohere;
 import me.shizleshizle.core.commands.teleportation.Tppos;
 import me.shizleshizle.core.commands.teleportation.Tptoggle;
+import me.shizleshizle.core.commands.tickets.CheckTicket;
+import me.shizleshizle.core.commands.tickets.CloseTicket;
+import me.shizleshizle.core.commands.tickets.TakeTicket;
+import me.shizleshizle.core.commands.tickets.Ticket;
+import me.shizleshizle.core.commands.tickets.Tickets;
 import me.shizleshizle.core.commands.time.DayCmd;
 import me.shizleshizle.core.commands.time.NightCmd;
 import me.shizleshizle.core.commands.time.PTime;
@@ -162,6 +167,14 @@ public class Main extends JavaPlugin {
 		getCommand("tpohere").setExecutor(new Tpohere());
 		getCommand("tppos").setExecutor(new Tppos());
 		getCommand("tptoggle").setExecutor(new Tptoggle());
+		
+		//tickets
+		getCommand("checkticket").setExecutor(new CheckTicket());
+		getCommand("closeticket").setExecutor(new CloseTicket());
+		getCommand("taketicket").setExecutor(new TakeTicket());
+		getCommand("ticket").setExecutor(new Ticket());
+		getCommand("tickets").setExecutor(new Tickets());
+		
 		
 		//time
 		getCommand("time").setExecutor(new Time());
