@@ -53,6 +53,7 @@ public class Lockdown implements CommandExecutor {
 			if (!Perm.hasPerm(ap.getName(), PermGroup.BUILDER)) {
 				ap.kickPlayer(ChatColor.GOLD + "-=[ Trilar ]=- \nYou have been kicked due to the server going in Lockdown mode.");
 				Main.lockdown = true;
+				Bukkit.broadcastMessage(Main.prefix + "Lockdown mode has been activated!");
 			}
 		}
 	}

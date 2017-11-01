@@ -21,8 +21,10 @@ public class PlayerChat implements Listener {
 		if (Perm.hasPerm(p, PermGroup.ADMIN)) {
 			if (e.getMessage().equalsIgnoreCase("!panic")) {
 				Lockdown.initiateLockdown();
+				e.setCancelled(true);
 			} else if (e.getMessage().contains("!panic")) { 
 				Lockdown.initiateLockdown();
+				e.setCancelled(true);
 			}
 		}
 		if (Perm.hasPerm(p, PermGroup.HELPER)) {
