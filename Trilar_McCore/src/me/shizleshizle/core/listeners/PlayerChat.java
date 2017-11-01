@@ -33,6 +33,8 @@ public class PlayerChat implements Listener {
 		if (Perm.getGroup(p) == null) {
 			Perm.updateGroup(p, PermGroup.MEMBER);
 		}
-		Bukkit.broadcastMessage(p.getDisplayName() + ChatColor.GOLD + " >> " + ChatColor.translateAlternateColorCodes('&', p.getChatColor()) + msg);
+		if (!e.isCancelled()) {
+			Bukkit.broadcastMessage(p.getDisplayName() + ChatColor.GOLD + " >> " + ChatColor.translateAlternateColorCodes('&', p.getChatColor()) + msg);
+		}
 	}
 }
