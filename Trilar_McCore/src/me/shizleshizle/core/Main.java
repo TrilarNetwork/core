@@ -99,8 +99,8 @@ import me.shizleshizle.core.objects.ChatColorHandler;
 import me.shizleshizle.core.permissions.PermUser;
 import me.shizleshizle.core.permissions.PermissionGroup;
 import me.shizleshizle.core.permissions.Prefix;
-import me.shizleshizle.core.utils.AutoB;
 import me.shizleshizle.core.utils.Cooldowns;
+import me.shizleshizle.core.utils.EverRunningThread;
 import net.md_5.bungee.api.ChatColor;
 import net.milkbowl.vault.Vault;
 import net.milkbowl.vault.economy.Economy;
@@ -129,6 +129,7 @@ public class Main extends JavaPlugin {
 	public static int tpTime;
 	public static int maxHealth;
 	public static int abdelay;
+	private static Thread t = new Thread(new EverRunningThread());
 	 
 	public void onEnable(){
 		long time = System.currentTimeMillis();
@@ -259,7 +260,7 @@ public class Main extends JavaPlugin {
 		pm.registerEvents(new PlayerQuit(), this);
 		pm.registerEvents(new PlayerTeleport(), this);
 		Cooldowns.runCooldown();
-		AutoB.broadcast();
+		t.run();
 		long fin = System.currentTimeMillis() - time;
 		l.info("Core >> successfully enabled! (" + fin + " ms)");
 	}
@@ -314,7 +315,13 @@ public class Main extends JavaPlugin {
 		return econ != null;
 	}
 	
-	
+	public static void sleepBroadcast() {
+		try {
+			Thread.sleep(abdelay*1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 	/*implements CommandExecutor {
 	 	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 

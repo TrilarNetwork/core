@@ -13,6 +13,7 @@ import me.shizleshizle.core.permissions.PermGroup;
 import me.shizleshizle.core.utils.AutoB;
 import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
+import me.shizleshizle.core.utils.EverRunningThread;
 
 // AB = AutoBroadcaster
 public class AB implements CommandExecutor {
@@ -50,7 +51,7 @@ public class AB implements CommandExecutor {
 								p.sendMessage(prefix + "Auto-Broadcaster is already disabled!");
 							}
 						} else if (args[0].equalsIgnoreCase("list")) {
-							p.sendMessage(AutoB.getStrings());
+							p.sendMessage(EverRunningThread.getStrings());
 						} else {
 							ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/autobroadcaster <on|off|list>");
 						}
