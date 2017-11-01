@@ -261,7 +261,7 @@ public class Main extends JavaPlugin {
 		pm.registerEvents(new PlayerTeleport(), this);
 		Cooldowns.runCooldown();
 		t = new Thread(new EverRunningThread());
-		t.run();
+		t.start();
 		long fin = System.currentTimeMillis() - time;
 		l.info("Core >> successfully enabled! (" + fin + " ms)");
 	}
