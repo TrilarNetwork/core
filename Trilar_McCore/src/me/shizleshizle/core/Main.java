@@ -1,5 +1,6 @@
 package me.shizleshizle.core;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -270,7 +271,14 @@ public class Main extends JavaPlugin {
 		long time = System.currentTimeMillis();
 		Logger l = getLogger();
 		l.info("Core >> disabling...");
-		
+		try {
+			if (sql.checkConnection()) {
+				sql.closeConnection();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		long fin = System.currentTimeMillis() - time;
 		l.info("Core >> successfully disabled! (" + fin + " ms)");
 	}
