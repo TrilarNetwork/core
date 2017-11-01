@@ -31,8 +31,10 @@ public class Lockdown implements CommandExecutor {
 						} else {
 							Bukkit.broadcastMessage(ChatColor.RED + "Server is going in Lockdown mode in one minute!");
 							Bukkit.getScheduler().scheduleSyncDelayedTask(Main.p, () -> {
-								Bukkit.broadcastMessage(ChatColor.RED.toString() + ChatColor.BOLD + "Server is going in Lock mode!");
-								initiateLockdown();
+								if (hasLockdown()) {
+									Bukkit.broadcastMessage(ChatColor.RED.toString() + ChatColor.BOLD + "Server is going in Lock mode!");
+									initiateLockdown();
+								}
 							}, 60*20);
 						}
 					} else {
