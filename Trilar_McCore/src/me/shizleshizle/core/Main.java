@@ -294,10 +294,10 @@ public class Main extends JavaPlugin {
 	private void loadVault() {
 		if (checkVault()) {
 			if (!setupEconomy()) {
-				Bukkit.getLogger().info("Stomar's Core >> Economy has not been found!");
+				Bukkit.getLogger().info("Core >> Economy has not been found!");
 			}
 		} else {
-			Bukkit.getLogger().log(Level.SEVERE, "Stomar's Core >> Vault has not been found! Disabling Stomar's Core...");
+			Bukkit.getLogger().log(Level.SEVERE, "Core >> Vault has not been found! Disabling Stomar's Core...");
 			Bukkit.getPluginManager().disablePlugin(this);
 		}
 	}
