@@ -276,7 +276,6 @@ public class Main extends JavaPlugin {
 				sql.closeConnection();
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		long fin = System.currentTimeMillis() - time;
