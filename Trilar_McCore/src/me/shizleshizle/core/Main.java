@@ -129,7 +129,7 @@ public class Main extends JavaPlugin {
 	public static int tpTime;
 	public static int maxHealth;
 	public static int abdelay;
-	private static Thread t = new Thread(new EverRunningThread());
+	private static Thread t;
 	 
 	public void onEnable(){
 		long time = System.currentTimeMillis();
@@ -260,6 +260,7 @@ public class Main extends JavaPlugin {
 		pm.registerEvents(new PlayerQuit(), this);
 		pm.registerEvents(new PlayerTeleport(), this);
 		Cooldowns.runCooldown();
+		t = new Thread(new EverRunningThread());
 		t.run();
 		long fin = System.currentTimeMillis() - time;
 		l.info("Core >> successfully enabled! (" + fin + " ms)");
