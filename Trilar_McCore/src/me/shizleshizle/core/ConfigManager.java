@@ -119,7 +119,8 @@ public class ConfigManager {
 			this.config.set("settings.database.password", "Pedo1234");
 		}
 		if (!this.config.contains("settings.broadcastMessages")) {
-			this.config.set("settings.broadcastMessages", Arrays.asList("&6Welcome to &eTrilar&6!", "&6Do you have any questions? Feel free to ask!", "&6See a bug? Visit the forum and tell us!"));
+			this.config.set("settings.broadcastMessages", Arrays.asList("&6Welcome to &eTrilar&6!", "&6Do you have any questions? Feel free to ask!", 
+					"&6See a bug? Visit the forum and tell us!"));
 		}
 	}
 	
