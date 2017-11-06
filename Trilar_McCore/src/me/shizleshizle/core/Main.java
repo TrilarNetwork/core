@@ -310,7 +310,7 @@ public class Main extends JavaPlugin {
 				int r = Numbers.getRandom(1, msgs.size());
 				Bukkit.broadcastMessage(ChatColor.GOLD + "<=====================>");
 				Bukkit.broadcastMessage(" ");
-				Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', msgs.get(r)).trim());
+				Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', msgs.get(r-1)).trim());
 				Bukkit.broadcastMessage(" ");
 				Bukkit.broadcastMessage(ChatColor.GOLD + ">=====================<");
 			}
