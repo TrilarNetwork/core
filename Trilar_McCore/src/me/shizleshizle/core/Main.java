@@ -132,6 +132,7 @@ public class Main extends JavaPlugin {
 	public static int tpTime;
 	public static int maxHealth;
 	public static int abdelay;
+	private int i = 0;
 	 
 	public void onEnable(){
 		long time = System.currentTimeMillis();
@@ -306,7 +307,6 @@ public class Main extends JavaPlugin {
 	private void broadcast() {
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> {
 			if (AutoB.isBroadcasting()) {
-				int i = 0;
 				Bukkit.broadcastMessage(ChatColor.GOLD + "<=====================>");
 				Bukkit.broadcastMessage(" ");
 				Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', msgs.get(i)).trim());
