@@ -36,7 +36,8 @@ public class Lockdown implements CommandExecutor {
 									}
 								}, 60*20);
 							} else {
-								p.sendMessage(prefix + "Lockdown has been cancelled!");
+								p.sendMessage(prefix + "Lockdown has already been enabled!");
+								
 							}
 						} else if (args[0].equalsIgnoreCase("off")) {
 							if (hasLockdown()) {
@@ -45,6 +46,9 @@ public class Lockdown implements CommandExecutor {
 							} else {
 								p.sendMessage(prefix + "Lockdown is already disabled!");
 							}
+						} else if (args[0].equalsIgnoreCase("cancel")) {
+							Main.lockdown = false;
+							Bukkit.broadcastMessage(prefix + "Lockdown has been cancelled!");
 						} else {
 							ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/lockdown <on|off>");
 						}
