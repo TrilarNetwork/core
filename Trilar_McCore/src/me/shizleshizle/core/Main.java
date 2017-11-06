@@ -103,7 +103,6 @@ import me.shizleshizle.core.permissions.PermissionGroup;
 import me.shizleshizle.core.permissions.Prefix;
 import me.shizleshizle.core.utils.AutoB;
 import me.shizleshizle.core.utils.Cooldowns;
-import me.shizleshizle.core.utils.Numbers;
 import net.md_5.bungee.api.ChatColor;
 import net.milkbowl.vault.Vault;
 import net.milkbowl.vault.economy.Economy;
@@ -307,12 +306,14 @@ public class Main extends JavaPlugin {
 	private void broadcast() {
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> {
 			if (AutoB.isBroadcasting()) {
-				int r = Numbers.getRandom(1, msgs.size());
+				int i = 0;
 				Bukkit.broadcastMessage(ChatColor.GOLD + "<=====================>");
 				Bukkit.broadcastMessage(" ");
-				Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', msgs.get(r-1)).trim());
+				Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', msgs.get(i)).trim());
 				Bukkit.broadcastMessage(" ");
 				Bukkit.broadcastMessage(ChatColor.GOLD + ">=====================<");
+				i++;
+				if (i > msgs.size()) i = 0;
 			}
 		}, 0L, abdelay*20); 
 	}
