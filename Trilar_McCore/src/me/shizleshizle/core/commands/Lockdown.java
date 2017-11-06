@@ -24,21 +24,32 @@ public class Lockdown implements CommandExecutor {
 				Player x = (Player) sender;
 				User p = new User(x);
 				if (Perm.hasPerm(p, PermGroup.ADMIN)) {
-					if (args.length == 0) {
-						if (hasLockdown()) {
-							disableLockdown();
-							Bukkit.broadcastMessage(ChatColor.RED + "Lockdown Mode is no longer active or has been canceled.");
+					if (args.length == 1) {
+						if (args[0].equalsIgnoreCase("on")) {
+							if (!hasLockdown()) {
+								Main.lockdown = true;
+								Bukkit.broadcastMessage(ChatColor.RED + "Server is going in Lockdown mode in one minute!");
+								Bukkit.getScheduler().scheduleSyncDelayedTask(Main.p, () -> {
+									if (hasLockdown()) {
+										Bukkit.broadcastMessage(ChatColor.RED.toString() + ChatColor.BOLD + "Server is going in Lock mode!");
+										initiateLockdown();
+									}
+								}, 60*20);
+							} else {
+								p.sendMessage(prefix + "Lockdown has been cancelled!");
+							}
+						} else if (args[0].equalsIgnoreCase("off")) {
+							if (hasLockdown()) {
+								disableLockdown();
+								Bukkit.broadcastMessage(ChatColor.RED + "Lockdown Mode is no longer active or has been canceled.");
+							} else {
+								p.sendMessage(prefix + "Lockdown is already disabled!");
+							}
 						} else {
-							Bukkit.broadcastMessage(ChatColor.RED + "Server is going in Lockdown mode in one minute!");
-							Bukkit.getScheduler().scheduleSyncDelayedTask(Main.p, () -> {
-								if (hasLockdown()) {
-									Bukkit.broadcastMessage(ChatColor.RED.toString() + ChatColor.BOLD + "Server is going in Lock mode!");
-									initiateLockdown();
-								}
-							}, 60*20);
+							ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/lockdown <on|off>");
 						}
 					} else {
-						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/lockdown");
+						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/lockdown <on|off>");
 					}
 				} else {
 					ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/lockdown");
@@ -51,11 +62,12 @@ public class Lockdown implements CommandExecutor {
 	}
 	
 	public static void initiateLockdown() {
-		for (Player ap : Bukkit.getOnlinePlayers()) {
-			if (!Perm.hasPerm(ap.getName(), PermGroup.BUILDER)) {
-				ap.kickPlayer(ChatColor.GOLD + "-=[ Trilar ]=- \nYou have been kicked due to the server going in Lockdown mode.");
-				Main.lockdown = true;
-				Bukkit.broadcastMessage(Main.prefix + "Lockdown mode has been activated!");
+		if (hasLockdown()) {
+			for (Player ap : Bukkit.getOnlinePlayers()) {
+				if (!Perm.hasPerm(ap.getName(), PermGroup.BUILDER)) {
+					ap.kickPlayer(ChatColor.GOLD + "-=[ Trilar ]=- \nYou have been kicked due to the server going in Lockdown mode.");
+					Bukkit.broadcastMessage(Main.prefix + "Lockdown mode has been activated!");
+				}
 			}
 		}
 	}

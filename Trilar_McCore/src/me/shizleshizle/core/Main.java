@@ -100,6 +100,7 @@ import me.shizleshizle.core.objects.ChatColorHandler;
 import me.shizleshizle.core.permissions.PermUser;
 import me.shizleshizle.core.permissions.PermissionGroup;
 import me.shizleshizle.core.permissions.Prefix;
+import me.shizleshizle.core.utils.AutoB;
 import me.shizleshizle.core.utils.Cooldowns;
 import me.shizleshizle.core.utils.EverRunningThread;
 import net.md_5.bungee.api.ChatColor;
@@ -261,8 +262,11 @@ public class Main extends JavaPlugin {
 		pm.registerEvents(new PlayerQuit(), this);
 		pm.registerEvents(new PlayerTeleport(), this);
 		Cooldowns.runCooldown();
+		AutoB.enable();
+		EverRunningThread.init();
 		t = new Thread(new EverRunningThread());
 		t.start();
+		t.run();
 		long fin = System.currentTimeMillis() - time;
 		l.info("Core >> successfully enabled! (" + fin + " ms)");
 	}
@@ -306,7 +310,7 @@ public class Main extends JavaPlugin {
 				Bukkit.getLogger().info("Core >> Economy has not been found!");
 			}
 		} else {
-			Bukkit.getLogger().log(Level.SEVERE, "Core >> Vault has not been found! Disabling Stomar's Core...");
+			Bukkit.getLogger().log(Level.SEVERE, "Core >> Vault has not been found! Disabling Core...");
 			Bukkit.getPluginManager().disablePlugin(this);
 		}
 	}

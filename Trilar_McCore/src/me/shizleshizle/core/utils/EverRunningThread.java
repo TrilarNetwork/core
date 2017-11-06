@@ -8,8 +8,12 @@ import org.bukkit.ChatColor;
 import me.shizleshizle.core.Main;
 
 public class EverRunningThread implements Runnable {
-	private static List<String> msgs = Main.c.getConfig().getStringList("settings.broadcastMessages");
+	private static List<String> msgs;
 	private static int i = 0;
+	
+	public static void init() {
+		msgs = Main.c.getConfig().getStringList("settings.broadcastMessages");
+	}
 
 	@Override
 	public void run() {
