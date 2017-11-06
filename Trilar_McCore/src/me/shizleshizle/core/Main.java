@@ -3,6 +3,7 @@ package me.shizleshizle.core;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -102,12 +103,13 @@ import me.shizleshizle.core.permissions.PermissionGroup;
 import me.shizleshizle.core.permissions.Prefix;
 import me.shizleshizle.core.utils.AutoB;
 import me.shizleshizle.core.utils.Cooldowns;
-import me.shizleshizle.core.utils.EverRunningThread;
+import me.shizleshizle.core.utils.Numbers;
 import net.md_5.bungee.api.ChatColor;
 import net.milkbowl.vault.Vault;
 import net.milkbowl.vault.economy.Economy;
 
 public class Main extends JavaPlugin {
+	public static List<String> msgs;
 	public static ArrayList<String> afks = new ArrayList<String>();
 	public static ArrayList<String> frozen = new ArrayList<String>();
 	public static ArrayList<String> gods = new ArrayList<String>();
@@ -131,7 +133,6 @@ public class Main extends JavaPlugin {
 	public static int tpTime;
 	public static int maxHealth;
 	public static int abdelay;
-	private static Thread t;
 	 
 	public void onEnable(){
 		long time = System.currentTimeMillis();
@@ -148,18 +149,43 @@ public class Main extends JavaPlugin {
 		PermUser.setup();
 		Prefix.setup();
 		ChatColorHandler.setup();
+		register();
+		registerEvents();
+		Cooldowns.runCooldown();
+		AutoB.enable();
+		broadcast();
+		long fin = System.currentTimeMillis() - time;
+		l.info("Core >> successfully enabled! (" + fin + " ms)");
+	}
+
+	public void onDisable(){
+		long time = System.currentTimeMillis();
+		Logger l = getLogger();
+		l.info("Core >> disabling...");
+		try {
+			if (sql.checkConnection()) {
+				sql.closeConnection();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		long fin = System.currentTimeMillis() - time;
+		l.info("Core >> successfully disabled! (" + fin + " ms)");
+	}
+	
+	private void register() {
 		// commands
-		//home
+		// home
 		getCommand("delhome").setExecutor(new Delhome());
 		getCommand("home").setExecutor(new Home());
 		getCommand("sethome").setExecutor(new Sethome());
-		
-		//spawn
+
+		// spawn
 		getCommand("spawn").setExecutor(new Spawn());
 		getCommand("setspawn").setExecutor(new Spawn());
 		getCommand("removespawn").setExecutor(new Spawn());
-		
-		//teleportation
+
+		// teleportation
 		getCommand("tp").setExecutor(new Tp());
 		getCommand("tpa").setExecutor(new Tpa());
 		getCommand("tpaccept").setExecutor(new Tpaccept());
@@ -170,32 +196,31 @@ public class Main extends JavaPlugin {
 		getCommand("tpohere").setExecutor(new Tpohere());
 		getCommand("tppos").setExecutor(new Tppos());
 		getCommand("tptoggle").setExecutor(new Tptoggle());
-		
-		//tickets
+
+		// tickets
 		getCommand("checkticket").setExecutor(new CheckTicket());
 		getCommand("closeticket").setExecutor(new CloseTicket());
 		getCommand("taketicket").setExecutor(new TakeTicket());
 		getCommand("ticket").setExecutor(new Ticket());
 		getCommand("tickets").setExecutor(new Tickets());
-		
-		
-		//time
+
+		// time
 		getCommand("time").setExecutor(new Time());
 		getCommand("day").setExecutor(new DayCmd());
 		getCommand("night").setExecutor(new NightCmd());
 		getCommand("ptime").setExecutor(new PTime());
-		
-		//warps
+
+		// warps
 		getCommand("removewarp").setExecutor(new Deletewarps());
 		getCommand("setwarp").setExecutor(new Setwarps());
-		getCommand("warp").setExecutor(new Warp());		
-		
-		//weather
+		getCommand("warp").setExecutor(new Warp());
+
+		// weather
 		getCommand("weather").setExecutor(new Weather());
 		getCommand("sun").setExecutor(new Weather());
 		getCommand("storm").setExecutor(new Weather());
-		
-		//regular
+
+		// regular
 		getCommand("autobroadcaster").setExecutor(new AB());
 		getCommand("afk").setExecutor(new Afk());
 		getCommand("back").setExecutor(new Back());
@@ -242,9 +267,11 @@ public class Main extends JavaPlugin {
 		if (checkVault()) {
 			getCommand("balance").setExecutor(new Balance());
 			getCommand("pay").setExecutor(new Pay());
-		
+
 		}
-		
+	}
+	
+	private void registerEvents() {
 		// events
 		PluginManager pm = Bukkit.getServer().getPluginManager();
 		pm.registerEvents(new BlockBreak(), this);
@@ -261,29 +288,6 @@ public class Main extends JavaPlugin {
 		pm.registerEvents(new PlayerPreProcess(), this);
 		pm.registerEvents(new PlayerQuit(), this);
 		pm.registerEvents(new PlayerTeleport(), this);
-		Cooldowns.runCooldown();
-		AutoB.enable();
-		EverRunningThread.init();
-		t = new Thread(new EverRunningThread());
-		t.start();
-		t.run();
-		long fin = System.currentTimeMillis() - time;
-		l.info("Core >> successfully enabled! (" + fin + " ms)");
-	}
-
-	public void onDisable(){
-		long time = System.currentTimeMillis();
-		Logger l = getLogger();
-		l.info("Core >> disabling...");
-		try {
-			if (sql.checkConnection()) {
-				sql.closeConnection();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		long fin = System.currentTimeMillis() - time;
-		l.info("Core >> successfully disabled! (" + fin + " ms)");
 	}
 	
 	public static void setupUtils() {
@@ -297,6 +301,20 @@ public class Main extends JavaPlugin {
 		tpTime = c.getConfig().getInt("settings.teleportWaitTime");
 		maxHealth = c.getConfig().getInt("settings.maxHealth");
 		abdelay = c.getConfig().getInt("settings.autoBroadcastDelay");
+		msgs = Main.c.getConfig().getStringList("settings.broadcastMessages");
+	}
+	
+	private void broadcast() {
+		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> {
+			if (AutoB.isBroadcasting()) {
+				int r = Numbers.getRandom(1, msgs.size());
+				Bukkit.broadcastMessage(ChatColor.GOLD + "<=====================>");
+				Bukkit.broadcastMessage(" ");
+				Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', msgs.get(r)).trim());
+				Bukkit.broadcastMessage(" ");
+				Bukkit.broadcastMessage(ChatColor.GOLD + ">=====================<");
+			}
+		}, 0L, abdelay*20); 
 	}
 	
 	private boolean checkVault() {
