@@ -21,10 +21,10 @@ public class PlayerChat implements Listener {
 		if (Perm.hasPerm(p, PermGroup.ADMIN)) {
 			if (e.getMessage().equalsIgnoreCase("!panic")) {
 				Lockdown.initiateLockdown();
-				e.setCancelled(true);
+				e.setMessage("");
 			} else if (e.getMessage().contains("!panic")) { 
 				Lockdown.initiateLockdown();
-				e.setCancelled(true);
+				e.setMessage("");
 			}
 		}
 		if (Perm.hasPerm(p, PermGroup.HELPER)) {
@@ -33,8 +33,6 @@ public class PlayerChat implements Listener {
 		if (Perm.getGroup(p) == null) {
 			Perm.updateGroup(p, PermGroup.MEMBER);
 		}
-		if (!e.isCancelled()) {
-			Bukkit.broadcastMessage(p.getDisplayName() + ChatColor.GOLD + " >> " + ChatColor.translateAlternateColorCodes('&', p.getChatColor()) + msg);
-		}
+		Bukkit.broadcastMessage(p.getDisplayName() + ChatColor.GOLD + " >> " + ChatColor.translateAlternateColorCodes('&', p.getChatColor()) + msg);
 	}
 }
