@@ -313,7 +313,9 @@ public class Main extends JavaPlugin {
 				Bukkit.broadcastMessage(" ");
 				Bukkit.broadcastMessage(ChatColor.GOLD + ">=====================<");
 				i++;
-				if (i > msgs.size()) i = 0;
+				if (i > (msgs.size() - 1)) {
+					i = 0;
+				}
 			}
 		}, 0L, abdelay*20); 
 	}
