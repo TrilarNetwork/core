@@ -26,8 +26,7 @@ public class Ticket implements CommandExecutor {
 				User p = new User(x);
 				if (Perm.hasPerm(p, PermGroup.MEMBER)) {
 					if (args.length == 0) {
-						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "ticket <text>");
-						p.sendMessage(prefix + "");
+						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/ticket <text>");
 					} else {
 						StringBuilder sb = new StringBuilder();
 						for (String word : args) {
@@ -36,6 +35,7 @@ public class Ticket implements CommandExecutor {
 						desc = sb.toString().trim();
 						owner = p.getName();
 						TicketUtils.createTicket(owner, Status.OPEN, desc, p.getLocation().getX(), p.getLocation().getY(), p.getLocation().getZ(), p.getWorld().getName());
+						p.sendMessage(prefix + "You have successfully created a ticket!");
 					}
 				} else {
 					ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/ticket <text>");
@@ -51,6 +51,7 @@ public class Ticket implements CommandExecutor {
 					desc = sb.toString().trim();
 					owner = "CONSOLE";
 					TicketUtils.createTicket(owner, Status.OPEN, desc, 0, 0, 0, "world");
+					sender.sendMessage(prefix + "You have successfully created a ticket!");
 				}
 			}
 		}
