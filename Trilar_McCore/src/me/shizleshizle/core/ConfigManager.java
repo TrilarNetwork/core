@@ -98,7 +98,7 @@ public class ConfigManager {
 			this.config.set("settings.teleportWaitTime", 5);
 		}
 		if (!this.config.contains("settings.autoBroadcastDelay")) {
-			this.config.set("settings.autoBroadcastDelay", 60);
+			this.config.set("settings.autoBroadcastDelay", 600);
 		}
 		if (!this.config.contains("settings.removeOnQuit")) {
 			this.config.set("settings.removeOnQuit", false);

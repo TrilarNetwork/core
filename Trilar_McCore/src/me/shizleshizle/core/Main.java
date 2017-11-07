@@ -248,6 +248,7 @@ public class Main extends JavaPlugin {
 		getCommand("kill").setExecutor(new Kill());
 		getCommand("list").setExecutor(new ListCmd());
 		getCommand("lockdown").setExecutor(new Lockdown());
+		getCommand("mccore").setExecutor(new Reload());
 		getCommand("me").setExecutor(new Me());
 		getCommand("nickname").setExecutor(new Nickname());
 		getCommand("permission").setExecutor(new PermissionsCmd());
@@ -255,7 +256,6 @@ public class Main extends JavaPlugin {
 		getCommand("rank").setExecutor(new Ranks());
 		getCommand("repair").setExecutor(new Repair());
 		getCommand("regels").setExecutor(new Rules());
-		getCommand("reload").setExecutor(new Reload());
 		getCommand("skull").setExecutor(new Skulls());
 		getCommand("speed").setExecutor(new Speed());
 		getCommand("staff").setExecutor(new StaffList());

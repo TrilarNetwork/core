@@ -23,7 +23,7 @@ public class Reload implements CommandExecutor {
  	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Trilar Core" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("core")) {
+		if (cmd.getName().equalsIgnoreCase("mccore")) {
 			if (sender instanceof Player) {
 				Player x = (Player) sender;
 				User p = new User(x);
@@ -51,10 +51,10 @@ public class Reload implements CommandExecutor {
 							p.sendMessage(prefix + "You have successfully reloaded the databases and all yml files!");
 						}
 					} else {
-						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/core reload");
+						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/mccore reload");
 					}
 				} else {
-					ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/core");
+					ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/mccore");
 				}
 			} else {
 				sender.sendMessage(ChatColor.RED + "You must be a player to perform this command!");

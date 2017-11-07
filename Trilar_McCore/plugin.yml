@@ -148,6 +148,8 @@ commands:
     description: List all online player(s).
   lockdown:
     description: Toggle lockdown mode.
+  mccore:
+    description: Reload the plugin
   me:
     description: Talk in third person.
   nickname:
@@ -159,8 +161,6 @@ commands:
     description: View or change peoples prefix.
   rank:
     description: Change a persons rank.
-  reload:
-    description: Reload the plugin
   repair:
     description: Repair one or more items.
   regels:
