@@ -27,6 +27,7 @@ public class Ticket implements CommandExecutor {
 				if (Perm.hasPerm(p, PermGroup.MEMBER)) {
 					if (args.length == 0) {
 						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "ticket <text>");
+						p.sendMessage(prefix + "");
 					} else {
 						StringBuilder sb = new StringBuilder();
 						for (String word : args) {

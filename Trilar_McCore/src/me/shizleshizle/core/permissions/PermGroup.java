@@ -10,6 +10,7 @@ import static org.bukkit.ChatColor.GRAY;
 import static org.bukkit.ChatColor.GREEN;
 import static org.bukkit.ChatColor.RED;
 import static org.bukkit.ChatColor.YELLOW;
+import static org.bukkit.ChatColor.WHITE;
 
 import org.bukkit.ChatColor;
 
@@ -24,6 +25,7 @@ public enum PermGroup {
 	HELPER(200, GRAY + "(" + DARK_GREEN + "Helper" + GRAY + ") " + GREEN, "Helper", GREEN, "&b"),
 	HEAD_BUILDER(199, GRAY + "(" + GREEN + "Head-Builder" + GRAY + ") " + GREEN, "Head-Builder", GREEN, "&a"),
 	BUILDER(100, GRAY + "(" + DARK_GREEN + "Builder" + GRAY + ") " + GREEN, "Builder", GREEN, "&2"),
+	YOUTUBE(99, GRAY + "(" + RED + "You" + WHITE + "Tube" + GRAY + ") " + RED, "YouTube", WHITE, "&f"),
 	VIP4(90, GRAY + "(" + AQUA + "Vip" + GRAY + ") " + AQUA, "Vip", AQUA, "&b"),
 	VIP3(80, GRAY + "(" + AQUA + "Vip" + GRAY + ") " + AQUA, "Vip", AQUA, "&b"),
 	VIP2(60, GRAY + "(" + AQUA + "Vip" + GRAY + ") " + AQUA, "Vip", AQUA, "&b"),

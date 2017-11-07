@@ -153,6 +153,14 @@ public class PermAttachments {
 				pa.setPermission(new Permission(pe), true);
 			}
 		}
+		if (Perm.hasPerm(p, PermGroup.YOUTUBE)) {
+			ArrayList<String> perms = new ArrayList<>();
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.VIP4));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.VIP3));
+			for (String pe : perms) {
+				pa.setPermission(new Permission(pe), true);
+			}
+		}
 		if (Perm.hasPerm(p, PermGroup.VIP4)) {
 			ArrayList<String> perms = new ArrayList<>();
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.VIP4));
