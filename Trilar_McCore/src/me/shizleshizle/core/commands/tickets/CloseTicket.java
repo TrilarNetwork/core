@@ -42,8 +42,8 @@ public class CloseTicket implements CommandExecutor {
 							if (args[1].equalsIgnoreCase("-r")) {
 								int id = Numbers.getInt(args[0]);
 								if (TicketUtils.exists(id)) {
-									TicketUtils.closeTicket(id);
-									Broadcast.broadcastToStaff(prefix + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " has closed ticket: " + ChatColor.GOLD + id 
+									TicketUtils.openTicket(id);
+									Broadcast.broadcastToStaff(prefix + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " has reopened ticket: " + ChatColor.GOLD + id 
 											+ ChatColor.YELLOW + "!");
 								} else {
 									p.sendMessage(prefix + "Ticket " + ChatColor.GOLD + id + ChatColor.YELLOW + " does not exist!");
