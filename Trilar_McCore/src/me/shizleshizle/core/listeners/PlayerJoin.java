@@ -34,8 +34,7 @@ public class PlayerJoin implements Listener {
 		User p = new User(x);
 		if (Lockdown.hasLockdown()) {
 			if (!Perm.hasPerm(p, PermGroup.BUILDER)) {
-				p.kickUser(ChatColor.GOLD + "-=[ Trilar ]=- \nServer is in Lockdown mode, so you can not join. \nPlease try again later.");
-				return;
+				p.kickUser(ChatColor.GOLD + "-=[ Trilar ]=- \nServer is in Lockdown mode, Staff will look into the server(s). \nPlease try again later.");
 			}
 		}
 		HomeUtils.initPlayer(p);

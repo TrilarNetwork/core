@@ -47,7 +47,7 @@ public class Lockdown implements CommandExecutor {
 								p.sendMessage(prefix + "Lockdown is already disabled!");
 							}
 						} else if (args[0].equalsIgnoreCase("cancel")) {
-							Main.lockdown = false;
+							disableLockdown();
 							Bukkit.broadcastMessage(prefix + "Lockdown has been cancelled!");
 						} else {
 							ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/lockdown <on|off>");
