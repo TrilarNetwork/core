@@ -152,6 +152,8 @@ commands:
     description: Reload the plugin
   me:
     description: Talk in third person.
+  mods:
+    description: View the allowed mods.
   nickname:
     description: Change your nickname.
     aliases: [nick]
@@ -167,6 +169,8 @@ commands:
     description: View the rules.
   skull:
     description: Get yourself a skull.
+  socialmedia:
+    description: View our socialmedia!
   speed:
     description: Change your fly or walk speed.
   staff:
