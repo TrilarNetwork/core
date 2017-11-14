@@ -20,15 +20,15 @@ public class SocialMedia implements CommandExecutor {
 			if (sender instanceof Player) {
 				Player x = (Player) sender;
 				User p = new User(x);
-				if (Perm.hasPerm(p, PermGroup.HELPER)) {
+				if (Perm.hasPerm(p, PermGroup.MEMBER)) {
 					if (args.length == 0) {
 						p.sendMessage(ChatColor.GOLD + "========"  + ChatColor.YELLOW + " SocialMedia " + ChatColor.GOLD + "========");
 						p.sendMessage(ChatColor.RED + "Volg ons op socialmedia om op de hoogte te blijven!");
 						p.sendMessage(" ");
-						p.sendMessage(ChatColor.GOLD + "Snapchat:" + ChatColor.YELLOW + "Trilarnetwork");
-						p.sendMessage(ChatColor.GOLD + "Instagram:" + ChatColor.YELLOW + "Trilarnetwork");
-						p.sendMessage(ChatColor.GOLD + "Youtube:" + ChatColor.YELLOW + "Trilar");
-						p.sendMessage(ChatColor.GOLD + "Twitter:" + ChatColor.YELLOW + "Trilarnetwork");
+						p.sendMessage(ChatColor.GOLD + "Snapchat:" + ChatColor.YELLOW + " Trilarnetwork");
+						p.sendMessage(ChatColor.GOLD + "Instagram:" + ChatColor.YELLOW + " Trilarnetwork");
+						p.sendMessage(ChatColor.GOLD + "Youtube:" + ChatColor.YELLOW + " Trilar");
+						p.sendMessage(ChatColor.GOLD + "Twitter:" + ChatColor.YELLOW + " Trilarnetwork");
 						p.sendMessage(" ");
 					} else {
 						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/SocialMedia");

@@ -131,6 +131,7 @@ public class Main extends JavaPlugin {
 	public static String prefix = ChatColor.GOLD + "-={ " + ChatColor.YELLOW + "Trilar" + ChatColor.GOLD + " }=- " + ChatColor.YELLOW;
 	public static int port;
 	public static int maxhomes;
+	
 	public static int tpTime;
 	public static int maxHealth;
 	public static int abdelay;
@@ -259,7 +260,7 @@ public class Main extends JavaPlugin {
 		getCommand("rank").setExecutor(new Ranks());
 		getCommand("repair").setExecutor(new Repair());
 		getCommand("regels").setExecutor(new Rules());
-		getCommand("socialmeda").setExecutor(new SocialMedia());
+		getCommand("socialmedia").setExecutor(new SocialMedia());
 		getCommand("skull").setExecutor(new Skulls());
 		getCommand("speed").setExecutor(new Speed());
 		getCommand("staff").setExecutor(new StaffList());

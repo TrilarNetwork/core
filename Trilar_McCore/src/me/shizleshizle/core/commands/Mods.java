@@ -20,10 +20,10 @@ public class Mods implements CommandExecutor {
 			if (sender instanceof Player) {
 				Player x = (Player) sender;
 				User p = new User(x);
-				if (Perm.hasPerm(p, PermGroup.HELPER)) {
+				if (Perm.hasPerm(p, PermGroup.MEMBER)) {
 					if (args.length == 0) {
 						p.sendMessage(ChatColor.GOLD + "========"  + ChatColor.YELLOW + " Mods " + ChatColor.GOLD + "========");
-						p.sendMessage(ChatColor.RED + "Mods overteden kan tot een ban leiden!");
+						p.sendMessage(ChatColor.RED + "Mods overtreden kan tot een ban leiden!");
 						p.sendMessage(" ");
 						p.sendMessage(ChatColor.GOLD + "Toegestaan:" + ChatColor.YELLOW + " ArmorStatusHUD");
 						p.sendMessage(ChatColor.GOLD + "Toegestaan:" + ChatColor.YELLOW + " StatusEffectHud");
@@ -43,6 +43,7 @@ public class Mods implements CommandExecutor {
 						p.sendMessage(ChatColor.GOLD + "Toegestaan:" + ChatColor.YELLOW + " KeyStrokes mod");
 						p.sendMessage(ChatColor.GOLD + "Toegestaan:" + ChatColor.YELLOW + " CPS mod");
 						p.sendMessage(ChatColor.GOLD + "Toegestaan:" + ChatColor.YELLOW + " Labymod");
+						p.sendMessage(" ");
 					} else {
 						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/Mods");
 					}
