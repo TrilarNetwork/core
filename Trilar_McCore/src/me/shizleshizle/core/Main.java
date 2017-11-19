@@ -353,14 +353,6 @@ public class Main extends JavaPlugin {
 		return econ != null;
 	}
 	
-	public static void sleepBroadcast() {
-		try {
-			Thread.sleep(abdelay*1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-	
 	/*implements CommandExecutor {
 	 	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
