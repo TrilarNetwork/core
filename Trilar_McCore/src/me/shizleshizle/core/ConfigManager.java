@@ -104,7 +104,7 @@ public class ConfigManager {
 			this.config.set("settings.removeOnQuit", false);
 		}
 		if (!this.config.contains("settings.database.hostname")) {
-			this.config.set("settings.database.hostname", "185.211.51.30");
+			this.config.set("settings.database.hostname", "127.0.0.1");
 		}
 		if (!this.config.contains("settings.database.port")) {
 			this.config.set("settings.database.port", 3306);
@@ -116,7 +116,7 @@ public class ConfigManager {
 			this.config.set("settings.database.username", "root");
 		}
 		if (!this.config.contains("settings.database.password")) {
-			this.config.set("settings.database.password", "Pedo1234");
+			this.config.set("settings.database.password", "Mellie12");
 		}
 		if (!this.config.contains("settings.broadcastMessages")) {
 			this.config.set("settings.broadcastMessages", Arrays.asList("&6Welcome to &eTrilar&6!", "&6Do you have any questions? Feel free to ask!", 
