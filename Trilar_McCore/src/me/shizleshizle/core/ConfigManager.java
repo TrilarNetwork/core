@@ -116,7 +116,7 @@ public class ConfigManager {
 			this.config.set("settings.database.username", "root");
 		}
 		if (!this.config.contains("settings.database.password")) {
-			this.config.set("settings.database.password", "Mellie12");
+			this.config.set("settings.database.password", "Mebra2134");
 		}
 		if (!this.config.contains("settings.broadcastMessages")) {
 			this.config.set("settings.broadcastMessages", Arrays.asList("&6Welcome to &eTrilar&6!", "&6Do you have any questions? Feel free to ask!", 
