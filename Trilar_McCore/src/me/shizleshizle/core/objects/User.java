@@ -63,6 +63,10 @@ public class User {
 		return this.p.addAttachment(p);
 	}
 	
+	public void addItem(ItemStack i) {
+		p.getInventory().addItem(i);
+	}
+	
 	public void addPermission(String perm) {
 		ArrayList<String> perms = new ArrayList<>();
 		perms.add(perm);
