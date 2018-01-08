@@ -19,7 +19,7 @@ public enum PermGroup {
 	LEAD_DEVELOPER(550, GRAY + "(" + DARK_AQUA + "Lead" + GRAY + "-" + DARK_AQUA + "Developer" + GRAY + ") " + AQUA, "Lead-Developer", AQUA, "&3"),
 	DEVELOPER(525, GRAY + "(" + YELLOW + "Developer" + GRAY + ") " + GOLD, "Developer", GOLD, "&6"),
 	OWNER(500, GRAY + "(" + DARK_RED + "Owner" + GRAY + ") " + RED, "Owner", RED, "&c"),
-	SERVER_MANAGER(450, GRAY + "(" + RED + "Server" + GRAY + "-" + RED + "Manager" + GRAY + ") " + RED, "Server-Manager", RED, "&e"),
+	MANAGER(450, GRAY + "(" + RED + "Manager" + GRAY + ") " + RED, "Manager", RED, "&e"),
 	ADMIN(400, GRAY + "(" + DARK_RED + "Admin" + GRAY + ") " + RED, "Admin", RED, "&c"),
 	MODERATOR(300, GRAY + "(" + GOLD + "Moderator" + GRAY + ") " + YELLOW, "Moderator", YELLOW, "&9"),
 	HELPER(200, GRAY + "(" + DARK_GREEN + "Helper" + GRAY + ") " + GREEN, "Helper", GREEN, "&b"),

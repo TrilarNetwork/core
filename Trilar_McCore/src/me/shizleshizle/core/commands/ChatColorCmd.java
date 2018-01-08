@@ -21,7 +21,7 @@ public class ChatColorCmd implements CommandExecutor {
 			if (sender instanceof Player) {
 				Player x = (Player) sender;
 				User p = new User(x);
-				if (Perm.hasPerm(p, PermGroup.SERVER_MANAGER)) {
+				if (Perm.hasPerm(p, PermGroup.MANAGER)) {
 					if (args.length == 1) {
 						if (args[0].equalsIgnoreCase(PermGroup.LEAD_DEVELOPER.getName())) {
 							if (ChatColorHandler.hasColor(PermGroup.LEAD_DEVELOPER)) {
@@ -43,12 +43,12 @@ public class ChatColorCmd implements CommandExecutor {
 							} else {
 								p.sendMessage(prefix + "Owner's ChatColor is: " + ChatColor.GOLD + PermGroup.OWNER.getChatColor() + ChatColor.YELLOW + "!");
 							}
-						} else if (args[0].equalsIgnoreCase(PermGroup.SERVER_MANAGER.getName())) {
-							if (ChatColorHandler.hasColor(PermGroup.SERVER_MANAGER)) {
-								p.sendMessage(prefix + "Server-Manager's ChatColor is: " + ChatColor.GOLD + ChatColorHandler.getChatColor(PermGroup.SERVER_MANAGER) 
+						} else if (args[0].equalsIgnoreCase(PermGroup.MANAGER.getName())) {
+							if (ChatColorHandler.hasColor(PermGroup.MANAGER)) {
+								p.sendMessage(prefix + "Manager's ChatColor is: " + ChatColor.GOLD + ChatColorHandler.getChatColor(PermGroup.MANAGER) 
 								+ ChatColor.YELLOW + "!");
 							} else {
-								p.sendMessage(prefix + "Server-Manager's ChatColor is: " + ChatColor.GOLD + PermGroup.SERVER_MANAGER.getChatColor() + ChatColor.YELLOW + "!");
+								p.sendMessage(prefix + "Manager's ChatColor is: " + ChatColor.GOLD + PermGroup.MANAGER.getChatColor() + ChatColor.YELLOW + "!");
 							}
 						} else if (args[0].equalsIgnoreCase(PermGroup.ADMIN.getName())) {
 							if (ChatColorHandler.hasColor(PermGroup.ADMIN)) {
@@ -129,13 +129,13 @@ public class ChatColorCmd implements CommandExecutor {
 									ChatColorHandler.setChatColor(PermGroup.OWNER, cc);
 									p.sendMessage(prefix + "You have set the ChatColor for Owner to " + ChatColor.GOLD + cc + ChatColor.YELLOW + "!");
 								}
-							} else if (args[1].equalsIgnoreCase(PermGroup.SERVER_MANAGER.getName())) {
+							} else if (args[1].equalsIgnoreCase(PermGroup.MANAGER.getName())) {
 								String cc = args[2];
 								if (!cc.startsWith("&")) {
 									p.sendMessage(prefix + "ChatColor must start with &!");
 								} else {
-									ChatColorHandler.setChatColor(PermGroup.SERVER_MANAGER, cc);
-									p.sendMessage(prefix + "You have set the ChatColor for Server-Manager to " + ChatColor.GOLD + cc + ChatColor.YELLOW + "!");
+									ChatColorHandler.setChatColor(PermGroup.MANAGER, cc);
+									p.sendMessage(prefix + "You have set the ChatColor for Manager to " + ChatColor.GOLD + cc + ChatColor.YELLOW + "!");
 								}
 							} else if (args[1].equalsIgnoreCase(PermGroup.ADMIN.getName())) {
 								String cc = args[2];
@@ -220,10 +220,10 @@ public class ChatColorCmd implements CommandExecutor {
 								} else {
 									p.sendMessage(prefix + "Owner does not have a ChatColor!");
 								}
-							} else if (args[1].equalsIgnoreCase(PermGroup.SERVER_MANAGER.getName())) {
-								if (ChatColorHandler.hasColor(PermGroup.SERVER_MANAGER)) {
-									ChatColorHandler.removeChatColor(PermGroup.SERVER_MANAGER);
-									p.sendMessage(prefix + "You have removed the ChatColor for Server-Manager!");
+							} else if (args[1].equalsIgnoreCase(PermGroup.MANAGER.getName())) {
+								if (ChatColorHandler.hasColor(PermGroup.MANAGER)) {
+									ChatColorHandler.removeChatColor(PermGroup.MANAGER);
+									p.sendMessage(prefix + "You have removed the ChatColor for Manager!");
 								} else {
 									p.sendMessage(prefix + "Server-Manager does not have a ChatColor!");
 								}

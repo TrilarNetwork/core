@@ -22,7 +22,7 @@ public class PermAttachments {
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.HELPER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MODERATOR));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.ADMIN));
-			perms.addAll(PermissionGroup.getPermissions(PermGroup.SERVER_MANAGER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.MANAGER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.OWNER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.DEVELOPER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.LEAD_DEVELOPER));
@@ -46,7 +46,7 @@ public class PermAttachments {
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.HELPER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MODERATOR));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.ADMIN));
-			perms.addAll(PermissionGroup.getPermissions(PermGroup.SERVER_MANAGER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.MANAGER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.OWNER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.DEVELOPER));
 			pa.setPermission(new Permission("bukkit.command.tps"), true);
@@ -69,7 +69,7 @@ public class PermAttachments {
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.HELPER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MODERATOR));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.ADMIN));
-			perms.addAll(PermissionGroup.getPermissions(PermGroup.SERVER_MANAGER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.MANAGER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.OWNER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.DEVELOPER));
 			pa.setPermission(new Permission("bukkit.command.tps"), true);
@@ -85,14 +85,14 @@ public class PermAttachments {
 				pa.setPermission(new Permission(pe), true);
 			}
 		}
-		if (Perm.hasPerm(p, PermGroup.SERVER_MANAGER)) {
+		if (Perm.hasPerm(p, PermGroup.MANAGER)) {
 			ArrayList<String> perms = new ArrayList<>();
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MEMBER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.BUILDER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.HELPER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MODERATOR));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.ADMIN));
-			perms.addAll(PermissionGroup.getPermissions(PermGroup.SERVER_MANAGER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.MANAGER));
 			pa.setPermission(new Permission("bukkit.command.tps"), true);
 			pa.setPermission(new Permission("minecraft.command.save-all"), true);
 			pa.setPermission(new Permission("bukkit.command.plugins"), true);

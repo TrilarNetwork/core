@@ -59,7 +59,7 @@ public class StaffList implements CommandExecutor {
 					case ADMIN:
 						adm += s + " ";
 						break;
-					case SERVER_MANAGER:
+					case MANAGER:
 						sm += s + " ";
 						break;
 					case OWNER:
@@ -85,7 +85,7 @@ public class StaffList implements CommandExecutor {
 					owners = ChatColor.GOLD + "[ " + PermGroup.OWNER.getPrefix() + ChatColor.GOLD + ": " + PermGroup.OWNER.getColor() + owners.trim();
 				}
 				if (!sm.isEmpty()) {
-					sm = ChatColor.GOLD + "[ " + PermGroup.SERVER_MANAGER.getPrefix() + ChatColor.GOLD + ": " + PermGroup.SERVER_MANAGER.getColor() + sm.trim();
+					sm = ChatColor.GOLD + "[ " + PermGroup.MANAGER.getPrefix() + ChatColor.GOLD + ": " + PermGroup.MANAGER.getColor() + sm.trim();
 				}
 				if (!adm.isEmpty()) {
 					adm = ChatColor.GOLD + "[ " + PermGroup.ADMIN.getPrefix() + ChatColor.GOLD + ": " + PermGroup.ADMIN.getColor() + adm.trim();
