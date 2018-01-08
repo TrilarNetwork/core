@@ -56,7 +56,7 @@ public class CommandSpy implements CommandExecutor {
 				} else {
 					ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/commandspy");
 				}
-			}
+			} 
 		}
 		return false;
 	}
