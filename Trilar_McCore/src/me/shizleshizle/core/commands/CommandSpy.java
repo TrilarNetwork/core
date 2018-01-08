@@ -25,7 +25,7 @@ public class CommandSpy implements CommandExecutor {
 				sender.sendMessage(prefix + "You must be a player to perform this command!");
 			} else {
 				Player x = (Player) sender;
-				User p = new User(x);  
+				User p = new User(x); 
 				if (Perm.hasPerm(p, PermGroup.MODERATOR)) {
 					if (args.length == 0) {
 						if (spy.contains(p.getName())) {
