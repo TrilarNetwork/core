@@ -11,11 +11,9 @@ public class Tablist {
 	
 	public static void updateTablist(Player... players) {
 		try {
-			for ( Player p : players ) {
+			for (Player p : players) {
 				User p2 = new User(p);
-				Title.sendHeaderAndFooter(p, Main.prefix, //welke server
-						ChatColor.AQUA + "http://www.trilar.nl"
-						//discord IP
+				Title.sendHeaderAndFooter(p, Main.prefix, ChatColor.AQUA + "http://www.trilar.nl"
 								+ ChatColor.GOLD + "\n   Online:" + ChatColor.DARK_GRAY + ChatColor.BOLD.toString() + " -» " + ChatColor.GOLD + getTotal() + " players" 
 								+ ChatColor.GRAY + "\n Rank: " + p2.getGroup().getPrefix());
 			}
