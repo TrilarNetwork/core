@@ -19,9 +19,15 @@ public class PermAttachments {
 			ArrayList<String> perms = new ArrayList<>();
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MEMBER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.BUILDER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_HELPER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.HELPER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.SR_HELPER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_MODERATOR));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MODERATOR));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.SR_MODERATOR));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_ADMIN));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.ADMIN));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.SR_ADMIN));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MANAGER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.OWNER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.DEVELOPER));
@@ -43,9 +49,15 @@ public class PermAttachments {
 			ArrayList<String> perms = new ArrayList<>();
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MEMBER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.BUILDER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_HELPER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.HELPER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.SR_HELPER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_MODERATOR));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MODERATOR));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.SR_MODERATOR));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_ADMIN));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.ADMIN));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.SR_ADMIN));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MANAGER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.OWNER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.DEVELOPER));
@@ -66,9 +78,15 @@ public class PermAttachments {
 			ArrayList<String> perms = new ArrayList<>();
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MEMBER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.BUILDER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_HELPER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.HELPER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.SR_HELPER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_MODERATOR));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MODERATOR));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.SR_MODERATOR));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_ADMIN));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.ADMIN));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.SR_ADMIN));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MANAGER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.OWNER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.DEVELOPER));
@@ -89,10 +107,41 @@ public class PermAttachments {
 			ArrayList<String> perms = new ArrayList<>();
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MEMBER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.BUILDER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_HELPER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.HELPER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.SR_HELPER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_MODERATOR));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MODERATOR));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.SR_MODERATOR));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_ADMIN));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.ADMIN));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.SR_ADMIN));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MANAGER));
+			pa.setPermission(new Permission("bukkit.command.tps"), true);
+			pa.setPermission(new Permission("minecraft.command.save-all"), true);
+			pa.setPermission(new Permission("bukkit.command.plugins"), true);
+			pa.setPermission(new Permission("bukkit.command.timings"), true);
+			pa.setPermission(new Permission("bukkit.command.version"), true);
+			pa.setPermission(new Permission("minecraft.command.setworldspawn"), true);
+			pa.setPermission(new Permission("worldedit.*"), true);
+			pa.setPermission(new Permission("worldguard.*"), true);
+			for (String pe : perms) {
+				pa.setPermission(new Permission(pe), true);
+			}
+		}
+		if (Perm.hasPerm(p, PermGroup.SR_ADMIN)) {
+			ArrayList<String> perms = new ArrayList<>();
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.MEMBER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.BUILDER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_HELPER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.HELPER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.SR_HELPER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_MODERATOR));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.MODERATOR));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.SR_MODERATOR));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_ADMIN));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.ADMIN));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.SR_ADMIN));
 			pa.setPermission(new Permission("bukkit.command.tps"), true);
 			pa.setPermission(new Permission("minecraft.command.save-all"), true);
 			pa.setPermission(new Permission("bukkit.command.plugins"), true);
@@ -109,8 +158,13 @@ public class PermAttachments {
 			ArrayList<String> perms = new ArrayList<>();
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MEMBER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.BUILDER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_HELPER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.HELPER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.SR_HELPER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_MODERATOR));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MODERATOR));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.SR_MODERATOR));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_ADMIN));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.ADMIN));
 			pa.setPermission(new Permission("bukkit.command.tps"), true);
 			pa.setPermission(new Permission("minecraft.command.save-all"), true);
@@ -124,13 +178,78 @@ public class PermAttachments {
 				pa.setPermission(new Permission(pe), true);
 			}
 		}
+		if (Perm.hasPerm(p, PermGroup.JR_ADMIN)) {
+			ArrayList<String> perms = new ArrayList<>();
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.MEMBER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.BUILDER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_HELPER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.HELPER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.SR_HELPER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_MODERATOR));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.MODERATOR));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.SR_MODERATOR));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_ADMIN));
+			pa.setPermission(new Permission("bukkit.command.tps"), true);
+			pa.setPermission(new Permission("minecraft.command.save-all"), true);
+			pa.setPermission(new Permission("bukkit.command.plugins"), true);
+			pa.setPermission(new Permission("bukkit.command.timings"), true);
+			pa.setPermission(new Permission("bukkit.command.version"), true);
+			pa.setPermission(new Permission("minecraft.command.setworldspawn"), true);
+			pa.setPermission(new Permission("worldedit.*"), true);
+			pa.setPermission(new Permission("worldguard.*"), true);
+			for (String pe : perms) {
+				pa.setPermission(new Permission(pe), true);
+			}
+		}
+		if (Perm.hasPerm(p, PermGroup.SR_MODERATOR)) {
+			ArrayList<String> perms = new ArrayList<>();
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.MEMBER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.BUILDER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_HELPER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.HELPER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.SR_HELPER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_MODERATOR));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.MODERATOR));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.SR_MODERATOR));
+			pa.setPermission(new Permission("bukkit.command.tps"), true);
+			for (String pe : perms) {
+				pa.setPermission(new Permission(pe), true);
+			}
+		}
 		if (Perm.hasPerm(p, PermGroup.MODERATOR)) {
 			ArrayList<String> perms = new ArrayList<>();
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MEMBER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.BUILDER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_HELPER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.HELPER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.SR_HELPER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_MODERATOR));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MODERATOR));
 			pa.setPermission(new Permission("bukkit.command.tps"), true);
+			for (String pe : perms) {
+				pa.setPermission(new Permission(pe), true);
+			}
+		}
+		if (Perm.hasPerm(p, PermGroup.JR_MODERATOR)) {
+			ArrayList<String> perms = new ArrayList<>();
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.MEMBER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.BUILDER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_HELPER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.HELPER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.SR_HELPER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_MODERATOR));
+			pa.setPermission(new Permission("bukkit.command.tps"), true);
+			for (String pe : perms) {
+				pa.setPermission(new Permission(pe), true);
+			}
+		}
+		if (Perm.hasPerm(p, PermGroup.SR_HELPER)) {
+			ArrayList<String> perms = new ArrayList<>();
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.MEMBER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.BUILDER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_HELPER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.HELPER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.SR_HELPER));
 			for (String pe : perms) {
 				pa.setPermission(new Permission(pe), true);
 			}
@@ -139,7 +258,17 @@ public class PermAttachments {
 			ArrayList<String> perms = new ArrayList<>();
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MEMBER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.BUILDER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_HELPER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.HELPER));
+			for (String pe : perms) {
+				pa.setPermission(new Permission(pe), true);
+			}
+		}
+		if (Perm.hasPerm(p, PermGroup.JR_HELPER)) {
+			ArrayList<String> perms = new ArrayList<>();
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.MEMBER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.BUILDER));
+			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_HELPER));
 			for (String pe : perms) {
 				pa.setPermission(new Permission(pe), true);
 			}

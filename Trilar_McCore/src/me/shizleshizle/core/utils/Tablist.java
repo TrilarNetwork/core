@@ -13,7 +13,7 @@ public class Tablist {
 		try {
 			for (Player p : players) {
 				User p2 = new User(p);
-				Title.sendHeaderAndFooter(p, Main.prefix, ChatColor.AQUA + "http://www.trilar.nl"
+				Title.sendHeaderAndFooter(p, Main.prefix, ChatColor.AQUA + "https://www.trilar.nl"
 								+ ChatColor.GOLD + "\n   Online:" + ChatColor.DARK_GRAY + ChatColor.BOLD.toString() + " -» " + ChatColor.GOLD + getTotal() + " players" 
 								+ ChatColor.GRAY + "\n Rank: " + p2.getGroup().getPrefix());
 			}

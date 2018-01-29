@@ -40,27 +40,47 @@ public class StaffList implements CommandExecutor {
 				String ldeve = "";
 				String deve = "";
 				String owners = "";
-				String sm = "";
+				String manager = "";
+				String sradm = "";
 				String adm = "";
+				String jradm = "";
+				String srmode = "";
 				String mode = "";
+				String jrmode = "";
+				String srhelpers = "";
 				String helpers = "";
-				String hb = "";
+				String jrhelpers = "";
 				for (String s : staff.keySet()) {
 					switch (staff.get(s)) {
-					case HEAD_BUILDER:
-						hb += s + " ";
+					case JR_HELPER:
+						jrhelpers += s + " ";
 						break;
 					case HELPER:
 						helpers += s + " ";
 						break;
+					case SR_HELPER:
+						srhelpers += s + " ";
+						break;
+					case JR_MODERATOR:
+						jrmode += s + " ";
+						break;
 					case MODERATOR:
 						mode += s + " ";
+						break;
+					case SR_MODERATOR:
+						srmode += s + " ";
+						break;
+					case JR_ADMIN:
+						jradm += s + " ";
 						break;
 					case ADMIN:
 						adm += s + " ";
 						break;
+					case SR_ADMIN:
+						sradm += s + " ";
+						break;
 					case MANAGER:
-						sm += s + " ";
+						manager += s + " ";
 						break;
 					case OWNER:
 						owners += s + " ";
@@ -84,20 +104,35 @@ public class StaffList implements CommandExecutor {
 				if (!owners.isEmpty()) {
 					owners = ChatColor.GOLD + "[ " + PermGroup.OWNER.getPrefix() + ChatColor.GOLD + ": " + PermGroup.OWNER.getColor() + owners.trim();
 				}
-				if (!sm.isEmpty()) {
-					sm = ChatColor.GOLD + "[ " + PermGroup.MANAGER.getPrefix() + ChatColor.GOLD + ": " + PermGroup.MANAGER.getColor() + sm.trim();
+				if (!manager.isEmpty()) {
+					manager = ChatColor.GOLD + "[ " + PermGroup.MANAGER.getPrefix() + ChatColor.GOLD + ": " + PermGroup.MANAGER.getColor() + manager.trim();
+				}
+				if (!sradm.isEmpty()) {
+					sradm = ChatColor.GOLD + "[ " + PermGroup.SR_ADMIN.getPrefix() + ChatColor.GOLD + ": " + PermGroup.ADMIN.getColor() + sradm.trim();
 				}
 				if (!adm.isEmpty()) {
 					adm = ChatColor.GOLD + "[ " + PermGroup.ADMIN.getPrefix() + ChatColor.GOLD + ": " + PermGroup.ADMIN.getColor() + adm.trim();
 				}
+				if (!jradm.isEmpty()) {
+					jradm = ChatColor.GOLD + "[ " + PermGroup.JR_ADMIN.getPrefix() + ChatColor.GOLD + ": " + PermGroup.ADMIN.getColor() + jradm.trim();
+				}
+				if (!srmode.isEmpty()) {
+					srmode = ChatColor.GOLD + "[ " + PermGroup.SR_MODERATOR.getPrefix() + ChatColor.GOLD + ": " + PermGroup.MODERATOR.getColor() + srmode.trim();
+				}
 				if (!mode.isEmpty()) {
 					mode = ChatColor.GOLD + "[ " + PermGroup.MODERATOR.getPrefix() + ChatColor.GOLD + ": " + PermGroup.MODERATOR.getColor() + mode.trim();
+				}
+				if (!jrmode.isEmpty()) {
+					jrmode = ChatColor.GOLD + "[ " + PermGroup.JR_MODERATOR.getPrefix() + ChatColor.GOLD + ": " + PermGroup.MODERATOR.getColor() + jrmode.trim();
+				}
+				if (!srhelpers.isEmpty()) {
+					srhelpers = ChatColor.GOLD + "[ " + PermGroup.SR_HELPER.getPrefix() + ChatColor.GOLD + ": " + PermGroup.HELPER.getColor() + srhelpers.trim();
 				}
 				if (!helpers.isEmpty()) {
 					helpers = ChatColor.GOLD + "[ " + PermGroup.HELPER.getPrefix() + ChatColor.GOLD + ": " + PermGroup.HELPER.getColor() + helpers.trim();
 				}
-				if  (!hb.isEmpty()) {
-					hb = ChatColor.GOLD + "[ " + PermGroup.HEAD_BUILDER.getPrefix() + ChatColor.GOLD + ": " + PermGroup.HEAD_BUILDER.getColor() + hb.trim();
+				if (!jrhelpers.isEmpty()) {
+					jrhelpers = ChatColor.GOLD + "[ " + PermGroup.JR_HELPER.getPrefix() + ChatColor.GOLD + ": " + PermGroup.HELPER.getColor() + jrhelpers.trim();
 				}
 				sender.sendMessage(ChatColor.GOLD + "]=-");
 				sender.sendMessage(ChatColor.GOLD + "[");
@@ -116,24 +151,44 @@ public class StaffList implements CommandExecutor {
 					sender.sendMessage(owners);
 					sender.sendMessage(ChatColor.GOLD + "[");
 				}
-				if (!sm.isEmpty()) {
-					sender.sendMessage(sm);
+				if (!manager.isEmpty()) {
+					sender.sendMessage(manager);
+					sender.sendMessage(ChatColor.GOLD + "[");
+				}
+				if (!sradm.isEmpty()) {
+					sender.sendMessage(sradm);
 					sender.sendMessage(ChatColor.GOLD + "[");
 				}
 				if (!adm.isEmpty()) {
 					sender.sendMessage(adm);
 					sender.sendMessage(ChatColor.GOLD + "[");
 				}
+				if (!jradm.isEmpty()) {
+					sender.sendMessage(jradm);
+					sender.sendMessage(ChatColor.GOLD + "[");
+				}
+				if (!srmode.isEmpty()) {
+					sender.sendMessage(srmode);
+					sender.sendMessage(ChatColor.GOLD + "[");
+				}
 				if (!mode.isEmpty()) {
 					sender.sendMessage(mode);
+					sender.sendMessage(ChatColor.GOLD + "[");
+				}
+				if (!jrmode.isEmpty()) {
+					sender.sendMessage(jrmode);
+					sender.sendMessage(ChatColor.GOLD + "[");
+				}
+				if (!srhelpers.isEmpty()) {
+					sender.sendMessage(srhelpers);
 					sender.sendMessage(ChatColor.GOLD + "[");
 				}
 				if (!helpers.isEmpty()) {
 					sender.sendMessage(helpers);
 					sender.sendMessage(ChatColor.GOLD + "[");
 				}
-				if (!hb.isEmpty()) {
-					sender.sendMessage(hb);
+				if (!jrhelpers.isEmpty()) {
+					sender.sendMessage(jrhelpers);
 					sender.sendMessage(ChatColor.GOLD + "[");
 				}
 				sender.sendMessage(ChatColor.GOLD + "]=-");

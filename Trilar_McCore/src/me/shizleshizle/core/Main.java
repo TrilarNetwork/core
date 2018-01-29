@@ -312,11 +312,12 @@ public class Main extends JavaPlugin {
 	private void broadcast() {
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> {
 			if (AutoB.isBroadcasting()) {
-				Bukkit.broadcastMessage(ChatColor.GOLD + "<=====================>");
-				Bukkit.broadcastMessage(" ");
-				Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', msgs.get(i)).trim());
-				Bukkit.broadcastMessage(" ");
-				Bukkit.broadcastMessage(ChatColor.GOLD + ">=====================<");
+				Bukkit.broadcastMessage(ChatColor.GOLD + "[Trilar]");
+				//Bukkit.broadcastMessage(ChatColor.GOLD + "<=====================>");
+				//Bukkit.broadcastMessage(" ");
+				//Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', msgs.get(i)).trim());
+				//Bukkit.broadcastMessage(" ");
+				//Bukkit.broadcastMessage(ChatColor.GOLD + ">=====================<");
 				i++;
 				if (i > (msgs.size() - 1)) {
 					i = 0;
