@@ -17,7 +17,8 @@ import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class CommandSpy implements CommandExecutor {
 	public String prefix = ChatColor.YELLOW + "CommandSpy" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
-	public static ArrayList<String> spy = new ArrayList<>();
+	public static ArrayList<String>
+	spy = new ArrayList<>();
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("commandspy")) {
