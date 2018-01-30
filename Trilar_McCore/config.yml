@@ -5,11 +5,11 @@ settings:
   autoBroadcastDelay: 60
   removeOnQuit: false
   database:
-    hostname: '185.211.51.30'
+    hostname: '127.0.0.1'
     port: 3306
     database: core
     username: root
-    password: Pedo1234
+    password: Mebra2134
   broadcastMessages:
     - '&6Welcome to &eTrilar&6!'
     - '&6Do you have any questions? Feel free to ask!'
