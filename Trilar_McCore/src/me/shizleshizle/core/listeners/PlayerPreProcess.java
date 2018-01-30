@@ -12,14 +12,14 @@ import me.shizleshizle.core.objects.User;
 
 public class PlayerPreProcess implements Listener {
 
-    @EventHandler
-    public void onPreprocess(PlayerCommandPreprocessEvent e) {
-        for (Player x : Bukkit.getOnlinePlayers()) {
-            User p = new User(x);
-            if (CommandSpy.spy.contains(p.getName())) {
-                p.sendMessage(ChatColor.GOLD + "SPY: " + p.getDisplayName() + ChatColor.GOLD + " >> " + ChatColor.WHITE + e.getMessage().trim());
-            }
-        }
-    }
-}
+	@EventHandler
+	public void doStuff(PlayerCommandPreprocessEvent e) {
+		Player t = e.getPlayer();
 
+		for (Player p : Bukkit.getOnlinePlayers()) {
+			if (CommandSpy.spy.contains(p.getName())) {
+				p.sendMessage(t.getName() + " >> " + e.getMessage());
+			}
+		}
+	}
+}

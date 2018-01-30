@@ -1,3 +1,4 @@
+
 package me.shizleshizle.core.permissions;
 
 import static org.bukkit.ChatColor.AQUA;
