@@ -52,6 +52,7 @@ import me.shizleshizle.core.commands.SocialMedia;
 import me.shizleshizle.core.commands.Skulls;
 import me.shizleshizle.core.commands.Speed;
 import me.shizleshizle.core.commands.StaffList;
+import me.shizleshizle.core.commands.StaffMode;
 import me.shizleshizle.core.commands.Suicide;
 import me.shizleshizle.core.commands.Vanish;
 import me.shizleshizle.core.commands.Weather;
@@ -128,16 +129,17 @@ public class Main extends JavaPlugin {
 	public static String db;
 	public static String user;
 	public static String pw;
-	public static String prefix = ChatColor.GOLD + "-={ " + ChatColor.YELLOW + "Trilar" + ChatColor.GOLD + " }=- " + ChatColor.YELLOW;
+	public static String prefix = ChatColor.GOLD + "-={ " + ChatColor.YELLOW + "Trilar" + ChatColor.GOLD + " }=- "
+			+ ChatColor.YELLOW;
 	public static int port;
 	public static int maxhomes;
-	
+
 	public static int tpTime;
 	public static int maxHealth;
 	public static int abdelay;
 	private int i = 0;
-	   
-	public void onEnable(){
+
+	public void onEnable() {
 		long time = System.currentTimeMillis();
 		Logger l = getLogger();
 		l.info("Core >> enabling...");
@@ -161,7 +163,7 @@ public class Main extends JavaPlugin {
 		l.info("Core >> successfully enabled! (" + fin + " ms)");
 	}
 
-	public void onDisable(){
+	public void onDisable() {
 		long time = System.currentTimeMillis();
 		Logger l = getLogger();
 		l.info("Core >> disabling...");
@@ -175,7 +177,7 @@ public class Main extends JavaPlugin {
 		long fin = System.currentTimeMillis() - time;
 		l.info("Core >> successfully disabled! (" + fin + " ms)");
 	}
-	
+
 	private void register() {
 		// commands
 		// home
@@ -264,6 +266,7 @@ public class Main extends JavaPlugin {
 		getCommand("skull").setExecutor(new Skulls());
 		getCommand("speed").setExecutor(new Speed());
 		getCommand("staff").setExecutor(new StaffList());
+		getCommand("staffmode").setExecutor(new StaffMode());
 		getCommand("suicide").setExecutor(new Suicide());
 		getCommand("vanish").setExecutor(new Vanish());
 		getCommand("whois").setExecutor(new WhoIs());
@@ -275,7 +278,7 @@ public class Main extends JavaPlugin {
 
 		}
 	}
-	
+
 	private void registerEvents() {
 		// events
 		PluginManager pm = Bukkit.getServer().getPluginManager();
@@ -294,7 +297,7 @@ public class Main extends JavaPlugin {
 		pm.registerEvents(new PlayerQuit(), this);
 		pm.registerEvents(new PlayerTeleport(), this);
 	}
-	
+
 	public static void setupUtils() {
 		remove = c.getConfig().getBoolean("settings.removeOnQuit");
 		host = c.getConfig().getString("settings.database.hostname");
@@ -308,24 +311,27 @@ public class Main extends JavaPlugin {
 		abdelay = c.getConfig().getInt("settings.autoBroadcastDelay");
 		msgs = Main.c.getConfig().getStringList("settings.broadcastMessages");
 	}
-	
+
 	private void broadcast() {
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> {
 			if (AutoB.isBroadcasting()) {
 				Bukkit.broadcastMessage(ChatColor.GOLD + "[" + ChatColor.YELLOW + "Trilar" + ChatColor.GOLD + "]");
-				//Bukkit.broadcastMessage(ChatColor.GOLD + "<=====================>");
-				//Bukkit.broadcastMessage(" ");
-				//Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', msgs.get(i)).trim());
-				//Bukkit.broadcastMessage(" ");
-				//Bukkit.broadcastMessage(ChatColor.GOLD + ">=====================<");
+				// Bukkit.broadcastMessage(ChatColor.GOLD +
+				// "<=====================>");
+				// Bukkit.broadcastMessage(" ");
+				// Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&',
+				// msgs.get(i)).trim());
+				// Bukkit.broadcastMessage(" ");
+				// Bukkit.broadcastMessage(ChatColor.GOLD +
+				// ">=====================<");
 				i++;
 				if (i > (msgs.size() - 1)) {
 					i = 0;
 				}
 			}
-		}, 0L, abdelay*20); 
+		}, 0L, abdelay * 20);
 	}
-	
+
 	private boolean checkVault() {
 		Plugin p = getServer().getPluginManager().getPlugin("Vault");
 		return (p instanceof Vault);
@@ -353,21 +359,18 @@ public class Main extends JavaPlugin {
 		econ = rsp.getProvider();
 		return econ != null;
 	}
-	
-	/*implements CommandExecutor {
-	 	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
-		public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-			if (cmd.getName().equalsIgnoreCase("")) {
-				if (sender instanceof Player) {
-					Player x = (Player) sender;
-					User p = new User(x);
-					if (Perm.hasPerm(p, PermGroup.HELPER)) {
-						if (args.length == 0) {
-							
-						} else if (args.length == 1) {
-							
-						}
+	/*
+	 implements CommandExecutor {
+	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "  " + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+		if (cmd.getName().equalsIgnoreCase(" ")) {
+			if (sender instanceof Player) {
+				Player x = (Player) sender;
+				User p = new User(x);
+				if (Perm.hasPerm(p, PermGroup.MEMBER)) {
+					if (args.length == 0) {
 					} else {
 						ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/");
 					}
@@ -375,7 +378,9 @@ public class Main extends JavaPlugin {
 					sender.sendMessage(ChatColor.RED + "You must be a player to perform this command!");
 				}
 			}
-			return false;
 		}
-	}*/
+		return false;
+	}
+}
+	 */
 }
