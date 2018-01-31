@@ -33,7 +33,7 @@ public enum PermGroup {
 	HEAD_BUILDER(150, GRAY + "(" + GREEN + "Head-Builder" + GRAY + ") " + GREEN, "Head-Builder", GREEN, "&a"),
 	BUILDER(100, GRAY + "(" + DARK_GREEN + "Builder" + GRAY + ") " + GREEN, "Builder", GREEN, "&2"),
 	YOUTUBE(99, GRAY + "(" + RED + "You" + WHITE + "Tube" + GRAY + ") " + RED, "YouTube", WHITE, "&f"),
-	VIP4(90, GRAY + "(" + AQUA + "Vip" + GRAY + ") " + AQUA, "Vip", AQUA, "&b"),
+	TRILAR(90, GRAY + "(" + GOLD + "Trilar" + GRAY + ") " + AQUA, "Trilar", AQUA, "&a"),
 	VIP3(80, GRAY + "(" + AQUA + "Vip" + GRAY + ") " + AQUA, "Vip", AQUA, "&b"),
 	VIP2(60, GRAY + "(" + AQUA + "Vip" + GRAY + ") " + AQUA, "Vip", AQUA, "&b"),
 	VIP1(40, GRAY + "(" + AQUA + "Vip" + GRAY + ") " + AQUA, "Vip", AQUA, "&b"),
