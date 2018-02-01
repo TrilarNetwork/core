@@ -12,6 +12,14 @@ import me.shizleshizle.core.permissions.PermGroup;
 import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
+/*
+ * StaffMode
+ * Mute, kick, warn & ban GUI
+ * Freeze GUI
+ * Vanish + vanish gui uit die class. 
+ */
+
+
 public class StaffMode implements CommandExecutor {
 	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "StaffMode" + ChatColor.GOLD + " >> "
 			+ ChatColor.YELLOW;
@@ -23,6 +31,7 @@ public class StaffMode implements CommandExecutor {
 				User p = new User(x);
 				if (Perm.hasPerm(p, PermGroup.JR_HELPER)) {
 					if (args.length == 0) {
+						
 					} else {
 						ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/StaffMode");
 					}
