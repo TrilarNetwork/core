@@ -15,7 +15,8 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class Getpos implements CommandExecutor {
-	public String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "GameMode" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	public String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "GameMode" + ChatColor.GOLD + " >> "
+			+ ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("getpos")) {
