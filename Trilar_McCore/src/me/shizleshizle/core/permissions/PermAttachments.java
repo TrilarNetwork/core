@@ -26,6 +26,7 @@ public class PermAttachments {
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.OWNER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.DEVELOPER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.LEAD_DEVELOPER));
+			perms.addAll(p.getPermissions());
 			pa.setPermission(new Permission("bukkit.command.tps"), true);
 			pa.setPermission(new Permission("minecraft.command.save-all"), true);
 			pa.setPermission(new Permission("bukkit.command.plugins"), true);
@@ -49,6 +50,7 @@ public class PermAttachments {
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.SERVER_MANAGER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.OWNER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.DEVELOPER));
+			perms.addAll(p.getPermissions());
 			pa.setPermission(new Permission("bukkit.command.tps"), true);
 			pa.setPermission(new Permission("minecraft.command.save-all"), true);
 			pa.setPermission(new Permission("bukkit.command.plugins"), true);
@@ -72,6 +74,7 @@ public class PermAttachments {
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.SERVER_MANAGER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.OWNER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.DEVELOPER));
+			perms.addAll(p.getPermissions());
 			pa.setPermission(new Permission("bukkit.command.tps"), true);
 			pa.setPermission(new Permission("minecraft.command.save-all"), true);
 			pa.setPermission(new Permission("bukkit.command.plugins"), true);
@@ -93,6 +96,7 @@ public class PermAttachments {
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MODERATOR));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.ADMIN));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.SERVER_MANAGER));
+			perms.addAll(p.getPermissions());
 			pa.setPermission(new Permission("bukkit.command.tps"), true);
 			pa.setPermission(new Permission("minecraft.command.save-all"), true);
 			pa.setPermission(new Permission("bukkit.command.plugins"), true);
@@ -112,6 +116,7 @@ public class PermAttachments {
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.HELPER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MODERATOR));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.ADMIN));
+			perms.addAll(p.getPermissions());
 			pa.setPermission(new Permission("bukkit.command.tps"), true);
 			pa.setPermission(new Permission("minecraft.command.save-all"), true);
 			pa.setPermission(new Permission("bukkit.command.plugins"), true);
@@ -130,6 +135,7 @@ public class PermAttachments {
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.BUILDER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.HELPER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MODERATOR));
+			perms.addAll(p.getPermissions());
 			pa.setPermission(new Permission("bukkit.command.tps"), true);
 			for (String pe : perms) {
 				pa.setPermission(new Permission(pe), true);
@@ -140,6 +146,7 @@ public class PermAttachments {
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MEMBER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.BUILDER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.HELPER));
+			perms.addAll(p.getPermissions());
 			for (String pe : perms) {
 				pa.setPermission(new Permission(pe), true);
 			}
@@ -149,6 +156,7 @@ public class PermAttachments {
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MEMBER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.BUILDER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.VIP4));
+			perms.addAll(p.getPermissions());
 			for (String pe : perms) {
 				pa.setPermission(new Permission(pe), true);
 			}
@@ -157,6 +165,7 @@ public class PermAttachments {
 			ArrayList<String> perms = new ArrayList<>();
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.YOUTUBE));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.VIP4));
+			perms.addAll(p.getPermissions());
 			for (String pe : perms) {
 				pa.setPermission(new Permission(pe), true);
 			}
@@ -165,6 +174,7 @@ public class PermAttachments {
 			ArrayList<String> perms = new ArrayList<>();
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.VIP4));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.VIP3));
+			perms.addAll(p.getPermissions());
 			for (String pe : perms) {
 				pa.setPermission(new Permission(pe), true);
 			}
@@ -181,6 +191,7 @@ public class PermAttachments {
 			ArrayList<String> perms = new ArrayList<>();
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.VIP2));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.VIP1));
+			perms.addAll(p.getPermissions());
 			for (String pe : perms) {
 				pa.setPermission(new Permission(pe), true);
 			}
@@ -189,6 +200,7 @@ public class PermAttachments {
 			ArrayList<String> perms = new ArrayList<>();
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.VIP1));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.VIP));
+			perms.addAll(p.getPermissions());
 			for (String pe : perms) {
 				pa.setPermission(new Permission(pe), true);
 			}
@@ -196,6 +208,7 @@ public class PermAttachments {
 		if (Perm.hasPerm(p, PermGroup.VIP)) {
 			ArrayList<String> perms = new ArrayList<>();
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MEMBER));
+			perms.addAll(p.getPermissions());
 			for (String pe : perms) {
 				pa.setPermission(new Permission(pe), true);
 			}
@@ -203,6 +216,9 @@ public class PermAttachments {
 		if (Perm.hasPerm(p, PermGroup.MEMBER)) {
 			for (String pe : PermissionGroup.getPermissions(PermGroup.MEMBER)) {
 				pa.setPermission(new Permission(pe), true);
+			}
+			for (String pm : p.getPermissions()) {
+				pa.setPermission(new Permission(pm), true);
 			}
 		}
 		perms.put(p, pa);

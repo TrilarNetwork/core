@@ -15,7 +15,7 @@ import net.minecraft.server.v1_8_R3.PlayerConnection;
 
 public class Title {
 
-	public static void sendTitle(User p, String title, String subtitle, int fadeIn, int stay, int fadeOut) {
+	public static void senditle(User p, String title, String subtitle, int fadeIn, int stay, int fadeOut) {
 		PlayerConnection connection = ((CraftPlayer) p.getUser()).getHandle().playerConnection;
 
 		PacketPlayOutTitle packet = new PacketPlayOutTitle(fadeIn, stay, fadeOut);
