@@ -26,7 +26,7 @@ public class Ranks implements CommandExecutor {
 			} else {
 				Player x = (Player) sender;
 				User p = new User(x);
-				if (Perm.hasPerm(p, PermGroup.SERVER_MANAGER) || (p.getName().equals("shizleshizle") || p.getName().equals("iMelvin"))) {
+				if (Perm.hasPerm(p, PermGroup.MANAGER) || (p.getName().equals("shizleshizle") || p.getName().equals("iMelvin"))) {
 					if (args.length == 1) {
 						if (args[0].equalsIgnoreCase("list")) {
 							p.sendMessage(prefix + "There are a total of " + ChatColor.GOLD + PermGroup.getTotal() + ChatColor.YELLOW + " ranks! Here they are:");
@@ -81,10 +81,10 @@ public class Ranks implements CommandExecutor {
 								} else if (g.equals(PermGroup.DEVELOPER) && (p.getName().equals("shizleshizle") || p.getName().equals("iMelvin") 
 										|| Perm.hasPerm(p, PermGroup.DEVELOPER))) {
 									Perm.updateGroup(user, g);
-								} else if (g.equals(PermGroup.SERVER_MANAGER) && ( (p.getName().equals("shizleshizle") || p.getName().equals("iMelvin")) 
-										|| Perm.hasPerm(p, PermGroup.SERVER_MANAGER) )) {	
+								} else if (g.equals(PermGroup.MANAGER) && ( (p.getName().equals("shizleshizle") || p.getName().equals("iMelvin")) 
+										|| Perm.hasPerm(p, PermGroup.MANAGER) )) {	
 									Perm.updateGroup(user, g);
-								} else if (g.getId() < PermGroup.SERVER_MANAGER.getId() && Perm.hasPerm(p, PermGroup.SERVER_MANAGER)) {
+								} else if (g.getId() < PermGroup.MANAGER.getId() && Perm.hasPerm(p, PermGroup.MANAGER)) {
 									Perm.updateGroup(user, g);
 								} else {
 									p.sendMessage(prefix + "You can not set this rank!");

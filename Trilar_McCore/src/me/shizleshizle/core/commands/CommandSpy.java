@@ -17,7 +17,8 @@ import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class CommandSpy implements CommandExecutor {
 	public String prefix = ChatColor.YELLOW + "CommandSpy" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
-	public static ArrayList<String> spy = new ArrayList<>();
+	public static ArrayList<String>
+	spy = new ArrayList<>();
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("commandspy")) {
@@ -25,7 +26,7 @@ public class CommandSpy implements CommandExecutor {
 				sender.sendMessage(prefix + "You must be a player to perform this command!");
 			} else {
 				Player x = (Player) sender;
-				User p = new User(x);
+				User p = new User(x); 
 				if (Perm.hasPerm(p, PermGroup.MODERATOR)) {
 					if (args.length == 0) {
 						if (spy.contains(p.getName())) {
@@ -56,7 +57,7 @@ public class CommandSpy implements CommandExecutor {
 				} else {
 					ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/commandspy");
 				}
-			}
+			} 
 		}
 		return false;
 	}

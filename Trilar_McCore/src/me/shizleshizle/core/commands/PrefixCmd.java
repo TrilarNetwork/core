@@ -21,7 +21,7 @@ public class PrefixCmd implements CommandExecutor {
 			if (sender instanceof Player) {
 				Player x = (Player) sender;
 				User p = new User(x);
-				if (Perm.hasPerm(p, PermGroup.SERVER_MANAGER)) {
+				if (Perm.hasPerm(p, PermGroup.MANAGER)) {
 					if (args.length == 1) {
 						if (args[0].equalsIgnoreCase(PermGroup.LEAD_DEVELOPER.toString().toLowerCase())) {
 							p.sendMessage(prefix + "The prefix of Lead-Developer:");
@@ -32,9 +32,9 @@ public class PrefixCmd implements CommandExecutor {
 						} else if (args[0].equalsIgnoreCase(PermGroup.OWNER.toString().toLowerCase())) {
 							p.sendMessage(prefix + "The prefix of Owner:");
 							p.sendMessage(Prefix.getPrefix(PermGroup.OWNER));
-						} else if (args[0].equalsIgnoreCase(PermGroup.SERVER_MANAGER.toString().toLowerCase())) {
+						} else if (args[0].equalsIgnoreCase(PermGroup.MANAGER.toString().toLowerCase())) {
 							p.sendMessage(prefix + "The prefix of Server-Manager:");
-							p.sendMessage(Prefix.getPrefix(PermGroup.SERVER_MANAGER));
+							p.sendMessage(Prefix.getPrefix(PermGroup.MANAGER));
 						} else if (args[0].equalsIgnoreCase(PermGroup.ADMIN.toString().toLowerCase())) {
 							p.sendMessage(prefix + "The prefix of Admin:");
 							p.sendMessage(Prefix.getPrefix(PermGroup.ADMIN));
@@ -75,9 +75,9 @@ public class PrefixCmd implements CommandExecutor {
 								Prefix.setPrefix(PermGroup.OWNER, prefix);
 								p.sendMessage(this.prefix + "You have set the prefix for Owner to: ");
 								p.sendMessage(prefix);
-							} else if (args[1].equalsIgnoreCase(PermGroup.SERVER_MANAGER.toString().toLowerCase())) {
+							} else if (args[1].equalsIgnoreCase(PermGroup.MANAGER.toString().toLowerCase())) {
 								String prefix = args[2].trim();
-								Prefix.setPrefix(PermGroup.SERVER_MANAGER, prefix);
+								Prefix.setPrefix(PermGroup.MANAGER, prefix);
 								p.sendMessage(this.prefix + "You have set the prefix for Server-Manager to: ");
 								p.sendMessage(prefix);
 							} else if (args[1].equalsIgnoreCase(PermGroup.ADMIN.toString().toLowerCase())) {
@@ -137,9 +137,9 @@ public class PrefixCmd implements CommandExecutor {
 									p.sendMessage(prefix + "This rank does not have a custom prefix!");
 								}
 								p.sendMessage(prefix + "You have removed the custom prefix of Owner! (The old one will take its place).");
-							} else if (args[1].equalsIgnoreCase(PermGroup.SERVER_MANAGER.toString().toLowerCase())) {
-								if (Prefix.hasPrefix(PermGroup.SERVER_MANAGER)) {
-									Prefix.removePrefix(PermGroup.SERVER_MANAGER);
+							} else if (args[1].equalsIgnoreCase(PermGroup.MANAGER.toString().toLowerCase())) {
+								if (Prefix.hasPrefix(PermGroup.MANAGER)) {
+									Prefix.removePrefix(PermGroup.MANAGER);
 								} else {
 									p.sendMessage(prefix + "This rank does not have a custom prefix!");
 								}
