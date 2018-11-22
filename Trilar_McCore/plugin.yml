@@ -165,7 +165,7 @@ commands:
     description: Change a persons rank.
   repair:
     description: Repair one or more items.
-  regels:
+  rules:
     description: View the rules.
   skull:
     description: Get yourself a skull.

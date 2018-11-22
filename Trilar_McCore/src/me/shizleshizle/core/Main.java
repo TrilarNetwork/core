@@ -48,11 +48,10 @@ import me.shizleshizle.core.commands.Ranks;
 import me.shizleshizle.core.commands.Reload;
 import me.shizleshizle.core.commands.Repair;
 import me.shizleshizle.core.commands.Rules;
-import me.shizleshizle.core.commands.SocialMedia;
 import me.shizleshizle.core.commands.Skulls;
+import me.shizleshizle.core.commands.SocialMedia;
 import me.shizleshizle.core.commands.Speed;
 import me.shizleshizle.core.commands.StaffList;
-import me.shizleshizle.core.commands.StaffMode;
 import me.shizleshizle.core.commands.Suicide;
 import me.shizleshizle.core.commands.Vanish;
 import me.shizleshizle.core.commands.Weather;
@@ -124,6 +123,7 @@ public class Main extends JavaPlugin {
 	public static MySQLManager sql;
 	public static Plugin p;
 	public static boolean lockdown = false;
+	private static boolean lobby = false;
 	public static boolean remove;
 	public static String host;
 	public static String db;
@@ -133,7 +133,6 @@ public class Main extends JavaPlugin {
 			+ ChatColor.YELLOW;
 	public static int port;
 	public static int maxhomes;
-
 	public static int tpTime;
 	public static int maxHealth;
 	public static int abdelay;
@@ -261,12 +260,11 @@ public class Main extends JavaPlugin {
 		getCommand("prefix").setExecutor(new PrefixCmd());
 		getCommand("rank").setExecutor(new Ranks());
 		getCommand("repair").setExecutor(new Repair());
-		getCommand("regels").setExecutor(new Rules());
+		getCommand("rules").setExecutor(new Rules());
 		getCommand("socialmedia").setExecutor(new SocialMedia());
 		getCommand("skull").setExecutor(new Skulls());
 		getCommand("speed").setExecutor(new Speed());
 		getCommand("staff").setExecutor(new StaffList());
-		getCommand("staffmode").setExecutor(new StaffMode());
 		getCommand("suicide").setExecutor(new Suicide());
 		getCommand("vanish").setExecutor(new Vanish());
 		getCommand("whois").setExecutor(new WhoIs());
@@ -299,6 +297,7 @@ public class Main extends JavaPlugin {
 	}
 
 	public static void setupUtils() {
+		lobby = c.getConfig().getBoolean("lobbyVersion");
 		remove = c.getConfig().getBoolean("settings.removeOnQuit");
 		host = c.getConfig().getString("settings.database.hostname");
 		port = c.getConfig().getInt("settings.database.port");
@@ -358,6 +357,10 @@ public class Main extends JavaPlugin {
 		}
 		econ = rsp.getProvider();
 		return econ != null;
+	}
+	
+	public static boolean isLobby() {
+		return lobby;
 	}
 
 	/*

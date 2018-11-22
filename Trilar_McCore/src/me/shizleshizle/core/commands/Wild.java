@@ -9,6 +9,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import me.shizleshizle.core.Main;
 import me.shizleshizle.core.objects.User;
 import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermGroup;
@@ -21,17 +22,21 @@ public class Wild implements CommandExecutor {
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("wild")) {
-			Player x = (Player) sender;
-			User p = new User(x);
-			if (Perm.hasPerm(p, PermGroup.MEMBER)) {
-				if (p.getWorld().getEnvironment() == World.Environment.THE_END || p.getWorld().getEnvironment() == World.Environment.NETHER) {
-					p.sendMessage(prefix + "You are not allowed to do this in The End or the Nether!");
-					return true;
+			if (!Main.isLobby()) {
+				Player x = (Player) sender;
+				User p = new User(x);
+				if (Perm.hasPerm(p, PermGroup.MEMBER)) {
+					if (p.getWorld().getEnvironment() == World.Environment.THE_END || p.getWorld().getEnvironment() == World.Environment.NETHER) {
+						p.sendMessage(prefix + "You are not allowed to do this in The End or the Nether!");
+						return true;
+					} else {
+						p.wild();
+					}
 				} else {
-					p.wild();
+					ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/wild");
 				}
 			} else {
-				ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/wild");
+				ErrorMessages.doErrorMessage(sender, Messages.LOBBY, "wild");
 			}
 		}
 		return false;

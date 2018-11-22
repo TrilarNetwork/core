@@ -16,7 +16,7 @@ public class Rules implements CommandExecutor {
  	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Rules" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("regels")) {
+		if (cmd.getName().equalsIgnoreCase("rules")) {
 			if (sender instanceof Player) {
 				Player x = (Player) sender;
 				User p = new User(x);

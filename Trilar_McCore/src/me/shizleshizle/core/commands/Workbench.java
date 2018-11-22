@@ -8,6 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 
+import me.shizleshizle.core.Main;
 import me.shizleshizle.core.objects.User;
 import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermGroup;
@@ -19,18 +20,22 @@ public class Workbench implements CommandExecutor {
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("workbench")) {
-			if (sender instanceof Player) {
-				Player x = (Player) sender;
-				User p = new User(x);
-				if (Perm.hasPerm(p, PermGroup.MEMBER)) {
-					if (args.length == 0) {
-						p.openInventory(Bukkit.createInventory(null, InventoryType.WORKBENCH));
+			if (!Main.isLobby()) {
+				if (sender instanceof Player) {
+					Player x = (Player) sender;
+					User p = new User(x);
+					if (Perm.hasPerm(p, PermGroup.MEMBER)) {
+						if (args.length == 0) {
+							p.openInventory(Bukkit.createInventory(null, InventoryType.WORKBENCH));
+						} else {
+							ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/workbench");
+						}
 					} else {
-						ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/workbench");
+						sender.sendMessage(ChatColor.RED + "You must be a player to perform this command!");
 					}
-				} else {
-					sender.sendMessage(ChatColor.RED + "You must be a player to perform this command!");
 				}
+			} else {
+				ErrorMessages.doErrorMessage(sender, Messages.LOBBY, "workbench");
 			}
 		}
 		return false;

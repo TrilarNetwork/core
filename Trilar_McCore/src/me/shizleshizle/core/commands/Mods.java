@@ -23,26 +23,26 @@ public class Mods implements CommandExecutor {
 				if (Perm.hasPerm(p, PermGroup.MEMBER)) {
 					if (args.length == 0) {
 						p.sendMessage(ChatColor.GOLD + "========"  + ChatColor.YELLOW + " Mods " + ChatColor.GOLD + "========");
-						p.sendMessage(ChatColor.RED + "Mods overtreden kan tot een ban leiden!");
+						p.sendMessage(ChatColor.RED + "Using unallowed mods will result in a ban!");
 						p.sendMessage(" ");
-						p.sendMessage(ChatColor.GOLD + "Toegestaan:" + ChatColor.YELLOW + " ArmorStatusHUD");
-						p.sendMessage(ChatColor.GOLD + "Toegestaan:" + ChatColor.YELLOW + " StatusEffectHud");
-						p.sendMessage(ChatColor.GOLD + "Toegestaan:" + ChatColor.YELLOW + " DirectionHud");
-						p.sendMessage(ChatColor.GOLD + "Toegestaan:" + ChatColor.YELLOW + " 5Zig");
-						p.sendMessage(ChatColor.GOLD + "Toegestaan:" + ChatColor.YELLOW + " bspkrsCore");
-						p.sendMessage(ChatColor.GOLD + "Toegestaan:" + ChatColor.YELLOW + " Batty's Coordinates");
-						p.sendMessage(ChatColor.GOLD + "Toegestaan:" + ChatColor.YELLOW + " ToggleSneak");
-						p.sendMessage(ChatColor.GOLD + "Toegestaan:" + ChatColor.YELLOW + " PlayerApi");
-						p.sendMessage(ChatColor.GOLD + "Toegestaan:" + ChatColor.YELLOW + " BetterSprint");
-						p.sendMessage(ChatColor.GOLD + "Toegestaan:" + ChatColor.YELLOW + " Minimap without Entity/Player Radar");
-						p.sendMessage(ChatColor.GOLD + "Toegestaan:" + ChatColor.YELLOW + " TabbyChat");
-						p.sendMessage(ChatColor.GOLD + "Toegestaan:" + ChatColor.YELLOW + " Kohi TCPNoDelay");
-						p.sendMessage(ChatColor.GOLD + "Toegestaan:" + ChatColor.YELLOW + " Text Mod");
-						p.sendMessage(ChatColor.GOLD + "Toegestaan:" + ChatColor.YELLOW + " Saturation Display");
-						p.sendMessage(ChatColor.GOLD + "Toegestaan:" + ChatColor.YELLOW + " Optifine");
-						p.sendMessage(ChatColor.GOLD + "Toegestaan:" + ChatColor.YELLOW + " KeyStrokes mod");
-						p.sendMessage(ChatColor.GOLD + "Toegestaan:" + ChatColor.YELLOW + " CPS mod");
-						p.sendMessage(ChatColor.GOLD + "Toegestaan:" + ChatColor.YELLOW + " Labymod");
+						p.sendMessage(ChatColor.GOLD + "Allowed:" + ChatColor.YELLOW + " ArmorStatusHUD");
+						p.sendMessage(ChatColor.GOLD + "Allowed:" + ChatColor.YELLOW + " StatusEffectHud");
+						p.sendMessage(ChatColor.GOLD + "Allowed:" + ChatColor.YELLOW + " DirectionHud");
+						p.sendMessage(ChatColor.GOLD + "Allowed:" + ChatColor.YELLOW + " 5Zig");
+						p.sendMessage(ChatColor.GOLD + "Allowed:" + ChatColor.YELLOW + " bspkrsCore");
+						p.sendMessage(ChatColor.GOLD + "Allowed:" + ChatColor.YELLOW + " Batty's Coordinates");
+						p.sendMessage(ChatColor.GOLD + "Allowed:" + ChatColor.YELLOW + " ToggleSneak");
+						p.sendMessage(ChatColor.GOLD + "Allowed:" + ChatColor.YELLOW + " PlayerApi");
+						p.sendMessage(ChatColor.GOLD + "Allowed:" + ChatColor.YELLOW + " BetterSprint");
+						p.sendMessage(ChatColor.GOLD + "Allowed:" + ChatColor.YELLOW + " Minimap without Entity/Player Radar");
+						p.sendMessage(ChatColor.GOLD + "Allowed:" + ChatColor.YELLOW + " TabbyChat");
+						p.sendMessage(ChatColor.GOLD + "Allowed:" + ChatColor.YELLOW + " Kohi TCPNoDelay");
+						p.sendMessage(ChatColor.GOLD + "Allowed:" + ChatColor.YELLOW + " Text Mod");
+						p.sendMessage(ChatColor.GOLD + "Allowed:" + ChatColor.YELLOW + " Saturation Display");
+						p.sendMessage(ChatColor.GOLD + "Allowed:" + ChatColor.YELLOW + " Optifine");
+						p.sendMessage(ChatColor.GOLD + "Allowed:" + ChatColor.YELLOW + " KeyStrokes mod");
+						p.sendMessage(ChatColor.GOLD + "Allowed:" + ChatColor.YELLOW + " CPS mod");
+						p.sendMessage(ChatColor.GOLD + "Allowed:" + ChatColor.YELLOW + " Labymod");
 						p.sendMessage(" ");
 					} else {
 						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/Mods");
