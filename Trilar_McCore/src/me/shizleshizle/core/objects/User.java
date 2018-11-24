@@ -686,6 +686,14 @@ public class User {
 	public void setGroup(PermGroup group) {
 		Perm.updateGroup(p.getName(), group);
 	}
+
+	public void setHat(ItemStack hat) {
+		if ((p.getInventory().getHelmet() != null)) {
+			p.getInventory().addItem(p.getInventory().getHelmet());
+			p.getInventory().setHelmet(null);
+		}
+		p.getInventory().setHelmet(hat);
+	}
 	
 	public void setHealth(double health) {
 		p.setHealth(health);
