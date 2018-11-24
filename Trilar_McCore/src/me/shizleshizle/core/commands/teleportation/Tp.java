@@ -1,17 +1,16 @@
 package me.shizleshizle.core.commands.teleportation;
 
+import me.shizleshizle.core.objects.User;
+import me.shizleshizle.core.permissions.Perm;
+import me.shizleshizle.core.permissions.PermGroup;
+import me.shizleshizle.core.utils.ErrorMessages;
+import me.shizleshizle.core.utils.ErrorMessages.Messages;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import me.shizleshizle.core.objects.User;
-import me.shizleshizle.core.permissions.Perm;
-import me.shizleshizle.core.permissions.PermGroup;
-import me.shizleshizle.core.utils.ErrorMessages;
-import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class Tp implements CommandExecutor {
 	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Teleportation" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
@@ -60,7 +59,7 @@ public class Tp implements CommandExecutor {
 								t.sendMessage(prefix + "You have been teleported to " + ChatColor.GOLD + t2.getName() + ChatColor.YELLOW + "!");
 							}
 						}
-					} else if (args.length >= 3) {
+					} else {
 						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/tp <player> [player]");
 					}
 				} else {

@@ -1,15 +1,14 @@
 package me.shizleshizle.core.utils;
 
-import java.util.Arrays;
-import java.util.List;
-
+import net.minecraft.server.v1_8_R3.NBTTagCompound;
+import net.minecraft.server.v1_8_R3.NBTTagList;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import net.minecraft.server.v1_8_R3.NBTTagCompound;
-import net.minecraft.server.v1_8_R3.NBTTagList;
+import java.util.Arrays;
+import java.util.List;
 
 public class T_ItemStack {
 	public ItemStack is;
@@ -72,19 +71,11 @@ public class T_ItemStack {
 	}
 
 	public boolean hasName() {
-		if (is.getItemMeta() != null && is.getItemMeta().hasDisplayName()) {
-			return true;
-		} else {
-			return false;
-		}
+		return (is.getItemMeta() != null && is.getItemMeta().hasDisplayName());
 	}
 
 	public boolean hasLore() {
-		if (is.getItemMeta() != null && is.getItemMeta().hasLore()) {
-			return true;
-		} else {
-			return false;
-		}
+		return (is.getItemMeta() != null && is.getItemMeta().hasLore());
 	}
 
 	public void addGlow() {

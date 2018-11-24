@@ -1,17 +1,16 @@
 package me.shizleshizle.core.utils;
 
-import java.util.HashMap;
-import java.util.UUID;
-
+import me.shizleshizle.core.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import me.shizleshizle.core.Main;
+import java.util.HashMap;
+import java.util.UUID;
 
 public class Cooldowns {
 	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Cooldowns" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
-	public static HashMap<UUID, Integer> cooldown = new HashMap<UUID, Integer>();
+	public static HashMap<UUID, Integer> cooldown = new HashMap<>();
 	
 	public static void runCooldown() {
 		new BukkitRunnable() {

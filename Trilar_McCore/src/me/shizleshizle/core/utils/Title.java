@@ -1,17 +1,16 @@
 package me.shizleshizle.core.utils;
 
-import java.lang.reflect.Field;
-
-import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
-import org.bukkit.entity.Player;
-
 import me.shizleshizle.core.objects.User;
 import net.minecraft.server.v1_8_R3.IChatBaseComponent;
 import net.minecraft.server.v1_8_R3.IChatBaseComponent.ChatSerializer;
 import net.minecraft.server.v1_8_R3.PacketPlayOutPlayerListHeaderFooter;
 import net.minecraft.server.v1_8_R3.PacketPlayOutTitle;
 import net.minecraft.server.v1_8_R3.PlayerConnection;
+import org.bukkit.ChatColor;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
+import org.bukkit.entity.Player;
+
+import java.lang.reflect.Field;
 
 public class Title {
 
@@ -32,7 +31,7 @@ public class Title {
 		}
 	}	
 	
-	public static void sendHeaderAndFooter(Player p, String head, String foot) {
+	static void sendHeaderAndFooter(Player p, String head, String foot) {
 	    CraftPlayer craftplayer = (CraftPlayer) p;
 	    PlayerConnection connection = craftplayer.getHandle().playerConnection;
 	    IChatBaseComponent header = ChatSerializer.a("{'color': '', 'text': '" + ChatColor.translateAlternateColorCodes('&', head) + "'}");

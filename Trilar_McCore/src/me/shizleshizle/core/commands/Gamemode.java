@@ -1,5 +1,10 @@
 package me.shizleshizle.core.commands;
 
+import me.shizleshizle.core.objects.User;
+import me.shizleshizle.core.permissions.Perm;
+import me.shizleshizle.core.permissions.PermGroup;
+import me.shizleshizle.core.utils.ErrorMessages;
+import me.shizleshizle.core.utils.ErrorMessages.Messages;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -7,12 +12,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import me.shizleshizle.core.objects.User;
-import me.shizleshizle.core.permissions.Perm;
-import me.shizleshizle.core.permissions.PermGroup;
-import me.shizleshizle.core.utils.ErrorMessages;
-import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class Gamemode implements CommandExecutor {
 	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "GameMode" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
@@ -98,7 +97,7 @@ public class Gamemode implements CommandExecutor {
 							p.sendMessage(prefix + "You have changed " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW
 									+ "'s gamemode to " + ChatColor.GOLD + "Survival" + ChatColor.YELLOW + "!");
 						} else {
-							ErrorMessages.doErrorMessage(p, Messages.PLAYER_OFFLINE, args[1]);
+							ErrorMessages.doErrorMessage(p, Messages.PLAYER_OFFLINE, args[0]);
 						}
 					} else {
 						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/gms");
@@ -127,7 +126,7 @@ public class Gamemode implements CommandExecutor {
 							p.sendMessage(prefix + "You have changed " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW
 									+ "'s gamemode to " + ChatColor.GOLD + "Creative" + ChatColor.YELLOW + "!");
 						} else {
-							ErrorMessages.doErrorMessage(p, Messages.PLAYER_OFFLINE, args[1]);
+							ErrorMessages.doErrorMessage(p, Messages.PLAYER_OFFLINE, args[0]);
 						}
 					} else {
 						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/gmc");
@@ -156,7 +155,7 @@ public class Gamemode implements CommandExecutor {
 							p.sendMessage(prefix + "You have changed " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW
 									+ "'s gamemode to " + ChatColor.GOLD + "Adventure" + ChatColor.YELLOW + "!");
 						} else {
-							ErrorMessages.doErrorMessage(p, Messages.PLAYER_OFFLINE, args[1]);
+							ErrorMessages.doErrorMessage(p, Messages.PLAYER_OFFLINE, args[0]);
 						}
 					} else {
 						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/gma");
@@ -185,7 +184,7 @@ public class Gamemode implements CommandExecutor {
 							p.sendMessage(prefix + "You have changed " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW
 									+ "'s gamemode to " + ChatColor.GOLD + "Spectator" + ChatColor.YELLOW + "!");
 						} else {
-							ErrorMessages.doErrorMessage(p, Messages.PLAYER_OFFLINE, args[1]);
+							ErrorMessages.doErrorMessage(p, Messages.PLAYER_OFFLINE, args[0]);
 						}
 					} else {
 						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/gmsp");

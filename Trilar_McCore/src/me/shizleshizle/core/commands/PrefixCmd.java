@@ -1,17 +1,16 @@
 package me.shizleshizle.core.commands;
 
-import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
 import me.shizleshizle.core.objects.User;
 import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermGroup;
 import me.shizleshizle.core.permissions.Prefix;
 import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class PrefixCmd implements CommandExecutor {
  	public String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Prefix" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
@@ -51,11 +50,11 @@ public class PrefixCmd implements CommandExecutor {
 							p.sendMessage(prefix + "The prefix of Member:");
 							p.sendMessage(Prefix.getPrefix(PermGroup.MEMBER));
 						} else {
-							if (Prefix.hasPrefix(args[1])) {
-								p.sendMessage(prefix + ChatColor.GOLD + args[1] + ChatColor.YELLOW + "'s prefix is: ");
-								p.sendMessage(Prefix.getPrefix(args[1]));
+							if (Prefix.hasPrefix(args[0])) {
+								p.sendMessage(prefix + ChatColor.GOLD + args[0] + ChatColor.YELLOW + "'s prefix is: ");
+								p.sendMessage(Prefix.getPrefix(args[0]));
 							} else {
-								p.sendMessage(prefix + ChatColor.GOLD + args[1] + ChatColor.YELLOW + " does not have a prefix!");
+								p.sendMessage(prefix + ChatColor.GOLD + args[0] + ChatColor.YELLOW + " does not have a prefix!");
 							}
 						}
 					} else if (args.length == 3) {

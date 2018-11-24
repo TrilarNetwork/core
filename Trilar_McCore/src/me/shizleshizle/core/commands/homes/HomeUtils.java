@@ -1,18 +1,17 @@
 package me.shizleshizle.core.commands.homes;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.World;
-
 import me.shizleshizle.core.Main;
 import me.shizleshizle.core.objects.User;
 import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermGroup;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.World;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class HomeUtils {
 	private static HashMap<String, ArrayList<String>> homes = new HashMap<String, ArrayList<String>>();
@@ -21,7 +20,7 @@ public class HomeUtils {
 		setHome(p.getName(), name, x, y, z, yaw, pitch, wname);
 	}
 	
-	public static void setHome(String p, String name, double x, double y, double z, double yaw, double pitch, String wname) {
+	static void setHome(String p, String name, double x, double y, double z, double yaw, double pitch, String wname) {
 		Main.c.getHomes().set("homes." + p + "." + name + ".x", x);
 		Main.c.getHomes().set("homes." + p + "." + name + ".y", y);
 		Main.c.getHomes().set("homes." + p + "." + name + ".z", z);
@@ -39,7 +38,7 @@ public class HomeUtils {
 		removeHome(p.getName(), name);
 	}
 	
-	public static void removeHome(String p, String name) {
+	static void removeHome(String p, String name) {
 		Main.c.getHomes().set("homes." + p + "." + name + ".x", null);
 		Main.c.getHomes().set("homes." + p + "." + name + ".y", null);
 		Main.c.getHomes().set("homes." + p + "." + name + ".z", null);
@@ -49,19 +48,17 @@ public class HomeUtils {
 		Main.c.getHomes().set("homes." + p + ".hasHomes", Main.c.getHomes().getInt("homes." + p + ".hasHomes") - 1);
 		Main.c.saveHomes();
 		ArrayList<String> l = homes.get(p);
-		if (l.contains(name)) {
-			l.remove(name);
-		}
+		l.remove(name);
 		homes.put(p, l);
 	}
 	
-	public static void toHome(User p, String name) {
-		double x = 0;
-		double y = 0;
-		double z = 0;
-		float yaw = 0;
-		float pitch = 0;
-		World w = null;
+	static void toHome(User p, String name) {
+		double x;
+		double y;
+		double z;
+		float yaw;
+		float pitch;
+		World w;
 		if (Main.c.getHomes().get("homes." + p.getName() + "." + name + ".x") != null && Main.c.getHomes().get("homes." + p.getName() + "." + name + ".y") != null 
 				&& Main.c.getHomes().get("homes." + p.getName() + "." + name + ".z") != null && Main.c.getHomes().get("homes." + p.getName() + "." + name + ".yaw") 
 				!= null && Main.c.getHomes().get("homes." + p.getName() + "." + name + ".pitch") != null 
@@ -87,13 +84,13 @@ public class HomeUtils {
 		}
 	}
 	
-	public static void adminToPlayerHome(User admin, String p, String homename) {
-		double x = 0;
-		double y = 0;
-		double z = 0;
-		float yaw = 0;
-		float pitch = 0;
-		World w = null;
+	static void adminToPlayerHome(User admin, String p, String homename) {
+		double x;
+		double y;
+		double z;
+		float yaw;
+		float pitch;
+		World w;
 		if (Main.c.getHomes().get("homes." + p + "." + homename + ".x") != null && Main.c.getHomes().get("homes." + p + "." + homename + ".y") != null &&
 				Main.c.getHomes().get("homes." + p + "." + homename + ".z") != null && Main.c.getHomes().get("homes." + p + "." + homename + ".yaw") != null &&
 				Main.c.getHomes().get("homes." + p + "." + homename + ".pitch") != null && Main.c.getHomes().get("homes." + p + "." + homename + ".world") != null) {
@@ -140,38 +137,30 @@ public class HomeUtils {
 		return getMaxHomes(p.getName());
 	}
 	
-	public static int getMaxHomes(String playername) {
+	static int getMaxHomes(String playername) {
 		return Main.c.getHomes().getInt("homes." + playername + ".maxhomes");
 	}
 	
-	public static void setMaxHomes(String pname, int homes) {
+	static void setMaxHomes(String pname, int homes) {
 		Main.c.getHomes().set("homes." + pname + ".maxhomes", homes);
 		Main.c.saveHomes();
 	}
 	
-	public static int getHomes(String player) {
+	static int getHomes(String player) {
 		return Main.c.getHomes().getInt("homes." + player + ".hasHomes");
 	}
 	
-	public static boolean canSetHome(User p) {
+	static boolean canSetHome(User p) {
 		int has = Main.c.getHomes().getInt("homes." + p.getName() + ".hasHomes");
 		int max = Main.c.getHomes().getInt("homes." + p.getName() + ".maxHomes");
-		if (has >= max) {
-			return false;
-		} else {
-			return true;
-		}
+		return (has < max);
 	}
 	
-	public static boolean hasHome(String player, String name) {
-		if (homes.get(player).contains(name)) {
-			return true;
-		} else {
-			return false;
-		}
+	static boolean hasHome(String player, String name) {
+		return homes.get(player).contains(name);
 	}
 	
-	public static String listHomes(String p) {
+	static String listHomes(String p) {
 		String home = "";
 		ArrayList<String> l = homes.get(p);
 		if (homes.isEmpty() || l.isEmpty()) {
@@ -194,7 +183,7 @@ public class HomeUtils {
 	
 	public static void loadHomes(String p) {
 		List<String> l = Main.c.getHomes().getStringList("homes." + p + ".homeNames");
-		ArrayList<String> h = new ArrayList<String>(l);
+		ArrayList<String> h = new ArrayList<>(l);
 		homes.put(p, h);
 	}
 }

@@ -1,15 +1,5 @@
 package me.shizleshizle.core.listeners;
 
-import java.util.HashMap;
-
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerQuitEvent;
-
 import me.shizleshizle.core.Main;
 import me.shizleshizle.core.commands.homes.HomeUtils;
 import me.shizleshizle.core.commands.teleportation.Tpa;
@@ -19,13 +9,21 @@ import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermAttachments;
 import me.shizleshizle.core.permissions.PermUser;
 import me.shizleshizle.core.utils.Tablist;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerQuitEvent;
+
+import java.util.HashMap;
 
 public class PlayerQuit implements Listener {
 	public static HashMap<String, Double> health = new HashMap<>();
     public static HashMap<String, Integer> hunger = new HashMap<>();
     public static HashMap<String, Integer> xp = new HashMap<>();
     public static HashMap<String, Integer> xplevel = new HashMap<>();
-    public static HashMap<String, Integer> tokens = new HashMap<>();
     public static HashMap<String, GameMode> gm = new HashMap<>();
     public static HashMap<String, Boolean> op = new HashMap<>();
     public static HashMap<String, Boolean> god = new HashMap<>();
@@ -96,7 +94,8 @@ public class PlayerQuit implements Listener {
             Main.tpahere.remove(t.getName());
         }
 		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.p, () -> {
-			Tablist.updateTablist(Bukkit.getOnlinePlayers().toArray(new Player[Bukkit.getOnlinePlayers().size()]));
+			int size = Bukkit.getOnlinePlayers().size();
+			Tablist.updateTablist(Bukkit.getOnlinePlayers().toArray(new Player[size]));
 		}, 20L);
 	}
 }

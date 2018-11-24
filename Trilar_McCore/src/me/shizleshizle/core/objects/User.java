@@ -1,23 +1,17 @@
 package me.shizleshizle.core.objects;
 
-import java.net.InetSocketAddress;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Random;
-import java.util.UUID;
-
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Server;
-import org.bukkit.WeatherType;
-import org.bukkit.World;
+import me.shizleshizle.core.Main;
+import me.shizleshizle.core.commands.Wild;
+import me.shizleshizle.core.commands.cmdutils.VanishUtils;
+import me.shizleshizle.core.commands.cmdutils.WarpUtils;
+import me.shizleshizle.core.commands.warps.Warp;
+import me.shizleshizle.core.permissions.Perm;
+import me.shizleshizle.core.permissions.PermGroup;
+import me.shizleshizle.core.permissions.Prefix;
+import me.shizleshizle.core.utils.CI;
+import me.shizleshizle.core.utils.Cooldowns;
+import me.shizleshizle.core.utils.NickNameManager;
+import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Player.Spigot;
@@ -32,17 +26,15 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scoreboard.Scoreboard;
 
-import me.shizleshizle.core.Main;
-import me.shizleshizle.core.commands.Wild;
-import me.shizleshizle.core.commands.cmdutils.VanishUtils;
-import me.shizleshizle.core.commands.cmdutils.WarpUtils;
-import me.shizleshizle.core.commands.warps.Warp;
-import me.shizleshizle.core.permissions.Perm;
-import me.shizleshizle.core.permissions.PermGroup;
-import me.shizleshizle.core.permissions.Prefix;
-import me.shizleshizle.core.utils.CI;
-import me.shizleshizle.core.utils.Cooldowns;
-import me.shizleshizle.core.utils.NickNameManager;
+import java.net.InetSocketAddress;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Random;
+import java.util.UUID;
 
 public class User {
 	private Player p;
@@ -112,9 +104,7 @@ public class User {
 				Main.frozen.add(p.getName());
 			}
 		} else {
-			if (Main.frozen.contains(p.getName())) {
-				Main.frozen.remove(p.getName());
-			}
+			Main.frozen.remove(p.getName());
 		}
 	}
 	
@@ -131,11 +121,11 @@ public class User {
 	}
 	
 	public Location getBack() {
+		Location l = null;
 		if (Main.back.containsKey(p.getName())) {
-			return Main.back.get(p.getName());
-		} else {
-			return null;
+			l = Main.back.get(p.getName());
 		}
+		return l;
 	}
 	
 	public Location getBedSpawnLocation() {
@@ -339,9 +329,7 @@ public class User {
 	/**
 	 * Gives a player a cooldown
 	 * If a player already has a cooldown, the time you enter will add up.
-	 * 
-	 * @param p 
-	 * 			Name of the Player who should receive the cooldown
+	 *
 	 * @param time
 	 * 			Time in seconds
 	 */
@@ -354,11 +342,7 @@ public class User {
 	}
 	
 	public boolean hasBack() {
-		if (Main.back.containsKey(p.getName())) {
-			return true;
-		} else {
-			return false;
-		}
+		return (Main.back.containsKey(p.getName()));
 	}
 	
 	public boolean hasChatColor() {
@@ -386,11 +370,7 @@ public class User {
 	}
 	
 	public boolean hasTpDisabled() {
-		if (Main.tptoggle.contains(p.getName())) {
-			return true;
-		} else {
-			return false;
-		}
+		return Main.tptoggle.contains(p.getName());
 	}
 	
 	public void heal(double health, int food) {
@@ -514,9 +494,7 @@ public class User {
 	}
 	
 	public void removeBack() {
-		if (Main.back.containsKey(p.getName())) {
-			Main.back.remove(p.getName());
-		}
+		Main.back.remove(p.getName());
 	}
 	
 	public void removeChatColor() {
@@ -623,11 +601,6 @@ public class User {
 		Main.back.put(p.getName(), l);
 	}
 	
-	@SuppressWarnings("deprecation")
-	public void setBanned(boolean banned) {
-		p.setBanned(banned);
-	}
-	
 	public void setBedSpawnLocation(Location l) {
 		p.setBedSpawnLocation(l);
 	}
@@ -706,9 +679,7 @@ public class User {
 				Main.gods.add(p.getName());
 			}
 		} else {
-			if (Main.gods.contains(p.getName())) {
-				Main.gods.remove(p.getName());
-			}
+			Main.gods.remove(p.getName());
 		}
 	}
 	
@@ -789,9 +760,7 @@ public class User {
 	
 	public void setTpDisabled(boolean dis) {
 		if (dis) {
-			if (Main.tptoggle.contains(p.getName())) {
-				Main.tptoggle.remove(p.getName());
-			}
+			Main.tptoggle.remove(p.getName());
 		} else {
 			Main.tptoggle.add(p.getName());
 		}
@@ -808,7 +777,12 @@ public class User {
 	public void setUserWeather(WeatherType weather) {
 		p.setPlayerWeather(weather);
 	}
-	
+
+	/**
+	 * Vanish or unvanish a player.
+	 *
+	 * @param vanish When true the player will be vanished, when false the player will be unvanished.
+	 */
 	public void setVanished(boolean vanish) {
         if (vanish) {
         	Main.vanished.add(p.getName());
@@ -827,29 +801,31 @@ public class User {
                 }
             }
         } else {
-        	Main.vanished.remove(p.getName());
-            p.getInventory().clear();
-            if (VanishUtils.pInv.get(p.getName()) != null) {
-                p.getInventory().setContents(VanishUtils.pInv.get(p.getName()));
-                VanishUtils.pInv.remove(p.getName());
-            }
-            setGod(false);
-            if (!p.getGameMode().equals(GameMode.CREATIVE) && !p.isFlying()) {
-                p.setAllowFlight(false);
-                p.setFlying(false);
-            }
-            if (hasNick()) {
-                setUserListName(getNick());
-            } else {
-                setUserListName(p.getName());
-            }
-            toBack();
-            removeBack();
-            p.setFallDistance(0);
-            p.setCanPickupItems(true);
-            for (Player x : Bukkit.getOnlinePlayers()) {
-            	x.showPlayer(p);
-            }
+			if (Main.vanished.contains(p.getName())) {
+				Main.vanished.remove(p.getName());
+				p.getInventory().clear();
+				if (VanishUtils.pInv.get(p.getName()) != null) {
+					p.getInventory().setContents(VanishUtils.pInv.get(p.getName()));
+					VanishUtils.pInv.remove(p.getName());
+				}
+				setGod(false);
+				if (!p.getGameMode().equals(GameMode.CREATIVE) && !p.isFlying()) {
+					p.setAllowFlight(false);
+					p.setFlying(false);
+				}
+				if (hasNick()) {
+					setUserListName(getNick());
+				} else {
+					setUserListName(p.getName());
+				}
+				toBack();
+				removeBack();
+				p.setFallDistance(0);
+				p.setCanPickupItems(true);
+				for (Player x : Bukkit.getOnlinePlayers()) {
+					x.showPlayer(p);
+				}
+			}
         }
     }
 	
@@ -876,13 +852,19 @@ public class User {
 	public void teleport(Location l) {
 		p.teleport(l);
 	}
-	
+
+	/**
+	 * Teleports the player to his back location
+	 */
 	public void toBack() {
 		if (Main.back.containsKey(getName())) {
 			p.teleport(Main.back.get(getName()));
 		}
 	}
-	
+
+	/**
+	 * Teleports the player to the spawn.
+	 */
 	public void toSpawn() {
         double x;
         double y;
@@ -911,7 +893,12 @@ public class User {
 	public void updateInventory() {
 		p.updateInventory();
 	}
-	
+
+	/**
+	 * Teleports the player to certain warp.
+	 *
+	 * @param warp The warp the player will be teleported to.
+	 */
 	public void warp(String warp) {
         if (WarpUtils.warps.contains(warp)) {
             double x;
@@ -941,7 +928,10 @@ public class User {
             p.sendMessage(Warp.prefix + "Warp " + ChatColor.GOLD + warp + ChatColor.YELLOW + " does not exist!");
         }
     }
-	
+
+	/**
+	 * Teleport the player to a random location from where they are standing.
+	 */
 	public void wild() {
         Location ogLoc = p.getLocation();
         Random random = new Random();

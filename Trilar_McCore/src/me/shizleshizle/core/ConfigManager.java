@@ -1,13 +1,13 @@
 package me.shizleshizle.core;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Arrays;
-
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
 
 public class ConfigManager {
 	boolean isSetup = false;
@@ -27,7 +27,7 @@ public class ConfigManager {
 		return instance;
 	}
 	
-	public void setup(Plugin p) {
+	void setup(Plugin p) {
 		if (!p.getDataFolder().exists()) {
 			p.getDataFolder().mkdir();
 		}
@@ -87,7 +87,7 @@ public class ConfigManager {
 		isSetup = true;
 	}
 	
-	public void setupConfig() {
+	private void setupConfig() {
 		if (!this.config.contains("settings.maxHealth")) {
 			this.config.set("settings.maxHealth", 60);
 		}
@@ -152,7 +152,7 @@ public class ConfigManager {
 		}
 	}
 	
-	public void reloadConfig() {
+	private void reloadConfig() {
 		this.config = YamlConfiguration.loadConfiguration(cfile);
 		Main.setupUtils();
 	}
@@ -168,24 +168,24 @@ public class ConfigManager {
 			Bukkit.getServer().getLogger().info("McCore >> Error: Could not save homes.yml!");
 		}
 	}
-	
-	public void reloadHomes() {
+
+	private void reloadHomes() {
 		this.homes = YamlConfiguration.loadConfiguration(chomes);
 	}
 	
 	public FileConfiguration getNicks() {
 		return this.nicks;
 	}
-	
-	public void saveNicks() {
+
+	private void saveNicks() {
 		try {
 			this.nicks.save(cnicks);
 		} catch (IOException e) {
 			Bukkit.getServer().getLogger().info("McCore >> Error: Could not save nicknames.yml!");
 		}
 	}
-	
-	public void reloadNicks() {
+
+	private void reloadNicks() {
 		this.nicks = YamlConfiguration.loadConfiguration(cnicks);
 	}
 	
@@ -200,8 +200,8 @@ public class ConfigManager {
 			Bukkit.getServer().getLogger().info("McCore >> Error: Could not save spawn.yml!");
 		}
 	}
-	
-	public void reloadSpawn() {
+
+	private void reloadSpawn() {
 		spawn = YamlConfiguration.loadConfiguration(cspawn);
 	}
 	
@@ -216,8 +216,8 @@ public class ConfigManager {
 			Bukkit.getServer().getLogger().info("McCore >> Error: Could not save warps.yml!");
 		}
 	}
-	
-	public void reloadWarps() {
+
+	private void reloadWarps() {
 		warps = YamlConfiguration.loadConfiguration(cwarps);
 	}
 }

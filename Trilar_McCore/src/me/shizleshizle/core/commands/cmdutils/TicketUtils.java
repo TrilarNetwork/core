@@ -1,15 +1,14 @@
 package me.shizleshizle.core.commands.cmdutils;
 
+import me.shizleshizle.core.Main;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
-
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-
-import me.shizleshizle.core.Main;
 
 public class TicketUtils {
 	public enum Status {
@@ -77,9 +76,9 @@ public class TicketUtils {
 	}
 	
 	public static Location getLocation(int id) {
-		double x = 0;
-		double y = 0;
-		double z = 0;
+		double x;
+		double y;
+		double z;
 		String w;
 		Location l = null;
 		try {

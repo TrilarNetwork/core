@@ -1,16 +1,17 @@
 package me.shizleshizle.core.commands.teleportation;
 
-import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
+import me.shizleshizle.core.commands.Broadcast;
 import me.shizleshizle.core.objects.User;
 import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermGroup;
 import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class Tpall implements CommandExecutor {
  	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Tpall" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
@@ -20,11 +21,15 @@ public class Tpall implements CommandExecutor {
 			if (sender instanceof Player) {
 				Player x = (Player) sender;
 				User p = new User(x);
-				if (Perm.hasPerm(p, PermGroup.HELPER)) {
+				if (Perm.hasPerm(p, PermGroup.MODERATOR)) {
 					if (args.length == 0) {
-						
-					} else if (args.length == 1) {
-						
+						Bukkit.broadcastMessage(Broadcast.prefix + "Teleporting to all players to " + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + "!");
+						for (Player pl : Bukkit.getOnlinePlayers()) {
+							User pla = new User(pl);
+							pla.teleport(p.getLocation());
+						}
+					} else {
+						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/tpall");
 					}
 				} else {
 					ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/tpall");

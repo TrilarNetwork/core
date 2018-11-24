@@ -1,5 +1,9 @@
 package me.shizleshizle.core.permissions;
 
+import me.shizleshizle.core.Main;
+import me.shizleshizle.core.objects.User;
+import org.bukkit.entity.Player;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,23 +11,15 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.bukkit.entity.Player;
-
-import me.shizleshizle.core.Main;
-import me.shizleshizle.core.objects.User;
-
 public class Perm {
-public static Map<String, PermGroup> pPerms = new HashMap<String, PermGroup>();
+	private static Map<String, PermGroup> pPerms = new HashMap<>();
 	
 	public static boolean hasPerm(User p, PermGroup g) {
 		return hasPerm(p.getName(), g);
 	}
 
 	public static boolean hasPerm(String name, PermGroup g) {
-		if (g.getId() <= getGroup(name).getId()) {
-			return true;
-		}
-		return false;
+		return (g.getId() <= getGroup(name).getId());
 	}
 	
 	public static PermGroup getGroup(User p) {
@@ -68,7 +64,7 @@ public static Map<String, PermGroup> pPerms = new HashMap<String, PermGroup>();
 		}
 	}
 	
-	public static PermGroup getGroupFromDatabase(String name) {
+	private static PermGroup getGroupFromDatabase(String name) {
 		String str = PermGroup.MEMBER.toString();
 		try {
 			Main.sql.getReady();
@@ -89,8 +85,6 @@ public static Map<String, PermGroup> pPerms = new HashMap<String, PermGroup>();
 	}
 	
 	public static void logoutPlayer(String name)  {
-		if (pPerms.containsKey(name)) {
-			pPerms.remove(name);
-		}
+		pPerms.remove(name);
 	}
 }

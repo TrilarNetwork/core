@@ -1,19 +1,18 @@
 package me.shizleshizle.core.commands;
 
+import me.shizleshizle.core.permissions.Perm;
+import me.shizleshizle.core.permissions.PermGroup;
+import me.shizleshizle.core.utils.ErrorMessages;
+import me.shizleshizle.core.utils.ErrorMessages.Messages;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import me.shizleshizle.core.permissions.Perm;
-import me.shizleshizle.core.permissions.PermGroup;
-import me.shizleshizle.core.utils.ErrorMessages;
-import me.shizleshizle.core.utils.ErrorMessages.Messages;
-import net.md_5.bungee.api.ChatColor;
-
 public class Broadcast implements CommandExecutor {
-	private String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Broadcast" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Broadcast" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("broadcast")) {

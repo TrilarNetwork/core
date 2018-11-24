@@ -1,8 +1,7 @@
 package me.shizleshizle.core.utils;
 
-import org.bukkit.ChatColor;
-
 import me.shizleshizle.core.Main;
+import org.bukkit.ChatColor;
 
 public class AutoB {
 	private static boolean b = true;
@@ -22,9 +21,8 @@ public class AutoB {
 	public static String getStrings() {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < Main.msgs.size(); i++) {
-			sb.append(ChatColor.WHITE + Main.msgs.get(i)).append(ChatColor.GOLD + ", ");
+			sb.append(ChatColor.WHITE).append(Main.msgs.get(i)).append(ChatColor.GOLD).append(", ");
 		}
-		String s = sb.toString().substring(0, sb.length() - 2);
-		return s;
+		return sb.toString().substring(0, sb.length() - 2);
 	}
 }

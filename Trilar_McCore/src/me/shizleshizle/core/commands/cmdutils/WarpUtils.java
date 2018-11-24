@@ -1,11 +1,11 @@
 package me.shizleshizle.core.commands.cmdutils;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import me.shizleshizle.core.ConfigManager;
 import me.shizleshizle.core.Main;
 import net.md_5.bungee.api.ChatColor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class WarpUtils {
     private static ConfigManager c = ConfigManager.getInstance();
@@ -63,8 +63,16 @@ public class WarpUtils {
                 String dos = ChatColor.YELLOW + ", ";
                 sb.append(uno).append(dos);
             }
-            s = sb.toString().substring(0, s.length() - 2).trim();
-            return s;
+            if (sb.toString().isEmpty()) {
+                return s;
+            }
+            String del = ", ";
+            s = sb.toString();
+            if (s.startsWith(del)) {
+                return s;
+            } else {
+                return s.substring(0, s.length() - 2);
+            }
         }
     }
 }

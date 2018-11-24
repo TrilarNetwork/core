@@ -1,10 +1,10 @@
 package me.shizleshizle.core.mysql;
 
+import me.shizleshizle.core.Main;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
-import me.shizleshizle.core.Main;
 
 /**
  * Connects to and uses a MySQL database
@@ -20,7 +20,7 @@ public class MySQL extends Database {
 	private String hostname;
 
 	private Connection conn;
-	/**
+	/*
 	 * Creates a new MySQL instance
 	 *
 	 * @param hostname
@@ -60,8 +60,8 @@ public class MySQL extends Database {
 		this.user = username;
 		this.password = password;
 	} */
-	
-	/**
+
+	/*
 	 * Creates a new MySQL instance for a specific database
 	 *
 	 * @param hostname
@@ -94,9 +94,7 @@ public class MySQL extends Database {
 					//"Quinten", "vRvs66z2RpBWnJmb");
 			this.conn = conn;
 			return conn;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
+		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		return this.conn;

@@ -1,17 +1,16 @@
 package me.shizleshizle.core.commands;
 
+import me.shizleshizle.core.objects.User;
+import me.shizleshizle.core.permissions.Perm;
+import me.shizleshizle.core.permissions.PermGroup;
+import me.shizleshizle.core.utils.ErrorMessages;
+import me.shizleshizle.core.utils.ErrorMessages.Messages;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import me.shizleshizle.core.objects.User;
-import me.shizleshizle.core.permissions.Perm;
-import me.shizleshizle.core.permissions.PermGroup;
-import me.shizleshizle.core.utils.ErrorMessages;
-import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class Afk implements CommandExecutor {
 	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Afk" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
@@ -25,7 +24,6 @@ public class Afk implements CommandExecutor {
 					if (args.length == 0) {
 						if (p.isAfk()) {
 							p.setAfk(false);
-							
 						} else {
 							p.setAfk(true);
 						}

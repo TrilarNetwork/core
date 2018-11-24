@@ -1,7 +1,8 @@
 package me.shizleshizle.core.commands;
 
-import java.util.HashMap;
-
+import me.shizleshizle.core.objects.User;
+import me.shizleshizle.core.permissions.Perm;
+import me.shizleshizle.core.permissions.PermGroup;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -9,9 +10,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import me.shizleshizle.core.objects.User;
-import me.shizleshizle.core.permissions.Perm;
-import me.shizleshizle.core.permissions.PermGroup;
+import java.util.HashMap;
 
 public class StaffList implements CommandExecutor {
 	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "List" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
@@ -37,158 +36,171 @@ public class StaffList implements CommandExecutor {
 				}
 			}
 			if (amount >= 1) {
-				String ldeve = "";
-				String deve = "";
-				String owners = "";
-				String manager = "";
-				String sradm = "";
-				String adm = "";
-				String jradm = "";
-				String srmode = "";
-				String mode = "";
-				String jrmode = "";
-				String srhelpers = "";
-				String helpers = "";
-				String jrhelpers = "";
+				StringBuilder ldeve = new StringBuilder();
+				StringBuilder deve = new StringBuilder();
+				StringBuilder owners = new StringBuilder();
+				StringBuilder manager = new StringBuilder();
+				StringBuilder sradm = new StringBuilder();
+				StringBuilder adm = new StringBuilder();
+				StringBuilder jradm = new StringBuilder();
+				StringBuilder srmode = new StringBuilder();
+				StringBuilder mode = new StringBuilder();
+				StringBuilder jrmode = new StringBuilder();
+				StringBuilder srhelpers = new StringBuilder();
+				StringBuilder helpers = new StringBuilder();
+				StringBuilder jrhelpers = new StringBuilder();
+				String ldev = "";
+				String dev = "";
+				String own = "";
+				String man = "";
+				String sra = "";
+				String adn = "";
+				String jra = "";
+				String srm = "";
+				String mod = "";
+				String jrm = "";
+				String srh = "";
+				String hel = "";
+				String jrh = "";
 				for (String s : staff.keySet()) {
 					switch (staff.get(s)) {
 					case JR_HELPER:
-						jrhelpers += s + " ";
+						jrhelpers.append(s).append(" ");
 						break;
 					case HELPER:
-						helpers += s + " ";
+						helpers.append(s).append(" ");
 						break;
 					case SR_HELPER:
-						srhelpers += s + " ";
+						srhelpers.append(s).append(" ");
 						break;
 					case JR_MODERATOR:
-						jrmode += s + " ";
+						jrmode.append(s).append(" ");
 						break;
 					case MODERATOR:
-						mode += s + " ";
+						mode.append(s).append(" ");
 						break;
 					case SR_MODERATOR:
-						srmode += s + " ";
+						srmode.append(s).append(" ");
 						break;
 					case JR_ADMIN:
-						jradm += s + " ";
+						jradm.append(s).append(" ");
 						break;
 					case ADMIN:
-						adm += s + " ";
+						adm.append(s).append(" ");
 						break;
 					case SR_ADMIN:
-						sradm += s + " ";
+						sradm.append(s).append(" ");
 						break;
 					case MANAGER:
-						manager += s + " ";
+						manager.append(s).append(" ");
 						break;
 					case OWNER:
-						owners += s + " ";
+						owners.append(s).append(" ");
 						break;
 					case DEVELOPER:
-						deve += s + " ";
+						deve.append(s).append(" ");
 						break;
 					case LEAD_DEVELOPER:
-						ldeve += s + " ";
+						ldeve.append(s).append(" ");
 						break;
 					default:
 						break;
 					}
 				}
-				if (!ldeve.isEmpty()) {
-					ldeve = ChatColor.GOLD + "[ " + PermGroup.LEAD_DEVELOPER.getPrefix() + ChatColor.GOLD + ": " + PermGroup.LEAD_DEVELOPER.getColor() + ldeve.trim();
+				if (!ldeve.toString().isEmpty()) {
+					ldev = ChatColor.GOLD + "[ " + PermGroup.LEAD_DEVELOPER.getPrefix() + ChatColor.GOLD + ": " + PermGroup.LEAD_DEVELOPER.getColor() + ldeve.toString().trim();
 				}
-				if (!deve.isEmpty()) {
-					deve = ChatColor.GOLD + "[ " + PermGroup.DEVELOPER.getPrefix() + ChatColor.GOLD + ": " + PermGroup.DEVELOPER.getColor() + deve.trim();
+				if (!deve.toString().isEmpty()) {
+					dev = ChatColor.GOLD + "[ " + PermGroup.DEVELOPER.getPrefix() + ChatColor.GOLD + ": " + PermGroup.DEVELOPER.getColor() + deve.toString().trim();
 				}
-				if (!owners.isEmpty()) {
-					owners = ChatColor.GOLD + "[ " + PermGroup.OWNER.getPrefix() + ChatColor.GOLD + ": " + PermGroup.OWNER.getColor() + owners.trim();
+				if (!owners.toString().isEmpty()) {
+					own = ChatColor.GOLD + "[ " + PermGroup.OWNER.getPrefix() + ChatColor.GOLD + ": " + PermGroup.OWNER.getColor() + owners.toString().trim();
 				}
-				if (!manager.isEmpty()) {
-					manager = ChatColor.GOLD + "[ " + PermGroup.MANAGER.getPrefix() + ChatColor.GOLD + ": " + PermGroup.MANAGER.getColor() + manager.trim();
+				if (!manager.toString().isEmpty()) {
+					man = ChatColor.GOLD + "[ " + PermGroup.MANAGER.getPrefix() + ChatColor.GOLD + ": " + PermGroup.MANAGER.getColor() + manager.toString().trim();
 				}
-				if (!sradm.isEmpty()) {
-					sradm = ChatColor.GOLD + "[ " + PermGroup.SR_ADMIN.getPrefix() + ChatColor.GOLD + ": " + PermGroup.ADMIN.getColor() + sradm.trim();
+				if (!sradm.toString().isEmpty()) {
+					sra = ChatColor.GOLD + "[ " + PermGroup.SR_ADMIN.getPrefix() + ChatColor.GOLD + ": " + PermGroup.ADMIN.getColor() + sradm.toString().trim();
 				}
-				if (!adm.isEmpty()) {
-					adm = ChatColor.GOLD + "[ " + PermGroup.ADMIN.getPrefix() + ChatColor.GOLD + ": " + PermGroup.ADMIN.getColor() + adm.trim();
+				if (!adm.toString().isEmpty()) {
+					adn = ChatColor.GOLD + "[ " + PermGroup.ADMIN.getPrefix() + ChatColor.GOLD + ": " + PermGroup.ADMIN.getColor() + adm.toString().trim();
 				}
-				if (!jradm.isEmpty()) {
-					jradm = ChatColor.GOLD + "[ " + PermGroup.JR_ADMIN.getPrefix() + ChatColor.GOLD + ": " + PermGroup.ADMIN.getColor() + jradm.trim();
+				if (!jradm.toString().isEmpty()) {
+					jra = ChatColor.GOLD + "[ " + PermGroup.JR_ADMIN.getPrefix() + ChatColor.GOLD + ": " + PermGroup.ADMIN.getColor() + jradm.toString().trim();
 				}
-				if (!srmode.isEmpty()) {
-					srmode = ChatColor.GOLD + "[ " + PermGroup.SR_MODERATOR.getPrefix() + ChatColor.GOLD + ": " + PermGroup.MODERATOR.getColor() + srmode.trim();
+				if (!srmode.toString().isEmpty()) {
+					srm = ChatColor.GOLD + "[ " + PermGroup.SR_MODERATOR.getPrefix() + ChatColor.GOLD + ": " + PermGroup.MODERATOR.getColor() + srmode.toString().trim();
 				}
-				if (!mode.isEmpty()) {
-					mode = ChatColor.GOLD + "[ " + PermGroup.MODERATOR.getPrefix() + ChatColor.GOLD + ": " + PermGroup.MODERATOR.getColor() + mode.trim();
+				if (!mode.toString().isEmpty()) {
+					mod = ChatColor.GOLD + "[ " + PermGroup.MODERATOR.getPrefix() + ChatColor.GOLD + ": " + PermGroup.MODERATOR.getColor() + mode.toString().trim();
 				}
-				if (!jrmode.isEmpty()) {
-					jrmode = ChatColor.GOLD + "[ " + PermGroup.JR_MODERATOR.getPrefix() + ChatColor.GOLD + ": " + PermGroup.MODERATOR.getColor() + jrmode.trim();
+				if (!jrmode.toString().isEmpty()) {
+					jrm = ChatColor.GOLD + "[ " + PermGroup.JR_MODERATOR.getPrefix() + ChatColor.GOLD + ": " + PermGroup.MODERATOR.getColor() + jrmode.toString().trim();
 				}
-				if (!srhelpers.isEmpty()) {
-					srhelpers = ChatColor.GOLD + "[ " + PermGroup.SR_HELPER.getPrefix() + ChatColor.GOLD + ": " + PermGroup.HELPER.getColor() + srhelpers.trim();
+				if (!srhelpers.toString().isEmpty()) {
+					srh = ChatColor.GOLD + "[ " + PermGroup.SR_HELPER.getPrefix() + ChatColor.GOLD + ": " + PermGroup.HELPER.getColor() + srhelpers.toString().trim();
 				}
-				if (!helpers.isEmpty()) {
-					helpers = ChatColor.GOLD + "[ " + PermGroup.HELPER.getPrefix() + ChatColor.GOLD + ": " + PermGroup.HELPER.getColor() + helpers.trim();
+				if (!helpers.toString().isEmpty()) {
+					hel = ChatColor.GOLD + "[ " + PermGroup.HELPER.getPrefix() + ChatColor.GOLD + ": " + PermGroup.HELPER.getColor() + helpers.toString().trim();
 				}
-				if (!jrhelpers.isEmpty()) {
-					jrhelpers = ChatColor.GOLD + "[ " + PermGroup.JR_HELPER.getPrefix() + ChatColor.GOLD + ": " + PermGroup.HELPER.getColor() + jrhelpers.trim();
+				if (!jrhelpers.toString().isEmpty()) {
+					jrh = ChatColor.GOLD + "[ " + PermGroup.JR_HELPER.getPrefix() + ChatColor.GOLD + ": " + PermGroup.HELPER.getColor() + jrhelpers.toString().trim();
 				}
 				sender.sendMessage(ChatColor.GOLD + "]=-");
 				sender.sendMessage(ChatColor.GOLD + "[");
 				sender.sendMessage(ChatColor.GOLD + "[ " + ChatColor.YELLOW + "Online Players: " + ChatColor.GOLD + "[" + ChatColor.DARK_AQUA + online + ChatColor.GOLD 
 						+ "/" + ChatColor.DARK_AQUA + Bukkit.getMaxPlayers() + ChatColor.GOLD + "]");
 				sender.sendMessage(ChatColor.GOLD + "[");
-				if (!ldeve.isEmpty()) {
-					sender.sendMessage(ldeve);
+				if (!ldeve.toString().isEmpty()) {
+					sender.sendMessage(ldev);
 					sender.sendMessage(ChatColor.GOLD + "[");
 				}
-				if (!deve.isEmpty()) {
-					sender.sendMessage(deve);
+				if (!deve.toString().isEmpty()) {
+					sender.sendMessage(dev);
 					sender.sendMessage(ChatColor.GOLD + "[");
 				}
-				if (!owners.isEmpty()) {
-					sender.sendMessage(owners);
+				if (!owners.toString().isEmpty()) {
+					sender.sendMessage(own);
 					sender.sendMessage(ChatColor.GOLD + "[");
 				}
-				if (!manager.isEmpty()) {
-					sender.sendMessage(manager);
+				if (!manager.toString().isEmpty()) {
+					sender.sendMessage(man);
 					sender.sendMessage(ChatColor.GOLD + "[");
 				}
-				if (!sradm.isEmpty()) {
-					sender.sendMessage(sradm);
+				if (!sradm.toString().isEmpty()) {
+					sender.sendMessage(sra);
 					sender.sendMessage(ChatColor.GOLD + "[");
 				}
-				if (!adm.isEmpty()) {
-					sender.sendMessage(adm);
+				if (!adm.toString().isEmpty()) {
+					sender.sendMessage(adn);
 					sender.sendMessage(ChatColor.GOLD + "[");
 				}
-				if (!jradm.isEmpty()) {
-					sender.sendMessage(jradm);
+				if (!jradm.toString().isEmpty()) {
+					sender.sendMessage(jra);
 					sender.sendMessage(ChatColor.GOLD + "[");
 				}
-				if (!srmode.isEmpty()) {
-					sender.sendMessage(srmode);
+				if (!srmode.toString().isEmpty()) {
+					sender.sendMessage(srm);
 					sender.sendMessage(ChatColor.GOLD + "[");
 				}
-				if (!mode.isEmpty()) {
-					sender.sendMessage(mode);
+				if (!mode.toString().isEmpty()) {
+					sender.sendMessage(mod);
 					sender.sendMessage(ChatColor.GOLD + "[");
 				}
-				if (!jrmode.isEmpty()) {
-					sender.sendMessage(jrmode);
+				if (!jrmode.toString().isEmpty()) {
+					sender.sendMessage(jrm);
 					sender.sendMessage(ChatColor.GOLD + "[");
 				}
-				if (!srhelpers.isEmpty()) {
-					sender.sendMessage(srhelpers);
+				if (!srhelpers.toString().isEmpty()) {
+					sender.sendMessage(srh);
 					sender.sendMessage(ChatColor.GOLD + "[");
 				}
-				if (!helpers.isEmpty()) {
-					sender.sendMessage(helpers);
+				if (!helpers.toString().isEmpty()) {
+					sender.sendMessage(hel);
 					sender.sendMessage(ChatColor.GOLD + "[");
 				}
-				if (!jrhelpers.isEmpty()) {
-					sender.sendMessage(jrhelpers);
+				if (!jrhelpers.toString().isEmpty()) {
+					sender.sendMessage(jrh);
 					sender.sendMessage(ChatColor.GOLD + "[");
 				}
 				sender.sendMessage(ChatColor.GOLD + "]=-");

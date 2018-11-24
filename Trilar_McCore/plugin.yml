@@ -28,6 +28,8 @@ commands:
     aliases: [tpyes, tpconfirm, tpja]
   tpahere:
     description: Send a request to make a player teleport to you.
+  tpall:
+    description: Teleport all players to you.
   tpdeny:
     description: Deny a teleport request from a player.
     aliases: [tpno, tpcancel, tpnee]

@@ -1,18 +1,5 @@
 package me.shizleshizle.core.listeners;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
-
 import me.shizleshizle.core.Main;
 import me.shizleshizle.core.commands.Freeze;
 import me.shizleshizle.core.commands.Lockdown;
@@ -25,6 +12,18 @@ import me.shizleshizle.core.permissions.PermUser;
 import me.shizleshizle.core.utils.NickNameManager;
 import me.shizleshizle.core.utils.Tablist;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
 
 public class PlayerJoin implements Listener {
 
@@ -119,6 +118,7 @@ public class PlayerJoin implements Listener {
             }
         }
 		e.setJoinMessage(ChatColor.DARK_AQUA + p.getName() + ChatColor.GOLD + " has joined the game.");
-		Tablist.updateTablist(Bukkit.getOnlinePlayers().toArray(new Player[Bukkit.getOnlinePlayers().size()]));
+		int size = Bukkit.getOnlinePlayers().size();
+		Tablist.updateTablist(Bukkit.getOnlinePlayers().toArray(new Player[size]));
 	}
 }

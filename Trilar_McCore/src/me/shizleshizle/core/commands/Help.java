@@ -1,16 +1,15 @@
 package me.shizleshizle.core.commands;
 
-import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
 import me.shizleshizle.core.objects.User;
 import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermGroup;
 import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class Help implements CommandExecutor {
  	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Help" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
@@ -84,7 +83,6 @@ public class Help implements CommandExecutor {
 							p.sendMessage(ChatColor.GOLD + "/" + ChatColor.YELLOW + "Rules" + ChatColor.GOLD + " - " + ChatColor.YELLOW + "View all the rules.");
 							p.sendMessage(ChatColor.GOLD + "/" + ChatColor.YELLOW + "Skulls" + ChatColor.GOLD + " - " + ChatColor.YELLOW + "Get yourself a skull.");
 							p.sendMessage(ChatColor.GOLD + "/" + ChatColor.YELLOW + "Sethome" + ChatColor.GOLD + " - " + ChatColor.YELLOW + "Set your home.");
-							;
 							p.sendMessage(" ");
 						} else if (args[0].equalsIgnoreCase("4")) {
 							p.sendMessage(ChatColor.GOLD + "----===["  + ChatColor.YELLOW + " Help " + ChatColor.GOLD + "]===----");
