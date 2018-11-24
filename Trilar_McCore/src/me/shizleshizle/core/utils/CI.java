@@ -1,10 +1,12 @@
 package me.shizleshizle.core.utils;
 
-import java.util.Arrays;
-
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
+
+import java.util.Arrays;
 
 public class CI {
 
@@ -19,6 +21,14 @@ public class CI {
 		im.setDisplayName(name);
 		im.setLore(Arrays.asList(lore));
 		i.setItemMeta(im);
+		return i;
+	}
+
+	public static ItemStack getColorArmor(Material m, Color c) {
+		ItemStack i = new ItemStack(m, 1);
+		LeatherArmorMeta lm = (LeatherArmorMeta) i.getItemMeta();
+		lm.setColor(c);
+		i.setItemMeta(lm);
 		return i;
 	}
 }
