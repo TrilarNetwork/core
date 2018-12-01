@@ -75,7 +75,7 @@ public class MySQL extends Database {
 	 * @param password
 	 *            Password
 	 */
-	public MySQL() {
+	MySQL() {
 		this.hostname = Main.host;
 		this.port = Main.port;
 		this.database = Main.db;

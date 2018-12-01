@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class ConfigManager {
-	boolean isSetup = false;
+	private boolean isSetup = false;
 	private static ConfigManager instance = new ConfigManager();
 	private FileConfiguration config;
 	private File cfile;
@@ -34,7 +34,9 @@ public class ConfigManager {
 		this.cfile = new File(p.getDataFolder(), "config.yml");
 		if (!this.cfile.exists()) {
 			try {
-				this.cfile.createNewFile();
+				if (this.cfile.createNewFile()) {
+					Bukkit.getServer().getLogger().info("McCore >> Created config.yml!");
+				}
 				config = YamlConfiguration.loadConfiguration(cfile);
 			} catch (IOException e) {
 				Bukkit.getServer().getLogger().info("McCore >> Error: Could not create config.yml!");
@@ -48,7 +50,9 @@ public class ConfigManager {
 		this.chomes = new File(p.getDataFolder(), "homes.yml");
 		if (!this.chomes.exists()) {
 			try {
-				this.chomes.createNewFile();
+				if (this.chomes.createNewFile()) {
+					Bukkit.getServer().getLogger().info("McCore >> Created homes.yml!");
+				}
 			} catch (IOException e) {
 				Bukkit.getServer().getLogger().info("McCore >> Error: Could not create homes.yml!");
 			}
@@ -57,7 +61,9 @@ public class ConfigManager {
 		this.cnicks = new File(p.getDataFolder(), "nicks.yml");
 		if (!this.cnicks.exists()) {
 			try {
-				this.cnicks.createNewFile();
+				if (this.cnicks.createNewFile()) {
+					Bukkit.getServer().getLogger().info("McCore >> Created nicks.yml!");
+				}
 			} catch (IOException e) {
 				Bukkit.getServer().getLogger().info("McCore >> Error: Could not create nicknames.yml!");
 			}
@@ -66,7 +72,9 @@ public class ConfigManager {
 		this.cspawn = new File(p.getDataFolder(), "spawn.yml");
 		if (!this.cspawn.exists()) {
 			try {
-				this.cspawn.createNewFile();
+				if (this.cspawn.createNewFile()) {
+					Bukkit.getServer().getLogger().info("McCore >> Created spawn.yml!");
+				}
 			} catch (IOException e) {
 				Bukkit.getServer().getLogger().info("McCore >> Error: Could not create spawn.yml!");
 			}
@@ -75,7 +83,9 @@ public class ConfigManager {
 		this.cwarps = new File(p.getDataFolder(), "warps.yml");
 		if (!cwarps.exists()) {
 			try {
-				cwarps.createNewFile();
+				if (cwarps.createNewFile())  {
+					Bukkit.getServer().getLogger().info("McCore >> Created warps.yml!");
+				}
 			} catch (IOException e) {
 				Bukkit.getServer().getLogger().info("McCore >> Error: Could not create warps.yml!");
 			}
@@ -116,7 +126,7 @@ public class ConfigManager {
 			this.config.set("settings.database.username", "root");
 		}
 		if (!this.config.contains("settings.database.password")) {
-			this.config.set("settings.database.password", "Mebra2134");
+			this.config.set("settings.database.password", "Bamboozle123");
 		}
 		if (!this.config.contains("settings.broadcastMessages")) {
 			this.config.set("settings.broadcastMessages", Arrays.asList("&6Welcome to &eTrilar&6!", "&6Do you have any questions? Feel free to ask!", 

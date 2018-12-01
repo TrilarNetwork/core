@@ -1,17 +1,16 @@
 package me.shizleshizle.core.mysql;
 
+import me.shizleshizle.core.objects.User;
+import org.bukkit.Bukkit;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 
-import org.bukkit.Bukkit;
-
-import me.shizleshizle.core.objects.User;
-
 public class MySQLManager extends MySQL {
-	public MySQL db;
+	private MySQL db;
 	
 	private static MySQLManager instance = new MySQLManager();
 	
