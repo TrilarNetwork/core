@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class ConfigManager {
-	private boolean isSetup = false;
+	public boolean isSetup = false;
 	private static ConfigManager instance = new ConfigManager();
 	private FileConfiguration config;
 	private File cfile;
@@ -29,7 +29,11 @@ public class ConfigManager {
 	
 	void setup(Plugin p) {
 		if (!p.getDataFolder().exists()) {
-			p.getDataFolder().mkdir();
+			if (p.getDataFolder().mkdir()) {
+				Bukkit.getServer().getLogger().info("McCore >> Created directory!");
+			} else {
+				Bukkit.getServer().getLogger().info("McCore >> Couldn't create directory.");
+			}
 		}
 		this.cfile = new File(p.getDataFolder(), "config.yml");
 		if (!this.cfile.exists()) {

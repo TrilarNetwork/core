@@ -22,7 +22,6 @@ import me.shizleshizle.core.permissions.PermissionGroup;
 import me.shizleshizle.core.permissions.Prefix;
 import me.shizleshizle.core.utils.AutoB;
 import me.shizleshizle.core.utils.Cooldowns;
-import net.milkbowl.vault.Vault;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -263,8 +262,9 @@ public class Main extends JavaPlugin {
 	}
 
 	private boolean checkVault() {
-		Plugin p = getServer().getPluginManager().getPlugin("Vault");
-		return (p instanceof Vault);
+		//Plugin p = getServer().getPluginManager().getPlugin("Vault");
+		//return (p instanceof Vault);
+		return false;
 	}
 
 	private void loadVault() {
@@ -279,9 +279,9 @@ public class Main extends JavaPlugin {
 	}
 
 	private boolean setupEconomy() {
-		if (getServer().getPluginManager().getPlugin("Vault") == null) {
+		/*if (getServer().getPluginManager().getPlugin("Vault") == null) {
 			return false;
-		}
+		} */
 		RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
 		if (rsp == null) {
 			return false;
