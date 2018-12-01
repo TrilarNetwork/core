@@ -71,7 +71,7 @@ public class Main extends JavaPlugin {
 	public void onEnable() {
 		long time = System.currentTimeMillis();
 		Logger l = getLogger();
-		l.info("Core >> enabling...");
+		l.info("McCore >> enabling...");
 		p = this;
 		c = ConfigManager.getInstance();
 		c.setup(this);
@@ -89,13 +89,13 @@ public class Main extends JavaPlugin {
 		AutoB.enable();
 		broadcast();
 		long fin = System.currentTimeMillis() - time;
-		l.info("Core >> successfully enabled! (" + fin + " ms)");
+		l.info("McCore >> successfully enabled! (" + fin + " ms)");
 	}
 
 	public void onDisable() {
 		long time = System.currentTimeMillis();
 		Logger l = getLogger();
-		l.info("Core >> disabling...");
+		l.info("McCore >> disabling...");
 		try {
 			if (sql.checkConnection()) {
 				sql.closeConnection();
@@ -104,7 +104,7 @@ public class Main extends JavaPlugin {
 			e.printStackTrace();
 		}
 		long fin = System.currentTimeMillis() - time;
-		l.info("Core >> successfully disabled! (" + fin + " ms)");
+		l.info("McCore >> successfully disabled! (" + fin + " ms)");
 	}
 
 	private void register() {
