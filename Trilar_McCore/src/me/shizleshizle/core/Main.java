@@ -1,28 +1,11 @@
 package me.shizleshizle.core;
 
-import me.shizleshizle.core.commands.*;
-import me.shizleshizle.core.commands.homes.Delhome;
-import me.shizleshizle.core.commands.homes.Home;
-import me.shizleshizle.core.commands.homes.Sethome;
-import me.shizleshizle.core.commands.spawn.Spawn;
-import me.shizleshizle.core.commands.teleportation.*;
-import me.shizleshizle.core.commands.tickets.*;
-import me.shizleshizle.core.commands.time.DayCmd;
-import me.shizleshizle.core.commands.time.NightCmd;
-import me.shizleshizle.core.commands.time.PTime;
-import me.shizleshizle.core.commands.time.Time;
-import me.shizleshizle.core.commands.warps.Deletewarps;
-import me.shizleshizle.core.commands.warps.Setwarps;
-import me.shizleshizle.core.commands.warps.Warp;
-import me.shizleshizle.core.listeners.*;
-import me.shizleshizle.core.mysql.MySQLManager;
-import me.shizleshizle.core.objects.ChatColorHandler;
-import me.shizleshizle.core.permissions.PermUser;
-import me.shizleshizle.core.permissions.PermissionGroup;
-import me.shizleshizle.core.permissions.Prefix;
-import me.shizleshizle.core.utils.AutoB;
-import me.shizleshizle.core.utils.Cooldowns;
-import net.milkbowl.vault.economy.Economy;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -31,12 +14,96 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import me.shizleshizle.core.commands.AB;
+import me.shizleshizle.core.commands.Afk;
+import me.shizleshizle.core.commands.Back;
+import me.shizleshizle.core.commands.Balance;
+import me.shizleshizle.core.commands.Broadcast;
+import me.shizleshizle.core.commands.ChatColorCmd;
+import me.shizleshizle.core.commands.ClearChat;
+import me.shizleshizle.core.commands.ClearInventory;
+import me.shizleshizle.core.commands.CommandSpy;
+import me.shizleshizle.core.commands.Enchant;
+import me.shizleshizle.core.commands.Enderchest;
+import me.shizleshizle.core.commands.Feed;
+import me.shizleshizle.core.commands.Fly;
+import me.shizleshizle.core.commands.Freeze;
+import me.shizleshizle.core.commands.Gamemode;
+import me.shizleshizle.core.commands.Getpos;
+import me.shizleshizle.core.commands.God;
+import me.shizleshizle.core.commands.Hat;
+import me.shizleshizle.core.commands.Heal;
+import me.shizleshizle.core.commands.Help;
+import me.shizleshizle.core.commands.Invsee;
+import me.shizleshizle.core.commands.Kill;
+import me.shizleshizle.core.commands.ListCmd;
+import me.shizleshizle.core.commands.Lockdown;
+import me.shizleshizle.core.commands.Me;
+import me.shizleshizle.core.commands.Mods;
+import me.shizleshizle.core.commands.Nickname;
+import me.shizleshizle.core.commands.Pay;
+import me.shizleshizle.core.commands.PermissionsCmd;
+import me.shizleshizle.core.commands.PrefixCmd;
+import me.shizleshizle.core.commands.Ranks;
+import me.shizleshizle.core.commands.Reload;
+import me.shizleshizle.core.commands.Repair;
+import me.shizleshizle.core.commands.Rules;
+import me.shizleshizle.core.commands.Skulls;
+import me.shizleshizle.core.commands.SocialMedia;
+import me.shizleshizle.core.commands.Speed;
+import me.shizleshizle.core.commands.StaffList;
+import me.shizleshizle.core.commands.Suicide;
+import me.shizleshizle.core.commands.Vanish;
+import me.shizleshizle.core.commands.Weather;
+import me.shizleshizle.core.commands.WhoIs;
+import me.shizleshizle.core.commands.Wild;
+import me.shizleshizle.core.commands.Workbench;
+import me.shizleshizle.core.commands.homes.Delhome;
+import me.shizleshizle.core.commands.homes.Home;
+import me.shizleshizle.core.commands.homes.Sethome;
+import me.shizleshizle.core.commands.spawn.Spawn;
+import me.shizleshizle.core.commands.teleportation.Tp;
+import me.shizleshizle.core.commands.teleportation.TpDeny;
+import me.shizleshizle.core.commands.teleportation.Tpa;
+import me.shizleshizle.core.commands.teleportation.Tpaccept;
+import me.shizleshizle.core.commands.teleportation.Tpahere;
+import me.shizleshizle.core.commands.teleportation.Tpall;
+import me.shizleshizle.core.commands.teleportation.Tphere;
+import me.shizleshizle.core.commands.teleportation.Tpo;
+import me.shizleshizle.core.commands.teleportation.Tpohere;
+import me.shizleshizle.core.commands.teleportation.Tppos;
+import me.shizleshizle.core.commands.teleportation.Tptoggle;
+import me.shizleshizle.core.commands.tickets.CheckTicket;
+import me.shizleshizle.core.commands.tickets.CloseTicket;
+import me.shizleshizle.core.commands.tickets.TakeTicket;
+import me.shizleshizle.core.commands.tickets.Ticket;
+import me.shizleshizle.core.commands.tickets.Tickets;
+import me.shizleshizle.core.commands.time.DayCmd;
+import me.shizleshizle.core.commands.time.NightCmd;
+import me.shizleshizle.core.commands.time.PTime;
+import me.shizleshizle.core.commands.time.Time;
+import me.shizleshizle.core.commands.warps.Deletewarps;
+import me.shizleshizle.core.commands.warps.Setwarps;
+import me.shizleshizle.core.commands.warps.Warp;
+import me.shizleshizle.core.listeners.BlockBreak;
+import me.shizleshizle.core.listeners.BlockPlace;
+import me.shizleshizle.core.listeners.EntityDamage;
+import me.shizleshizle.core.listeners.EntityTarget;
+import me.shizleshizle.core.listeners.FoodChange;
+import me.shizleshizle.core.listeners.InventoryClick;
+import me.shizleshizle.core.listeners.PlayerChat;
+import me.shizleshizle.core.listeners.PlayerInteract;
+import me.shizleshizle.core.listeners.PlayerJoin;
+import me.shizleshizle.core.listeners.PlayerMove;
+import me.shizleshizle.core.listeners.PlayerPD;
+import me.shizleshizle.core.listeners.PlayerPreProcess;
+import me.shizleshizle.core.listeners.PlayerQuit;
+import me.shizleshizle.core.listeners.PlayerTeleport;
+import me.shizleshizle.core.mysql.MySQLManager;
+import me.shizleshizle.core.utils.AutoB;
+import me.shizleshizle.core.utils.Cooldowns;
+import net.milkbowl.vault.Vault;
+import net.milkbowl.vault.economy.Economy;
 
 public class Main extends JavaPlugin {
 	public static List<String> msgs;
@@ -76,12 +143,12 @@ public class Main extends JavaPlugin {
 		c.setup(this);
 		setupUtils();
 		loadVault();
-		sql = MySQLManager.getInstance();
-		sql.setup();
-		PermissionGroup.setup();
-		PermUser.setup();
-		Prefix.setup();
-		ChatColorHandler.setup();
+		//sql = MySQLManager.getInstance();
+		//sql.setup();
+		//PermissionGroup.setup();
+		//PermUser.setup();
+		//Prefix.setup();
+		//ChatColorHandler.setup();
 		register();
 		registerEvents();
 		Cooldowns.runCooldown();
@@ -95,13 +162,13 @@ public class Main extends JavaPlugin {
 		long time = System.currentTimeMillis();
 		Logger l = getLogger();
 		l.info("McCore >> disabling...");
-		try {
+		/*try {
 			if (sql.checkConnection()) {
 				sql.closeConnection();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		}*/
 		long fin = System.currentTimeMillis() - time;
 		l.info("McCore >> successfully disabled! (" + fin + " ms)");
 	}
@@ -262,9 +329,8 @@ public class Main extends JavaPlugin {
 	}
 
 	private boolean checkVault() {
-		//Plugin p = getServer().getPluginManager().getPlugin("Vault");
-		//return (p instanceof Vault);
-		return false;
+		Plugin p = getServer().getPluginManager().getPlugin("Vault");
+		return (p instanceof Vault);
 	}
 
 	private void loadVault() {
@@ -279,9 +345,9 @@ public class Main extends JavaPlugin {
 	}
 
 	private boolean setupEconomy() {
-		/*if (getServer().getPluginManager().getPlugin("Vault") == null) {
+		if (getServer().getPluginManager().getPlugin("Vault") == null) {
 			return false;
-		} */
+		}
 		RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
 		if (rsp == null) {
 			return false;
