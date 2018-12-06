@@ -6,7 +6,7 @@ settings:
   autoBroadcastDelay: 60
   removeOnQuit: false
   database:
-    hostname: '127.0.0.1'
+    hostname: 'mininetwork.nl'
     port: 3306
     database: subbo_trilar
     username: subbo_trilar

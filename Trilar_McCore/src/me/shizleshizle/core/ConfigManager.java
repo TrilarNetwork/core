@@ -118,7 +118,7 @@ public class ConfigManager {
 			this.config.set("settings.removeOnQuit", false);
 		}
 		if (!this.config.contains("settings.database.hostname")) {
-			this.config.set("settings.database.hostname", "127.0.0.1");
+			this.config.set("settings.database.hostname", "mininetwork.nl");
 		}
 		if (!this.config.contains("settings.database.port")) {
 			this.config.set("settings.database.port", 3306);
