@@ -124,13 +124,13 @@ public class ConfigManager {
 			this.config.set("settings.database.port", 3306);
 		}
 		if (!this.config.contains("settings.database.database")) {
-			this.config.set("settings.database.database", "core");
+			this.config.set("settings.database.database", "subbo_trilar");
 		}
 		if (!this.config.contains("settings.database.username")) {
-			this.config.set("settings.database.username", "root");
+			this.config.set("settings.database.username", "subbo_trilar");
 		}
 		if (!this.config.contains("settings.database.password")) {
-			this.config.set("settings.database.password", "Bamboozle123");
+			this.config.set("settings.database.password", "2lyY39Jt");
 		}
 		if (!this.config.contains("settings.broadcastMessages")) {
 			this.config.set("settings.broadcastMessages", Arrays.asList("&6Welcome to &eTrilar&6!", "&6Do you have any questions? Feel free to ask!", 

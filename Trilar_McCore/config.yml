@@ -8,9 +8,9 @@ settings:
   database:
     hostname: '127.0.0.1'
     port: 3306
-    database: core
-    username: root
-    password: Mebra2134
+    database: subbo_trilar
+    username: subbo_trilar
+    password: 2lyY39Jt
   broadcastMessages:
     - '&6Welcome to &eTrilar&6!'
     - '&6Do you have any questions? Feel free to ask!'
