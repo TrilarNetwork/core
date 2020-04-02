@@ -1,4 +1,3 @@
 Manifest-Version: 1.0
-Main-Class: me.shizleshizle.core.Main
 Class-Path: Vault-1.5.6.jar Spigot-1.8.8.jar
 

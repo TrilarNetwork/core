@@ -50,12 +50,12 @@ public class Perm {
 			Main.sql.getReady();
 			Statement s = Main.sql.getConnection().createStatement();
 			PreparedStatement pS = null;
-			ResultSet rs = s.executeQuery("SELECT rank FROM player_ranks WHERE player='" + name + "'");
+			ResultSet rs = s.executeQuery("SELECT rank FROM Player WHERE player='" + name + "'");
 			if (!rs.next()) {
 				pS = Main.sql.getConnection()
-						.prepareStatement("INSERT INTO player_ranks (player, rank) VALUES ('" + name + "', '" + g.toString().toLowerCase() + "')");
+						.prepareStatement("INSERT INTO Player (player, rank) VALUES ('" + name + "', '" + g.toString().toLowerCase() + "')");
 			} else {
-				pS = Main.sql.getConnection().prepareStatement("UPDATE player_ranks SET rank='" + (g.toString().toLowerCase()) + "' WHERE player='" + name + "'");
+				pS = Main.sql.getConnection().prepareStatement("UPDATE Player SET rank='" + (g.toString().toLowerCase()) + "' WHERE player='" + name + "'");
 			}
 			pS.executeUpdate();
 			pS.close();
@@ -69,7 +69,7 @@ public class Perm {
 		try {
 			Main.sql.getReady();
 			Statement s = Main.sql.getConnection().createStatement();
-			ResultSet rs = s.executeQuery("SELECT rank FROM player_ranks WHERE player='" + name + "'");
+			ResultSet rs = s.executeQuery("SELECT rank FROM Player WHERE player='" + name + "'");
 			while (rs.next()) {
 				str = rs.getString("rank").toUpperCase();
 			}

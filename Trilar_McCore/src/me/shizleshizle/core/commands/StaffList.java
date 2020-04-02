@@ -42,7 +42,6 @@ public class StaffList implements CommandExecutor {
 				StringBuilder manager = new StringBuilder();
 				StringBuilder sradm = new StringBuilder();
 				StringBuilder adm = new StringBuilder();
-				StringBuilder jradm = new StringBuilder();
 				StringBuilder srmode = new StringBuilder();
 				StringBuilder mode = new StringBuilder();
 				StringBuilder jrmode = new StringBuilder();
@@ -55,7 +54,6 @@ public class StaffList implements CommandExecutor {
 				String man = "";
 				String sra = "";
 				String adn = "";
-				String jra = "";
 				String srm = "";
 				String mod = "";
 				String jrm = "";
@@ -81,9 +79,6 @@ public class StaffList implements CommandExecutor {
 						break;
 					case SR_MODERATOR:
 						srmode.append(s).append(" ");
-						break;
-					case JR_ADMIN:
-						jradm.append(s).append(" ");
 						break;
 					case ADMIN:
 						adm.append(s).append(" ");
@@ -124,9 +119,6 @@ public class StaffList implements CommandExecutor {
 				}
 				if (!adm.toString().isEmpty()) {
 					adn = ChatColor.GOLD + "[ " + PermGroup.ADMIN.getPrefix() + ChatColor.GOLD + ": " + PermGroup.ADMIN.getColor() + adm.toString().trim();
-				}
-				if (!jradm.toString().isEmpty()) {
-					jra = ChatColor.GOLD + "[ " + PermGroup.JR_ADMIN.getPrefix() + ChatColor.GOLD + ": " + PermGroup.ADMIN.getColor() + jradm.toString().trim();
 				}
 				if (!srmode.toString().isEmpty()) {
 					srm = ChatColor.GOLD + "[ " + PermGroup.SR_MODERATOR.getPrefix() + ChatColor.GOLD + ": " + PermGroup.MODERATOR.getColor() + srmode.toString().trim();
@@ -173,10 +165,6 @@ public class StaffList implements CommandExecutor {
 				}
 				if (!adm.toString().isEmpty()) {
 					sender.sendMessage(adn);
-					sender.sendMessage(ChatColor.GOLD + "[");
-				}
-				if (!jradm.toString().isEmpty()) {
-					sender.sendMessage(jra);
 					sender.sendMessage(ChatColor.GOLD + "[");
 				}
 				if (!srmode.toString().isEmpty()) {
