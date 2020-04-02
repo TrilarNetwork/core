@@ -14,7 +14,7 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class Suicide implements CommandExecutor {
-	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Suicide" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Suicide" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("suicide")) {
@@ -24,8 +24,8 @@ public class Suicide implements CommandExecutor {
 				if (Perm.hasPerm(p, PermGroup.MEMBER)) {
 					if (args.length == 0) {
 						p.setHealth(0);
-						p.sendMessage( prefix + "You commited suicide!");
-						Bukkit.broadcastMessage(prefix + ChatColor.YELLOW.toString() + ChatColor.BOLD + "Player " + p.getName() + ChatColor.YELLOW.toString() 
+						p.sendMessage( PREFIX + "You commited suicide!");
+						Bukkit.broadcastMessage(PREFIX + ChatColor.YELLOW.toString() + ChatColor.BOLD + "Player " + p.getName() + ChatColor.YELLOW.toString()
 						+ ChatColor.BOLD + " took their own life.");
 					} else {
 						ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/suicide");

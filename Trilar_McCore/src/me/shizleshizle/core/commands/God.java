@@ -14,7 +14,7 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class God implements CommandExecutor {
-	private String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "God" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	private final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "God" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("god")) {
@@ -25,10 +25,10 @@ public class God implements CommandExecutor {
 					if (args.length == 0) {
 						if (p.isGod()) {
 							p.setGod(false);
-							p.sendMessage(prefix + "You have " + ChatColor.GOLD + "disabled" + ChatColor.YELLOW + " God Mode!");
+							p.sendMessage(PREFIX + "You have " + ChatColor.GOLD + "disabled" + ChatColor.YELLOW + " God Mode!");
 						} else {
 							p.setGod(true);
-							p.sendMessage(prefix + "You have " + ChatColor.GOLD + "enabled" + ChatColor.YELLOW + " God Mode!");
+							p.sendMessage(PREFIX + "You have " + ChatColor.GOLD + "enabled" + ChatColor.YELLOW + " God Mode!");
 						}
 					} else if (args.length == 1) {
 						if (Perm.hasPerm(p, PermGroup.MODERATOR)) {
@@ -37,15 +37,15 @@ public class God implements CommandExecutor {
 								User t = new User(tp);
 								if (t.isGod()) {
 									t.setGod(false);
-									p.sendMessage(prefix + "You have " + ChatColor.GOLD + "disabled" + ChatColor.YELLOW + " God Mode for " + ChatColor.GOLD 
+									p.sendMessage(PREFIX + "You have " + ChatColor.GOLD + "disabled" + ChatColor.YELLOW + " God Mode for " + ChatColor.GOLD
 											+ t.getName() + ChatColor.YELLOW + "!");
-									t.sendMessage(prefix + "Your God Mode has been " + ChatColor.GOLD + "disabled" + ChatColor.YELLOW + " by " + ChatColor.GOLD 
+									t.sendMessage(PREFIX + "Your God Mode has been " + ChatColor.GOLD + "disabled" + ChatColor.YELLOW + " by " + ChatColor.GOLD
 											+ p.getName() + ChatColor.YELLOW + "!");
 								} else {
 									t.setGod(true);
-									p.sendMessage(prefix + "You have " + ChatColor.GOLD + "enabled" + ChatColor.YELLOW + " God Mode for " + ChatColor.GOLD 
+									p.sendMessage(PREFIX + "You have " + ChatColor.GOLD + "enabled" + ChatColor.YELLOW + " God Mode for " + ChatColor.GOLD
 											+ t.getName() + ChatColor.YELLOW + "!");
-									t.sendMessage(prefix + "Your God Mode has been " + ChatColor.GOLD + "enabled" + ChatColor.YELLOW + " by " + ChatColor.GOLD 
+									t.sendMessage(PREFIX + "Your God Mode has been " + ChatColor.GOLD + "enabled" + ChatColor.YELLOW + " by " + ChatColor.GOLD
 											+ p.getName() + ChatColor.YELLOW + "!");
 								}
 							} else {

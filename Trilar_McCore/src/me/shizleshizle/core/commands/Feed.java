@@ -15,7 +15,7 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class Feed implements CommandExecutor {
-	private String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Feed" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	private final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Feed" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
@@ -27,14 +27,14 @@ public class Feed implements CommandExecutor {
 					if (Perm.hasPerm(p, PermGroup.HELPER)) {
 						if (args.length == 0) {
 							p.setFoodLevel(20);
-							p.sendMessage(prefix + "You have been fed!");
+							p.sendMessage(PREFIX + "You have been fed!");
 						} else if (args.length == 1) {
 							if (Perm.hasPerm(p, PermGroup.MODERATOR)) {
 								Player t2 = Bukkit.getPlayer(args[0]);
 								User t = new User(t2);
 								t.setFoodLevel(20);
-								t.sendMessage(prefix + "You have been fed!");
-								p.sendMessage(prefix + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " has been fed");
+								t.sendMessage(PREFIX + "You have been fed!");
+								p.sendMessage(PREFIX + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " has been fed");
 							} else {
 								ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/feed");
 							}

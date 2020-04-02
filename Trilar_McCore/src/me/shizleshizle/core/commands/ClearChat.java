@@ -14,7 +14,7 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class ClearChat implements CommandExecutor {
- 	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "ClearChat" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+ 	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "ClearChat" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("ClearChat")) {
@@ -31,7 +31,7 @@ public class ClearChat implements CommandExecutor {
 							for (int i = 0; i < 200; i++) {
 								Bukkit.broadcastMessage(" ");
 							}
-							Bukkit.broadcastMessage(prefix + "Chat has been cleared by " + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + "!");
+							Bukkit.broadcastMessage(PREFIX + "Chat has been cleared by " + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + "!");
 						} else {
 							Player x2 = Bukkit.getPlayerExact(args[0]);
 							User t = new User(x2);
@@ -39,7 +39,7 @@ public class ClearChat implements CommandExecutor {
 								for (int i = 0; i < 200; i++) {
 									t.sendMessage(" ");
 								}
-								t.sendMessage(prefix + "Your chat has been cleared by " + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + "!");
+								t.sendMessage(PREFIX + "Your chat has been cleared by " + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + "!");
 							} else {
 								ErrorMessages.doErrorMessage(p, Messages.PLAYER_OFFLINE, t.getName());
 							}

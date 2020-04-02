@@ -18,7 +18,7 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class Fly implements CommandExecutor {
-	private String prefix = YELLOW.toString() + BOLD + "Fly" + GOLD + " >> " + YELLOW;
+	private final String PREFIX = YELLOW.toString() + BOLD + "Fly" + GOLD + " >> " + YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("fly")) {
@@ -31,10 +31,10 @@ public class Fly implements CommandExecutor {
 					if (Perm.hasPerm(p, PermGroup.HELPER)) {
 						if (p.getAllowFlight()) {
 							p.setFly(false);
-							p.sendMessage(prefix + "Fly mode has been " + GOLD + "disabled" + YELLOW + "!");
+							p.sendMessage(PREFIX + "Fly mode has been " + GOLD + "disabled" + YELLOW + "!");
 						} else {
 							p.setFly(true);
-							p.sendMessage(prefix + "Fly mode has been " + GOLD + "enabled" + YELLOW + "!");
+							p.sendMessage(PREFIX + "Fly mode has been " + GOLD + "enabled" + YELLOW + "!");
 						}
 					} else {
 						ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/fly");

@@ -13,7 +13,7 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class SocialMedia implements CommandExecutor {
- 	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "SocialMedia" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+ 	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "SocialMedia" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("socialmedia")) {

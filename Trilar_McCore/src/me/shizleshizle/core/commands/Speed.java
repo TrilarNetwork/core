@@ -15,7 +15,7 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class Speed implements CommandExecutor {
-	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Speed" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Speed" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 	public enum S {
 		WALK, FLY
 	}
@@ -24,7 +24,7 @@ public class Speed implements CommandExecutor {
 		if (cmd.getName().equalsIgnoreCase("speed")) {
 			if (!Main.isLobby()) {
 				if (!(sender instanceof Player)) {
-					sender.sendMessage(prefix + "You must be a player to perform this command!");
+					sender.sendMessage(PREFIX + "You must be a player to perform this command!");
 				} else {
 					Player x = (Player) sender;
 					User p = new User(x);
@@ -36,10 +36,10 @@ public class Speed implements CommandExecutor {
 							try {
 								speed = Integer.parseInt(args[0]);
 							} catch (NumberFormatException e) {
-								p.sendMessage(prefix + "You must enter a number!");
+								p.sendMessage(PREFIX + "You must enter a number!");
 							}
 							if (speed > 10 || speed < 0) {
-								p.sendMessage(prefix + "Speed can only be between 0 and 10!");
+								p.sendMessage(PREFIX + "Speed can only be between 0 and 10!");
 							} else {
 								if (p.isFlying()) {
 									setSpeed(p, S.FLY, speed, false);
@@ -52,17 +52,17 @@ public class Speed implements CommandExecutor {
 							try {
 								speed = Integer.parseInt(args[0]);
 							} catch (NumberFormatException e) {
-								p.sendMessage(prefix + "You must enter a number!");
+								p.sendMessage(PREFIX + "You must enter a number!");
 							}
 							if (speed > 10 || speed < 0) {
-								p.sendMessage(prefix + "Speed can only be between 0 and 10!");
+								p.sendMessage(PREFIX + "Speed can only be between 0 and 10!");
 							} else {
 								if (args[1].equalsIgnoreCase("fly") || args[1].equalsIgnoreCase("flying")) {
 									setSpeed(p, S.FLY, speed, false);
 								} else if (args[1].equalsIgnoreCase("walk") || args[1].equalsIgnoreCase("walking")) {
 									setSpeed(p, S.WALK, speed, false);
 								} else {
-									p.sendMessage(prefix + "Invalid type! Types: Fly/Flying or Walk/Walking.");
+									p.sendMessage(PREFIX + "Invalid type! Types: Fly/Flying or Walk/Walking.");
 								}
 							}
 						} else if (args.length == 3) {
@@ -75,17 +75,17 @@ public class Speed implements CommandExecutor {
 									try {
 										speed = Integer.parseInt(args[0]);
 									} catch (NumberFormatException e) {
-										p.sendMessage(prefix + "You must enter a number!");
+										p.sendMessage(PREFIX + "You must enter a number!");
 									}
 									if (speed > 10 || speed < 0) {
-										p.sendMessage(prefix + "Speed can only be between 0 and 10!");
+										p.sendMessage(PREFIX + "Speed can only be between 0 and 10!");
 									} else {
 										if (args[1].equalsIgnoreCase("fly") || args[1].equalsIgnoreCase("flying")) {
 											setSpeed(t, S.FLY, speed, false);
 										} else if (args[1].equalsIgnoreCase("walk") || args[1].equalsIgnoreCase("walking")) {
 											setSpeed(t, S.WALK, speed, false);
 										} else {
-											p.sendMessage(prefix + "Invalid type! Types: Fly/Flying or Walk/Walking.");
+											p.sendMessage(PREFIX + "Invalid type! Types: Fly/Flying or Walk/Walking.");
 										}
 									}
 								}
@@ -144,7 +144,7 @@ public class Speed implements CommandExecutor {
 					break;
 			}
 			if (!silent) {
-				p.sendMessage(prefix + "Your " + ChatColor.GOLD + "Flying" + ChatColor.YELLOW + " speed has been set to " + ChatColor.GOLD + speed
+				p.sendMessage(PREFIX + "Your " + ChatColor.GOLD + "Flying" + ChatColor.YELLOW + " speed has been set to " + ChatColor.GOLD + speed
 						+ ChatColor.YELLOW + "!");
 			}
 		} else {
@@ -184,7 +184,7 @@ public class Speed implements CommandExecutor {
 					break;
 			}
 			if (!silent) {
-				p.sendMessage(prefix + "Your " + ChatColor.GOLD + "Walking" + ChatColor.YELLOW + " speed has been set to " + ChatColor.GOLD
+				p.sendMessage(PREFIX + "Your " + ChatColor.GOLD + "Walking" + ChatColor.YELLOW + " speed has been set to " + ChatColor.GOLD
 						+ speed + ChatColor.YELLOW + "!");
 			}
 		}

@@ -14,13 +14,13 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class PTime implements CommandExecutor {
-	public String prefix = Time.prefix;
+	public final String PREFIX = Time.PREFIX;
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("ptime")) {
 			if (Main.isLobby()) {
 				if (!(sender instanceof Player)) {
-					sender.sendMessage(prefix + "You must be a player to perform this command!");
+					sender.sendMessage(PREFIX + "You must be a player to perform this command!");
 				} else {
 					Player x = (Player) sender;
 					User p = new User(x);
@@ -28,13 +28,13 @@ public class PTime implements CommandExecutor {
 						if (args.length == 1) {
 							if (args[0].equalsIgnoreCase("day")) {
 								p.setUserTime(13000, true);
-								p.sendMessage(prefix + "Your time has been set to " + ChatColor.GOLD + "day" + ChatColor.YELLOW + "!");
+								p.sendMessage(PREFIX + "Your time has been set to " + ChatColor.GOLD + "day" + ChatColor.YELLOW + "!");
 							} else if (args[0].equalsIgnoreCase("night")) {
 								p.setUserTime(0, true);
-								p.sendMessage(prefix + "Your time has been set to " + ChatColor.GOLD + "night" + ChatColor.YELLOW + "!");
+								p.sendMessage(PREFIX + "Your time has been set to " + ChatColor.GOLD + "night" + ChatColor.YELLOW + "!");
 							} else if (args[0].equalsIgnoreCase("reset") || args[0].equalsIgnoreCase("normal")) {
 								p.resetUserTime();
-								p.sendMessage(prefix + "Your time has been reset!");
+								p.sendMessage(PREFIX + "Your time has been reset!");
 							} else {
 								ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/ptime <day|night|reset>");
 							}

@@ -15,13 +15,13 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class Getpos implements CommandExecutor {
-	public String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "GameMode" + ChatColor.GOLD + " >> "
+	public final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "GameMode" + ChatColor.GOLD + " >> "
 			+ ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("getpos")) {
 			if (!(sender instanceof Player)) {
-				sender.sendMessage(prefix + "You must be a player to perform this command!");
+				sender.sendMessage(PREFIX + "You must be a player to perform this command!");
 			} else {
 				Player x = (Player) sender;
 				User p = new User(x);
@@ -33,7 +33,7 @@ public class Getpos implements CommandExecutor {
 						if (!t.isOnline()) {
 							ErrorMessages.doErrorMessage(p, Messages.PLAYER_OFFLINE, args[0]);
 						} else {
-							p.sendMessage(prefix + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + "'s location is:");
+							p.sendMessage(PREFIX + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + "'s location is:");
 							p.sendMessage(WhoIsUtils.getLoc(t));
 						}
 					}

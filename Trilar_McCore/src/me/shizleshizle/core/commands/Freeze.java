@@ -14,7 +14,7 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class Freeze implements CommandExecutor {
-	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Freeze" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Freeze" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 	public static boolean hasSent = false;
 	public static boolean hasSent2 = false;
 	public static boolean hasSent3 = false;
@@ -22,7 +22,7 @@ public class Freeze implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("freeze")) {
 			if (!(sender instanceof Player)) {
-				sender.sendMessage(prefix + "You must be a player to perform this command!");
+				sender.sendMessage(PREFIX + "You must be a player to perform this command!");
 			} else {
 				Player x = (Player) sender;
 				User p = new User(x);
@@ -37,13 +37,13 @@ public class Freeze implements CommandExecutor {
 							if (t.isFrozen()) {
 								t.freezeUser(false);
 								t.setGod(false);
-								p.sendMessage(prefix + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " has been unfrozen!");
-								t.sendMessage(prefix + "You have been unfrozen by " + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + "!");
+								p.sendMessage(PREFIX + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " has been unfrozen!");
+								t.sendMessage(PREFIX + "You have been unfrozen by " + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + "!");
 							} else {
 								t.freezeUser(true);
 								t.setGod(true);
-								p.sendMessage(prefix + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " has been frozen!");
-								t.sendMessage(prefix + "You have been frozen by " + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + "!");
+								p.sendMessage(PREFIX + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " has been frozen!");
+								t.sendMessage(PREFIX + "You have been frozen by " + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + "!");
 							}
 						}
 					}

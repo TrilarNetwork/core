@@ -16,7 +16,7 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class Workbench implements CommandExecutor {
-	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Workbench" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Workbench" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("workbench")) {

@@ -171,7 +171,7 @@ public class User {
 		}
 		return nick;
 	}
-	
+
 	public Inventory getEnderchest() {
 		return p.getEnderChest();
 	}
@@ -928,12 +928,12 @@ public class User {
                 l.setYaw(yaw);
                 l.setPitch(pitch);
                 p.teleport(l);
-                p.sendMessage(Warp.prefix + "You have been teleported to warp " + ChatColor.GOLD + warp + ChatColor.YELLOW + "!");
+                p.sendMessage(Warp.PREFIX + "You have been teleported to warp " + ChatColor.GOLD + warp + ChatColor.YELLOW + "!");
             } else {
-                p.sendMessage(Warp.prefix + "Warp " + ChatColor.GOLD + warp + ChatColor.YELLOW + " hasn't been set correctly!");
+                p.sendMessage(Warp.PREFIX + "Warp " + ChatColor.GOLD + warp + ChatColor.YELLOW + " hasn't been set correctly!");
             }
         } else {
-            p.sendMessage(Warp.prefix + "Warp " + ChatColor.GOLD + warp + ChatColor.YELLOW + " does not exist!");
+            p.sendMessage(Warp.PREFIX + "Warp " + ChatColor.GOLD + warp + ChatColor.YELLOW + " does not exist!");
         }
     }
 
@@ -967,6 +967,6 @@ public class User {
             }
         }
         p.teleport(new Location(p.getWorld(), tpLoc.getX(), tpLoc.getY() + 1, tpLoc.getZ()));
-        p.sendMessage(Wild.prefix + "You have been teleported " + ChatColor.GOLD + (int) tpLoc.distance(ogLoc) + ChatColor.YELLOW + " blocks away!");
+        p.sendMessage(Wild.PREFIX + "You have been teleported " + ChatColor.GOLD + (int) tpLoc.distance(ogLoc) + ChatColor.YELLOW + " blocks away!");
 	}
 }

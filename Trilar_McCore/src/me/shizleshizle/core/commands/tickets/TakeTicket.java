@@ -16,7 +16,7 @@ import me.shizleshizle.core.utils.ErrorMessages.Messages;
 import me.shizleshizle.core.utils.Numbers;
 
 public class TakeTicket implements CommandExecutor {
- 	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Tickets" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+ 	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Tickets" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("taketicket")) {
@@ -31,15 +31,15 @@ public class TakeTicket implements CommandExecutor {
 								Location l = TicketUtils.getLocation(id);
 								if (l != null) {
 									p.teleport(l);
-									p.sendMessage(prefix + "You have teleported to ticket " + ChatColor.GOLD + id + ChatColor.YELLOW + "!");
+									p.sendMessage(PREFIX + "You have teleported to ticket " + ChatColor.GOLD + id + ChatColor.YELLOW + "!");
 								} else {
-									p.sendMessage(prefix + "This Ticket does not contain a valid Location!");
+									p.sendMessage(PREFIX + "This Ticket does not contain a valid Location!");
 								}
 							} else {
-								p.sendMessage(prefix + "Ticket " + ChatColor.GOLD + id + ChatColor.YELLOW + " does not exist!");
+								p.sendMessage(PREFIX + "Ticket " + ChatColor.GOLD + id + ChatColor.YELLOW + " does not exist!");
 							}
 						} else {
-							p.sendMessage(prefix + "You must use a number!");
+							p.sendMessage(PREFIX + "You must use a number!");
 						}
 					} else {
 						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/taketicket <id>");

@@ -14,7 +14,7 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class ClearInventory implements CommandExecutor {
-	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "ClearInventory" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "ClearInventory" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("clearinventory")) {
@@ -24,7 +24,7 @@ public class ClearInventory implements CommandExecutor {
 				if (Perm.hasPerm(p, PermGroup.HELPER)) {
 					if (args.length == 0) {
 						p.clearInventory();
-						p.sendMessage(prefix + ChatColor.YELLOW + "Your inventory has been cleared!"); 
+						p.sendMessage(PREFIX + ChatColor.YELLOW + "Your inventory has been cleared!");
 					} else if (args.length == 1) {
 						Player x2 = Bukkit.getPlayerExact(args[0]);
 						if (!x2.isOnline()) {
@@ -32,8 +32,8 @@ public class ClearInventory implements CommandExecutor {
 						} else {
 							User t = new User(x2);
 							t.clearInventory();
-							p.sendMessage(prefix + ChatColor.YELLOW + "You have cleared " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + "'s  inventory!"); 
-							t.sendMessage(prefix + ChatColor.YELLOW + "Your inventory has been cleared!"); 
+							p.sendMessage(PREFIX + ChatColor.YELLOW + "You have cleared " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + "'s  inventory!");
+							t.sendMessage(PREFIX + ChatColor.YELLOW + "Your inventory has been cleared!");
 						}
 					} else {
 						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/clearinventory");

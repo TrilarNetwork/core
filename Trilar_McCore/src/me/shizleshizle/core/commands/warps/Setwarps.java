@@ -14,12 +14,12 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class Setwarps implements CommandExecutor {
-	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Warps" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Warps" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("setwarp")) {
 			if (!(sender instanceof Player)) {
-				sender.sendMessage(prefix + "You must be a player to perform this command!");
+				sender.sendMessage(PREFIX + "You must be a player to perform this command!");
 			} else {
 				Player px = (Player) sender;
 				User p = new User(px);
@@ -34,7 +34,7 @@ public class Setwarps implements CommandExecutor {
 						double pitch = p.getLocation().getPitch();
 						String wname = p.getWorld().getName();
 						WarpUtils.setWarp(args[0], x, y, z, yaw, pitch, wname);
-						p.sendMessage(prefix + "Warp " + ChatColor.GOLD + args[0] + ChatColor.YELLOW + " has been set!");
+						p.sendMessage(PREFIX + "Warp " + ChatColor.GOLD + args[0] + ChatColor.YELLOW + " has been set!");
 					}
 				} else {
 					ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/removewarp");

@@ -15,7 +15,7 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class Ticket implements CommandExecutor {
- 	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Tickets" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+ 	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Tickets" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("ticket")) {
@@ -35,7 +35,7 @@ public class Ticket implements CommandExecutor {
 						desc = sb.toString().trim();
 						owner = p.getName();
 						TicketUtils.createTicket(owner, Status.OPEN, desc, p.getLocation().getX(), p.getLocation().getY(), p.getLocation().getZ(), p.getWorld().getName());
-						p.sendMessage(prefix + "You have successfully created a ticket!");
+						p.sendMessage(PREFIX + "You have successfully created a ticket!");
 					}
 				} else {
 					ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/ticket <text>");
@@ -51,7 +51,7 @@ public class Ticket implements CommandExecutor {
 					desc = sb.toString().trim();
 					owner = "CONSOLE";
 					TicketUtils.createTicket(owner, Status.OPEN, desc, 0, 0, 0, "world");
-					sender.sendMessage(prefix + "You have successfully created a ticket!");
+					sender.sendMessage(PREFIX + "You have successfully created a ticket!");
 				}
 			}
 		}

@@ -16,12 +16,12 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class Tppos implements CommandExecutor {
-	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Teleportation" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Teleportation" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("tppos")) {
 			if (!(sender instanceof Player)) {
-				sender.sendMessage(prefix + "You must be a player to perform this command!");
+				sender.sendMessage(PREFIX + "You must be a player to perform this command!");
 			} else {
 				Player px = (Player) sender;
 				User p = new User(px);
@@ -35,10 +35,10 @@ public class Tppos implements CommandExecutor {
 							y = Integer.parseInt(args[1]);
 							z = Integer.parseInt(args[2]);
 						} catch (NumberFormatException e) {
-							p.sendMessage(prefix + "You must enter a number!");
+							p.sendMessage(PREFIX + "You must enter a number!");
 						}
 						p.teleport(new Location(p.getWorld(), x, y, z));
-						p.sendMessage(prefix + "You have been teleported to " + ChatColor.GOLD + x + ChatColor.YELLOW + ", " + ChatColor.GOLD + y + ChatColor.YELLOW + ", " + ChatColor.GOLD + z + ChatColor.YELLOW + "!");
+						p.sendMessage(PREFIX + "You have been teleported to " + ChatColor.GOLD + x + ChatColor.YELLOW + ", " + ChatColor.GOLD + y + ChatColor.YELLOW + ", " + ChatColor.GOLD + z + ChatColor.YELLOW + "!");
 					} else if (args.length == 4) {
 						int x = 0;
 						int y = 0;
@@ -48,14 +48,14 @@ public class Tppos implements CommandExecutor {
 							y = Integer.parseInt(args[1]);
 							z = Integer.parseInt(args[2]);
 						} catch (NumberFormatException e) {
-							p.sendMessage(prefix + "You must enter a number!");
+							p.sendMessage(PREFIX + "You must enter a number!");
 						}
 						World w = Bukkit.getServer().getWorld(args[3]);
 						if (w == null) {
-							p.sendMessage(prefix + "This world does not exist or has not been loaded!");
+							p.sendMessage(PREFIX + "This world does not exist or has not been loaded!");
 						} else {
 							p.teleport(new Location(w, x, y, z));
-							p.sendMessage(prefix + "You have been teleported to " + ChatColor.GOLD + x + ChatColor.YELLOW + ", " + ChatColor.GOLD + y + ChatColor.YELLOW + ", " 
+							p.sendMessage(PREFIX + "You have been teleported to " + ChatColor.GOLD + x + ChatColor.YELLOW + ", " + ChatColor.GOLD + y + ChatColor.YELLOW + ", "
 							+ ChatColor.GOLD + z + ChatColor.YELLOW + " in world " + ChatColor.GOLD + w.getName() + ChatColor.YELLOW + "!");
 						}
 					} else {

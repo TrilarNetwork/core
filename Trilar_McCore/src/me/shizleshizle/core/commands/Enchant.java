@@ -16,13 +16,13 @@ import me.shizleshizle.core.utils.Numbers;
 import net.md_5.bungee.api.ChatColor;
 
 public class Enchant implements CommandExecutor {
-	private String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Enchant" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	private final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Enchant" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("enchant")) {
 			if (!Main.isLobby()) {
 				if (!(sender instanceof Player)) {
-					sender.sendMessage(prefix + "You must be a player to perform this command!");
+					sender.sendMessage(PREFIX + "You must be a player to perform this command!");
 				} else {
 					Player x = (Player) sender;
 					User p = new User(x);
@@ -34,7 +34,7 @@ public class Enchant implements CommandExecutor {
 							if (Numbers.isNumber(args[1])) {
 								lvl = Numbers.getInt(args[1]);
 							} else {
-								p.sendMessage(prefix + "Invalid level! Please enter a number!");
+								p.sendMessage(PREFIX + "Invalid level! Please enter a number!");
 							}
 							if (args[0].equalsIgnoreCase("sharpness")) {
 								p.getItemInHand().addUnsafeEnchantment(Enchantment.DAMAGE_ALL, lvl);
@@ -87,7 +87,7 @@ public class Enchant implements CommandExecutor {
 							} else if (args[0].equalsIgnoreCase("lure")) {
 								p.getItemInHand().addUnsafeEnchantment(Enchantment.LURE, lvl);
 							} else {
-								p.sendMessage(prefix + "Invalid enchantment! Please enter a valid enchantment.");
+								p.sendMessage(PREFIX + "Invalid enchantment! Please enter a valid enchantment.");
 							}
 						}
 					} else {

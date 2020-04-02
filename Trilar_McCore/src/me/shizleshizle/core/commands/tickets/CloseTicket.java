@@ -16,7 +16,7 @@ import me.shizleshizle.core.utils.Numbers;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class CloseTicket implements CommandExecutor {
- 	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Tickets" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+ 	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Tickets" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("closeticket")) {
@@ -29,13 +29,13 @@ public class CloseTicket implements CommandExecutor {
 							int id = Numbers.getInt(args[0]);
 							if (TicketUtils.exists(id)) {
 								TicketUtils.closeTicket(id);
-								Broadcast.broadcastToStaff(prefix + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " has closed ticket: " + ChatColor.GOLD + id 
+								Broadcast.broadcastToStaff(PREFIX + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " has closed ticket: " + ChatColor.GOLD + id
 										+ ChatColor.YELLOW + "!");
 							} else {
-								p.sendMessage(prefix + "Ticket " + ChatColor.GOLD + id + ChatColor.YELLOW + " does not exist!");
+								p.sendMessage(PREFIX + "Ticket " + ChatColor.GOLD + id + ChatColor.YELLOW + " does not exist!");
 							}
 						} else {
-							p.sendMessage(prefix + "You must enter a number!");
+							p.sendMessage(PREFIX + "You must enter a number!");
 						}
 					} else if (args.length == 2) {
 						if (Numbers.isNumber(args[0])) {
@@ -43,16 +43,16 @@ public class CloseTicket implements CommandExecutor {
 								int id = Numbers.getInt(args[0]);
 								if (TicketUtils.exists(id)) {
 									TicketUtils.openTicket(id);
-									Broadcast.broadcastToStaff(prefix + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " has reopened ticket: " + ChatColor.GOLD + id 
+									Broadcast.broadcastToStaff(PREFIX + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " has reopened ticket: " + ChatColor.GOLD + id
 											+ ChatColor.YELLOW + "!");
 								} else {
-									p.sendMessage(prefix + "Ticket " + ChatColor.GOLD + id + ChatColor.YELLOW + " does not exist!");
+									p.sendMessage(PREFIX + "Ticket " + ChatColor.GOLD + id + ChatColor.YELLOW + " does not exist!");
 								}
 							} else {
 								ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/closeticket <id> [-r]");
 							}
 						} else {
-							p.sendMessage(prefix + "You must enter a number!");
+							p.sendMessage(PREFIX + "You must enter a number!");
 						}
 					} else {
 						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/closeticket <id> [-r]");

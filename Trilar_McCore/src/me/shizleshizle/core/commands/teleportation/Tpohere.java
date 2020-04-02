@@ -14,12 +14,12 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class Tpohere implements CommandExecutor {
-	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Teleportation" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Teleportation" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("tpohere")) {
 			if (!(sender instanceof Player)) {
-				sender.sendMessage(prefix + "You must be a player to perform this command!");
+				sender.sendMessage(PREFIX + "You must be a player to perform this command!");
 			} else {
 				Player x = (Player) sender;
 				User p = new User(x);
@@ -30,8 +30,8 @@ public class Tpohere implements CommandExecutor {
 							ErrorMessages.doErrorMessage(p, Messages.PLAYER_OFFLINE, args[0]);
 						} else {
 							t.teleport(p.getLocation());
-							t.sendMessage(prefix + "You have been teleported to " + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + "!");
-							p.sendMessage(prefix + "You have teleported " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " to yourself!");
+							t.sendMessage(PREFIX + "You have been teleported to " + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + "!");
+							p.sendMessage(PREFIX + "You have teleported " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " to yourself!");
 						}
 					} else {
 						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/tpohere <player>");

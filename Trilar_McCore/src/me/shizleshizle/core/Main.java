@@ -1,5 +1,6 @@
 package me.shizleshizle.core;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -129,13 +130,13 @@ public class Main extends JavaPlugin {
 	public static String db;
 	public static String user;
 	public static String pw;
-	public static String prefix = ChatColor.GOLD + "-={ " + ChatColor.YELLOW + "Trilar" + ChatColor.GOLD + " }=- "
+	public static final String PREFIX = ChatColor.GOLD + "-={ " + ChatColor.YELLOW + "Trilar" + ChatColor.GOLD + " }=- "
 			+ ChatColor.YELLOW;
 	public static int port;
 	public static int maxhomes;
 	public static int tpTime;
 	public static int maxHealth;
-	public static int abdelay;
+	public static int autobroadcastDelay;
 	private int i = 0;
 
 	public void onEnable() {
@@ -166,13 +167,13 @@ public class Main extends JavaPlugin {
 		long time = System.currentTimeMillis();
 		Logger l = getLogger();
 		l.info("McCore >> disabling...");
-		/*try {
+		try {
 			if (sql.checkConnection()) {
 				sql.closeConnection();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}*/
+		}
 		long fin = System.currentTimeMillis() - time;
 		l.info("McCore >> successfully disabled! (" + fin + " ms)");
 	}
@@ -308,7 +309,7 @@ public class Main extends JavaPlugin {
 		maxhomes = c.getConfig().getInt("settings.maxhomes");
 		tpTime = c.getConfig().getInt("settings.teleportWaitTime");
 		maxHealth = c.getConfig().getInt("settings.maxHealth");
-		abdelay = c.getConfig().getInt("settings.autoBroadcastDelay");
+		autobroadcastDelay = c.getConfig().getInt("settings.autoBroadcastDelay");
 		msgs = Main.c.getConfig().getStringList("settings.broadcastMessages");
 	}
 
@@ -329,7 +330,7 @@ public class Main extends JavaPlugin {
 					i = 0;
 				}
 			}
-		}, 0L, abdelay * 20);
+		}, 0L, autobroadcastDelay * 20);
 	}
 
 	private boolean checkVault() {

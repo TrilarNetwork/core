@@ -16,13 +16,13 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class WhoIs implements CommandExecutor {
-	public String prefix = ChatColor.YELLOW + "WhoIs" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	public final String PREFIX = ChatColor.YELLOW + "WhoIs" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 	
 	@SuppressWarnings("deprecation")
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("whois")) {
 			if (!(sender instanceof Player)) {
-				sender.sendMessage(prefix + "You must be a player to perform this command!");
+				sender.sendMessage(PREFIX + "You must be a player to perform this command!");
 			} else {
 				Player x = (Player) sender;
 				User p = new User(x);

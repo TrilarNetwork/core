@@ -12,7 +12,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class Help implements CommandExecutor {
- 	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Help" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+ 	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Help" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("help")) {
@@ -76,7 +76,7 @@ public class Help implements CommandExecutor {
 							p.sendMessage(ChatColor.GOLD + "/" + ChatColor.YELLOW + "Nickname" + ChatColor.GOLD + " - " + ChatColor.YELLOW + "Change your nickname.");
 							p.sendMessage(ChatColor.GOLD + "/" + ChatColor.YELLOW + "Pay" + ChatColor.GOLD + " - " + ChatColor.YELLOW + "Pay a player with money.");
 							p.sendMessage(ChatColor.GOLD + "/" + ChatColor.YELLOW + "Perms" + ChatColor.GOLD + " - " + ChatColor.YELLOW + "Change the permissions.");
-							p.sendMessage(ChatColor.GOLD + "/" + ChatColor.YELLOW + "Prefix" + ChatColor.GOLD + " - " + ChatColor.YELLOW + "Change your or a players prefix.");
+							p.sendMessage(ChatColor.GOLD + "/" + ChatColor.YELLOW + "PREFIX" + ChatColor.GOLD + " - " + ChatColor.YELLOW + "Change your or a players PREFIX.");
 							p.sendMessage(ChatColor.GOLD + "/" + ChatColor.YELLOW + "Ranks" + ChatColor.GOLD + " - " + ChatColor.YELLOW + "View or change a rank.");
 							p.sendMessage(ChatColor.GOLD + "/" + ChatColor.YELLOW + "Reload" + ChatColor.GOLD + " - " + ChatColor.YELLOW + "Reload the config");
 							p.sendMessage(ChatColor.GOLD + "/" + ChatColor.YELLOW + "Repair" + ChatColor.GOLD + " - " + ChatColor.YELLOW + "Repair all your items.");

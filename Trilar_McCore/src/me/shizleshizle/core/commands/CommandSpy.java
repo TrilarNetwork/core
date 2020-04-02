@@ -16,14 +16,14 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class CommandSpy implements CommandExecutor {
-	public String prefix = ChatColor.YELLOW + "CommandSpy" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	public final String PREFIX = ChatColor.YELLOW + "CommandSpy" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 	public static ArrayList<String>
 	spy = new ArrayList<>();
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("commandspy")) {
 			if (!(sender instanceof Player)) {
-				sender.sendMessage(prefix + "You must be a player to perform this command!");
+				sender.sendMessage(PREFIX + "You must be a player to perform this command!");
 			} else {
 				Player x = (Player) sender;
 				User p = new User(x); 
@@ -31,10 +31,10 @@ public class CommandSpy implements CommandExecutor {
 					if (args.length == 0) {
 						if (spy.contains(p.getName())) {
 							spy.remove(p.getName());
-							p.sendMessage(prefix + "You have " + ChatColor.GOLD + "disabled" + ChatColor.YELLOW + " CommandSpy!");
+							p.sendMessage(PREFIX + "You have " + ChatColor.GOLD + "disabled" + ChatColor.YELLOW + " CommandSpy!");
 						} else {
 							spy.add(p.getName());
-							p.sendMessage(prefix + "You have " + ChatColor.GOLD + "enabled" + ChatColor.YELLOW + " CommandSpy!");
+							p.sendMessage(PREFIX + "You have " + ChatColor.GOLD + "enabled" + ChatColor.YELLOW + " CommandSpy!");
 						}
 					} else if (args.length == 1) {
 						if (Perm.hasPerm(p, PermGroup.ADMIN)) {
@@ -42,10 +42,10 @@ public class CommandSpy implements CommandExecutor {
 							if (t != null) {
 								if (spy.contains(t.getName())) {
 									spy.remove(t.getName());
-									p.sendMessage(prefix + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + "'s CommandSpy has been " + ChatColor.GOLD + "disabled" + ChatColor.YELLOW + "!");
+									p.sendMessage(PREFIX + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + "'s CommandSpy has been " + ChatColor.GOLD + "disabled" + ChatColor.YELLOW + "!");
 								} else {
 									spy.add(t.getName());
-									p.sendMessage(prefix + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + "'s CommandSpy has been " + ChatColor.GOLD + "enabled" + ChatColor.YELLOW + "!");
+									p.sendMessage(PREFIX + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + "'s CommandSpy has been " + ChatColor.GOLD + "enabled" + ChatColor.YELLOW + "!");
 								}
 							}
 						} else {

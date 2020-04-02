@@ -13,12 +13,12 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class NightCmd implements CommandExecutor {
-	public String prefix = Time.prefix;
+	public final String PREFIX = Time.PREFIX;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("night")) {
 			if (!(sender instanceof Player)) {
-				sender.sendMessage(prefix + "You must be a player to perform this command!");
+				sender.sendMessage(PREFIX + "You must be a player to perform this command!");
 			} else {
 				Player x = (Player) sender;
 				User p = new User(x);
@@ -27,7 +27,7 @@ public class NightCmd implements CommandExecutor {
 						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/night");
 					} else {
 						p.setNight(true);
-						p.sendMessage(prefix + "You have set the time in all world to " + ChatColor.GOLD + "13000" + ChatColor.YELLOW + " ticks!");
+						p.sendMessage(PREFIX + "You have set the time in all world to " + ChatColor.GOLD + "13000" + ChatColor.YELLOW + " ticks!");
 					}
 				} else {
 					ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/night");

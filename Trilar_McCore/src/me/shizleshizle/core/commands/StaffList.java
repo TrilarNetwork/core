@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
 import java.util.HashMap;
 
 public class StaffList implements CommandExecutor {
-	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "List" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "List" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 	private HashMap<String, PermGroup> staff = new HashMap<>();
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -206,7 +206,7 @@ public class StaffList implements CommandExecutor {
 				sender.sendMessage(ChatColor.GOLD + "]=-");
 				staff.clear();
 			} else {
-				sender.sendMessage(prefix + "There are no players online.");
+				sender.sendMessage(PREFIX + "There are no players online.");
 			}
 		}
 		return false;

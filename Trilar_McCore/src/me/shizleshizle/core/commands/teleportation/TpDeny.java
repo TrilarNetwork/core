@@ -15,12 +15,12 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class TpDeny implements CommandExecutor {
-	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Teleportation" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Teleportation" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("tpdeny")) {
 			if (!(sender instanceof Player)) {
-				sender.sendMessage(prefix + "You must be a player to perform this command!");
+				sender.sendMessage(PREFIX + "You must be a player to perform this command!");
 			} else {
 				Player x = (Player) sender;
 				User p = new User(x);
@@ -34,8 +34,8 @@ public class TpDeny implements CommandExecutor {
 								}
 							}
 							Player t = Bukkit.getPlayer(n);
-							p.sendMessage(prefix + "You have denied " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + "'s teleport request!");
-							t.sendMessage(prefix + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " has denied your request!");
+							p.sendMessage(PREFIX + "You have denied " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + "'s teleport request!");
+							t.sendMessage(PREFIX + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " has denied your request!");
 							Tpa.tpa.remove(t.getName());
 						} else if (Main.tpahere.containsValue(p.getName())) {
 							String n = "";
@@ -45,11 +45,11 @@ public class TpDeny implements CommandExecutor {
 								}
 							}
 							Player t = Bukkit.getPlayer(n);
-							p.sendMessage(prefix + "You have denied " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + "'s teleport request!");
-							t.sendMessage(prefix + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " has denied your request!");
+							p.sendMessage(PREFIX + "You have denied " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + "'s teleport request!");
+							t.sendMessage(PREFIX + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " has denied your request!");
 							Main.tpahere.remove(t.getName());
 						} else {
-							p.sendMessage(prefix + "You do not have a pending request!");
+							p.sendMessage(PREFIX + "You do not have a pending request!");
 						}
 					} else {
 						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/tpdeny");

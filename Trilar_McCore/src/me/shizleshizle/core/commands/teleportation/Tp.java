@@ -13,12 +13,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class Tp implements CommandExecutor {
-	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Teleportation" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Teleportation" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("tp")) {
 			if (!(sender instanceof Player)) {
-				sender.sendMessage(prefix + "You must be a player to perform this command!");
+				sender.sendMessage(PREFIX + "You must be a player to perform this command!");
 			} else {
 				Player x = (Player) sender;
 				User p = new User(x);
@@ -31,10 +31,10 @@ public class Tp implements CommandExecutor {
 							ErrorMessages.doErrorMessage(p, Messages.PLAYER_OFFLINE, args[0]);
 						} else {
 							if (t.hasTpDisabled()) {
-								p.sendMessage(prefix + "This player has teleportation " + ChatColor.GOLD + "disabled" + ChatColor.YELLOW + "!");
+								p.sendMessage(PREFIX + "This player has teleportation " + ChatColor.GOLD + "disabled" + ChatColor.YELLOW + "!");
 							} else {
 								p.teleport(t.getLocation());
-								p.sendMessage(prefix + "You have been teleported to " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + "!");
+								p.sendMessage(PREFIX + "You have been teleported to " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + "!");
 							}
 						}
 					} else if (args.length == 2) {
@@ -50,13 +50,13 @@ public class Tp implements CommandExecutor {
 							}
 						} else {
 							if (t.hasTpDisabled()) {
-								p.sendMessage(prefix + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " has teleportation " + ChatColor.GOLD + "disabled" 
+								p.sendMessage(PREFIX + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " has teleportation " + ChatColor.GOLD + "disabled"
 										+ ChatColor.YELLOW + "!");
 							} else {						
 								t.teleport(t2.getLocation());
-								p.sendMessage(prefix + "You have teleported " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " to " + ChatColor.GOLD 
+								p.sendMessage(PREFIX + "You have teleported " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " to " + ChatColor.GOLD
 										+ t2.getName() + ChatColor.YELLOW + "!");
-								t.sendMessage(prefix + "You have been teleported to " + ChatColor.GOLD + t2.getName() + ChatColor.YELLOW + "!");
+								t.sendMessage(PREFIX + "You have been teleported to " + ChatColor.GOLD + t2.getName() + ChatColor.YELLOW + "!");
 							}
 						}
 					} else {

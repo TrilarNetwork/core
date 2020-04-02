@@ -16,13 +16,13 @@ import me.shizleshizle.core.utils.ErrorMessages.Messages;
 import net.md_5.bungee.api.ChatColor;
 
 public class Pay implements CommandExecutor {
-	private String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Pay" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	private final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Pay" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("pay")) {
 			if (!Main.isLobby()) {
 				if (!(sender instanceof Player)) {
-					sender.sendMessage(prefix + "You must be a player to perform this command!");
+					sender.sendMessage(PREFIX + "You must be a player to perform this command!");
 				} else {
 					Player x = (Player) sender;
 					User p = new User(x);
@@ -37,7 +37,7 @@ public class Pay implements CommandExecutor {
 							try {
 								amnt = Integer.parseInt(args[1]);
 							} catch (NumberFormatException e) {
-								p.sendMessage(prefix + "You must enter a number!");
+								p.sendMessage(PREFIX + "You must enter a number!");
 							}
 							double bal = Main.econ.getBalance(payer) - amnt;
 							if (bal < 0) {
@@ -46,9 +46,9 @@ public class Pay implements CommandExecutor {
 								Main.econ.withdrawPlayer(payer, amnt);
 							}
 							Main.econ.depositPlayer(op, amnt);
-							p.sendMessage(prefix + "You have payed " + ChatColor.GOLD + op.getName() + " " + amnt + ChatColor.YELLOW + " " + Main.econ.currencyNamePlural() + "!");
+							p.sendMessage(PREFIX + "You have payed " + ChatColor.GOLD + op.getName() + " " + amnt + ChatColor.YELLOW + " " + Main.econ.currencyNamePlural() + "!");
 							if (t.isOnline()) {
-								t.sendMessage(prefix + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " has payed you " + ChatColor.GOLD + amnt + " "
+								t.sendMessage(PREFIX + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " has payed you " + ChatColor.GOLD + amnt + " "
 										+ ChatColor.YELLOW + Main.econ.currencyNamePlural() + "!");
 							}
 						}

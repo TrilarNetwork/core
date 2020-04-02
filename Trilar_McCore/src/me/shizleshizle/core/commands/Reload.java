@@ -20,7 +20,7 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class Reload implements CommandExecutor {
- 	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Trilar Core" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+ 	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Trilar Core" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("mccore")) {
@@ -33,10 +33,8 @@ public class Reload implements CommandExecutor {
 							try {
 								if (Main.sql.hasConnection()) {
 									Main.sql.closeConnection();
-									Main.sql.openConnection();
-								} else {
-									Main.sql.openConnection();
 								}
+								Main.sql.openConnection();
 								Main.sql.setup();
 								PermissionGroup.setup();
 								PermUser.setup();
@@ -48,7 +46,7 @@ public class Reload implements CommandExecutor {
 							Main.c.saveAll();
 							Main.c.reloadAll();
 							Main.setupUtils();
-							p.sendMessage(prefix + "You have successfully reloaded the databases and all yml files!");
+							p.sendMessage(PREFIX + "You have successfully reloaded the databases and all yml files!");
 						}
 					} else {
 						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/mccore reload");

@@ -63,7 +63,7 @@ public class PlayerQuit implements Listener {
 		if (Tpa.tpa.containsKey(p.getName())) {
             Tpa.toTP = false;
             Player t = Bukkit.getPlayer(Tpa.tpa.get(p.getName()));
-            t.sendMessage(Tpa.prefix + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " has left the server! Teleportation has been cancelled.");
+            t.sendMessage(Tpa.PREFIX + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " has left the server! Teleportation has been cancelled.");
             Tpa.tpa.remove(p.getName());
         } else if (Tpa.tpa.containsValue(p.getName())) {
             Tpa.toTP = false;
@@ -74,12 +74,12 @@ public class PlayerQuit implements Listener {
                 }
             }
             Player t = Bukkit.getPlayer(n);
-            t.sendMessage(Tpa.prefix + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " has left the server! Teleporation has been cancelled!");
+            t.sendMessage(Tpa.PREFIX + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " has left the server! Teleporation has been cancelled!");
             Tpa.tpa.remove(t.getName());
         } else if (Main.tpahere.containsKey(p.getName())) {
             Tpahere.toTP = false;
             Player t = Bukkit.getPlayer(Main.tpahere.get(p.getName()));
-            t.sendMessage(Tpahere.prefix + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " has left the server! Teleportation has been cancelled.");
+            t.sendMessage(Tpahere.PREFIX + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " has left the server! Teleportation has been cancelled.");
             Main.tpahere.remove(p.getName());
         } else if (Main.tpahere.containsValue(p.getName())) {
             Tpahere.toTP = false;
@@ -90,7 +90,7 @@ public class PlayerQuit implements Listener {
                 }
             }
             Player t = Bukkit.getPlayer(n);
-            t.sendMessage(Tpahere.prefix + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " has left the server! Teleporation cancelled!");
+            t.sendMessage(Tpahere.PREFIX + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " has left the server! Teleporation cancelled!");
             Main.tpahere.remove(t.getName());
         }
 		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.p, () -> {

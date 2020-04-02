@@ -13,26 +13,26 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class Repair implements CommandExecutor {
-	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Repair" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Repair" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("repair")) {
 			if (!(sender instanceof Player)) {
-				sender.sendMessage(prefix + "You must be a player to perform this command!");
+				sender.sendMessage(PREFIX + "You must be a player to perform this command!");
 			} else {
 				Player x = (Player) sender;
 				User p = new User(x);
 				if (Perm.hasPerm(p, PermGroup.BUILDER)) {
 					if (args.length == 0) {
 						p.repairInHand();
-						p.sendMessage(prefix + "You have repaired the item in your hand!");
+						p.sendMessage(PREFIX + "You have repaired the item in your hand!");
 					} else if (args.length == 1) {
 						if (args[0].equalsIgnoreCase("all")) {
 							p.repairAll();
-							p.sendMessage(prefix + "You have repaired all your items!");
+							p.sendMessage(PREFIX + "You have repaired all your items!");
 						} else if (args[0].equalsIgnoreCase("armor")) {
 							p.repairArmor();
-							p.sendMessage(prefix + "You have repaired all your armor!");
+							p.sendMessage(PREFIX + "You have repaired all your armor!");
 						} else {
 							ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/repair <all|armor>");
 						}

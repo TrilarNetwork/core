@@ -75,12 +75,12 @@ public class HomeUtils {
 				l.setYaw(yaw);
 				l.setPitch(pitch);
 				p.teleport(l);
-				p.sendMessage(Home.prefix + "You have been teleported to home " + ChatColor.GOLD + name + ChatColor.YELLOW + "!");
+				p.sendMessage(Home.PREFIX + "You have been teleported to home " + ChatColor.GOLD + name + ChatColor.YELLOW + "!");
 			} else {
-				p.sendMessage(Home.prefix + "World " + ChatColor.GOLD + wname + ChatColor.YELLOW + " has not been loaded or does not exist!");
+				p.sendMessage(Home.PREFIX + "World " + ChatColor.GOLD + wname + ChatColor.YELLOW + " has not been loaded or does not exist!");
 			}
 		} else {
-			p.sendMessage(Home.prefix + "Home " + ChatColor.GOLD + name + ChatColor.YELLOW + " hasn't been set correctly!");
+			p.sendMessage(Home.PREFIX + "Home " + ChatColor.GOLD + name + ChatColor.YELLOW + " hasn't been set correctly!");
 		}
 	}
 	
@@ -106,12 +106,12 @@ public class HomeUtils {
 				l.setYaw(yaw);
 				l.setPitch(pitch);
 				admin.teleport(l);
-				admin.sendMessage(Home.prefix + "You have been teleported to home " + ChatColor.GOLD + homename + ChatColor.YELLOW + " of player " + ChatColor.GOLD + p + ChatColor.YELLOW + "!");
+				admin.sendMessage(Home.PREFIX + "You have been teleported to home " + ChatColor.GOLD + homename + ChatColor.YELLOW + " of player " + ChatColor.GOLD + p + ChatColor.YELLOW + "!");
 			} else {
-				admin.sendMessage(Home.prefix + "World " + ChatColor.GOLD + wname + ChatColor.YELLOW + " has not been loaded or does not exist!");
+				admin.sendMessage(Home.PREFIX + "World " + ChatColor.GOLD + wname + ChatColor.YELLOW + " has not been loaded or does not exist!");
 			}
 		} else {
-			admin.sendMessage(Home.prefix + "Home " + ChatColor.GOLD + homename + ChatColor.YELLOW + " hasn't been set correctly!");
+			admin.sendMessage(Home.PREFIX + "Home " + ChatColor.GOLD + homename + ChatColor.YELLOW + " hasn't been set correctly!");
 		}
 	}
 	
@@ -165,14 +165,13 @@ public class HomeUtils {
 		ArrayList<String> l = homes.get(p);
 		if (homes.isEmpty() || l.isEmpty()) {
 			home = ChatColor.YELLOW + "You do not have a home!";
-			return home;
 		} else {
 			for (String s : l) {
 				home = ChatColor.GOLD + s + ChatColor.YELLOW + ", ";
 			}
 			home = home.substring(0, home.length() - 2);
-			return home;
 		}
+		return home;
 	}
 	
 	public static void saveHomeNames(String p) {

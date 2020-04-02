@@ -14,7 +14,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class Gamemode implements CommandExecutor {
-	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "GameMode" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "GameMode" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("gamemode")) {
@@ -27,19 +27,19 @@ public class Gamemode implements CommandExecutor {
 					} else if (args.length == 1) {
 						if (args[0].equalsIgnoreCase("0") || args[0].equalsIgnoreCase("survival")) {
 							p.setGameMode(GameMode.SURVIVAL);
-							p.sendMessage(prefix + "Your GameMode has been updated to " + ChatColor.GOLD + "Survival"
+							p.sendMessage(PREFIX + "Your GameMode has been updated to " + ChatColor.GOLD + "Survival"
 									+ ChatColor.YELLOW + "!");
 						} else if (args[0].equalsIgnoreCase("1") || args[0].equalsIgnoreCase("creative")) {
 							p.setGameMode(GameMode.CREATIVE);
-							p.sendMessage(prefix + "Your GameMode has been updated to " + ChatColor.GOLD + "Creative"
+							p.sendMessage(PREFIX + "Your GameMode has been updated to " + ChatColor.GOLD + "Creative"
 									+ ChatColor.YELLOW + "!");
 						} else if (args[0].equalsIgnoreCase("2") || args[0].equalsIgnoreCase("adventure")) {
 							p.setGameMode(GameMode.ADVENTURE);
-							p.sendMessage(prefix + "Your GameMode has been updated to " + ChatColor.GOLD + "Adventure"
+							p.sendMessage(PREFIX + "Your GameMode has been updated to " + ChatColor.GOLD + "Adventure"
 									+ ChatColor.YELLOW + "!");
 						} else if (args[0].equalsIgnoreCase("3") || args[0].equalsIgnoreCase("spectate")) {
 							p.setGameMode(GameMode.SPECTATOR);
-							p.sendMessage(prefix + "Your GameMode has been updated to " + ChatColor.GOLD + "Spectator"
+							p.sendMessage(PREFIX + "Your GameMode has been updated to " + ChatColor.GOLD + "Spectator"
 									+ ChatColor.YELLOW + "!");
 						} else {
 							ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/gamemode <gamemode>");
@@ -49,19 +49,19 @@ public class Gamemode implements CommandExecutor {
 						if (t != null) {
 							if (args[0].equalsIgnoreCase("0") || args[0].equalsIgnoreCase("survival")) {
 								t.setGameMode(GameMode.SURVIVAL);
-								t.sendMessage(prefix + "Your GameMode has been updated to " + ChatColor.GOLD
+								t.sendMessage(PREFIX + "Your GameMode has been updated to " + ChatColor.GOLD
 										+ "Survival" + ChatColor.YELLOW + "!");
 							} else if (args[0].equalsIgnoreCase("1") || args[0].equalsIgnoreCase("creative")) {
 								t.setGameMode(GameMode.CREATIVE);
-								t.sendMessage(prefix + "Your GameMode has been updated to " + ChatColor.GOLD
+								t.sendMessage(PREFIX + "Your GameMode has been updated to " + ChatColor.GOLD
 										+ "Creative" + ChatColor.YELLOW + "!");
 							} else if (args[0].equalsIgnoreCase("2") || args[0].equalsIgnoreCase("adventure")) {
 								t.setGameMode(GameMode.ADVENTURE);
-								t.sendMessage(prefix + "Your GameMode has been updated to " + ChatColor.GOLD
+								t.sendMessage(PREFIX + "Your GameMode has been updated to " + ChatColor.GOLD
 										+ "Adventure" + ChatColor.YELLOW + "!");
 							} else if (args[0].equalsIgnoreCase("3") || args[0].equalsIgnoreCase("spectate")) {
 								t.setGameMode(GameMode.SPECTATOR);
-								t.sendMessage(prefix + "Your GameMode has been updated to " + ChatColor.GOLD
+								t.sendMessage(PREFIX + "Your GameMode has been updated to " + ChatColor.GOLD
 										+ "Spectator" + ChatColor.YELLOW + "!");
 							} else {
 								ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE,
@@ -86,15 +86,15 @@ public class Gamemode implements CommandExecutor {
 				if (Perm.hasPerm(p, PermGroup.HELPER)) {
 					if (args.length == 0) {
 						p.setGameMode(GameMode.SURVIVAL);
-						p.sendMessage(prefix + "Your gamemode has been updated to " + ChatColor.GOLD + "Survival"
+						p.sendMessage(PREFIX + "Your gamemode has been updated to " + ChatColor.GOLD + "Survival"
 								+ ChatColor.YELLOW + "!");
 					} else if (args.length == 1) {
 						Player t = Bukkit.getPlayer(args[0]);
 						if (t != null) {
 							t.setGameMode(GameMode.SURVIVAL);
-							t.sendMessage(prefix + "Your gamemode has been updated to " + ChatColor.GOLD + "Survival"
+							t.sendMessage(PREFIX + "Your gamemode has been updated to " + ChatColor.GOLD + "Survival"
 									+ ChatColor.YELLOW + "!");
-							p.sendMessage(prefix + "You have changed " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW
+							p.sendMessage(PREFIX + "You have changed " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW
 									+ "'s gamemode to " + ChatColor.GOLD + "Survival" + ChatColor.YELLOW + "!");
 						} else {
 							ErrorMessages.doErrorMessage(p, Messages.PLAYER_OFFLINE, args[0]);
@@ -115,15 +115,15 @@ public class Gamemode implements CommandExecutor {
 				if (Perm.hasPerm(p, PermGroup.HELPER)) {
 					if (args.length == 0) {
 						p.setGameMode(GameMode.CREATIVE);
-						p.sendMessage(prefix + "Your gamemode has been updated to " + ChatColor.GOLD + "Creative"
+						p.sendMessage(PREFIX + "Your gamemode has been updated to " + ChatColor.GOLD + "Creative"
 								+ ChatColor.YELLOW + "!");
 					} else if (args.length == 1) {
 						Player t = Bukkit.getPlayer(args[0]);
 						if (t != null) {
 							t.setGameMode(GameMode.CREATIVE);
-							t.sendMessage(prefix + "Your gamemode has been updated to " + ChatColor.GOLD + "Creative"
+							t.sendMessage(PREFIX + "Your gamemode has been updated to " + ChatColor.GOLD + "Creative"
 									+ ChatColor.YELLOW + "!");
-							p.sendMessage(prefix + "You have changed " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW
+							p.sendMessage(PREFIX + "You have changed " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW
 									+ "'s gamemode to " + ChatColor.GOLD + "Creative" + ChatColor.YELLOW + "!");
 						} else {
 							ErrorMessages.doErrorMessage(p, Messages.PLAYER_OFFLINE, args[0]);
@@ -144,15 +144,15 @@ public class Gamemode implements CommandExecutor {
 				if (Perm.hasPerm(p, PermGroup.HELPER)) {
 					if (args.length == 0) {
 						p.setGameMode(GameMode.ADVENTURE);
-						p.sendMessage(prefix + "Your gamemode has been updated to " + ChatColor.GOLD + "Adventure"
+						p.sendMessage(PREFIX + "Your gamemode has been updated to " + ChatColor.GOLD + "Adventure"
 								+ ChatColor.YELLOW + "!");
 					} else if (args.length == 1) {
 						Player t = Bukkit.getPlayer(args[0]);
 						if (t != null) {
 							t.setGameMode(GameMode.ADVENTURE);
-							t.sendMessage(prefix + "Your gamemode has been updated to " + ChatColor.GOLD + "Adventure"
+							t.sendMessage(PREFIX + "Your gamemode has been updated to " + ChatColor.GOLD + "Adventure"
 									+ ChatColor.YELLOW + "!");
-							p.sendMessage(prefix + "You have changed " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW
+							p.sendMessage(PREFIX + "You have changed " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW
 									+ "'s gamemode to " + ChatColor.GOLD + "Adventure" + ChatColor.YELLOW + "!");
 						} else {
 							ErrorMessages.doErrorMessage(p, Messages.PLAYER_OFFLINE, args[0]);
@@ -173,15 +173,15 @@ public class Gamemode implements CommandExecutor {
 				if (Perm.hasPerm(p, PermGroup.HELPER)) {
 					if (args.length == 0) {
 						p.setGameMode(GameMode.SPECTATOR);
-						p.sendMessage(prefix + "Your gamemode has been updated to " + ChatColor.GOLD + "Spectator"
+						p.sendMessage(PREFIX + "Your gamemode has been updated to " + ChatColor.GOLD + "Spectator"
 								+ ChatColor.YELLOW + "!");
 					} else if (args.length == 1) {
 						Player t = Bukkit.getPlayer(args[0]);
 						if (t != null) {
 							t.setGameMode(GameMode.SPECTATOR);
-							t.sendMessage(prefix + "Your gamemode has been updated to " + ChatColor.GOLD + "Spectator"
+							t.sendMessage(PREFIX + "Your gamemode has been updated to " + ChatColor.GOLD + "Spectator"
 									+ ChatColor.YELLOW + "!");
-							p.sendMessage(prefix + "You have changed " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW
+							p.sendMessage(PREFIX + "You have changed " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW
 									+ "'s gamemode to " + ChatColor.GOLD + "Spectator" + ChatColor.YELLOW + "!");
 						} else {
 							ErrorMessages.doErrorMessage(p, Messages.PLAYER_OFFLINE, args[0]);

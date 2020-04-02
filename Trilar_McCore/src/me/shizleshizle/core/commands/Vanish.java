@@ -15,12 +15,12 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class Vanish implements CommandExecutor {
-	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Vanish" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Vanish" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("vanish")) {
 			if (!(sender instanceof Player)) {
-				sender.sendMessage(prefix + "You must be a player to perform this command!");
+				sender.sendMessage(PREFIX + "You must be a player to perform this command!");
 			} else {
 				Player x = (Player) sender;
 				User p = new User(x);
@@ -28,10 +28,10 @@ public class Vanish implements CommandExecutor {
 					if (args.length == 0) {
 						if (p.isVanished()) {
 							p.setVanished(false);
-							p.sendMessage(prefix + "You have been revealed!");
+							p.sendMessage(PREFIX + "You have been revealed!");
 						} else {
 							p.setVanished(true);
-							p.sendMessage(prefix + "You have been vanished!");
+							p.sendMessage(PREFIX + "You have been vanished!");
 						}
 					} else if (args.length == 1) {
 						User t = new User(Bukkit.getPlayer(args[0]));
@@ -40,12 +40,12 @@ public class Vanish implements CommandExecutor {
 						} else {
 							if (t.isVanished()) {
 								t.setVanished(false);
-								t.sendMessage(prefix + "You have been revealed!");
-								p.sendMessage(prefix + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " has been revealed!");
+								t.sendMessage(PREFIX + "You have been revealed!");
+								p.sendMessage(PREFIX + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " has been revealed!");
 							} else {
 								t.setVanished(true);
-								t.sendMessage(prefix + "You have been vanished!");
-								p.sendMessage(prefix + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " has been vanished!");
+								t.sendMessage(PREFIX + "You have been vanished!");
+								p.sendMessage(PREFIX + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " has been vanished!");
 							}
 						}
 					} else if (args.length == 2) {
@@ -55,10 +55,10 @@ public class Vanish implements CommandExecutor {
 								ErrorMessages.doErrorMessage(p, Messages.PLAYER_OFFLINE, args[0]);
 							} else {
 								if (VanishUtils.canSee(t)) {
-									p.sendMessage(prefix + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " can already see vanished players!");
+									p.sendMessage(PREFIX + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " can already see vanished players!");
 								} else {
 									VanishUtils.addSee(t);
-									p.sendMessage(prefix + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " can now see vanished players!");
+									p.sendMessage(PREFIX + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " can now see vanished players!");
 								}
 							}
 						} else if (args[0].equalsIgnoreCase("remove")) {
@@ -68,9 +68,9 @@ public class Vanish implements CommandExecutor {
 							} else {
 								if (VanishUtils.canSee(t)) {
 									VanishUtils.removeSee(t);
-									p.sendMessage(prefix + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " can no longer see vanished players!");
+									p.sendMessage(PREFIX + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " can no longer see vanished players!");
 								} else {
-									p.sendMessage(prefix + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " can't see vanished players!");
+									p.sendMessage(PREFIX + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " can't see vanished players!");
 								}
 							}
 						} else {

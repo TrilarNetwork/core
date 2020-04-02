@@ -16,7 +16,7 @@ import org.bukkit.ChatColor;
 
 public enum PermGroup {
 	
-	LEAD_DEVELOPER(550, GRAY + "(" + DARK_AQUA + "Lead" + GRAY + "-" + DARK_AQUA + "Developer" + GRAY + ") " + AQUA, "Lead-Developer", AQUA, "&3"),
+	LEAD_DEVELOPER(550, GRAY + "(" + DARK_AQUA + "Lead" + GRAY + "-" + DARK_AQUA + "Developer" + GRAY + ") " + AQUA, "Lead-Developer", AQUA, "&b"),
 	DEVELOPER(525, GRAY + "(" + YELLOW + "Developer" + GRAY + ") " + GOLD, "Developer", GOLD, "&6"),
 	OWNER(500, GRAY + "(" + DARK_RED + "Owner" + GRAY + ") " + DARK_RED, "Owner", DARK_RED, "&c"),
 	MANAGER(450, GRAY + "(" + DARK_AQUA + "Manager" + GRAY + ") " + DARK_AQUA, "Manager", DARK_AQUA, "&3"),

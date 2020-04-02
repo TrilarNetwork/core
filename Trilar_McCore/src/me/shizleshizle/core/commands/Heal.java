@@ -19,19 +19,19 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class Heal implements CommandExecutor {
-	private String prefix = YELLOW.toString() + BOLD + "Heal" + GOLD + " >> " + YELLOW;
+	private final String PREFIX = YELLOW.toString() + BOLD + "Heal" + GOLD + " >> " + YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("heal")) {
 			if (!(sender instanceof Player)) {
-				sender.sendMessage(prefix + "You must be a player to perform this command!");
+				sender.sendMessage(PREFIX + "You must be a player to perform this command!");
 			} else {
 				Player x = (Player) sender;
 				User p = new User(x);
 				if (Perm.hasPerm(p, PermGroup.HEAD_BUILDER)) {
 					if (args.length == 0) {
 						p.heal(20, 20);
-						p.sendMessage(prefix + "You have been healed!");
+						p.sendMessage(PREFIX + "You have been healed!");
 					} else if (args.length == 1) {
 						if (Perm.hasPerm(p, PermGroup.MODERATOR)) {
 							Player t2 = Bukkit.getPlayer(args[0]);
@@ -41,10 +41,10 @@ public class Heal implements CommandExecutor {
 							} else {
 								t.heal(20, 20);
 								if (t.getName().equals(p.getName())) {
-									p.sendMessage(prefix + "You have been healed!");
+									p.sendMessage(PREFIX + "You have been healed!");
 								} else {
-									t.sendMessage(prefix + "Your healed by " + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + "!");
-									p.sendMessage(prefix + "You have healed " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + "!");
+									t.sendMessage(PREFIX + "Your healed by " + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + "!");
+									p.sendMessage(PREFIX + "You have healed " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + "!");
 								}
 							}
 						} else {
@@ -61,20 +61,20 @@ public class Heal implements CommandExecutor {
 								try {
 									health = Integer.parseInt(args[1]);
 								} catch (NumberFormatException e) {
-									p.sendMessage(prefix + "You must enter a number!");
+									p.sendMessage(PREFIX + "You must enter a number!");
 								}
 								if (health < 0 || health > Main.maxHealth) {
-									p.sendMessage(prefix + "Incorrect value! Value must be between " + ChatColor.GOLD + "0" + ChatColor.YELLOW + " and " + ChatColor.GOLD
+									p.sendMessage(PREFIX + "Incorrect value! Value must be between " + ChatColor.GOLD + "0" + ChatColor.YELLOW + " and " + ChatColor.GOLD
 											+ Main.maxHealth + ChatColor.YELLOW + "!");
 								} else {
 									t.heal(health, 20);
 									if (t.getName().equals(p.getName())) {
-										t.sendMessage(prefix + "Your health has been set to " + ChatColor.GOLD + health + ChatColor.YELLOW + "! ");
+										t.sendMessage(PREFIX + "Your health has been set to " + ChatColor.GOLD + health + ChatColor.YELLOW + "! ");
 									} else {
-										t.sendMessage(prefix + "Your health has been set to " + ChatColor.GOLD + health + ChatColor.YELLOW + " by " + ChatColor.GOLD 
+										t.sendMessage(PREFIX + "Your health has been set to " + ChatColor.GOLD + health + ChatColor.YELLOW + " by " + ChatColor.GOLD
 												+ p.getName() + ChatColor.YELLOW
 												+ "!");
-										p.sendMessage(prefix + "You set " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + "'s health to " + ChatColor.GOLD 
+										p.sendMessage(PREFIX + "You set " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + "'s health to " + ChatColor.GOLD
 												+ health + ChatColor.YELLOW + "!");
 									}
 								}

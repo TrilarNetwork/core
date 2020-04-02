@@ -59,7 +59,7 @@ public class PlayerJoin implements Listener {
 			p.setFallDistance(0);
 		}	
 		if (p.isFrozen()) {
-			p.sendMessage(Freeze.prefix + "You are still frozen!");
+			p.sendMessage(Freeze.PREFIX + "You are still frozen!");
 		}
 		if (Main.c.getConfig().contains("settings.cooldowns." + p.getName())) {
 			int time = Main.c.getConfig().getInt("settings.cooldowns." + p.getName());

@@ -16,14 +16,14 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class Tpa implements CommandExecutor {
-	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Teleportation" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Teleportation" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
     public static HashMap<String, String> tpa = new HashMap<>();
     public static boolean toTP = false;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("tpa")) {
 			if (!(sender instanceof Player)) {
-				sender.sendMessage(prefix + "You must be a player to perform this command!");
+				sender.sendMessage(PREFIX + "You must be a player to perform this command!");
 			} else {
 				Player x = (Player) sender;
 				User p = new User(x);
@@ -35,13 +35,13 @@ public class Tpa implements CommandExecutor {
 						} else {
 							if (!t.hasTpDisabled()) {
 								tpa.put(p.getName(), t.getName());
-								p.sendMessage(prefix + "Request sent to " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + "!");
-								t.sendMessage(prefix + "You have received a teleport request from " + ChatColor.GOLD + p.getName() + ChatColor.YELLOW 
+								p.sendMessage(PREFIX + "Request sent to " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + "!");
+								t.sendMessage(PREFIX + "You have received a teleport request from " + ChatColor.GOLD + p.getName() + ChatColor.YELLOW
 										+ " to teleport to your location! Type " + ChatColor.GOLD + "/tpaccept" + ChatColor.YELLOW + " to accept their request or type " 
 										+ ChatColor.GOLD + "/tpdeny" + ChatColor.YELLOW + " to deny their request");
 								toTP = true;
 							} else {
-								p.sendMessage(prefix + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " has disabled teleportation!");
+								p.sendMessage(PREFIX + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " has disabled teleportation!");
 							}
 						}
 					} else if (args.length >= 2) {

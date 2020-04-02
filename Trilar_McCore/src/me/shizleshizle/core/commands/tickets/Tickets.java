@@ -25,7 +25,7 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class Tickets implements CommandExecutor {
- 	public static String prefix = YELLOW.toString() + BOLD + "Tickets" + GOLD + " >> " + YELLOW;
+ 	public static final String PREFIX = YELLOW.toString() + BOLD + "Tickets" + GOLD + " >> " + YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("tickets")) {
@@ -50,7 +50,7 @@ public class Tickets implements CommandExecutor {
                                         + YELLOW + desc);
                             }
                             if (its == 0) {
-                                p.sendMessage(prefix + "There are no open tickets!");
+                                p.sendMessage(PREFIX + "There are no open tickets!");
                             }
                             rs.close();
                             s.close();
@@ -60,7 +60,7 @@ public class Tickets implements CommandExecutor {
                             Bukkit.getLogger().log(Level.WARNING, "Error: " + e);
                         }
 					} else if (args.length == 1 && args[0].equalsIgnoreCase("help")) {
-						p.sendMessage(prefix + "Help");
+						p.sendMessage(PREFIX + "Help");
                         p.sendMessage(YELLOW + "/ticket <info> " + GOLD + "- creates a ticket");
                         p.sendMessage(YELLOW + "/checkticket <id> " + GOLD + "- sends you the info of the ticket");
                         p.sendMessage(YELLOW + "/closeticket <id> " + GOLD + "- closes a ticket");
@@ -86,7 +86,7 @@ public class Tickets implements CommandExecutor {
                                     + YELLOW + desc);
                         }
                         if (its == 0) {
-                            p.sendMessage(prefix + "There are no open tickets!");
+                            p.sendMessage(PREFIX + "There are no open tickets!");
                             rs.close();
                             s.close();
                             return true;

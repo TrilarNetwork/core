@@ -14,7 +14,7 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class Delhome implements CommandExecutor {
-	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Homes" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Homes" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("delhome")) {
@@ -28,18 +28,18 @@ public class Delhome implements CommandExecutor {
 						} else if (args.length == 1) {
 							if (HomeUtils.hasHome(p.getName(), args[0])) {
 								HomeUtils.removeHome(p.getName(), args[0]);
-								p.sendMessage(prefix + "You have deleted home " + ChatColor.GOLD + args[0] + ChatColor.YELLOW + "!");
+								p.sendMessage(PREFIX + "You have deleted home " + ChatColor.GOLD + args[0] + ChatColor.YELLOW + "!");
 							} else {
-								p.sendMessage(prefix + "You do not have home " + ChatColor.GOLD + args[0] + ChatColor.YELLOW + "!");
+								p.sendMessage(PREFIX + "You do not have home " + ChatColor.GOLD + args[0] + ChatColor.YELLOW + "!");
 							}
 						} else if (args.length == 2) {
 							if (Perm.hasPerm(p, PermGroup.MODERATOR)) {
 								if (HomeUtils.hasHome(args[1], args[0])) {
 									HomeUtils.removeHome(args[1], args[0]);
-									p.sendMessage(prefix + "You have removed home " + ChatColor.GOLD + args[0] + ChatColor.YELLOW + " from player " 
+									p.sendMessage(PREFIX + "You have removed home " + ChatColor.GOLD + args[0] + ChatColor.YELLOW + " from player "
 											+ ChatColor.GOLD + args[1] + ChatColor.YELLOW + "!");
 								} else {
-									p.sendMessage(prefix + "Player " + ChatColor.GOLD + args[1] + ChatColor.YELLOW + " does not have home " 
+									p.sendMessage(PREFIX + "Player " + ChatColor.GOLD + args[1] + ChatColor.YELLOW + " does not have home "
 											+ ChatColor.GOLD + args[0] + ChatColor.YELLOW + "!");
 								}
 							} else {

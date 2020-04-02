@@ -16,7 +16,7 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class PermissionsCmd implements CommandExecutor {
-	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Permissions" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Permissions" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("permission")) {
@@ -26,7 +26,7 @@ public class PermissionsCmd implements CommandExecutor {
 					if (args.length == 1) {
 						User t = new User(Bukkit.getPlayer(args[0]));
 						if (t.isOnline()) {
-							p.sendMessage(prefix + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " has these permissions:");
+							p.sendMessage(PREFIX + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " has these permissions:");
 							for (String perm : t.getPermissions()) {
 								p.sendMessage(ChatColor.GOLD + perm);
 							}
@@ -39,10 +39,10 @@ public class PermissionsCmd implements CommandExecutor {
 							if (t.isOnline()) {
 								String perm = args[2].trim();
 								if (t.getPermissions().contains(perm)) {
-									p.sendMessage(prefix + "Player " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " already has permission '" + ChatColor.GOLD + perm + ChatColor.YELLOW + "'!");
+									p.sendMessage(PREFIX + "Player " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " already has permission '" + ChatColor.GOLD + perm + ChatColor.YELLOW + "'!");
 								} else {
 									t.addPermission(perm);
-									p.sendMessage(prefix + "You have added '" + ChatColor.GOLD + perm + ChatColor.YELLOW + "' to " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + "!");
+									p.sendMessage(PREFIX + "You have added '" + ChatColor.GOLD + perm + ChatColor.YELLOW + "' to " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + "!");
 								}
 							} else {
 								ErrorMessages.doErrorMessage(p, Messages.PLAYER_OFFLINE, args[1]);
@@ -55,9 +55,9 @@ public class PermissionsCmd implements CommandExecutor {
 								perms.add(perm);
 								if (t.getPermissions().contains(perm)) {
 									t.removePermissions(perms);
-									p.sendMessage(prefix + "You have removed '" + ChatColor.GOLD + perm + ChatColor.YELLOW + "' from " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + "!");
+									p.sendMessage(PREFIX + "You have removed '" + ChatColor.GOLD + perm + ChatColor.YELLOW + "' from " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + "!");
 								} else {
-									p.sendMessage(prefix + "Player " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " does not have permission '" + ChatColor.GOLD + perm + ChatColor.YELLOW + "'!");
+									p.sendMessage(PREFIX + "Player " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " does not have permission '" + ChatColor.GOLD + perm + ChatColor.YELLOW + "'!");
 								}
 							} else {
 								ErrorMessages.doErrorMessage(p, Messages.PLAYER_OFFLINE, args[1]);

@@ -88,11 +88,10 @@ public class MySQL extends Database {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			//Connection con = DriverManager.getConnection("jdbc:mysql://185.211.51.30:3306/core?connectTimeout=0&socketTimeout=0&autoReconnect=true", "root", "Pedo1234");
-			Connection con = DriverManager.getConnection("jdbc:mysql://" + this.hostname + ":" + this.port + "/" + this.database 
-					+ "?connectTimeout=0&socketTimeout=0&autoReconnect=true", this.user, this.password);
-			//Connection con = DriverManager.getConnection("jdbc:mysql://51.254.224.38:3306/uc_core?autoReconnect=true&connectTimeout=0&socketTimeout=0", 
+			//Connection con = DriverManager.getConnection("jdbc:mysql://51.254.224.38:3306/uc_core?autoReconnect=true&connectTimeout=0&socketTimeout=0",
 					//"Quinten", "vRvs66z2RpBWnJmb");
-			conn = con;
+			conn = DriverManager.getConnection("jdbc:mysql://" + this.hostname + ":" + this.port + "/" + this.database
+					+ "?connectTimeout=0&socketTimeout=0&autoReconnect=true", this.user, this.password);
 			return conn;
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();

@@ -16,7 +16,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitScheduler;
 
 public class Lockdown implements CommandExecutor {
- 	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "lockdown" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+ 	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "lockdown" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
  	private static BukkitScheduler bs = Bukkit.getScheduler();
  	
 
@@ -38,7 +38,7 @@ public class Lockdown implements CommandExecutor {
 									}
 								}, 60*20);
 							} else {
-								p.sendMessage(prefix + "Lockdown has already been enabled!");
+								p.sendMessage(PREFIX + "Lockdown has already been enabled!");
 								
 							}
 						} else if (args[0].equalsIgnoreCase("off")) {
@@ -46,11 +46,11 @@ public class Lockdown implements CommandExecutor {
 								disableLockdown();
 								Bukkit.broadcastMessage(ChatColor.RED + "Lockdown Mode is no longer active or has been canceled.");
 							} else {
-								p.sendMessage(prefix + "Lockdown is already disabled!");
+								p.sendMessage(PREFIX + "Lockdown is already disabled!");
 							}
 						} else if (args[0].equalsIgnoreCase("cancel")) {
 							disableLockdown();
-							Bukkit.broadcastMessage(prefix + "Lockdown has been cancelled!");
+							Bukkit.broadcastMessage(PREFIX + "Lockdown has been cancelled!");
 						} else {
 							ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/lockdown <on|off>");
 						}
@@ -72,7 +72,7 @@ public class Lockdown implements CommandExecutor {
 			for (Player ap : Bukkit.getOnlinePlayers()) {
 				if (!Perm.hasPerm(ap.getName(), PermGroup.BUILDER)) {
 					ap.kickPlayer(ChatColor.GOLD + "-=[ Trilar ]=- \nYou have been kicked due to the server going in Lockdown mode.");
-					Bukkit.broadcastMessage(Main.prefix + "Lockdown mode has been activated!");
+					Bukkit.broadcastMessage(Main.PREFIX + "Lockdown mode has been activated!");
 				}
 			}
 		}

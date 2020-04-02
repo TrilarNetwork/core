@@ -13,12 +13,12 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class DayCmd implements CommandExecutor {
-	public String prefix = Time.prefix;
+	public final String PREFIX = Time.PREFIX;
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("day")) {
 			if (!(sender instanceof Player)) {
-				sender.sendMessage(prefix + "You must be a player to perform this command!");
+				sender.sendMessage(PREFIX + "You must be a player to perform this command!");
 			} else {
 				Player x = (Player) sender;
 				User p = new User(x);
@@ -27,7 +27,7 @@ public class DayCmd implements CommandExecutor {
 						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/day");
 					} else {
 						p.setDay(true);
-						p.sendMessage(prefix + "You have set the time in all worlds to " + ChatColor.GOLD + "0" + ChatColor.YELLOW + " ticks!");
+						p.sendMessage(PREFIX + "You have set the time in all worlds to " + ChatColor.GOLD + "0" + ChatColor.YELLOW + " ticks!");
 					}
 				} else {
 					ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/day");

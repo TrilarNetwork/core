@@ -14,12 +14,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class Tpaccept implements CommandExecutor {
-	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Teleportation" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Teleportation" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("tpaccept")) {
 			if (!(sender instanceof Player)) {
-				sender.sendMessage(prefix + "You must be a player to perform this command!");
+				sender.sendMessage(PREFIX + "You must be a player to perform this command!");
 			} else {
 				Player x = (Player) sender;
 				User p = new User(x);
@@ -33,13 +33,13 @@ public class Tpaccept implements CommandExecutor {
 								}
 							}
 							Player t = Bukkit.getPlayer(n);
-							p.sendMessage(prefix + "You have accepted the teleport request of " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + ".");
-							t.sendMessage(prefix + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " has accepted your request, teleporting in " + ChatColor.GOLD + Main.tpTime 
+							p.sendMessage(PREFIX + "You have accepted the teleport request of " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + ".");
+							t.sendMessage(PREFIX + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " has accepted your request, teleporting in " + ChatColor.GOLD + Main.tpTime
 									+ ChatColor.YELLOW + " seconds!");
 							Bukkit.getScheduler().scheduleSyncDelayedTask(Main.p, () -> {
 								if (Tpa.toTP) {
 									t.teleport(p.getLocation());
-									t.sendMessage(prefix + "You have been teleported to " + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + "!");
+									t.sendMessage(PREFIX + "You have been teleported to " + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + "!");
 									Tpa.tpa.remove(t.getName());
 								}
 							}, Main.tpTime*20);
@@ -50,18 +50,18 @@ public class Tpaccept implements CommandExecutor {
 								}
 							}
 							Player t = Bukkit.getPlayer(n);
-							p.sendMessage(prefix + "You have accepted the teleport request of " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + ", teleporting in " + ChatColor.GOLD 
+							p.sendMessage(PREFIX + "You have accepted the teleport request of " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + ", teleporting in " + ChatColor.GOLD
 									+ Main.tpTime + ChatColor.YELLOW + " seconds!");
-							t.sendMessage(prefix + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " has accepted your request!");
+							t.sendMessage(PREFIX + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " has accepted your request!");
 							Bukkit.getScheduler().scheduleSyncDelayedTask(Main.p, () -> {
 								if (Tpahere.toTP) {
 									p.teleport(t.getLocation());
-									p.sendMessage(prefix + "You have been teleported to " + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + "!");
+									p.sendMessage(PREFIX + "You have been teleported to " + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + "!");
 									Main.tpahere.remove(t.getName());
 								}
 							}, Main.tpTime*20);
 						} else {
-							p.sendMessage(prefix + "You do not have a pending request!");
+							p.sendMessage(PREFIX + "You do not have a pending request!");
 						}
 					} else {
 						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/tpaccept");

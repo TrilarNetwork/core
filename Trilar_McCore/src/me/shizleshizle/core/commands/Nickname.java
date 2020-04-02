@@ -16,7 +16,7 @@ import me.shizleshizle.core.utils.ErrorMessages.Messages;
 import me.shizleshizle.core.utils.NickNameManager;
 
 public class Nickname implements CommandExecutor {
-	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Nicknames" + ChatColor.GOLD + " >> "
+	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Nicknames" + ChatColor.GOLD + " >> "
 			+ ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -30,13 +30,13 @@ public class Nickname implements CommandExecutor {
 							if (args[0].equalsIgnoreCase("off")) {
 								if (p.hasNick()) {
 									p.removeNick();
-									p.sendMessage(prefix + "Your Nickname has been removed!");
+									p.sendMessage(PREFIX + "Your Nickname has been removed!");
 								}
 							} else {
 								String nick = args[0].trim();
 								p.setNick(nick);
 								nick = ChatColor.translateAlternateColorCodes('&', nick);
-								p.sendMessage(prefix + "Your Nickname has been changed to " + nick + ChatColor.YELLOW + "!");
+								p.sendMessage(PREFIX + "Your Nickname has been changed to " + nick + ChatColor.YELLOW + "!");
 							}
 						} else if (args.length == 2) {
 							if (args[1].equalsIgnoreCase("off")) {
@@ -45,12 +45,12 @@ public class Nickname implements CommandExecutor {
 									User t = new User(tp);
 									if (t.hasNick()) {
 										t.removeNick();
-										p.sendMessage(prefix + "You have removed " + ChatColor.GOLD + t.getName()
+										p.sendMessage(PREFIX + "You have removed " + ChatColor.GOLD + t.getName()
 												+ ChatColor.YELLOW + "'s nickname!");
-										t.sendMessage(prefix + "Your Nickname has been removed by " + ChatColor.GOLD
+										t.sendMessage(PREFIX + "Your Nickname has been removed by " + ChatColor.GOLD
 												+ p.getName() + ChatColor.YELLOW + "!");
 									} else {
-										p.sendMessage(prefix + "Player " + ChatColor.GOLD + args[0] + ChatColor.YELLOW
+										p.sendMessage(PREFIX + "Player " + ChatColor.GOLD + args[0] + ChatColor.YELLOW
 												+ " does not have a nickname!");
 									}
 								} else {
@@ -58,18 +58,18 @@ public class Nickname implements CommandExecutor {
 								}
 							} else if (args[1].equalsIgnoreCase("realname")) {
 								if (NickNameManager.getPlayerFromNick(args[0]) != null) {
-									p.sendMessage(prefix + "Their real name is " + ChatColor.GOLD + NickNameManager.getPlayerFromNick(args[0] + ChatColor.YELLOW + "!"));
+									p.sendMessage(PREFIX + "Their real name is " + ChatColor.GOLD + NickNameManager.getPlayerFromNick(args[0] + ChatColor.YELLOW + "!"));
 								} else {
-									p.sendMessage(prefix + "There is no player with that nickname!");
+									p.sendMessage(PREFIX + "There is no player with that nickname!");
 								}
 							} else {
 								User t = new User(Bukkit.getPlayerExact(args[0]));
 								if (t.isOnline()) {
 									String nick = args[1].trim();
 									t.setNick(nick);
-									p.sendMessage(prefix + "You have set " + ChatColor.GOLD + t.getName()
+									p.sendMessage(PREFIX + "You have set " + ChatColor.GOLD + t.getName()
 									+ ChatColor.YELLOW + "'s nickname to " + nick + ChatColor.YELLOW + "!");
-									t.sendMessage(prefix + "Your Nickname has been set to " + ChatColor.GOLD + nick + ChatColor.YELLOW + " to " 
+									t.sendMessage(PREFIX + "Your Nickname has been set to " + ChatColor.GOLD + nick + ChatColor.YELLOW + " to "
 											+ ChatColor.GOLD + p.getName() + ChatColor.YELLOW + "!");
 								} else {
 									ErrorMessages.doErrorMessage(p, Messages.PLAYER_OFFLINE, args[1]);

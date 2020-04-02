@@ -14,12 +14,12 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class Deletewarps implements CommandExecutor  {
-	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Warps" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Warps" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("removewarp")) {
 			if (!(sender instanceof Player)) {
-				sender.sendMessage(prefix + "You must be a player to perform this command!");
+				sender.sendMessage(PREFIX + "You must be a player to perform this command!");
 			} else {
 				Player x = (Player) sender;
 				User p = new User(x);
@@ -28,7 +28,7 @@ public class Deletewarps implements CommandExecutor  {
 						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/removewarp <name>");
 					} else {
 						WarpUtils.removeWarp(args[0]);
-						p.sendMessage(prefix + "Warp " + ChatColor.GOLD + args[0] + ChatColor.YELLOW + " has been removed!");
+						p.sendMessage(PREFIX + "Warp " + ChatColor.GOLD + args[0] + ChatColor.YELLOW + " has been removed!");
 					}
 				} else {
 					ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/removewarp");

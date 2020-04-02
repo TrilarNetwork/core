@@ -17,7 +17,7 @@ public class BlockBreak implements Listener {
 		if (p.isFrozen()) {
 			e.setCancelled(true);
 			if (!Freeze.hasSent2) {
-				p.sendMessage(Freeze.prefix + "You have been frozen, you can't break blocks!");
+				p.sendMessage(Freeze.PREFIX + "You have been frozen, you can't break blocks!");
 			}
 		}
 		if (p.isVanished()) {

@@ -16,7 +16,7 @@ import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 // AB = AutoBroadcaster
 public class AB implements CommandExecutor {
-	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Auto-Broadcaster" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Auto-Broadcaster" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("autobroadcaster")) {
@@ -33,21 +33,21 @@ public class AB implements CommandExecutor {
 							on = ChatColor.RED + "false";
 						}
 						p.sendMessage(ChatColor.GOLD + "Enabled: " + on);
-						p.sendMessage(ChatColor.GOLD + "Delay: " + ChatColor.YELLOW + Main.abdelay);
+						p.sendMessage(ChatColor.GOLD + "Delay: " + ChatColor.YELLOW + Main.autobroadcastDelay);
 					} else if (args.length == 1) {
 						if (args[0].equalsIgnoreCase("on")) {
 							if (!AutoB.isBroadcasting()) {
 								AutoB.enable();
-								p.sendMessage(prefix + "You have enabled the Auto-Broadcaster!");
+								p.sendMessage(PREFIX + "You have enabled the Auto-Broadcaster!");
 							} else {
-								p.sendMessage(prefix + "Auto-Broadcaster is already enabled!");
+								p.sendMessage(PREFIX + "Auto-Broadcaster is already enabled!");
 							}
 						} else if (args[0].equalsIgnoreCase("off")) {
 							if (AutoB.isBroadcasting()) {
 								AutoB.disable();
-								p.sendMessage(prefix + "You have disabled the Auto-Broadcaster!");
+								p.sendMessage(PREFIX + "You have disabled the Auto-Broadcaster!");
 							} else {
-								p.sendMessage(prefix + "Auto-Broadcaster is already disabled!");
+								p.sendMessage(PREFIX + "Auto-Broadcaster is already disabled!");
 							}
 						} else if (args[0].equalsIgnoreCase("list")) {
 							p.sendMessage(AutoB.getStrings());
@@ -61,7 +61,7 @@ public class AB implements CommandExecutor {
 					ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/autobroadcaster");
 				}
 			} else {
-				sender.sendMessage(prefix + "You must be a player to perform this command!");
+				sender.sendMessage(PREFIX + "You must be a player to perform this command!");
 			}
 		}
 		return false;

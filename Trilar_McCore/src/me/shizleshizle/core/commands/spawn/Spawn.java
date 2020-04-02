@@ -14,12 +14,12 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class Spawn implements CommandExecutor {
-	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Spawn" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Spawn" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (cmd.getName().equalsIgnoreCase("spawn")) {
             if (!(sender instanceof Player)) {
-                sender.sendMessage(prefix + "You must a player to perform this command!");
+                sender.sendMessage(PREFIX + "You must a player to perform this command!");
             } else {
                 Player x = (Player) sender;
                 User p = new User(x);
@@ -33,8 +33,8 @@ public class Spawn implements CommandExecutor {
                                 ErrorMessages.doErrorMessage(p, Messages.PLAYER_OFFLINE, args[0]);
                             } else {
                                 t.toSpawn();
-                                t.sendMessage(prefix + "You have been teleported to the spawn!");
-                                p.sendMessage(prefix + "You have teleported " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " to the spawn!");
+                                t.sendMessage(PREFIX + "You have been teleported to the spawn!");
+                                p.sendMessage(PREFIX + "You have teleported " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " to the spawn!");
                             }
                         } else {
                             ErrorMessages.doErrorMessage(sender, Messages.NOPERM, "/spawn <player");

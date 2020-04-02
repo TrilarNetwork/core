@@ -14,14 +14,14 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class SetSpawn implements CommandExecutor {
-	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Spawn" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Spawn" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 	private ConfigManager c = ConfigManager.getInstance();
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("setspawn")) {
 			if (Perm.hasPerm(sender.getName(), PermGroup.LEAD_DEVELOPER)) {
 				if (!(sender instanceof Player)) {
-					sender.sendMessage(prefix + "You must a player to perform this command!");
+					sender.sendMessage(PREFIX + "You must a player to perform this command!");
 				} else {
 					User p = new User((Player) sender);
 					if (args.length != 0) {
@@ -39,7 +39,7 @@ public class SetSpawn implements CommandExecutor {
 						c.getSpawn().set("spawn.pitch", pitch);
 						c.getSpawn().set("spawn.world", p.getWorld().getName());
 						c.saveSpawn();
-						p.sendMessage(prefix + "Spawn has been set to your location!");
+						p.sendMessage(PREFIX + "Spawn has been set to your location!");
 					}
 				}
 			} else {

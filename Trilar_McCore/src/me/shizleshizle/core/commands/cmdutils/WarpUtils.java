@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WarpUtils {
-    private static ConfigManager c = ConfigManager.getInstance();
+    private static ConfigManager c = Main.c;
     public static ArrayList<String> warps = new ArrayList<>();
 
     public static void setWarp(String name, double x, double y, double z, double yaw, double pitch, String worldname) {

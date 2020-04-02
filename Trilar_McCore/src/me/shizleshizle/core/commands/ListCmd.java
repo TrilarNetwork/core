@@ -13,7 +13,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class ListCmd implements CommandExecutor {
-	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "List" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "List" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("list")) {
@@ -30,13 +30,13 @@ public class ListCmd implements CommandExecutor {
 				}
 				s = sb.toString().substring(0, sb.length() - 2);
 				if (amount == 1) {
-					sender.sendMessage(prefix + "There is " + ChatColor.GOLD + amount + ChatColor.YELLOW + " player online.");
+					sender.sendMessage(PREFIX + "There is " + ChatColor.GOLD + amount + ChatColor.YELLOW + " player online.");
 					sender.sendMessage(s + ChatColor.YELLOW + ".");
 				} else if (amount > 1) {
-					sender.sendMessage(prefix + "There are a total of " + ChatColor.GOLD + amount + ChatColor.YELLOW + " players online.");
+					sender.sendMessage(PREFIX + "There are a total of " + ChatColor.GOLD + amount + ChatColor.YELLOW + " players online.");
 					sender.sendMessage(s + ChatColor.YELLOW + ".");
 				} else {
-					sender.sendMessage(prefix + "There are no players online.");
+					sender.sendMessage(PREFIX + "There are no players online.");
 				}
 			} else {
 				Player pl = (Player) sender;
@@ -54,14 +54,14 @@ public class ListCmd implements CommandExecutor {
 					}
 					s = sb.toString().substring(0, sb.length() - 2);
 					if (amount == 1) {
-						sender.sendMessage(prefix + "There is " + ChatColor.GOLD + amount + ChatColor.YELLOW + " player online.");
+						sender.sendMessage(PREFIX + "There is " + ChatColor.GOLD + amount + ChatColor.YELLOW + " player online.");
 						sender.sendMessage(s + ChatColor.YELLOW + ".");
 					} else if (amount > 1) {
-						sender.sendMessage(prefix + "There are a total of " + ChatColor.GOLD + amount + ChatColor.YELLOW 
+						sender.sendMessage(PREFIX + "There are a total of " + ChatColor.GOLD + amount + ChatColor.YELLOW
 								+ " players online.");
 						sender.sendMessage(s + ChatColor.YELLOW + ".");
 					} else {
-						sender.sendMessage(prefix + "There are no players online.");
+						sender.sendMessage(PREFIX + "There are no players online.");
 					}
 				} else {
 					ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/list");

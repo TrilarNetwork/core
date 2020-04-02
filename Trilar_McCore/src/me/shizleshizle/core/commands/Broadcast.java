@@ -12,7 +12,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class Broadcast implements CommandExecutor {
-	public static String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Broadcast" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Broadcast" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("broadcast")) {
@@ -29,7 +29,7 @@ public class Broadcast implements CommandExecutor {
 						for (int i = 0; i < args.length; i++) {
 							sb.append(args[i]).append(" ");
 						}
-						Bukkit.broadcastMessage(prefix + ChatColor.translateAlternateColorCodes('&', sb.toString().trim()));
+						Bukkit.broadcastMessage(PREFIX + ChatColor.translateAlternateColorCodes('&', sb.toString().trim()));
 					}
 				} else {
 					ErrorMessages.doErrorMessage(sender, Messages.INVALID_USAGE, "/broadcast [nopref] <message>");

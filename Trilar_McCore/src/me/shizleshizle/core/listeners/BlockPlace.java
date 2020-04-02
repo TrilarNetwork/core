@@ -17,7 +17,7 @@ public class BlockPlace implements Listener {
 		if (p.isFrozen()) {
 			e.setCancelled(true);
 			if (!Freeze.hasSent3) {
-				p.sendMessage(Freeze.prefix + "You have been frozen, you can't place blocks!");
+				p.sendMessage(Freeze.PREFIX + "You have been frozen, you can't place blocks!");
 			}
 		}
 		if (p.isVanished()) {

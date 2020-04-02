@@ -14,7 +14,7 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class Back implements CommandExecutor {
-	private String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Back" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	private final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Back" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("back")) {
@@ -25,13 +25,13 @@ public class Back implements CommandExecutor {
 						if (p.hasBack()) {
 							Location loc = p.getBack();
 							if (loc == null) {
-								p.sendMessage(prefix + "You do not have a previous location!");
+								p.sendMessage(PREFIX + "You do not have a previous location!");
 							} else {
 								p.toBack();
-								p.sendMessage(prefix + "You have been returned to your previous location!");
+								p.sendMessage(PREFIX + "You have been returned to your previous location!");
 							}
 						} else {
-							p.sendMessage(prefix + "You do not have a previous location!");
+							p.sendMessage(PREFIX + "You do not have a previous location!");
 						}
 					} else {
 						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/back");

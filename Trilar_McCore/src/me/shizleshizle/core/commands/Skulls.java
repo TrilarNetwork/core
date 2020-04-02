@@ -17,13 +17,13 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class Skulls implements CommandExecutor {
-	private String prefix = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Skulls" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	private final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Skulls" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("skull")) {
 			if (Perm.hasPerm(sender.getName(), PermGroup.MEMBER)) {
 				if (!(sender instanceof Player)) {
-					sender.sendMessage(prefix + "You must a player to perform this command!");
+					sender.sendMessage(PREFIX + "You must a player to perform this command!");
 				} else {
 					Player x = (Player) sender;
 					User p = new User(x);
@@ -31,16 +31,16 @@ public class Skulls implements CommandExecutor {
 						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/skulls <owner> [amount]");
 					} else if (args.length == 1) {
 						p.getInventory().addItem(getSkull(args[0], 1, args[0]));
-						p.sendMessage(prefix + "You have received the skull of " + ChatColor.GOLD + args[0] + ChatColor.YELLOW + "!");
+						p.sendMessage(PREFIX + "You have received the skull of " + ChatColor.GOLD + args[0] + ChatColor.YELLOW + "!");
 					} else {
 						int amount = 0;
 						try {
 							amount = Integer.parseInt(args[1]);
 						} catch (NumberFormatException e) {
-							p.sendMessage(prefix + "You must enter a number!");
+							p.sendMessage(PREFIX + "You must enter a number!");
 						}
 						p.getInventory().addItem(getSkull(args[0], amount, args[0]));
-						p.sendMessage(prefix + "You have received the skull of " + ChatColor.GOLD + args[0] + ChatColor.YELLOW + "!");
+						p.sendMessage(PREFIX + "You have received the skull of " + ChatColor.GOLD + args[0] + ChatColor.YELLOW + "!");
 					}
 				} 
 			} else {
