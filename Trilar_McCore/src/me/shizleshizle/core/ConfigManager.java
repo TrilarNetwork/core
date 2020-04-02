@@ -118,19 +118,19 @@ public class ConfigManager {
 			this.config.set("settings.removeOnQuit", false);
 		}
 		if (!this.config.contains("settings.database.hostname")) {
-			this.config.set("settings.database.hostname", "mininetwork.nl");
+			this.config.set("settings.database.hostname", "tropicalhost.nl");
 		}
 		if (!this.config.contains("settings.database.port")) {
 			this.config.set("settings.database.port", 3306);
 		}
 		if (!this.config.contains("settings.database.database")) {
-			this.config.set("settings.database.database", "subbo_trilar");
+			this.config.set("settings.database.database", "mininetw_thub");
 		}
 		if (!this.config.contains("settings.database.username")) {
-			this.config.set("settings.database.username", "subbo_trilar");
+			this.config.set("settings.database.username", "mininetw_thub");
 		}
 		if (!this.config.contains("settings.database.password")) {
-			this.config.set("settings.database.password", "2lyY39Jt");
+			this.config.set("settings.database.password", "Trilar2018");
 		}
 		if (!this.config.contains("settings.broadcastMessages")) {
 			this.config.set("settings.broadcastMessages", Arrays.asList("&6Welcome to &eTrilar&6!", "&6Do you have any questions? Feel free to ask!", 

@@ -6,11 +6,11 @@ settings:
   autoBroadcastDelay: 60
   removeOnQuit: false
   database:
-    hostname: 'mininetwork.nl'
+    hostname: tropicalhost.nl
     port: 3306
-    database: subbo_trilar
-    username: subbo_trilar
-    password: 2lyY39Jt
+    database: mininetw_thub
+    username: mininetw_thub
+    password: Trilar2018
   broadcastMessages:
     - '&6Welcome to &eTrilar&6!'
     - '&6Do you have any questions? Feel free to ask!'

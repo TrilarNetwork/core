@@ -1,4 +1,4 @@
-package me.shizleshizle.core.commands;
+	package me.shizleshizle.core.commands;
 
 import java.sql.SQLException;
 
