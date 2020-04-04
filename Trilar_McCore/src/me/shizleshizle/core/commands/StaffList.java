@@ -40,24 +40,16 @@ public class StaffList implements CommandExecutor {
 				StringBuilder deve = new StringBuilder();
 				StringBuilder owners = new StringBuilder();
 				StringBuilder manager = new StringBuilder();
-				StringBuilder sradm = new StringBuilder();
 				StringBuilder adm = new StringBuilder();
-				StringBuilder srmode = new StringBuilder();
 				StringBuilder mode = new StringBuilder();
-				StringBuilder jrmode = new StringBuilder();
-				StringBuilder srhelpers = new StringBuilder();
 				StringBuilder helpers = new StringBuilder();
 				StringBuilder jrhelpers = new StringBuilder();
 				String ldev = "";
 				String dev = "";
 				String own = "";
 				String man = "";
-				String sra = "";
 				String adn = "";
-				String srm = "";
 				String mod = "";
-				String jrm = "";
-				String srh = "";
 				String hel = "";
 				String jrh = "";
 				for (String s : staff.keySet()) {
@@ -68,23 +60,11 @@ public class StaffList implements CommandExecutor {
 					case HELPER:
 						helpers.append(s).append(" ");
 						break;
-					case SR_HELPER:
-						srhelpers.append(s).append(" ");
-						break;
-					case JR_MODERATOR:
-						jrmode.append(s).append(" ");
-						break;
 					case MODERATOR:
 						mode.append(s).append(" ");
 						break;
-					case SR_MODERATOR:
-						srmode.append(s).append(" ");
-						break;
 					case ADMIN:
 						adm.append(s).append(" ");
-						break;
-					case SR_ADMIN:
-						sradm.append(s).append(" ");
 						break;
 					case MANAGER:
 						manager.append(s).append(" ");
@@ -114,23 +94,11 @@ public class StaffList implements CommandExecutor {
 				if (!manager.toString().isEmpty()) {
 					man = ChatColor.GOLD + "[ " + PermGroup.MANAGER.getPrefix() + ChatColor.GOLD + ": " + PermGroup.MANAGER.getColor() + manager.toString().trim();
 				}
-				if (!sradm.toString().isEmpty()) {
-					sra = ChatColor.GOLD + "[ " + PermGroup.SR_ADMIN.getPrefix() + ChatColor.GOLD + ": " + PermGroup.ADMIN.getColor() + sradm.toString().trim();
-				}
 				if (!adm.toString().isEmpty()) {
 					adn = ChatColor.GOLD + "[ " + PermGroup.ADMIN.getPrefix() + ChatColor.GOLD + ": " + PermGroup.ADMIN.getColor() + adm.toString().trim();
 				}
-				if (!srmode.toString().isEmpty()) {
-					srm = ChatColor.GOLD + "[ " + PermGroup.SR_MODERATOR.getPrefix() + ChatColor.GOLD + ": " + PermGroup.MODERATOR.getColor() + srmode.toString().trim();
-				}
 				if (!mode.toString().isEmpty()) {
 					mod = ChatColor.GOLD + "[ " + PermGroup.MODERATOR.getPrefix() + ChatColor.GOLD + ": " + PermGroup.MODERATOR.getColor() + mode.toString().trim();
-				}
-				if (!jrmode.toString().isEmpty()) {
-					jrm = ChatColor.GOLD + "[ " + PermGroup.JR_MODERATOR.getPrefix() + ChatColor.GOLD + ": " + PermGroup.MODERATOR.getColor() + jrmode.toString().trim();
-				}
-				if (!srhelpers.toString().isEmpty()) {
-					srh = ChatColor.GOLD + "[ " + PermGroup.SR_HELPER.getPrefix() + ChatColor.GOLD + ": " + PermGroup.HELPER.getColor() + srhelpers.toString().trim();
 				}
 				if (!helpers.toString().isEmpty()) {
 					hel = ChatColor.GOLD + "[ " + PermGroup.HELPER.getPrefix() + ChatColor.GOLD + ": " + PermGroup.HELPER.getColor() + helpers.toString().trim();
@@ -159,28 +127,12 @@ public class StaffList implements CommandExecutor {
 					sender.sendMessage(man);
 					sender.sendMessage(ChatColor.GOLD + "[");
 				}
-				if (!sradm.toString().isEmpty()) {
-					sender.sendMessage(sra);
-					sender.sendMessage(ChatColor.GOLD + "[");
-				}
 				if (!adm.toString().isEmpty()) {
 					sender.sendMessage(adn);
 					sender.sendMessage(ChatColor.GOLD + "[");
 				}
-				if (!srmode.toString().isEmpty()) {
-					sender.sendMessage(srm);
-					sender.sendMessage(ChatColor.GOLD + "[");
-				}
 				if (!mode.toString().isEmpty()) {
 					sender.sendMessage(mod);
-					sender.sendMessage(ChatColor.GOLD + "[");
-				}
-				if (!jrmode.toString().isEmpty()) {
-					sender.sendMessage(jrm);
-					sender.sendMessage(ChatColor.GOLD + "[");
-				}
-				if (!srhelpers.toString().isEmpty()) {
-					sender.sendMessage(srh);
 					sender.sendMessage(ChatColor.GOLD + "[");
 				}
 				if (!helpers.toString().isEmpty()) {
