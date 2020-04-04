@@ -7,11 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="76ff671f-a9a7-4629-82fe-8496399b519c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Trilar_McCore_0_0_1_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Trilar_McCore_0_0_1_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/shizleshizle/core/commands/StaffList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/shizleshizle/core/commands/StaffList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/me/shizleshizle/core/permissions/PermAttachments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/shizleshizle/core/permissions/PermAttachments.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/shizleshizle/core/permissions/PermGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/shizleshizle/core/permissions/PermGroup.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +27,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Trilar" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../BungeeCore/Trilar_BungeeCore/.project" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -62,22 +59,22 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2728" y="410" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1585867611267" />
-    <state x="2660" y="276" key="FileChooserDialogImpl" timestamp="1585958455778">
+    <state x="2660" y="276" key="FileChooserDialogImpl" timestamp="1586029871453">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2660" y="276" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1585958455778" />
+    <state x="2660" y="276" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586029871453" />
     <state x="2545" y="323" key="NewModule_or_Project.wizard" timestamp="1585847220498">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2545" y="323" key="NewModule_or_Project.wizard/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1585847220498" />
-    <state x="2360" y="95" key="SettingsEditor" timestamp="1585958458873">
+    <state x="2360" y="95" key="SettingsEditor" timestamp="1586041148151">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2360" y="95" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1585958458873" />
-    <state x="2576" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1585956183124">
+    <state x="2360" y="95" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586041148151" />
+    <state x="2576" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1586029744654">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2576" y="345" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1585956183124" />
+    <state x="2576" y="345" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586029744654" />
     <state x="2873" y="0" width="974" height="1047" key="dock-window-1" timestamp="1585958512849">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>

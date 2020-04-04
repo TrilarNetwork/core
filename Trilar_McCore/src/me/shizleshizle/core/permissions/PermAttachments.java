@@ -172,8 +172,6 @@ public class PermAttachments {
 		if (Perm.hasPerm(p, PermGroup.HELPER)) {
 			ArrayList<String> perms = new ArrayList<>();
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MEMBER));
-			perms.addAll(PermissionGroup.getPermissions(PermGroup.VIP));
-			perms.addAll(PermissionGroup.getPermissions(PermGroup.YOUTUBE));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_BUILDER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.BUILDER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.HEAD_BUILDER));
@@ -187,8 +185,6 @@ public class PermAttachments {
 		if (Perm.hasPerm(p, PermGroup.JR_HELPER)) {
 			ArrayList<String> perms = new ArrayList<>();
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MEMBER));
-			perms.addAll(PermissionGroup.getPermissions(PermGroup.VIP));
-			perms.addAll(PermissionGroup.getPermissions(PermGroup.YOUTUBE));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_BUILDER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.BUILDER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.HEAD_BUILDER));
@@ -202,7 +198,6 @@ public class PermAttachments {
 			ArrayList<String> perms = new ArrayList<>();
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MEMBER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.VIP));
-			perms.addAll(PermissionGroup.getPermissions(PermGroup.YOUTUBE));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_BUILDER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.BUILDER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.HEAD_BUILDER));
@@ -215,7 +210,6 @@ public class PermAttachments {
 			ArrayList<String> perms = new ArrayList<>();
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MEMBER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.VIP));
-			perms.addAll(PermissionGroup.getPermissions(PermGroup.YOUTUBE));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_BUILDER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.BUILDER));
 			perms.addAll(p.getPermissions());
@@ -227,7 +221,6 @@ public class PermAttachments {
 			ArrayList<String> perms = new ArrayList<>();
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MEMBER));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.VIP));
-			perms.addAll(PermissionGroup.getPermissions(PermGroup.YOUTUBE));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.JR_BUILDER));
 			perms.addAll(p.getPermissions());
 			for (String pe : perms) {
@@ -237,7 +230,6 @@ public class PermAttachments {
 		if (Perm.hasPerm(p, PermGroup.YOUTUBE)) {
 			ArrayList<String> perms = new ArrayList<>();
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.MEMBER));
-			perms.addAll(PermissionGroup.getPermissions(PermGroup.VIP));
 			perms.addAll(PermissionGroup.getPermissions(PermGroup.YOUTUBE));
 			perms.addAll(p.getPermissions());
 			for (String pe : perms) {
