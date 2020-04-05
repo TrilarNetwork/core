@@ -87,12 +87,13 @@ public class Ranks implements CommandExecutor {
 									p.sendMessage(PREFIX + "You can not set this rank!");
 									return true;
 								}
-								Player t = Bukkit.getPlayerExact(user);
-								if (t.getName().equals(p.getName())) {
+								if (user.equals(p.getName())) {
 									p.sendMessage(PREFIX + "Your rank has been updated to " + ChatColor.GOLD + g.getName() + ChatColor.YELLOW + "!");
 								} else {
 									p.sendMessage(PREFIX + "You have updated " + ChatColor.GOLD + args[1] + ChatColor.YELLOW + "'s rank to "
 											+ ChatColor.GOLD + g.getName() + ChatColor.YELLOW + "!");
+									Player t = Bukkit.getPlayerExact(user);
+									assert t != null;
 									if (t.isOnline()) {
 										t.sendMessage(PREFIX + "Your rank has been updated to " + ChatColor.GOLD + g.getName() + ChatColor.YELLOW + " by " + ChatColor.GOLD
 												+ p.getName() + ChatColor.YELLOW + "!");
