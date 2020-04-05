@@ -26,7 +26,7 @@ public class Ranks implements CommandExecutor {
 			} else {
 				Player x = (Player) sender;
 				User p = new User(x);
-				if (Perm.hasPerm(p, PermGroup.MANAGER) || (p.getName().equals("shizleshizle") || p.getName().equals("iMelvin"))) {
+				if (Perm.hasPerm(p, PermGroup.MANAGER) || (p.getName().equals("shizleshizle") || p.getName().equals("iMelvin") || p.getName().equals("Bratlie"))) {
 					if (args.length == 1) {
 						if (args[0].equalsIgnoreCase("list")) {
 							p.sendMessage(PREFIX + "There are a total of " + ChatColor.GOLD + PermGroup.getTotal() + ChatColor.YELLOW + " ranks! Here they are:");
@@ -71,15 +71,15 @@ public class Ranks implements CommandExecutor {
 								p.sendMessage(PREFIX + "Invalid rank!");
 							} else {
 								Main.sql.getReady();
-								if (g.equals(PermGroup.OWNER) && (p.getName().equals("shizleshizle") || p.getName().equals("iMelvin") || Perm.hasPerm(p, PermGroup.OWNER))) { 
+								if (g.equals(PermGroup.OWNER) && (p.getName().equals("shizleshizle") || p.getName().equals("iMelvin") || p.getName().equals("Bratlie") || Perm.hasPerm(p, PermGroup.OWNER))) {
 									Perm.updateGroup(user, g);
 								} else if (g.equals(PermGroup.LEAD_DEVELOPER) && p.getName().equals("shizleshizle")) {
 									Perm.updateGroup(user, g);
-								} else if (g.equals(PermGroup.DEVELOPER) && (p.getName().equals("shizleshizle") || p.getName().equals("iMelvin") 
+								} else if (g.equals(PermGroup.DEVELOPER) && (p.getName().equals("shizleshizle") || p.getName().equals("iMelvin") || p.getName().equals("Bratlie")
 										|| Perm.hasPerm(p, PermGroup.DEVELOPER))) {
 									Perm.updateGroup(user, g);
-								} else if (g.equals(PermGroup.MANAGER) && ( (p.getName().equals("shizleshizle") || p.getName().equals("iMelvin")) 
-										|| Perm.hasPerm(p, PermGroup.MANAGER) )) {	
+								} else if (g.equals(PermGroup.MANAGER) && ( (p.getName().equals("shizleshizle") || p.getName().equals("iMelvin")) || p.getName().equals("Bratlie")
+										|| Perm.hasPerm(p, PermGroup.MANAGER) )) {
 									Perm.updateGroup(user, g);
 								} else if (g.getId() < PermGroup.MANAGER.getId() && Perm.hasPerm(p, PermGroup.MANAGER)) {
 									Perm.updateGroup(user, g);
@@ -91,7 +91,7 @@ public class Ranks implements CommandExecutor {
 								if (t.getName().equals(p.getName())) {
 									p.sendMessage(PREFIX + "Your rank has been updated to " + ChatColor.GOLD + g.getName() + ChatColor.YELLOW + "!");
 								} else {
-									p.sendMessage(PREFIX + "You have updated " + ChatColor.GOLD + user + ChatColor.YELLOW + "'s rank to "
+									p.sendMessage(PREFIX + "You have updated " + ChatColor.GOLD + args[1] + ChatColor.YELLOW + "'s rank to "
 											+ ChatColor.GOLD + g.getName() + ChatColor.YELLOW + "!");
 									if (t.isOnline()) {
 										t.sendMessage(PREFIX + "Your rank has been updated to " + ChatColor.GOLD + g.getName() + ChatColor.YELLOW + " by " + ChatColor.GOLD
