@@ -92,9 +92,9 @@ public class Ranks implements CommandExecutor {
 								} else {
 									p.sendMessage(PREFIX + "You have updated " + ChatColor.GOLD + args[1] + ChatColor.YELLOW + "'s rank to "
 											+ ChatColor.GOLD + g.getName() + ChatColor.YELLOW + "!");
-									Player t = Bukkit.getPlayerExact(user);
+									Player t = Bukkit.getPlayer(user);
 									assert t != null;
-									if (t.isOnline()) {
+									if (Bukkit.getOnlinePlayers().contains(t)) {
 										t.sendMessage(PREFIX + "Your rank has been updated to " + ChatColor.GOLD + g.getName() + ChatColor.YELLOW + " by " + ChatColor.GOLD
 												+ p.getName() + ChatColor.YELLOW + "!");
 									}
