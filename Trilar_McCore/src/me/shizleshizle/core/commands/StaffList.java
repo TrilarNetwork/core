@@ -55,28 +55,28 @@ public class StaffList implements CommandExecutor {
 				for (String s : staff.keySet()) {
 					switch (staff.get(s)) {
 					case JR_HELPER:
-						jrhelpers.append(s).append(" ");
+						jrhelpers.append(s).append(", ");
 						break;
 					case HELPER:
-						helpers.append(s).append(" ");
+						helpers.append(s).append(", ");
 						break;
 					case MODERATOR:
-						mode.append(s).append(" ");
+						mode.append(s).append(", ");
 						break;
 					case ADMIN:
-						adm.append(s).append(" ");
+						adm.append(s).append(", ");
 						break;
 					case MANAGER:
-						manager.append(s).append(" ");
+						manager.append(s).append(", ");
 						break;
 					case OWNER:
-						owners.append(s).append(" ");
+						owners.append(s).append(", ");
 						break;
 					case DEVELOPER:
-						deve.append(s).append(" ");
+						deve.append(s).append(", ");
 						break;
 					case LEAD_DEVELOPER:
-						ldeve.append(s).append(" ");
+						ldeve.append(s).append(", ");
 						break;
 					default:
 						break;

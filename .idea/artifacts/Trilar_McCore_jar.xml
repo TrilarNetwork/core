@@ -6,8 +6,6 @@
         <element id="module-output" name="Trilar_McCore" />
       </element>
       <element id="library" level="module" name="spigot-1.8.8.jar" module-name="Trilar_McCore" />
-      <element id="library" level="project" name="Vault-1.5.6" />
-      <element id="library" level="project" name="Spigot-1.8.8" />
       <element id="library" level="module" name="Vault-1.5.6.jar" module-name="Trilar_McCore" />
     </root>
   </artifact>
