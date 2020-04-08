@@ -12,6 +12,8 @@ import me.shizleshizle.core.utils.CI;
 import me.shizleshizle.core.utils.Cooldowns;
 import me.shizleshizle.core.utils.NickNameManager;
 import org.bukkit.*;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Player.Spigot;
@@ -19,7 +21,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
-import org.bukkit.inventory.meta.Repairable;
+import org.bukkit.inventory.meta.Damageable;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
@@ -31,10 +34,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 public class User {
 	private Player p;
@@ -220,8 +220,12 @@ public class User {
 		return p.getInventory();
 	}
 	
-	public ItemStack getItemInHand() {
-		return p.getItemInHand();
+	public ItemStack getItemInMainHand() {
+		return p.getInventory().getItemInMainHand();
+	}
+
+	public ItemStack getItemInOffHand() {
+		return p.getInventory().getItemInOffHand();
 	}
 	
 	public ItemStack getItemOnCursor() {
@@ -240,8 +244,8 @@ public class User {
 		return p.getLocation();
 	}
 	
-	public double getMaxHealth() {
-		return p.getMaxHealth();
+	public AttributeInstance getMaxHealth() {
+		return p.getAttribute(Attribute.GENERIC_MAX_HEALTH);
 	}
 	
 	public String getName() {
@@ -404,7 +408,7 @@ public class User {
 	}
 	
 	public void hideUser(User u) {
-		p.hidePlayer(u.getUser());
+		p.hidePlayer(Main.p, u.getUser());
 	}
 	
 	public boolean isAfk() {
@@ -434,8 +438,7 @@ public class User {
 	public boolean isGod() {
 		return Main.gods.contains(p.getName());
 	}
-	
-	@SuppressWarnings("deprecation")
+
 	public boolean isOnGround() {
 		return p.isOnGround();
 	}
@@ -535,31 +538,30 @@ public class User {
 	}
 	
 	public void repairInHand() {
-        ItemStack i = p.getItemInHand();
-        if (i instanceof Repairable) {
-            i.setDurability(i.getType().getMaxDurability());
-        }
+        ItemStack i = getItemInMainHand();
+        Damageable meta = (Damageable) i.getItemMeta();
+        assert meta != null;
+        meta.setDamage(0);
+        i.setItemMeta((ItemMeta) meta);
     }
 
     public void repairAll() {
         for (ItemStack c : p.getInventory().getContents()) {
-            if (c instanceof Repairable) {
-                c.setDurability(c.getType().getMaxDurability());
-            }
+			Damageable meta = (Damageable) c.getItemMeta();
+			assert meta != null;
+			meta.setDamage(0);
+			c.setItemMeta((ItemMeta) meta);
         }
     }
 
     public void repairArmor() {
-        for (ItemStack a : p.getEquipment().getArmorContents()) {
-            if (a instanceof Repairable) {
-                a.setDurability(a.getType().getMaxDurability());
-            }
+        for (ItemStack a : Objects.requireNonNull(p.getEquipment()).getArmorContents()) {
+			Damageable meta = (Damageable) a.getItemMeta();
+			assert meta != null;
+			meta.setDamage(0);
+			a.setItemMeta((ItemMeta) meta);
         }
     }
-	
-	public void resetMaxHealth() {
-		p.resetMaxHealth();
-	}
 	
 	public void resetUserTime() {
 		p.resetPlayerTime();
@@ -708,7 +710,11 @@ public class User {
 	}
 	
 	public void setItemInHand(ItemStack item) {
-		p.setItemInHand(item);
+		p.getInventory().setItemInMainHand(item);
+	}
+
+	public void setItemInOffHand(ItemStack item) {
+		p.getInventory().setItemInOffHand(item);
 	}
 	
 	public void setItemOnCursor(ItemStack item) {
@@ -717,10 +723,6 @@ public class User {
 	
 	public void setLevel(int level) {
 		p.setLevel(level);
-	}
-	
-	public void setMaxHealth(double maxhealth) {
-		p.setMaxHealth(maxhealth);
 	}
 	
 	public void setNick(String nick) {
@@ -805,7 +807,7 @@ public class User {
             for (Player x : Bukkit.getOnlinePlayers()) {
                 User ap = new User(x);
                 if (!canSee(ap) || !Perm.hasPerm(ap, PermGroup.ADMIN)) {
-                    x.hidePlayer(p);
+                    x.hidePlayer(Main.p, p);
                 }
             }
         } else {
@@ -831,14 +833,14 @@ public class User {
 				p.setFallDistance(0);
 				p.setCanPickupItems(true);
 				for (Player x : Bukkit.getOnlinePlayers()) {
-					x.showPlayer(p);
+					x.showPlayer(Main.p, p);
 				}
 			}
         }
     }
 	
 	public void showUser(User u) {
-		p.showPlayer(u.getUser());
+		p.showPlayer(Main.p, u.getUser());
 	}
 	
 	public void setWalkSpeed(float speed) {
@@ -888,7 +890,7 @@ public class User {
             z = Main.c.getSpawn().getDouble("spawn.z");
             yaw = (float) Main.c.getSpawn().getDouble("spawn.yaw");
             pitch = (float) Main.c.getSpawn().getDouble("spawn.pitch");
-            w = Bukkit.getServer().getWorld(Main.c.getSpawn().getString("spawn.world"));
+            w = Bukkit.getServer().getWorld(Objects.requireNonNull(Main.c.getSpawn().getString("spawn.world")));
             Location l = new Location(w, x, y, z);
             l.setYaw(yaw);
             l.setPitch(pitch);
@@ -923,7 +925,7 @@ public class User {
                 z = Main.c.getWarps().getDouble("settings.warps." + warp + ".z");
                 yaw = (float) Main.c.getWarps().getDouble("settings.warps." + warp + ".yaw");
                 pitch = (float) Main.c.getWarps().getDouble("settings.warps." + warp + ".pitch");
-                w = Bukkit.getServer().getWorld(Main.c.getWarps().getString("settings.warps." + warp + ".world"));
+                w = Bukkit.getServer().getWorld(Objects.requireNonNull(Main.c.getWarps().getString("settings.warps." + warp + ".world")));
                 Location l = new Location(w, x, y, z);
                 l.setYaw(yaw);
                 l.setPitch(pitch);

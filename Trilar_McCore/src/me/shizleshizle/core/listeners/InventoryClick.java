@@ -1,5 +1,8 @@
 package me.shizleshizle.core.listeners;
 
+import me.shizleshizle.core.Main;
+import me.shizleshizle.core.commands.cmdutils.VanishUtils;
+import me.shizleshizle.core.objects.User;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -9,8 +12,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
-import me.shizleshizle.core.commands.cmdutils.VanishUtils;
-import me.shizleshizle.core.objects.User;
+import java.util.Objects;
 
 public class InventoryClick implements Listener {
 
@@ -26,11 +28,16 @@ public class InventoryClick implements Listener {
 			}
 		}
 		ItemStack i = e.getCurrentItem();
+		if (i == null) return;
 		if (ChatColor.stripColor(p.getOpenInventory().getTitle()).equals("Player List")) {
 			e.setCancelled(true);
-			if (i.getType() == Material.SKULL_ITEM) {
+			if (i.getType() == Material.PLAYER_HEAD) {
 				if (i.hasItemMeta()) {
-					Player t = Bukkit.getPlayer(ChatColor.stripColor(i.getItemMeta().getDisplayName()));
+					Player t = Bukkit.getPlayer(ChatColor.stripColor(Objects.requireNonNull(i.getItemMeta()).getDisplayName()));
+					if (t == null) {
+						p.sendMessage(Main.PREFIX + "This player does not exist!");
+						return;
+					}
 					p.teleport(t.getLocation());
 					p.closeInventory();
 				}

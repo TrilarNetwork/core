@@ -1,12 +1,12 @@
 package me.shizleshizle.core.commands.cmdutils;
 
-import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
-import org.bukkit.OfflinePlayer;
-
 import me.shizleshizle.core.Main;
 import me.shizleshizle.core.listeners.PlayerQuit;
 import me.shizleshizle.core.objects.User;
+import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
+import org.bukkit.OfflinePlayer;
+import org.bukkit.attribute.AttributeInstance;
 
 public class WhoIsUtils {
 
@@ -171,8 +171,8 @@ public class WhoIsUtils {
     public static String getHealth(User p) {
         String s;
         int health = (int) p.getHealth();
-        double mh = p.getMaxHealth();
-        s = ChatColor.GOLD.toString() + health + ChatColor.YELLOW + "/" + ChatColor.GOLD + mh;
+        AttributeInstance mh = p.getMaxHealth();
+        s = ChatColor.GOLD.toString() + health + ChatColor.YELLOW + "/" + ChatColor.GOLD + mh.getValue();
         return s;
     }
 

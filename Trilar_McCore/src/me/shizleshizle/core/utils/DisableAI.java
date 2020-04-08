@@ -1,14 +1,18 @@
 package me.shizleshizle.core.utils;
 
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftEntity;
+import net.minecraft.server.v1_15_R1.NBTTagCompound;
+import org.bukkit.craftbukkit.v1_15_R1.entity.CraftEntity;
 import org.bukkit.entity.Entity;
-
-import net.minecraft.server.v1_8_R3.NBTTagCompound;
+import org.bukkit.entity.LivingEntity;
 
 public class DisableAI {
 
 	public static void disableAI(Entity entity) {
-		net.minecraft.server.v1_8_R3.Entity nmsEntity = ((CraftEntity) entity).getHandle();
+		if (entity instanceof LivingEntity) {
+			LivingEntity living = (LivingEntity) entity;
+			living.setAI(false);
+		}
+		/*net.minecraft.server.v1_15_R1.Entity nmsEntity = ((CraftEntity) entity).getHandle();
 		NBTTagCompound tag = nmsEntity.getNBTTag();
 		
 		if (tag == null) {
@@ -17,6 +21,6 @@ public class DisableAI {
 		
 		nmsEntity.c(tag);
 		tag.setInt("NoAI", 1);
-		nmsEntity.f(tag);
+		nmsEntity.f(tag);*/
 	}
 }
