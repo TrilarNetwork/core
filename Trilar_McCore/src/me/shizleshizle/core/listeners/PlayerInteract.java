@@ -104,7 +104,7 @@ public class PlayerInteract implements Listener {
 							inv.setContents(chi.getContents());
 							p.openInventory(inv);
 							VanishUtils.addInvs(p, inv);
-						} else if (type.equals(Material.FURNACE) || type.equals(Material.BURNING_FURNACE)) {
+						} else if (type.equals(Material.FURNACE) || type.equals(Material.BLAST_FURNACE)) {
 							e.setCancelled(true);
 							Furnace ch = (Furnace) e.getClickedBlock().getState();
 							Inventory chi = ch.getInventory();
@@ -122,10 +122,10 @@ public class PlayerInteract implements Listener {
 							Inventory chi = ch.getInventory();
 							p.openInventory(chi);
 							VanishUtils.addInvs(p, chi);
-						} else if (type.equals(Material.STONE_BUTTON) || type.equals(Material.WOOD_BUTTON) || type.equals(Material.IRON_PLATE) 
-								|| type.equals(Material.GOLD_PLATE) || type.equals(Material.WOOD_PLATE) || type.equals(Material.STONE_PLATE)) {
+						} else if (type.equals(Material.STONE_BUTTON) || type.equals(Material.OAK_BUTTON) || type.equals(Material.HEAVY_WEIGHTED_PRESSURE_PLATE)
+								|| type.equals(Material.LIGHT_WEIGHTED_PRESSURE_PLATE) || type.equals(Material.OAK_PRESSURE_PLATE) || type.equals(Material.STONE_PRESSURE_PLATE)) {
 							e.setCancelled(true);
-						} else if (type.equals(Material.WOODEN_DOOR) || type.equals(Material.WOOD_DOOR) || type.equals(Material.IRON_DOOR_BLOCK) 
+						} else if (type.equals(Material.OAK_DOOR) || type.equals(Material.OAK_DOOR) || type.equals(Material.IRON_DOOR)
 								|| type.equals(Material.IRON_DOOR)) {
 							e.setCancelled(true);
 							double x = e.getClickedBlock().getLocation().getBlockX();
