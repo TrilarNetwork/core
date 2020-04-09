@@ -1,5 +1,6 @@
 package me.shizleshizle.core.utils;
 
+import me.shizleshizle.core.objects.User;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -7,8 +8,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
-
-import me.shizleshizle.core.objects.User;
 
 public class GUI {
 
@@ -29,11 +28,11 @@ public class GUI {
 		}
 		Inventory inv = Bukkit.createInventory(null, size, "Player List");
 		for (Player ap : p.getServer().getOnlinePlayers()) {
-			ItemStack i = CI.createItem(Material.SKULL_ITEM, 1, -1, ChatColor.WHITE + ap.getName());
-			SkullMeta m = (SkullMeta) i.getItemMeta();
-			m.setOwner(ap.getName());
-			i.setDurability((short) 3);
-			i.setItemMeta(m);
+			ItemStack i = CI.createItem(Material.PLAYER_HEAD, 1, -1, ChatColor.WHITE + ap.getName());
+			SkullMeta meta = (SkullMeta) i.getItemMeta();
+			assert meta != null;
+			meta.setOwningPlayer(ap.getPlayer());
+			i.setItemMeta(meta);
 			inv.addItem(i);
 		}
 		p.openInventory(inv);

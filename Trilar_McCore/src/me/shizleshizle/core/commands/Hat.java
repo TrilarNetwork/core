@@ -26,8 +26,8 @@ public class Hat implements CommandExecutor {
 				User p = new User(x);
 				if (Perm.hasPerm(p, PermGroup.MEMBER)) {
 					if (args.length == 0) {
-						if (p.getItemInHand() != null) {
-							ItemStack i = p.getItemInHand();
+						if (p.getItemInMainHand() != null) {
+							ItemStack i = p.getItemInMainHand();
 							if (p.getInventory().getHelmet() != null) {
 								p.setItemInHand(p.getInventory().getHelmet());
 								p.sendMessage(PREFIX + "Enjoy your hat!");

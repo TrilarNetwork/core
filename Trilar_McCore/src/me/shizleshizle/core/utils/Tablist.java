@@ -4,7 +4,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-import me.shizleshizle.core.Main;
 import me.shizleshizle.core.objects.User;
 
 public class Tablist {
@@ -13,7 +12,7 @@ public class Tablist {
 		try {
 			for (Player p : players) {
 				User p2 = new User(p);
-				Title.sendHeaderAndFooter(p, Main.PREFIX, ChatColor.AQUA + "https://www.trilarnetwork.nl"
+				Title.sendHeaderAndFooter(p, ChatColor.AQUA + "https://www.trilarnetwork.nl"
 								+ ChatColor.GOLD + "\n   Online:" + ChatColor.DARK_GRAY + ChatColor.BOLD.toString() + " -» " + ChatColor.GOLD + getTotal() + " players" 
 								+ ChatColor.GRAY + "\n Rank: " + p2.getGroup().getPrefix());
 			}

@@ -1,5 +1,12 @@
 package me.shizleshizle.core.commands;
 
+import me.shizleshizle.core.objects.User;
+import me.shizleshizle.core.permissions.Perm;
+import me.shizleshizle.core.permissions.PermGroup;
+import me.shizleshizle.core.utils.CI;
+import me.shizleshizle.core.utils.ErrorMessages;
+import me.shizleshizle.core.utils.ErrorMessages.Messages;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -8,13 +15,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
-
-import me.shizleshizle.core.objects.User;
-import me.shizleshizle.core.permissions.Perm;
-import me.shizleshizle.core.permissions.PermGroup;
-import me.shizleshizle.core.utils.CI;
-import me.shizleshizle.core.utils.ErrorMessages;
-import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class Skulls implements CommandExecutor {
 	private final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Skulls" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
@@ -51,10 +51,10 @@ public class Skulls implements CommandExecutor {
 	}
 
 	public static ItemStack getSkull(String owner, int amount, String name, String... lore) {
-		ItemStack skull = CI.createItem(Material.SKULL_ITEM, amount, -1, name, lore);
+		ItemStack skull = CI.createItem(Material.PLAYER_HEAD, amount, -1, name, lore);
 		SkullMeta sm = (SkullMeta) skull.getItemMeta();
-		sm.setOwner(owner);
-		skull.setDurability((short) 3);
+		assert sm != null;
+		sm.setOwningPlayer(Bukkit.getPlayerExact(owner));
 		skull.setItemMeta(sm);
 		return skull;
 	}

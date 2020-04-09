@@ -1,11 +1,11 @@
 package me.shizleshizle.core.listeners;
 
+import me.shizleshizle.core.objects.User;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerPickupItemEvent;
-
-import me.shizleshizle.core.objects.User;
 
 public class PlayerPD implements Listener {
 
@@ -18,8 +18,9 @@ public class PlayerPD implements Listener {
     }
 
     @EventHandler
-    public void onPickup(PlayerPickupItemEvent e) {
-        User p = new User(e.getPlayer());
+    public void onPickup(EntityPickupItemEvent e) {
+        if (!(e instanceof Player)) return;
+        User p = new User((Player) e.getEntity());
         if (p.isVanished()) {
             e.setCancelled(true);
         }
