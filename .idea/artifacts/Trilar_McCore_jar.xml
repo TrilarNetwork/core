@@ -1,12 +1,8 @@
 <component name="ArtifactManager">
-  <artifact name="Trilar_McCore:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/Trilar_McCore_jar</output-path>
-    <root id="root">
-      <element id="archive" name="Trilar_McCore.jar">
-        <element id="module-output" name="Trilar_McCore" />
-      </element>
-      <element id="library" level="module" name="spigot-1.8.8.jar" module-name="Trilar_McCore" />
-      <element id="library" level="module" name="Vault-1.5.6.jar" module-name="Trilar_McCore" />
+  <artifact type="jar" name="Trilar_McCore.jar">
+    <output-path>$PROJECT_DIR$/../../Alle mappen + Bestanden/Trilar</output-path>
+    <root id="archive" name="Trilar_McCore.jar">
+      <element id="module-output" name="Trilar_McCore" />
     </root>
   </artifact>
 </component>
