@@ -38,5 +38,6 @@
     </orderEntry>
     <orderEntry type="library" name="spigot-1.15.2" level="project" />
     <orderEntry type="library" name="Vault" level="project" />
+    <orderEntry type="library" name="Spigot-1.15.2" level="project" />
   </component>
 </module>
