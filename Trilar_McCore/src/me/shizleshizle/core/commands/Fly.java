@@ -25,8 +25,7 @@ public class Fly implements CommandExecutor {
 			if (!(sender instanceof Player)) {
 				sender.sendMessage(ChatColor.RED + "You must be a player to perform this command!");
 			} else {
-				Player pl = (Player) sender;
-				User p = new User(pl);
+				User p = new User((Player) sender);
 				if (args.length == 0) {
 					if (Perm.hasPerm(p, PermGroup.HELPER)) {
 						if (p.getAllowFlight()) {

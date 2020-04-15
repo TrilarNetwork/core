@@ -8,20 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="76ff671f-a9a7-4629-82fe-8496399b519c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trilar_McCore.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Trilar_McCore.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/shizleshizle/core/commands/Enchant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/shizleshizle/core/commands/Enchant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/shizleshizle/core/commands/Hat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/shizleshizle/core/commands/Hat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/shizleshizle/core/commands/Skulls.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/shizleshizle/core/commands/Skulls.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/shizleshizle/core/commands/cmdutils/WhoIsUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/shizleshizle/core/commands/cmdutils/WhoIsUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/shizleshizle/core/listeners/InventoryClick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/shizleshizle/core/listeners/InventoryClick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/shizleshizle/core/listeners/PlayerInteract.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/shizleshizle/core/listeners/PlayerInteract.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/shizleshizle/core/listeners/PlayerPD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/shizleshizle/core/listeners/PlayerPD.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/shizleshizle/core/objects/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/shizleshizle/core/objects/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/shizleshizle/core/utils/CI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/shizleshizle/core/utils/CI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/shizleshizle/core/utils/DisableAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/shizleshizle/core/utils/DisableAI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/shizleshizle/core/utils/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/shizleshizle/core/utils/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/shizleshizle/core/utils/T_ItemStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/shizleshizle/core/utils/T_ItemStack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/shizleshizle/core/utils/Tablist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/shizleshizle/core/utils/Tablist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/me/shizleshizle/core/commands/Fly.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/shizleshizle/core/commands/Fly.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/me/shizleshizle/core/utils/Title.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/shizleshizle/core/utils/Title.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
