@@ -2,11 +2,8 @@
   <library name="Vault">
     <CLASSES>
       <root url="jar://C:/Development/Vault.jar!/" />
-      <root url="jar://C:/Development/spigot-1.15.2.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES>
-      <root url="jar://C:/Development/spigot-1.15.2.jar!/" />
-    </SOURCES>
+    <SOURCES />
   </library>
 </component>

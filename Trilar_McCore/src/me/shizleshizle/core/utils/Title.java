@@ -2,6 +2,7 @@ package me.shizleshizle.core.utils;
 
 import me.shizleshizle.core.objects.User;
 import net.minecraft.server.v1_15_R1.IChatBaseComponent;
+import net.minecraft.server.v1_15_R1.IChatBaseComponent.ChatSerializer;
 import net.minecraft.server.v1_15_R1.PacketPlayOutPlayerListHeaderFooter;
 import net.minecraft.server.v1_15_R1.PacketPlayOutTitle;
 import net.minecraft.server.v1_15_R1.PlayerConnection;
