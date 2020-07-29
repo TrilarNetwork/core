@@ -19,25 +19,24 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../Spigot-1.15.2.jar!/" />
+          <root url="jar://$USER_HOME$/Spigot-1.15.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$MODULE_DIR$/../../../Spigot-1.15.2.jar!/" />
+          <root url="jar://$USER_HOME$/Spigot-1.15.2.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../Vault-1.7.2-1.15.2.jar!/" />
+          <root url="jar://$USER_HOME$/Vault-1.7.2-1.15.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="spigot-1.15.2" level="project" />
-    <orderEntry type="library" name="Vault" level="project" />
     <orderEntry type="library" name="Spigot-1.15.2" level="project" />
+    <orderEntry type="library" name="Vault-1.7.2-1.15.2" level="project" />
   </component>
 </module>
