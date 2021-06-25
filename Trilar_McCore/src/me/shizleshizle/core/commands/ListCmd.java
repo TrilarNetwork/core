@@ -28,7 +28,7 @@ public class ListCmd implements CommandExecutor {
 						amount++;
 					}
 				}
-				s = sb.toString().substring(0, sb.length() - 2);
+				s = sb.substring(0, sb.length() - 2);
 				if (amount == 1) {
 					sender.sendMessage(PREFIX + "There is " + ChatColor.GOLD + amount + ChatColor.YELLOW + " player online.");
 					sender.sendMessage(s + ChatColor.YELLOW + ".");
@@ -52,7 +52,7 @@ public class ListCmd implements CommandExecutor {
 							amount++;
 						}
 					}
-					s = sb.toString().substring(0, sb.length() - 2);
+					s = sb.substring(0, sb.length() - 2);
 					if (amount == 1) {
 						sender.sendMessage(PREFIX + "There is " + ChatColor.GOLD + amount + ChatColor.YELLOW + " player online.");
 						sender.sendMessage(s + ChatColor.YELLOW + ".");

@@ -1,10 +1,8 @@
 package me.shizleshizle.core.utils;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
-
 import me.shizleshizle.core.objects.User;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 public class Tablist {
 	
@@ -12,9 +10,9 @@ public class Tablist {
 		try {
 			for (Player p : players) {
 				User p2 = new User(p);
-				Title.sendHeaderAndFooter(p, ChatColor.AQUA + "https://www.trilarnetwork.nl"
-								+ ChatColor.GOLD + "\n   Online:" + ChatColor.DARK_GRAY + ChatColor.BOLD.toString() + " -» " + ChatColor.GOLD + getTotal() + " players" 
-								+ ChatColor.GRAY + "\n Rank: " + p2.getGroup().getPrefix());
+				//Title.sendHeaderAndFooter(p, ChatColor.AQUA + "https://www.trilarnetwork.nl"
+				//				+ ChatColor.GOLD + "\n   Online:" + ChatColor.DARK_GRAY + ChatColor.BOLD.toString() + " -» " + ChatColor.GOLD + getTotal() + " players"
+				//				+ ChatColor.GRAY + "\n Rank: " + p2.getGroup().getPrefix());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

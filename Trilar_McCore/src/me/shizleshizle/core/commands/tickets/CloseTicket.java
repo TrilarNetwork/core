@@ -1,19 +1,18 @@
 package me.shizleshizle.core.commands.tickets;
 
-import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
 import me.shizleshizle.core.commands.Broadcast;
 import me.shizleshizle.core.commands.cmdutils.TicketUtils;
 import me.shizleshizle.core.objects.User;
 import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermGroup;
 import me.shizleshizle.core.utils.ErrorMessages;
-import me.shizleshizle.core.utils.Numbers;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
+import me.shizleshizle.core.utils.Numbers;
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class CloseTicket implements CommandExecutor {
  	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Tickets" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;

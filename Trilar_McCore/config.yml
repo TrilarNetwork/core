@@ -4,13 +4,14 @@ settings:
   maxhomes: 1
   teleportWaitTime: 5
   autoBroadcastDelay: 60
+  enableAutoBroadcast: false
   removeOnQuit: false
   database:
-    hostname: tropicalhost.nl
+    hostname: phpmyadmin.danibaas.nl
     port: 3306
-    database: mininetw_thub
-    username: mininetw_thub
-    password: Trilar2018
+    database: trilar
+    username: trilar
+    password: pgr6WdgRXhnhwJNm
   broadcastMessages:
     - '&6Welcome to &eTrilar&6!'
     - '&6Do you have any questions? Feel free to ask!'

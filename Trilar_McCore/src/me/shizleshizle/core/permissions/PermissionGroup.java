@@ -14,7 +14,7 @@ public class PermissionGroup {
 		PreparedStatement s;
 		try {
 			s = Main.sql.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS group_permissions (`group` varchar(50), permission varchar(128))");
-										  s.executeUpdate("CREATE TABLE IF NOT EXISTS player_ranks (player varchar(32), rank varchar(50))");
+										  s.executeUpdate("CREATE TABLE IF NOT EXISTS player_ranks (player varchar(32), mcrank varchar(50))");
 			s.executeUpdate();
 			s.close();
 		} catch (SQLException e) {

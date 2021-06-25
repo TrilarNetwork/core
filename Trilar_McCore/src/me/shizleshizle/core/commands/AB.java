@@ -1,11 +1,5 @@
 package me.shizleshizle.core.commands;
 
-import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
 import me.shizleshizle.core.Main;
 import me.shizleshizle.core.objects.User;
 import me.shizleshizle.core.permissions.Perm;
@@ -13,6 +7,11 @@ import me.shizleshizle.core.permissions.PermGroup;
 import me.shizleshizle.core.utils.AutoB;
 import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 // AB = AutoBroadcaster
 public class AB implements CommandExecutor {
@@ -26,12 +25,7 @@ public class AB implements CommandExecutor {
 				if (Perm.hasPerm(p, PermGroup.ADMIN)) {
 					if (args.length == 0) {
 						p.sendMessage(ChatColor.GOLD + "-=[ Auto-Broadcaster ]=-");
-						String on;
-						if (AutoB.isBroadcasting()) {
-							on = ChatColor.GREEN + "true";
-						} else {
-							on = ChatColor.RED + "false";
-						}
+						String on = AutoB.isBroadcasting() ? ChatColor.GREEN + "true" : ChatColor.RED + "false";
 						p.sendMessage(ChatColor.GOLD + "Enabled: " + on);
 						p.sendMessage(ChatColor.GOLD + "Delay: " + ChatColor.YELLOW + Main.autobroadcastDelay);
 					} else if (args.length == 1) {

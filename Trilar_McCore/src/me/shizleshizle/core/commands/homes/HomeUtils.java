@@ -64,6 +64,10 @@ public class HomeUtils {
 				!= null && Main.c.getHomes().get("homes." + p.getName() + "." + name + ".pitch") != null 
 				&& Main.c.getHomes().get("homes." + p.getName() + "." + name + ".world") != null) {
 			String wname = Main.c.getHomes().getString("homes." + p.getName() + "." + name + ".world");
+			if (wname == null) {
+				p.sendMessage("Home is on a non-existing world");
+				return;
+			}
 			w = Bukkit.getWorld(wname);
 			x = Main.c.getHomes().getDouble("homes." + p.getName() + "." + name + ".x");
 			y = Main.c.getHomes().getDouble("homes." + p.getName() + "." + name + ".y");
@@ -95,6 +99,10 @@ public class HomeUtils {
 				Main.c.getHomes().get("homes." + p + "." + homename + ".z") != null && Main.c.getHomes().get("homes." + p + "." + homename + ".yaw") != null &&
 				Main.c.getHomes().get("homes." + p + "." + homename + ".pitch") != null && Main.c.getHomes().get("homes." + p + "." + homename + ".world") != null) {
 			String wname = Main.c.getHomes().getString("homes." + p + "." + homename + ".world");
+			if (wname == null) {
+				admin.sendMessage("Home is on a non-existing world");
+				return;
+			}
 			w = Bukkit.getWorld(wname);
 			x = Main.c.getHomes().getDouble("homes." + p + "." + homename + ".x");
 			y = Main.c.getHomes().getDouble("homes." + p + "." + homename + ".y");

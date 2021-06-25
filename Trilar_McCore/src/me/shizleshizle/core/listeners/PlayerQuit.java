@@ -2,6 +2,7 @@ package me.shizleshizle.core.listeners;
 
 import me.shizleshizle.core.Main;
 import me.shizleshizle.core.commands.homes.HomeUtils;
+import me.shizleshizle.core.commands.teleportation.Tp;
 import me.shizleshizle.core.commands.teleportation.Tpa;
 import me.shizleshizle.core.commands.teleportation.Tpahere;
 import me.shizleshizle.core.objects.User;
@@ -63,8 +64,12 @@ public class PlayerQuit implements Listener {
 		if (Tpa.tpa.containsKey(p.getName())) {
             Tpa.toTP = false;
             Player t = Bukkit.getPlayer(Tpa.tpa.get(p.getName()));
-            t.sendMessage(Tpa.PREFIX + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " has left the server! Teleportation has been cancelled.");
-            Tpa.tpa.remove(p.getName());
+            if (t == null) {
+                p.sendMessage(Tp.PREFIX + "Player is not online!");
+            } else {
+                t.sendMessage(Tp.PREFIX + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " has left the server! Teleportation has been cancelled.");
+                Tpa.tpa.remove(p.getName());
+            }
         } else if (Tpa.tpa.containsValue(p.getName())) {
             Tpa.toTP = false;
             String n = "";
@@ -74,13 +79,21 @@ public class PlayerQuit implements Listener {
                 }
             }
             Player t = Bukkit.getPlayer(n);
-            t.sendMessage(Tpa.PREFIX + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " has left the server! Teleporation has been cancelled!");
-            Tpa.tpa.remove(t.getName());
+            if (t == null) {
+                p.sendMessage(Tp.PREFIX + "Player is not online!");
+            } else {
+                t.sendMessage(Tp.PREFIX + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " has left the server! Teleporation has been cancelled!");
+                Tpa.tpa.remove(t.getName());
+            }
         } else if (Main.tpahere.containsKey(p.getName())) {
             Tpahere.toTP = false;
             Player t = Bukkit.getPlayer(Main.tpahere.get(p.getName()));
-            t.sendMessage(Tpahere.PREFIX + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " has left the server! Teleportation has been cancelled.");
-            Main.tpahere.remove(p.getName());
+            if (t == null) {
+                p.sendMessage(Tp.PREFIX + "Player is not online!");
+            } else {
+                t.sendMessage(Tp.PREFIX + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " has left the server! Teleportation has been cancelled.");
+                Main.tpahere.remove(p.getName());
+            }
         } else if (Main.tpahere.containsValue(p.getName())) {
             Tpahere.toTP = false;
             String n = "";
@@ -90,8 +103,12 @@ public class PlayerQuit implements Listener {
                 }
             }
             Player t = Bukkit.getPlayer(n);
-            t.sendMessage(Tpahere.PREFIX + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " has left the server! Teleporation cancelled!");
-            Main.tpahere.remove(t.getName());
+            if (t == null) {
+                p.sendMessage(Tp.PREFIX + "Player is not online!");
+            } else {
+                t.sendMessage(Tp.PREFIX + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " has left the server! Teleporation cancelled!");
+                Main.tpahere.remove(t.getName());
+            }
         }
 		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.p, () -> {
 			int size = Bukkit.getOnlinePlayers().size();

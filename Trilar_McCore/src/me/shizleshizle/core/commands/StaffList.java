@@ -14,7 +14,7 @@ import java.util.HashMap;
 
 public class StaffList implements CommandExecutor {
 	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "List" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
-	private HashMap<String, PermGroup> staff = new HashMap<>();
+	private final HashMap<String, PermGroup> staff = new HashMap<>();
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("staff")) {

@@ -1,17 +1,16 @@
 package me.shizleshizle.core.commands;
 
-import org.bukkit.Bukkit;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
 import me.shizleshizle.core.objects.User;
 import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermGroup;
 import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class Kill implements CommandExecutor {
 	private final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Kill" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
@@ -25,7 +24,7 @@ public class Kill implements CommandExecutor {
 				if (Perm.hasPerm(p, PermGroup.MODERATOR)) {
 					if (args.length == 1) {
 						Player t = Bukkit.getPlayer(args[0]);
-						if (t.isOnline()) {
+						if (!(t == null) && t.isOnline()) {
 							t.setHealth(0);
 							t.sendMessage(PREFIX + "You have been killed!");
 							p.sendMessage(PREFIX + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " has been killed!");

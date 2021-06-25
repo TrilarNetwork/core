@@ -17,6 +17,15 @@ public class AutoB {
 	public static boolean isBroadcasting() {
 		return b;
 	}
+
+	public static void setBroadcasting(boolean broadcasting) {
+		broadcasting = b;
+	}
+
+	public static void saveToConfig() {
+		Main.c.getConfig().set("settings.enableAutoBroadcast", b);
+		Main.c.saveConfig();
+	}
 	
 	public static String getStrings() {
 		StringBuilder sb = new StringBuilder();

@@ -1,84 +1,12 @@
 package me.shizleshizle.core;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.PluginManager;
-import org.bukkit.plugin.RegisteredServiceProvider;
-import org.bukkit.plugin.java.JavaPlugin;
-
-import me.shizleshizle.core.commands.AB;
-import me.shizleshizle.core.commands.Afk;
-import me.shizleshizle.core.commands.Back;
-import me.shizleshizle.core.commands.Balance;
-import me.shizleshizle.core.commands.Broadcast;
-import me.shizleshizle.core.commands.ChatColorCmd;
-import me.shizleshizle.core.commands.ClearChat;
-import me.shizleshizle.core.commands.ClearInventory;
-import me.shizleshizle.core.commands.CommandSpy;
-import me.shizleshizle.core.commands.Enchant;
-import me.shizleshizle.core.commands.Enderchest;
-import me.shizleshizle.core.commands.Feed;
-import me.shizleshizle.core.commands.Fly;
-import me.shizleshizle.core.commands.Freeze;
-import me.shizleshizle.core.commands.Gamemode;
-import me.shizleshizle.core.commands.Getpos;
-import me.shizleshizle.core.commands.God;
-import me.shizleshizle.core.commands.Hat;
-import me.shizleshizle.core.commands.Heal;
-import me.shizleshizle.core.commands.Help;
-import me.shizleshizle.core.commands.Invsee;
-import me.shizleshizle.core.commands.Kill;
-import me.shizleshizle.core.commands.ListCmd;
-import me.shizleshizle.core.commands.Lockdown;
-import me.shizleshizle.core.commands.Me;
-import me.shizleshizle.core.commands.Mods;
-import me.shizleshizle.core.commands.Nickname;
-import me.shizleshizle.core.commands.Pay;
-import me.shizleshizle.core.commands.PermissionsCmd;
-import me.shizleshizle.core.commands.PrefixCmd;
-import me.shizleshizle.core.commands.Ranks;
-import me.shizleshizle.core.commands.Reload;
-import me.shizleshizle.core.commands.Repair;
-import me.shizleshizle.core.commands.Rules;
-import me.shizleshizle.core.commands.Skulls;
-import me.shizleshizle.core.commands.SocialMedia;
-import me.shizleshizle.core.commands.Speed;
-import me.shizleshizle.core.commands.StaffList;
-import me.shizleshizle.core.commands.Suicide;
-import me.shizleshizle.core.commands.Vanish;
-import me.shizleshizle.core.commands.Weather;
-import me.shizleshizle.core.commands.WhoIs;
-import me.shizleshizle.core.commands.Wild;
-import me.shizleshizle.core.commands.Workbench;
+import me.shizleshizle.core.commands.*;
 import me.shizleshizle.core.commands.homes.Delhome;
 import me.shizleshizle.core.commands.homes.Home;
 import me.shizleshizle.core.commands.homes.Sethome;
 import me.shizleshizle.core.commands.spawn.Spawn;
-import me.shizleshizle.core.commands.teleportation.Tp;
-import me.shizleshizle.core.commands.teleportation.TpDeny;
-import me.shizleshizle.core.commands.teleportation.Tpa;
-import me.shizleshizle.core.commands.teleportation.Tpaccept;
-import me.shizleshizle.core.commands.teleportation.Tpahere;
-import me.shizleshizle.core.commands.teleportation.Tpall;
-import me.shizleshizle.core.commands.teleportation.Tphere;
-import me.shizleshizle.core.commands.teleportation.Tpo;
-import me.shizleshizle.core.commands.teleportation.Tpohere;
-import me.shizleshizle.core.commands.teleportation.Tppos;
-import me.shizleshizle.core.commands.teleportation.Tptoggle;
-import me.shizleshizle.core.commands.tickets.CheckTicket;
-import me.shizleshizle.core.commands.tickets.CloseTicket;
-import me.shizleshizle.core.commands.tickets.TakeTicket;
-import me.shizleshizle.core.commands.tickets.Ticket;
-import me.shizleshizle.core.commands.tickets.Tickets;
+import me.shizleshizle.core.commands.teleportation.*;
+import me.shizleshizle.core.commands.tickets.*;
 import me.shizleshizle.core.commands.time.DayCmd;
 import me.shizleshizle.core.commands.time.NightCmd;
 import me.shizleshizle.core.commands.time.PTime;
@@ -86,29 +14,33 @@ import me.shizleshizle.core.commands.time.Time;
 import me.shizleshizle.core.commands.warps.Deletewarps;
 import me.shizleshizle.core.commands.warps.Setwarps;
 import me.shizleshizle.core.commands.warps.Warp;
-import me.shizleshizle.core.listeners.BlockBreak;
-import me.shizleshizle.core.listeners.BlockPlace;
-import me.shizleshizle.core.listeners.EntityDamage;
-import me.shizleshizle.core.listeners.EntityTarget;
-import me.shizleshizle.core.listeners.FoodChange;
-import me.shizleshizle.core.listeners.InventoryClick;
-import me.shizleshizle.core.listeners.PlayerChat;
-import me.shizleshizle.core.listeners.PlayerInteract;
-import me.shizleshizle.core.listeners.PlayerJoin;
-import me.shizleshizle.core.listeners.PlayerMove;
-import me.shizleshizle.core.listeners.PlayerPD;
-import me.shizleshizle.core.listeners.PlayerPreProcess;
-import me.shizleshizle.core.listeners.PlayerQuit;
-import me.shizleshizle.core.listeners.PlayerTeleport;
+import me.shizleshizle.core.listeners.*;
 import me.shizleshizle.core.mysql.MySQLManager;
 import me.shizleshizle.core.objects.ChatColorHandler;
 import me.shizleshizle.core.permissions.PermUser;
 import me.shizleshizle.core.permissions.PermissionGroup;
 import me.shizleshizle.core.permissions.Prefix;
 import me.shizleshizle.core.utils.AutoB;
+import me.shizleshizle.core.utils.CommandManager;
 import me.shizleshizle.core.utils.Cooldowns;
 import net.milkbowl.vault.Vault;
 import net.milkbowl.vault.economy.Economy;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.PluginCommand;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.RegisteredServiceProvider;
+import org.bukkit.plugin.java.JavaPlugin;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Main extends JavaPlugin {
 	public static List<String> msgs;
@@ -122,10 +54,12 @@ public class Main extends JavaPlugin {
 	public static ConfigManager c;
 	public static Economy econ = null;
 	public static MySQLManager sql;
+	public static CommandManager cman;
 	public static Plugin p;
 	public static boolean lockdown = false;
-	private static boolean lobby = false;
 	public static boolean remove;
+	private static boolean lobby = false;
+	public static boolean broadcastFuntion;
 	public static String host;
 	public static String db;
 	public static String user;
@@ -147,17 +81,19 @@ public class Main extends JavaPlugin {
 		c = ConfigManager.getInstance();
 		c.setup(this);
 		setupUtils();
-		loadVault();
+		//loadVault();
 		sql = MySQLManager.getInstance();
 		sql.setup();
 		PermissionGroup.setup();
 		PermUser.setup();
 		Prefix.setup();
 		ChatColorHandler.setup();
-		register();
-		registerEvents();
+		cman = new CommandManager(this);
+		cman.registerToServer();
+		//register();
+		//registerEvents();
 		Cooldowns.runCooldown();
-		AutoB.enable();
+		AutoB.setBroadcasting(broadcastFuntion);
 		broadcast();
 		long fin = System.currentTimeMillis() - time;
 		l.info("McCore >> successfully enabled! (" + fin + " ms)");
@@ -174,11 +110,12 @@ public class Main extends JavaPlugin {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		AutoB.saveToConfig();
 		long fin = System.currentTimeMillis() - time;
 		l.info("McCore >> successfully disabled! (" + fin + " ms)");
 	}
 
-	private void register() {
+	/*private void register() {
 		// commands
 		// home
 		getCommand("delhome").setExecutor(new Delhome());
@@ -275,11 +212,10 @@ public class Main extends JavaPlugin {
 		if (checkVault()) {
 			getCommand("balance").setExecutor(new Balance());
 			getCommand("pay").setExecutor(new Pay());
-
 		}
-	}
+	}*/
 
-	private void registerEvents() {
+	/*private void registerEvents() {
 		// events
 		PluginManager pm = Bukkit.getServer().getPluginManager();
 		pm.registerEvents(new BlockBreak(), this);
@@ -296,7 +232,7 @@ public class Main extends JavaPlugin {
 		pm.registerEvents(new PlayerPreProcess(), this);
 		pm.registerEvents(new PlayerQuit(), this);
 		pm.registerEvents(new PlayerTeleport(), this);
-	}
+	}*/
 
 	public static void setupUtils() {
 		lobby = c.getConfig().getBoolean("lobbyVersion");
@@ -310,6 +246,7 @@ public class Main extends JavaPlugin {
 		tpTime = c.getConfig().getInt("settings.teleportWaitTime");
 		maxHealth = c.getConfig().getInt("settings.maxHealth");
 		autobroadcastDelay = c.getConfig().getInt("settings.autoBroadcastDelay");
+		broadcastFuntion = c.getConfig().getBoolean("settings.enableAutoBroadcast");
 		msgs = Main.c.getConfig().getStringList("settings.broadcastMessages");
 	}
 
@@ -330,10 +267,10 @@ public class Main extends JavaPlugin {
 					i = 0;
 				}
 			}
-		}, 0L, autobroadcastDelay * 20);
+		}, 0L, autobroadcastDelay * 20L);
 	}
 
-	private boolean checkVault() {
+	public boolean checkVault() {
 		Plugin p = getServer().getPluginManager().getPlugin("Vault");
 		return (p instanceof Vault);
 	}
@@ -358,7 +295,7 @@ public class Main extends JavaPlugin {
 			return false;
 		}
 		econ = rsp.getProvider();
-		return econ != null;
+		return true;
 	}
 	
 	public static boolean isLobby() {

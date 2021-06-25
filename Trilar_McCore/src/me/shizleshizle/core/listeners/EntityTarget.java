@@ -13,7 +13,7 @@ public class EntityTarget implements Listener {
     public void onTarget(EntityTargetLivingEntityEvent e) {
         if (e.getTarget() instanceof Player) {
             User p = new User((Player) e.getTarget());
-            if (p.isVanished()) {
+            if (p.isVanished() || p.isGod()) {
                 e.setCancelled(true);
             }
         }

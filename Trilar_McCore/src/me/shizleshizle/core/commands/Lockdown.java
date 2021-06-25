@@ -17,7 +17,7 @@ import org.bukkit.scheduler.BukkitScheduler;
 
 public class Lockdown implements CommandExecutor {
  	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "lockdown" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
- 	private static BukkitScheduler bs = Bukkit.getScheduler();
+ 	private static final BukkitScheduler bs = Bukkit.getScheduler();
  	
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {

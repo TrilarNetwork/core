@@ -60,8 +60,12 @@ public class Sethome implements CommandExecutor {
 											+ ChatColor.GOLD + args[1] + ChatColor.YELLOW + "!");
 									if (Bukkit.getPlayerExact(args[1]) != null) {
 										Player t = Bukkit.getPlayerExact(args[1]);
-										t.sendMessage(PREFIX + "Player " + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " has set home "
-										+ ChatColor.GOLD + args[0] + ChatColor.YELLOW + " for you!");
+										if (t == null) {
+											p.sendMessage(PREFIX + "Player is not online!");
+										} else {
+											t.sendMessage(PREFIX + "Player " + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " has set home "
+													+ ChatColor.GOLD + args[0] + ChatColor.YELLOW + " for you!");
+										}
 									}
 								}
 							} else {

@@ -22,22 +22,14 @@ public class Afk implements CommandExecutor {
 				User p = new User(x);
 				if (Perm.hasPerm(p, PermGroup.MEMBER)) {
 					if (args.length == 0) {
-						if (p.isAfk()) {
-							p.setAfk(false);
-						} else {
-							p.setAfk(true);
-						}
+						p.setAfk(!p.isAfk());
 					} else if (args.length == 1) {
-						Player x2 = Bukkit.getPlayerExact(args[0]);
-						if (!x2.isOnline()) {
-							ErrorMessages.doErrorMessage(p, Messages.PLAYER_OFFLINE, x2.getName());
+						Player target = Bukkit.getPlayerExact(args[0]);
+						if (!(target == null) && !target.isOnline()) {
+							ErrorMessages.doErrorMessage(p, Messages.PLAYER_OFFLINE, target.getName());
 						} else {
-							User t = new User(x2);
-							if(t.isAfk()){
-								t.setAfk(false);
-							} else {
-								t.setAfk(true);
-							} 
+							User t = new User(target);
+							t.setAfk(!t.isAfk());
 						} 
 					} else {
 						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/afk [player]");

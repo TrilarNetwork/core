@@ -1,5 +1,6 @@
 package me.shizleshizle.core.listeners;
 
+import me.shizleshizle.core.commands.bansystem.Ban;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
@@ -19,10 +20,7 @@ public class PlayerChat implements Listener {
 		e.setCancelled(true);
 		String msg = e.getMessage();
 		if (Perm.hasPerm(p, PermGroup.ADMIN)) {
-			if (e.getMessage().equalsIgnoreCase("!panic")) {
-				Lockdown.initiateLockdown();
-				e.setMessage("");
-			} else if (e.getMessage().contains("!panic")) { 
+			if (e.getMessage().equalsIgnoreCase("!panic") || e.getMessage().contains("!panic")) {
 				Lockdown.initiateLockdown();
 				e.setMessage("");
 			}
@@ -33,6 +31,10 @@ public class PlayerChat implements Listener {
 		if (Perm.getGroup(p) == null) {
 			Perm.updateGroup(p, PermGroup.MEMBER);
 		}
-		Bukkit.broadcastMessage(p.getDisplayName() + ChatColor.GOLD + " >> " + ChatColor.translateAlternateColorCodes('&', p.getChatColor()) + msg);
+		if (p.isMuted()) {
+			p.sendMessage(Ban.PREFIX + "You have been muted!");
+		} else {
+			Bukkit.broadcastMessage(p.getDisplayName() + ChatColor.GOLD + " >> " + ChatColor.translateAlternateColorCodes('&', p.getChatColor()) + msg);
+		}
 	}
 }

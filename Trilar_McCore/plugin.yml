@@ -1,8 +1,20 @@
 name: Trilar_Core
 main: me.shizleshizle.core.Main
 version: 0.0.1
+api-version: 1.13
 authors: [shizleshizle, iMelvin]
 commands:
+#ban
+  ban:
+    description: Ban a player
+  unban:
+    description: Unban a player
+  kick:
+    description: Kick a player
+  mute:
+    description: Mute a player
+  unmute:
+    description: Unmute a player
 #home
   delhome:
     description: Delete a home.

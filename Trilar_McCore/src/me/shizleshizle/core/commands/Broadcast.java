@@ -26,8 +26,8 @@ public class Broadcast implements CommandExecutor {
 						Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', sb.toString().trim()));
 					} else {
 						StringBuilder sb = new StringBuilder();
-						for (int i = 0; i < args.length; i++) {
-							sb.append(args[i]).append(" ");
+						for (String arg : args) {
+							sb.append(arg).append(" ");
 						}
 						Bukkit.broadcastMessage(PREFIX + ChatColor.translateAlternateColorCodes('&', sb.toString().trim()));
 					}

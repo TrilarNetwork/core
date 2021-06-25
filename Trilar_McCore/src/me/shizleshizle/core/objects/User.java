@@ -38,9 +38,13 @@ import java.util.*;
 
 public class User {
 	private Player p;
+	private Date permanentMute;
 	
 	public User(Player p) {
 		this.p = p;
+		Calendar currentTime = Calendar.getInstance();
+		currentTime.add(Calendar.YEAR, 10);
+		permanentMute = currentTime.getTime();
 	}
 
 	public Player getUser() {
@@ -439,6 +443,26 @@ public class User {
 		return Main.gods.contains(p.getName());
 	}
 
+	public boolean isMuted() {
+		boolean muted = false;
+		try {
+			Statement s = Main.sql.getConnection().createStatement();
+			ResultSet rs = s.executeQuery("SELECT * FROM Muted WHERE player='" + getName() + "';");
+			if (rs.next()) {
+				Date d = rs.getDate("mutedUntil");
+				muted = !(d.before(Calendar.getInstance().getTime()));
+				if (!muted) {
+					unmute();
+				}
+			}
+			rs.close();
+			s.close();
+		} catch (SQLException e) {
+			Bukkit.getLogger().info("Core >> SQL Error: " + e);
+		}
+		return muted;
+	}
+
 	public boolean isOnGround() {
 		return p.isOnGround();
 	}
@@ -477,6 +501,22 @@ public class User {
 			setNick(nick);
 		} else {
 			setNick(p.getName());
+		}
+	}
+
+	public void mute(Date... until) {
+		Date mutedUntil = permanentMute;
+		if (until.length > 0) {
+			mutedUntil = until[0];
+		}
+		try {
+			Statement mute = Main.sql.getConnection().createStatement();
+			String statement = isMuted() ? "UPDATE Muted SET mutedUntil='" + mutedUntil + "' WHERE player='" + getName() + "';" : "INSERT INTO Muted (player, mutedUntil) VALUES ('"
+					+ getName() + "', '" + mutedUntil + "');";
+			mute.executeUpdate(statement);
+			mute.close();
+		} catch (SQLException e) {
+			Bukkit.getLogger().info("Core >> SQL Error: " + e);
 		}
 	}
 	
@@ -547,21 +587,39 @@ public class User {
 
     public void repairAll() {
         for (ItemStack c : p.getInventory().getContents()) {
-			Damageable meta = (Damageable) c.getItemMeta();
-			assert meta != null;
-			meta.setDamage(0);
-			c.setItemMeta((ItemMeta) meta);
+        	if (c == null) continue;
+			repairObject(c);
         }
+        for (ItemStack c : p.getInventory().getArmorContents()) {
+        	if (c == null) continue;
+        	repairObject(c);
+		}
+        for (ItemStack c : p.getInventory().getExtraContents()) {
+        	if (c == null) continue;
+        	repairObject(c);
+		}
+        for (ItemStack c : p.getInventory().getStorageContents()) {
+        	if (c == null) continue;
+        	repairObject(c);
+		}
     }
 
     public void repairArmor() {
         for (ItemStack a : Objects.requireNonNull(p.getEquipment()).getArmorContents()) {
+        	if (a == null) continue;
 			Damageable meta = (Damageable) a.getItemMeta();
 			assert meta != null;
 			meta.setDamage(0);
 			a.setItemMeta((ItemMeta) meta);
         }
     }
+
+    private void repairObject(ItemStack obj) {
+		Damageable meta = (Damageable) obj.getItemMeta();
+		assert meta != null;
+		meta.setDamage(0);
+		obj.setItemMeta((ItemMeta) meta);
+	}
 	
 	public void resetUserTime() {
 		p.resetPlayerTime();
@@ -679,6 +737,8 @@ public class User {
 		if (god) {
 			if (!Main.gods.contains(p.getName())) {
 				Main.gods.add(p.getName());
+				heal(20, 20);
+				setFireTicks(0);
 			}
 		} else {
 			Main.gods.remove(p.getName());
@@ -903,6 +963,17 @@ public class User {
 	public void updateInventory() {
 		p.updateInventory();
 	}
+
+	public void unmute() {
+		try {
+			Statement s = Main.sql.getConnection().createStatement();
+			s.executeUpdate("DELETE FROM Muted WHERE player='" + getName() + "';");
+			s.close();
+		} catch (SQLException e) {
+			Bukkit.getLogger().info("Core >> SQL Error: " + e);
+		}
+	}
+
 
 	/**
 	 * Teleports the player to certain warp.

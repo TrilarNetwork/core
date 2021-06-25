@@ -1,20 +1,9 @@
 package me.shizleshizle.core.utils;
 
-import me.shizleshizle.core.objects.User;
-import net.minecraft.server.v1_15_R1.IChatBaseComponent;
-import net.minecraft.server.v1_15_R1.IChatBaseComponent.ChatSerializer;
-import net.minecraft.server.v1_15_R1.PacketPlayOutPlayerListHeaderFooter;
-import net.minecraft.server.v1_15_R1.PacketPlayOutTitle;
-import net.minecraft.server.v1_15_R1.PlayerConnection;
-import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
-import org.bukkit.entity.Player;
-
-import java.lang.reflect.Field;
-
 public class Title {
 
-    public static void sendTitle(User p, String title, String subtitle, int fadeIn, int stay, int fadeOut) {
+    // CHECK HOW TO DO IN 1.17
+    /*public static void sendTitle(User p, String title, String subtitle, int fadeIn, int stay, int fadeOut) {
         PlayerConnection connection = ((CraftPlayer) p.getUser()).getHandle().playerConnection;
 
         PacketPlayOutTitle packet = new PacketPlayOutTitle(fadeIn, stay, fadeOut);
@@ -51,5 +40,5 @@ public class Title {
             e.printStackTrace();
         }
         connection.sendPacket(packet);
-    }
+    }*/
 }

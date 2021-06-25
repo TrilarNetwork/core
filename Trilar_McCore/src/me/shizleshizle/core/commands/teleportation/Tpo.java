@@ -13,12 +13,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class Tpo implements CommandExecutor {
-	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Teleportation" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("tpo")) {
 			if (!(sender instanceof Player)) {
-				sender.sendMessage(PREFIX + "You must be a player to perform this command!");
+				sender.sendMessage(Tp.PREFIX + "You must be a player to perform this command!");
 			} else {
 				Player x = (Player) sender;
 				User p = new User(x);
@@ -31,7 +30,7 @@ public class Tpo implements CommandExecutor {
 							ErrorMessages.doErrorMessage(p, Messages.PLAYER_OFFLINE, args[0]);
 						} else {
 							p.teleport(t.getLocation());
-							p.sendMessage(PREFIX + "You have been teleported to " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + "!");
+							p.sendMessage(Tp.PREFIX + "You have been teleported to " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + "!");
 						}
 					} else {
 						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/tpo <player> [player]");

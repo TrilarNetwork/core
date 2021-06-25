@@ -14,6 +14,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.Objects;
+
 public class Balance implements CommandExecutor {
 	private final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Feed" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
@@ -43,7 +45,7 @@ public class Balance implements CommandExecutor {
 									p.sendMessage(PREFIX + "You must enter a number!");
 								}
 								setBalance(op, amnt);
-								if (op.getName().equals(p.getName())) {
+								if (Objects.equals(op.getName(), p.getName())) {
 									p.sendMessage(PREFIX + "Your balance has been set to " + ChatColor.GOLD + amnt + ChatColor.YELLOW + " " + valuta + " by " + ChatColor.GOLD
 											+ p.getName() + ChatColor.YELLOW + "!");
 								} else {
@@ -51,6 +53,10 @@ public class Balance implements CommandExecutor {
 											+ amnt + ChatColor.YELLOW + "!");
 									if (op.isOnline()) {
 										Player t = op.getPlayer();
+										if (t == null) {
+											p.sendMessage(PREFIX + "Player not found!");
+											return false;
+										}
 										t.sendMessage(PREFIX + "Your balance has been set to " + ChatColor.GOLD + amnt + ChatColor.YELLOW + " " + valuta + " by " + ChatColor.GOLD
 												+ p.getName() + ChatColor.YELLOW + "!");
 									}
@@ -63,7 +69,7 @@ public class Balance implements CommandExecutor {
 									p.sendMessage(PREFIX + "You must enter a number!");
 								}
 								Main.econ.depositPlayer(op, amnt);
-								if (op.getName().equals(p.getName())) {
+								if (Objects.equals(op.getName(), p.getName())) {
 									p.sendMessage(PREFIX + "Your balance has been incremented by " + ChatColor.GOLD + amnt + ChatColor.YELLOW + " " + valuta + " by "
 											+ ChatColor.GOLD
 											+ p.getName() + ChatColor.YELLOW + "!");
@@ -72,6 +78,10 @@ public class Balance implements CommandExecutor {
 											+ op.getName() + ChatColor.YELLOW + "!");
 									if (op.isOnline()) {
 										Player t = op.getPlayer();
+										if (t == null) {
+											p.sendMessage(PREFIX + "Player not found!");
+											return false;
+										}
 										t.sendMessage(PREFIX + "Your balance has been incremented by " + ChatColor.GOLD + amnt + ChatColor.YELLOW + " " + valuta + " by "
 												+ ChatColor.GOLD + p.getName() + ChatColor.YELLOW + "!");
 									}
@@ -90,7 +100,7 @@ public class Balance implements CommandExecutor {
 								}
 								Main.econ.withdrawPlayer(op, b);
 								Main.econ.depositPlayer(op, fin);
-								if (op.getName().equals(p.getName())) {
+								if (Objects.equals(op.getName(), p.getName())) {
 									p.sendMessage(PREFIX + "Your balance has been decreased by " + ChatColor.GOLD + amnt + ChatColor.YELLOW + " "
 											+ valuta + " by " + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + "!");
 								} else {
@@ -98,6 +108,10 @@ public class Balance implements CommandExecutor {
 											+ ChatColor.GOLD + op.getName() + ChatColor.YELLOW + "!");
 									if (op.isOnline()) {
 										Player t = op.getPlayer();
+										if (t == null) {
+											p.sendMessage(PREFIX + "Player not found!");
+											return false;
+										}
 										t.sendMessage(PREFIX + "Your balance has been decreased by " + ChatColor.GOLD + amnt + ChatColor.YELLOW
 												+ " " + valuta + " by " + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + "!");
 									}

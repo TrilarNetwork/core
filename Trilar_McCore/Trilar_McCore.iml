@@ -36,7 +36,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="Spigot-1.15.2" level="project" />
     <orderEntry type="library" name="Vault-1.7.2-1.15.2" level="project" />
+    <orderEntry type="library" name="spigot-1.17" level="project" />
   </component>
 </module>

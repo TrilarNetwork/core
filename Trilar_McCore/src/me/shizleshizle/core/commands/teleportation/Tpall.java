@@ -14,7 +14,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class Tpall implements CommandExecutor {
- 	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Tpall" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("tpall")) {
@@ -23,7 +22,7 @@ public class Tpall implements CommandExecutor {
 				User p = new User(x);
 				if (Perm.hasPerm(p, PermGroup.MODERATOR)) {
 					if (args.length == 0) {
-						Bukkit.broadcastMessage(Broadcast.PREFIX + "Teleporting to all players to " + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + "!");
+						Bukkit.broadcastMessage(Broadcast.PREFIX + "Teleporting all players to " + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + "!");
 						for (Player pl : Bukkit.getOnlinePlayers()) {
 							User pla = new User(pl);
 							pla.teleport(p.getLocation());

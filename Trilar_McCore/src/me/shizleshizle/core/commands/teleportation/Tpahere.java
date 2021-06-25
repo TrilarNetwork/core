@@ -15,13 +15,12 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class Tpahere implements CommandExecutor {
-	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Teleportation" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
     public static boolean toTP = false;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("tpahere")) {
 			if (!(sender instanceof Player)) {
-				sender.sendMessage(PREFIX + "You must be a player to perform this command!");
+				sender.sendMessage(Tp.PREFIX + "You must be a player to perform this command!");
 			} else {
 				Player x = (Player) sender;
 				User p = new User(x);
@@ -34,10 +33,10 @@ public class Tpahere implements CommandExecutor {
 							ErrorMessages.doErrorMessage(p, Messages.PLAYER_OFFLINE, args[0]);
 						} else {
 							if (t.hasTpDisabled()) {
-								p.sendMessage(PREFIX + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " has teleportation disabled!");
+								p.sendMessage(Tp.PREFIX + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + " has teleportation disabled!");
 							} else {
-								p.sendMessage(PREFIX + "Request sent to " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + "!");
-								t.sendMessage(PREFIX + "You have received a teleport request from " + ChatColor.GOLD + p.getName() + ChatColor.YELLOW
+								p.sendMessage(Tp.PREFIX + "Request sent to " + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + "!");
+								t.sendMessage(Tp.PREFIX + "You have received a teleport request from " + ChatColor.GOLD + p.getName() + ChatColor.YELLOW
 										+ " to teleport to their location! Type " + ChatColor.GOLD + "/tpaccept" + ChatColor.YELLOW + " to accept their request or type " 
 										+ ChatColor.GOLD + "/tpdeny" + ChatColor.YELLOW + " to deny their request");
 								Main.tpahere.put(p.getName(), t.getName());

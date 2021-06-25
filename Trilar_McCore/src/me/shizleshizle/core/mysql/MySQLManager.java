@@ -8,36 +8,51 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 
 public class MySQLManager extends MySQL {
 	private MySQL db;
+	private ArrayList<String> tables = new ArrayList<>();
 	
-	private static MySQLManager instance = new MySQLManager();
+	private static final MySQLManager instance = new MySQLManager();
 	
 	public static MySQLManager getInstance() {
 		return instance;
 	}
 	
 	public void setup() {
-		try {
-			this.db = new MySQL();
-			openConnection();
-			if (getConnection() != null) {
-				Statement s = getConnection().createStatement();
-				Statement s1 = getConnection().createStatement();
-				Statement s2 = getConnection().createStatement();
-				s.executeUpdate("CREATE TABLE IF NOT EXISTS Player (player varchar(32), rank varchar(50) NOT NULL, ip varchar(50), PRIMARY KEY(player))");
-				//s2.executeUpdate("CREATE TABLE IF NOT EXISTS player_ips (player varchar(32), ip varchar(32))");
-				s1.executeUpdate("CREATE TABLE IF NOT EXISTS Tickets (id INTEGER AUTO_INCREMENT PRIMARY KEY, owner varchar(32), status varchar(32), description varchar(128), "
-						+ "x double, y double, z double, world varchar(128))");
-				s.close();
-				s1.close();
-			}
-		} catch (SQLException e) {
-			Bukkit.getServer().getLogger().info("McCore >> Error: " + e);
-		}
+	    FetchTables();
+		createTables();
 	}
+
+	private void createTables() {
+        try {
+            this.db = new MySQL();
+            openConnection();
+            if (getConnection() != null) {
+                Statement s = getConnection().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+                getConnection().setAutoCommit(false);
+                for (String table : tables) {
+                    s.addBatch(table);
+                }
+                s.executeBatch();
+                getConnection().commit();
+                getConnection().setAutoCommit(true);
+                s.close();
+            }
+        } catch (SQLException e) {
+            Bukkit.getServer().getLogger().info("McCore >> SQL Error: " + e);
+        }
+    }
+
+	private void FetchTables() {
+        tables.add("CREATE TABLE IF NOT EXISTS Player (player varchar(32), mcrank varchar(50) NOT NULL, ip varchar(50), PRIMARY KEY(player))");
+        //tables.add("CREATE TABLE IF NOT EXISTS player_ips (player varchar(32), ip varchar(32))");
+        tables.add("CREATE TABLE IF NOT EXISTS Tickets (id INTEGER AUTO_INCREMENT PRIMARY KEY, owner varchar(32), status varchar(32), description varchar(128), "
+                + "x double, y double, z double, world varchar(128))");
+        tables.add("CREATE TABLE IF NOT EXISTS Muted (player varchar(32), mutedUntil datetime, FOREIGN KEY(player) REFERENCES Player(player));");
+    }
 	
 	public void getReady() {
 		if (this.db.getConnection() == null) {
@@ -70,8 +85,8 @@ public class MySQLManager extends MySQL {
             getReady();
             PreparedStatement s;
             String getip = getIP(p.getName());
-            if (getip.equals("")) {
-                s = getConnection().prepareStatement("INSERT INTO Player (player, rank, ip) VALUES ('" + pn + "', '" + PermGroup.MEMBER.toString() + "', '" + ip + "')");
+            if (getip != null && getip.equals("")) {
+                s = getConnection().prepareStatement("INSERT INTO Player (player, mcrank, ip) VALUES ('" + pn + "', '" + PermGroup.MEMBER.toString() + "', '" + ip + "')");
             } else {
                 s = getConnection().prepareStatement("UPDATE Player SET ip='" + ip + "' WHERE player='" + pn + "'");
             }

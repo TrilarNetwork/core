@@ -1,18 +1,18 @@
 package me.shizleshizle.core.commands.homes;
 
+import me.shizleshizle.core.Main;
+import me.shizleshizle.core.commands.teleportation.Tp;
+import me.shizleshizle.core.objects.User;
+import me.shizleshizle.core.permissions.Perm;
+import me.shizleshizle.core.permissions.PermGroup;
+import me.shizleshizle.core.utils.ErrorMessages;
+import me.shizleshizle.core.utils.ErrorMessages.Messages;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import me.shizleshizle.core.Main;
-import me.shizleshizle.core.objects.User;
-import me.shizleshizle.core.permissions.Perm;
-import me.shizleshizle.core.permissions.PermGroup;
-import me.shizleshizle.core.utils.ErrorMessages;
-import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class Home implements CommandExecutor {
 	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Homes" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
@@ -80,9 +80,13 @@ public class Home implements CommandExecutor {
 											+ ChatColor.GOLD + args[1] + ChatColor.YELLOW + " making a total of " + ChatColor.GOLD + fin + ChatColor.YELLOW + "!");
 									if (Bukkit.getPlayerExact(args[1]) != null) {
 										Player t = Bukkit.getPlayerExact(args[1]);
-										t.sendMessage(PREFIX + "You have received " + ChatColor.GOLD + h + ChatColor.YELLOW + " homes, making a total of "
-											+ ChatColor.GOLD + fin + ChatColor.YELLOW + "!");
-										t.sendMessage(PREFIX + "You have received these homes from " + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + "!");
+										if (t == null) {
+											p.sendMessage(Tp.PREFIX + "Player is not online!");
+										} else {
+											t.sendMessage(PREFIX + "You have received " + ChatColor.GOLD + h + ChatColor.YELLOW + " homes, making a total of "
+													+ ChatColor.GOLD + fin + ChatColor.YELLOW + "!");
+											t.sendMessage(PREFIX + "You have received these homes from " + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + "!");
+										}
 									}
 								} else if (args[0].equalsIgnoreCase("remove")) {
 									int h = 0;
@@ -100,9 +104,13 @@ public class Home implements CommandExecutor {
 											+ args[1] + ChatColor.YELLOW + " making a total of " + ChatColor.GOLD + fin + ChatColor.YELLOW + "!");
 									if (Bukkit.getPlayerExact(args[1]) != null) {
 										Player t = Bukkit.getPlayerExact(args[1]);
-										t.sendMessage(PREFIX + "Your homes have been decreased by " + ChatColor.GOLD + h + ChatColor.YELLOW + " making a total of "
-											+ ChatColor.GOLD + fin + ChatColor.YELLOW + "!");
-										t.sendMessage(PREFIX + "Your homes have been decreased by " + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + "!");
+										if (t == null) {
+											p.sendMessage(Tp.PREFIX + "Player is not online!");
+										} else {
+											t.sendMessage(PREFIX + "Your homes have been decreased by " + ChatColor.GOLD + h + ChatColor.YELLOW + " making a total of "
+													+ ChatColor.GOLD + fin + ChatColor.YELLOW + "!");
+											t.sendMessage(PREFIX + "Your homes have been decreased by " + ChatColor.GOLD + p.getName() + ChatColor.YELLOW + "!");
+										}
 									}
 								} else if (args[0].equalsIgnoreCase("set")) {
 									int h = 0;
@@ -116,8 +124,12 @@ public class Home implements CommandExecutor {
 											+ ChatColor.GOLD + h + ChatColor.YELLOW + "!");
 									if (Bukkit.getPlayerExact(args[1]) != null) {
 										Player t = Bukkit.getPlayerExact(args[1]);
-										t.sendMessage(PREFIX + "Your homes have been set to " + ChatColor.GOLD + h + ChatColor.YELLOW + " by " + ChatColor.GOLD
-												+ p.getName() + ChatColor.YELLOW + "!");
+										if (t == null) {
+											p.sendMessage(Tp.PREFIX + "Player is not online!");
+										} else {
+											t.sendMessage(PREFIX + "Your homes have been set to " + ChatColor.GOLD + h + ChatColor.YELLOW + " by " + ChatColor.GOLD
+													+ p.getName() + ChatColor.YELLOW + "!");
+										}
 									}
 								} else {
 									ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/home <add|remove|set|homename> <player> [amount]");

@@ -1,17 +1,16 @@
 package me.shizleshizle.core.commands;
 
+import me.shizleshizle.core.objects.User;
+import me.shizleshizle.core.permissions.Perm;
+import me.shizleshizle.core.permissions.PermGroup;
+import me.shizleshizle.core.utils.ErrorMessages;
+import me.shizleshizle.core.utils.ErrorMessages.Messages;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import me.shizleshizle.core.objects.User;
-import me.shizleshizle.core.permissions.Perm;
-import me.shizleshizle.core.permissions.PermGroup;
-import me.shizleshizle.core.utils.ErrorMessages;
-import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class ClearInventory implements CommandExecutor {
 	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "ClearInventory" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
@@ -27,7 +26,7 @@ public class ClearInventory implements CommandExecutor {
 						p.sendMessage(PREFIX + ChatColor.YELLOW + "Your inventory has been cleared!");
 					} else if (args.length == 1) {
 						Player x2 = Bukkit.getPlayerExact(args[0]);
-						if (!x2.isOnline()) {
+						if (!(x2 == null) && !x2.isOnline()) {
 							ErrorMessages.doErrorMessage(p, Messages.PLAYER_OFFLINE, x2.getName());
 						} else {
 							User t = new User(x2);

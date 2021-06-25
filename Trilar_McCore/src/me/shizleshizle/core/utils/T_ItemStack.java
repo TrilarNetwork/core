@@ -1,9 +1,6 @@
 package me.shizleshizle.core.utils;
 
-import net.minecraft.server.v1_15_R1.NBTTagCompound;
-import net.minecraft.server.v1_15_R1.NBTTagList;
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_15_R1.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -82,7 +79,8 @@ public class T_ItemStack {
 		return (is.getItemMeta() != null && is.getItemMeta().hasLore());
 	}
 
-	public void addGlow() {
+	// CHECK HOW TO DO IN 1.17
+	/*public void addGlow() {
 		net.minecraft.server.v1_15_R1.ItemStack nmsStack = CraftItemStack.asNMSCopy(is);
 		NBTTagCompound tag = null;
 		if (!nmsStack.hasTag()) {
@@ -95,5 +93,5 @@ public class T_ItemStack {
 		tag.set("ench", ench);
 		nmsStack.setTag(tag);
 		is = CraftItemStack.asCraftMirror(nmsStack);
-	}
+	}*/
 }

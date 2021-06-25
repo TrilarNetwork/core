@@ -3,10 +3,7 @@ package me.shizleshizle.core.listeners;
 import me.shizleshizle.core.commands.cmdutils.VanishUtils;
 import me.shizleshizle.core.objects.User;
 import me.shizleshizle.core.utils.GUI;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.block.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -122,14 +119,16 @@ public class PlayerInteract implements Listener {
                         } else if (type.equals(Material.STONE_BUTTON) || type.equals(Material.OAK_BUTTON) || type.equals(Material.HEAVY_WEIGHTED_PRESSURE_PLATE)
                                 || type.equals(Material.LIGHT_WEIGHTED_PRESSURE_PLATE) || type.equals(Material.OAK_PRESSURE_PLATE) || type.equals(Material.STONE_PRESSURE_PLATE)) {
                             e.setCancelled(true);
-                        } else if (type.equals(Material.OAK_DOOR) || type.equals(Material.OAK_DOOR) || type.equals(Material.IRON_DOOR)
-                                || type.equals(Material.IRON_DOOR)) {
+                        } else if (type.equals(Material.OAK_DOOR) || type.equals(Material.IRON_DOOR)) {
                             e.setCancelled(true);
                             double x = e.getClickedBlock().getLocation().getBlockX();
                             double z = e.getClickedBlock().getLocation().getBlockZ();
                             double x1 = e.getPlayer().getLocation().getBlockX();
                             double z1 = e.getPlayer().getLocation().getBlockZ();
                             double y = e.getClickedBlock().getLocation().getBlockY();
+                            World worldContainingTargetBlock = e.getClickedBlock().getLocation().getWorld();
+                            if (worldContainingTargetBlock == null) return;
+                            Block blockAtPos = worldContainingTargetBlock.getBlockAt((int) x, ((int) y) - 1, (int) z);
                             if (e.getClickedBlock().getLocation().getWorld().getBlockAt((int) x, ((int) y) - 1, (int) z).getType()
                                     .equals(e.getClickedBlock().getType())) {
                                 y = y - 1;
