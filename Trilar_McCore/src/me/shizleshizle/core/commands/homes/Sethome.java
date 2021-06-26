@@ -1,18 +1,18 @@
 package me.shizleshizle.core.commands.homes;
 
+import me.shizleshizle.core.Main;
+import me.shizleshizle.core.commands.cmdutils.HomeUtils;
+import me.shizleshizle.core.objects.User;
+import me.shizleshizle.core.permissions.Perm;
+import me.shizleshizle.core.permissions.PermGroup;
+import me.shizleshizle.core.utils.ErrorMessages;
+import me.shizleshizle.core.utils.ErrorMessages.Messages;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import me.shizleshizle.core.Main;
-import me.shizleshizle.core.objects.User;
-import me.shizleshizle.core.permissions.Perm;
-import me.shizleshizle.core.permissions.PermGroup;
-import me.shizleshizle.core.utils.ErrorMessages;
-import me.shizleshizle.core.utils.ErrorMessages.Messages;
 
 public class Sethome implements CommandExecutor {
 	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Homes" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
@@ -29,7 +29,7 @@ public class Sethome implements CommandExecutor {
 								if (HomeUtils.hasHome(p.getName(), "home")) {
 									p.sendMessage(PREFIX + "You have already set home " + ChatColor.GOLD + "home" + ChatColor.YELLOW + "!");
 								} else {
-									HomeUtils.setHome(p.getName(), "home", p.getLocation().getX(), p.getLocation().getY(), p.getLocation().getZ(), 
+									HomeUtils.setHome(p.getName(), "home", p.getLocation().getX(), p.getLocation().getY(), p.getLocation().getZ(),
 											p.getLocation().getYaw(), p.getLocation().getPitch(), p.getWorld().getName());
 									p.sendMessage(PREFIX + "You have set home " + ChatColor.GOLD + "home" + ChatColor.YELLOW + "!");
 								}
@@ -41,7 +41,7 @@ public class Sethome implements CommandExecutor {
 								if (HomeUtils.hasHome(p.getName(), args[0])) {
 									p.sendMessage(PREFIX + "You have already set home " + ChatColor.GOLD + args[0] + ChatColor.YELLOW + "!");
 								} else {
-									HomeUtils.setHome(p.getName(), args[0], p.getLocation().getX(), p.getLocation().getY(), p.getLocation().getZ(), 
+									HomeUtils.setHome(p.getName(), args[0], p.getLocation().getX(), p.getLocation().getY(), p.getLocation().getZ(),
 											p.getLocation().getYaw(), p.getLocation().getPitch(), p.getWorld().getName());
 									p.sendMessage(PREFIX + "You have set home " + ChatColor.GOLD + args[0] + ChatColor.YELLOW + "!");
 								}

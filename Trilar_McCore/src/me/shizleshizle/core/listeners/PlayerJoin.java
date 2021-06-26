@@ -3,7 +3,7 @@ package me.shizleshizle.core.listeners;
 import me.shizleshizle.core.Main;
 import me.shizleshizle.core.commands.Freeze;
 import me.shizleshizle.core.commands.Lockdown;
-import me.shizleshizle.core.commands.homes.HomeUtils;
+import me.shizleshizle.core.commands.cmdutils.HomeUtils;
 import me.shizleshizle.core.objects.User;
 import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermAttachments;

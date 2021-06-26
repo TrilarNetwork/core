@@ -11,7 +11,13 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.Calendar;
+import java.time.Clock;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.Locale;
 
 import static org.bukkit.ChatColor.GOLD;
 import static org.bukkit.ChatColor.YELLOW;
@@ -39,7 +45,6 @@ public class Mute implements CommandExecutor {
                     if (args.length == 2) {
                         String time = args[1];
                         String lastLetter = time.substring(time.length() - 1);
-                        Calendar muteDate = Calendar.getInstance();
                         String parseToNumber = time.substring(0, time.length() - 1);
                         int number = 0;
                         if (Numbers.isNumber((parseToNumber))) {
@@ -48,25 +53,32 @@ public class Mute implements CommandExecutor {
                             sender.sendMessage(Ban.PREFIX + "Time must contain a number!");
                             return false;
                         }
+                        Instant now = Instant.now();
+                        Duration toAdd = Duration.ZERO;
                         switch (lastLetter) {
                             case "d":
-                                muteDate.add(Calendar.DATE, number);
+                                toAdd = Duration.ofDays(number);
                                 break;
                             case "h":
-                                muteDate.add(Calendar.HOUR, number);
+                                toAdd = Duration.ofHours(number);
                                 break;
                             case "m":
-                                muteDate.add(Calendar.MINUTE, number);
+                                toAdd = Duration.ofMinutes(number);
                                 break;
                             case "s":
-                                muteDate.add(Calendar.SECOND, number);
+                                toAdd = Duration.ofSeconds(number);
                             default:
                                 sender.sendMessage("Time must end in 'd' (day), 'h' (hour), 'm' (minutes), 's' (seconds)!");
                                 break;
                         }
-                        target.mute(muteDate.getTime());
-                        sender.sendMessage(Ban.PREFIX + "Player " + GOLD + target.getName() + YELLOW + " has been muted until " + GOLD + muteDate.getTime() + YELLOW + "!");
-                        target.sendMessage(Ban.PREFIX + "You have been muted by " + senderName + " until " + GOLD + muteDate.getTime() + YELLOW + "!");
+                        Instant muteDate = now.plus(toAdd);
+                        Clock muteTime = Clock.fixed(muteDate, ZoneId.systemDefault());
+                        target.mute(muteTime);
+                        DateTimeFormatter dtf = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM, FormatStyle.LONG).withLocale(Locale.GERMAN).withZone(ZoneId.systemDefault());
+                        String displayTime = dtf.format(muteTime.instant());
+                        displayTime = displayTime.substring(0, displayTime.length() - 5);
+                        sender.sendMessage(Ban.PREFIX + "Player " + GOLD + target.getName() + YELLOW + " has been muted until " + GOLD + displayTime + YELLOW + "!");
+                        target.sendMessage(Ban.PREFIX + "You have been muted by " + senderName + " until " + GOLD + displayTime + YELLOW + "!");
                     } else {
                         target.mute();
                         sender.sendMessage(Ban.PREFIX + "Player " + GOLD + target.getName() + YELLOW + " has been muted!");

@@ -37,6 +37,7 @@ public class Kick implements CommandExecutor {
                      } else {
                          StringBuilder sb = new StringBuilder();
                          for (String s : args) {
+                             if (s.equals(args[0])) continue;
                              sb.append(s).append(" ");
                          }
                          String reason = sb.substring(0, sb.length() - 1);

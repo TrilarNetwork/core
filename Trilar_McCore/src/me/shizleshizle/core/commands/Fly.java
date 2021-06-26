@@ -1,6 +1,5 @@
 package me.shizleshizle.core.commands;
 
-import me.shizleshizle.core.Main;
 import me.shizleshizle.core.objects.User;
 import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermGroup;

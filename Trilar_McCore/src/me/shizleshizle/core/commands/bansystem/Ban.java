@@ -8,6 +8,7 @@ import me.shizleshizle.core.utils.Numbers;
 import org.bukkit.BanEntry;
 import org.bukkit.BanList;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -35,6 +36,7 @@ public class Ban implements CommandExecutor {
                                 sb.append(args[i]).append(" ");
                             }
                             String reason = sb.substring(0, sb.length() - 1);
+                            reason = ChatColor.translateAlternateColorCodes('&', reason);
                             Bukkit.getBanList(BanList.Type.NAME).addBan(targetName, reason, null, p.getName());
                             p.sendMessage(PREFIX + "Player " + GOLD + targetName + YELLOW + " has been permanently banned!");
                             Player target = Bukkit.getPlayerExact(targetName);
@@ -63,6 +65,7 @@ public class Ban implements CommandExecutor {
                                 sb.append(args[i]).append(" ");
                             }
                             String reason = sb.substring(0, sb.length() - 1);
+                            reason = ChatColor.translateAlternateColorCodes('&', reason);
                             Bukkit.getBanList(BanList.Type.NAME).addBan(targetName, reason, time.getTime(), p.getName());
                             p.sendMessage(PREFIX + "Player " + GOLD + targetName + YELLOW + " has been banned until " + GOLD + time.getTime() + YELLOW + "!");
                             Player target = Bukkit.getPlayerExact(targetName);
@@ -83,6 +86,7 @@ public class Ban implements CommandExecutor {
                                 sb.append(args[i]).append(" ");
                             }
                             String reason = sb.substring(0, sb.length() - 1);
+                            reason = ChatColor.translateAlternateColorCodes('&', reason);
                             Bukkit.getBanList(BanList.Type.IP).addBan(toBan, reason, null, p.getName());
                             if (toBan.contains(".")) {
                                 p.sendMessage(PREFIX + "IP " + GOLD + targetName + YELLOW + " has been banned!");
@@ -104,9 +108,11 @@ public class Ban implements CommandExecutor {
                                 if (isBanned) {
                                     BanEntry ban = Bukkit.getBanList(BanList.Type.IP).getBanEntry(targetName);
                                     assert ban != null;
+                                    String banReason = ban.getReason();
+                                    String reason = banReason == null ? "" : ChatColor.translateAlternateColorCodes('&', banReason);
                                     p.sendMessage(GOLD + "Created: " + YELLOW + ban.getCreated());
                                     p.sendMessage(GOLD + "Expires: " + YELLOW + ban.getExpiration());
-                                    p.sendMessage(GOLD + "Reason: " + YELLOW + ban.getReason());
+                                    p.sendMessage(GOLD + "Reason: " + YELLOW + reason);
                                     p.sendMessage(GOLD + "Banned by: " + YELLOW + ban.getSource());
                                 }
                             } else {
@@ -117,9 +123,11 @@ public class Ban implements CommandExecutor {
                                 if (isBanned) {
                                     BanEntry ban = Bukkit.getBanList(BanList.Type.NAME).getBanEntry(targetName);
                                     assert ban != null;
+                                    String banReason = ban.getReason();
+                                    String reason = banReason == null ? "" : ChatColor.translateAlternateColorCodes('&', banReason);
                                     p.sendMessage(GOLD + "Created: " + YELLOW + ban.getCreated());
                                     p.sendMessage(GOLD + "Expires: " + YELLOW + ban.getExpiration());
-                                    p.sendMessage(GOLD + "Reason: " + YELLOW + ban.getReason());
+                                    p.sendMessage(GOLD + "Reason: " + YELLOW + reason);
                                     p.sendMessage(GOLD + "Banned by: " + YELLOW + ban.getSource());
                                 }
                             }
@@ -146,6 +154,7 @@ public class Ban implements CommandExecutor {
                             sb.append(args[i]).append(" ");
                         }
                         String reason = sb.substring(0, sb.length() - 1);
+                        reason = ChatColor.translateAlternateColorCodes('&', reason);
                         Bukkit.getBanList(BanList.Type.NAME).addBan(targetName, reason, null, senderName);
                         sender.sendMessage(PREFIX + "Player " + GOLD + targetName + YELLOW + " has been permanently banned!");
                         Player target = Bukkit.getPlayerExact(targetName);
@@ -174,6 +183,7 @@ public class Ban implements CommandExecutor {
                             sb.append(args[i]).append(" ");
                         }
                         String reason = sb.substring(0, sb.length() - 1);
+                        reason = ChatColor.translateAlternateColorCodes('&', reason);
                         Bukkit.getBanList(BanList.Type.NAME).addBan(targetName, reason, time.getTime(), senderName);
                         sender.sendMessage(PREFIX + "Player " + GOLD + targetName + YELLOW + " has been banned until " + GOLD + time.getTime() + YELLOW + "!");
                         Player target = Bukkit.getPlayerExact(targetName);
@@ -194,6 +204,7 @@ public class Ban implements CommandExecutor {
                             sb.append(args[i]).append(" ");
                         }
                         String reason = sb.substring(0, sb.length() - 1);
+                        reason = ChatColor.translateAlternateColorCodes('&', reason);
                         Bukkit.getBanList(BanList.Type.IP).addBan(toBan, reason, null, senderName);
                         if (toBan.contains(".")) {
                             sender.sendMessage(PREFIX + "IP " + GOLD + targetName + YELLOW + " has been banned!");
@@ -215,9 +226,11 @@ public class Ban implements CommandExecutor {
                             if (isBanned) {
                                 BanEntry ban = Bukkit.getBanList(BanList.Type.IP).getBanEntry(targetName);
                                 assert ban != null;
+                                String banReason = ban.getReason();
+                                String reason = banReason == null ? "" : ChatColor.translateAlternateColorCodes('&', banReason);
                                 sender.sendMessage(GOLD + "Created: " + YELLOW + ban.getCreated());
                                 sender.sendMessage(GOLD + "Expires: " + YELLOW + ban.getExpiration());
-                                sender.sendMessage(GOLD + "Reason: " + YELLOW + ban.getReason());
+                                sender.sendMessage(GOLD + "Reason: " + YELLOW + reason);
                                 sender.sendMessage(GOLD + "Banned by: " + YELLOW + ban.getSource());
                             }
                         } else {
@@ -228,9 +241,11 @@ public class Ban implements CommandExecutor {
                             if (isBanned) {
                                 BanEntry ban = Bukkit.getBanList(BanList.Type.NAME).getBanEntry(targetName);
                                 assert ban != null;
+                                String banReason = ban.getReason();
+                                String reason = banReason == null ? "" : ChatColor.translateAlternateColorCodes('&', banReason);
                                 sender.sendMessage(GOLD + "Created: " + YELLOW + ban.getCreated());
                                 sender.sendMessage(GOLD + "Expires: " + YELLOW + ban.getExpiration());
-                                sender.sendMessage(GOLD + "Reason: " + YELLOW + ban.getReason());
+                                sender.sendMessage(GOLD + "Reason: " + YELLOW + reason);
                                 sender.sendMessage(GOLD + "Banned by: " + YELLOW + ban.getSource());
                             }
                         }

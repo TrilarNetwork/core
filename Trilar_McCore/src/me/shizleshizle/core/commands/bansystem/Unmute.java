@@ -32,9 +32,12 @@ public class Unmute implements CommandExecutor {
                      if (target.isMuted()) {
                          target.unmute();
                          target.sendMessage(Ban.PREFIX + "You have been unmuted by " + senderName + "!");
+                         sender.sendMessage(Ban.PREFIX + "You have unmuted " + GOLD + target.getName() + YELLOW + "!");
                      } else {
                          sender.sendMessage(Ban.PREFIX + "Player " + GOLD + target.getName() + YELLOW + " has not been muted!");
                      }
+                 } else {
+                     ErrorMessages.doErrorMessage(sender, ErrorMessages.Messages.PLAYER_OFFLINE, args[0]);
                  }
              } else {
                  ErrorMessages.doErrorMessage(sender, ErrorMessages.Messages.INVALID_USAGE, "/unban <player>");

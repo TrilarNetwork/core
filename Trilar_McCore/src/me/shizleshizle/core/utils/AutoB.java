@@ -19,7 +19,7 @@ public class AutoB {
 	}
 
 	public static void setBroadcasting(boolean broadcasting) {
-		broadcasting = b;
+		b = broadcasting;
 	}
 
 	public static void saveToConfig() {

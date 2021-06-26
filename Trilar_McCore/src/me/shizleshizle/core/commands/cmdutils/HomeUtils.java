@@ -1,6 +1,7 @@
-package me.shizleshizle.core.commands.homes;
+package me.shizleshizle.core.commands.cmdutils;
 
 import me.shizleshizle.core.Main;
+import me.shizleshizle.core.commands.homes.Home;
 import me.shizleshizle.core.objects.User;
 import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermGroup;
@@ -13,14 +14,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static org.bukkit.ChatColor.GOLD;
+import static org.bukkit.ChatColor.YELLOW;
+
 public class HomeUtils {
-	private static HashMap<String, ArrayList<String>> homes = new HashMap<String, ArrayList<String>>();
+	private static HashMap<String, ArrayList<String>> homes = new HashMap<>();
 	
 	public static void setHome(User p, String name, double x, double y, double z, double yaw, double pitch, String wname) {
 		setHome(p.getName(), name, x, y, z, yaw, pitch, wname);
 	}
 	
-	static void setHome(String p, String name, double x, double y, double z, double yaw, double pitch, String wname) {
+	public static void setHome(String p, String name, double x, double y, double z, double yaw, double pitch, String wname) {
 		Main.c.getHomes().set("homes." + p + "." + name + ".x", x);
 		Main.c.getHomes().set("homes." + p + "." + name + ".y", y);
 		Main.c.getHomes().set("homes." + p + "." + name + ".z", z);
@@ -38,7 +42,7 @@ public class HomeUtils {
 		removeHome(p.getName(), name);
 	}
 	
-	static void removeHome(String p, String name) {
+	public static void removeHome(String p, String name) {
 		Main.c.getHomes().set("homes." + p + "." + name + ".x", null);
 		Main.c.getHomes().set("homes." + p + "." + name + ".y", null);
 		Main.c.getHomes().set("homes." + p + "." + name + ".z", null);
@@ -52,7 +56,7 @@ public class HomeUtils {
 		homes.put(p, l);
 	}
 	
-	static void toHome(User p, String name) {
+	public static void toHome(User p, String name) {
 		double x;
 		double y;
 		double z;
@@ -87,8 +91,8 @@ public class HomeUtils {
 			p.sendMessage(Home.PREFIX + "Home " + ChatColor.GOLD + name + ChatColor.YELLOW + " hasn't been set correctly!");
 		}
 	}
-	
-	static void adminToPlayerHome(User admin, String p, String homename) {
+
+	public static void adminToPlayerHome(User admin, String p, String homename) {
 		double x;
 		double y;
 		double z;
@@ -144,40 +148,41 @@ public class HomeUtils {
 	public static int getMaxHomes(User p) {
 		return getMaxHomes(p.getName());
 	}
-	
-	static int getMaxHomes(String playername) {
+
+	public static int getMaxHomes(String playername) {
 		return Main.c.getHomes().getInt("homes." + playername + ".maxhomes");
 	}
-	
-	static void setMaxHomes(String pname, int homes) {
+
+	public static void setMaxHomes(String pname, int homes) {
 		Main.c.getHomes().set("homes." + pname + ".maxhomes", homes);
 		Main.c.saveHomes();
 	}
-	
-	static int getHomes(String player) {
+
+	public static int getHomes(String player) {
 		return Main.c.getHomes().getInt("homes." + player + ".hasHomes");
 	}
-	
-	static boolean canSetHome(User p) {
+
+	public static boolean canSetHome(User p) {
 		int has = Main.c.getHomes().getInt("homes." + p.getName() + ".hasHomes");
 		int max = Main.c.getHomes().getInt("homes." + p.getName() + ".maxHomes");
 		return (has < max);
 	}
-	
-	static boolean hasHome(String player, String name) {
+
+	public static boolean hasHome(String player, String name) {
 		return homes.get(player).contains(name);
 	}
-	
-	static String listHomes(String p) {
+
+	public static String listHomes(String p) {
 		String home = "";
 		ArrayList<String> l = homes.get(p);
 		if (homes.isEmpty() || l.isEmpty()) {
 			home = ChatColor.YELLOW + "You do not have a home!";
 		} else {
+			StringBuilder sb = new StringBuilder();
 			for (String s : l) {
-				home = ChatColor.GOLD + s + ChatColor.YELLOW + ", ";
+				sb.append(GOLD).append(s).append(YELLOW).append(", ");
 			}
-			home = home.substring(0, home.length() - 2);
+			home = sb.substring(0, sb.length() - 2);
 		}
 		return home;
 	}

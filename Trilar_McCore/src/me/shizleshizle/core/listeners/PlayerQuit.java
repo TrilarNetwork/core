@@ -1,7 +1,7 @@
 package me.shizleshizle.core.listeners;
 
 import me.shizleshizle.core.Main;
-import me.shizleshizle.core.commands.homes.HomeUtils;
+import me.shizleshizle.core.commands.cmdutils.HomeUtils;
 import me.shizleshizle.core.commands.teleportation.Tp;
 import me.shizleshizle.core.commands.teleportation.Tpa;
 import me.shizleshizle.core.commands.teleportation.Tpahere;

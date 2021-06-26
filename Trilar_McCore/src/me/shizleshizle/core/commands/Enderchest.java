@@ -22,7 +22,7 @@ public class Enderchest implements CommandExecutor {
 				if (sender instanceof Player) {
 					Player x = (Player) sender;
 					User p = new User(x);
-					if (Perm.hasPerm(p, PermGroup.HELPER)) {
+					if (Perm.hasPerm(p, PermGroup.VIP)) {
 						if (args.length == 0) {
 							p.openInventory(p.getEnderchest());
 						} else if (args.length == 1) {

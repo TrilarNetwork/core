@@ -6,6 +6,9 @@ import me.shizleshizle.core.commands.bansystem.*;
 import me.shizleshizle.core.commands.homes.Delhome;
 import me.shizleshizle.core.commands.homes.Home;
 import me.shizleshizle.core.commands.homes.Sethome;
+import me.shizleshizle.core.commands.messaging.Msg;
+import me.shizleshizle.core.commands.messaging.Reply;
+import me.shizleshizle.core.commands.messaging.SocialSpy;
 import me.shizleshizle.core.commands.spawn.Spawn;
 import me.shizleshizle.core.commands.teleportation.*;
 import me.shizleshizle.core.commands.tickets.*;
@@ -84,12 +87,17 @@ public class CommandManager {
         registerCommand("unban", new Unban());
         registerCommand("kick", new Kick());
         registerCommand("mute", new Mute());
-        registerCommand("unban", new Unmute());
+        registerCommand("unmute", new Unmute());
 
         //home
         registerCommand("delhome", new Delhome());
         registerCommand("home", new Home());
         registerCommand("sethome", new Sethome());
+
+        // messaging
+        registerCommand("msg", new Msg());
+        registerCommand("reply", new Reply());
+        registerCommand("socialspy", new SocialSpy());
 
         // spawn
         registerCommand("spawn", new Spawn());
@@ -157,6 +165,7 @@ public class CommandManager {
         registerCommand("heal", new Heal());
         registerCommand("help", new Help());
         registerCommand("Invsee", new Invsee());
+        registerCommand("item", new Item());
         registerCommand("kill", new Kill());
         registerCommand("killmobs", new KillMobs());
         registerCommand("list", new ListCmd());
@@ -172,6 +181,7 @@ public class CommandManager {
         registerCommand("rules", new Rules());
         registerCommand("socialmedia", new SocialMedia());
         registerCommand("skull", new Skulls());
+        registerCommand("spawnmob", new Spawnmob());
         registerCommand("speed", new Speed());
         registerCommand("staff", new StaffList());
         registerCommand("suicide", new Suicide());
@@ -200,6 +210,5 @@ public class CommandManager {
         registerEvent(new PlayerPD());
         registerEvent(new PlayerPreProcess());
         registerEvent(new PlayerQuit());
-        registerEvent(new PlayerTeleport());
     }
 }

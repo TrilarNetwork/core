@@ -18,7 +18,10 @@ public class PlayerInteract implements Listener {
     @EventHandler
     public void onInteract(PlayerInteractEvent e) {
         User p = new User(e.getPlayer());
+        HandleVanish(p, e);
+    }
 
+    private void HandleVanish(User p, PlayerInteractEvent e) {
         //vanish handling
         if (p.isVanished()) {
             if (e.getItem() != null) {

@@ -1,6 +1,7 @@
 package me.shizleshizle.core.commands.homes;
 
 import me.shizleshizle.core.Main;
+import me.shizleshizle.core.commands.cmdutils.HomeUtils;
 import me.shizleshizle.core.commands.teleportation.Tp;
 import me.shizleshizle.core.objects.User;
 import me.shizleshizle.core.permissions.Perm;
@@ -50,7 +51,7 @@ public class Home implements CommandExecutor {
 									p.sendMessage(PREFIX + "Player " + ChatColor.GOLD + args[1] + ChatColor.YELLOW + " has " + ChatColor.GOLD + has
 											+ ChatColor.YELLOW + " homes, and can set a total of " + ChatColor.GOLD + max + ChatColor.YELLOW + " homes!");
 								} else if (args[0].equalsIgnoreCase("list")) {
-									p.sendMessage(PREFIX + "These are " + ChatColor.GOLD + args[1] + ChatColor.YELLOW + "'s homes, you have "
+									p.sendMessage(PREFIX + "These are " + ChatColor.GOLD + args[1] + ChatColor.YELLOW + "'s homes, they have "
 											+ ChatColor.GOLD + HomeUtils.getHomes(p.getName()) + ChatColor.YELLOW + " homes:");
 									p.sendMessage(HomeUtils.listHomes(args[1]));
 								} else {

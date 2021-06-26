@@ -9,6 +9,7 @@ commands:
     description: Ban a player
   unban:
     description: Unban a player
+    aliases: [pardon]
   kick:
     description: Kick a player
   mute:
@@ -22,6 +23,13 @@ commands:
     description: Teleport to your home.
   sethome:
     description: Set a home.
+#messages
+  msg:
+    description: Message a person
+  reply:
+    description: Reply to a person
+  socialspy:
+    description: Spy on people messaging
 #spawn
   spawn:
     description: Go to spawn.
@@ -156,8 +164,13 @@ commands:
     description: Get some info.
   invsee:
     description: Open someone inventory.
+  item:
+    description: Give yourself or someone an item
+    aliases: [give, giveitem]
   kill:
     description: Kill a player.
+  killmobs:
+    description: Kill mobs within specified radius
   list:
     description: List all online player(s).
   lockdown:
@@ -179,12 +192,15 @@ commands:
     description: Change a persons rank.
   repair:
     description: Repair one or more items.
+    aliases: [fix]
   rules:
     description: View the rules.
   skull:
     description: Get yourself a skull.
   socialmedia:
     description: View our socialmedia!
+  spawnmob:
+    description: Spawn a specific mob
   speed:
     description: Change your fly or walk speed.
   staff:

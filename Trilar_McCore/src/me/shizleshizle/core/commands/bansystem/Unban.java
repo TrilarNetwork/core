@@ -30,8 +30,8 @@ public class Unban implements CommandExecutor {
                                 p.sendMessage(Ban.PREFIX + "Player with IP " + GOLD + args[0] + YELLOW + " has not been banned!");
                             }
                         } else {
-                            if (Bukkit.getBanList(BanList.Type.IP).isBanned(args[0])) {
-                                Bukkit.getBanList(BanList.Type.IP).pardon(args[0]);
+                            if (Bukkit.getBanList(BanList.Type.NAME).isBanned(args[0])) {
+                                Bukkit.getBanList(BanList.Type.NAME).pardon(args[0]);
                                 p.sendMessage(Ban.PREFIX + "Player " + GOLD + args[0] + YELLOW + " has been unbanned!");
                             } else {
                                 p.sendMessage(Ban.PREFIX + "Player " + GOLD + args[0] + YELLOW + " has not been banned!");
@@ -53,8 +53,8 @@ public class Unban implements CommandExecutor {
                             sender.sendMessage(Ban.PREFIX + "Player with IP " + GOLD + args[0] + YELLOW + " has not been banned!");
                         }
                     } else {
-                        if (Bukkit.getBanList(BanList.Type.IP).isBanned(args[0])) {
-                            Bukkit.getBanList(BanList.Type.IP).pardon(args[0]);
+                        if (Bukkit.getBanList(BanList.Type.NAME).isBanned(args[0])) {
+                            Bukkit.getBanList(BanList.Type.NAME).pardon(args[0]);
                             sender.sendMessage(Ban.PREFIX + "Player " + GOLD + args[0] + YELLOW + " has been unbanned!");
                         } else {
                             sender.sendMessage(Ban.PREFIX + "Player " + GOLD + args[0] + YELLOW + " has not been banned!");
