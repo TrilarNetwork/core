@@ -28,6 +28,8 @@ public class Sethome implements CommandExecutor {
 							if (HomeUtils.canSetHome(p) || Perm.hasPerm(p, PermGroup.HELPER)) {
 								if (HomeUtils.hasHome(p.getName(), "home")) {
 									p.sendMessage(PREFIX + "You have already set home " + ChatColor.GOLD + "home" + ChatColor.YELLOW + "!");
+									p.sendMessage(PREFIX + "If you wish to set your home to your current location, type '!overwrite'");
+									Main.setHome.add(p.getName());
 								} else {
 									HomeUtils.setHome(p.getName(), "home", p.getLocation().getX(), p.getLocation().getY(), p.getLocation().getZ(),
 											p.getLocation().getYaw(), p.getLocation().getPitch(), p.getWorld().getName());

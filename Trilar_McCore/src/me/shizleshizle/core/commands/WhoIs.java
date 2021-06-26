@@ -60,6 +60,8 @@ public class WhoIs implements CommandExecutor {
 							p.sendMessage(ChatColor.YELLOW + "Frozen: " + WhoIsUtils.getFrozen(t));
 							p.sendMessage(ChatColor.YELLOW + "Tp-Toggle: " + WhoIsUtils.getTpToggle(t));
 							p.sendMessage(ChatColor.YELLOW + "Vanished: " + WhoIsUtils.getVanished(t));
+							p.sendMessage(ChatColor.YELLOW + "Afk: " + WhoIsUtils.getAfk(t));
+							p.sendMessage(ChatColor.YELLOW + "Muted: " + WhoIsUtils.getMuted(t));
 						}
 					}
 				} else {

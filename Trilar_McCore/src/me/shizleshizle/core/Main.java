@@ -17,6 +17,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,13 +33,16 @@ public class Main extends JavaPlugin {
 	public static ArrayList<String> tptoggle = new ArrayList<>();
 	public static ArrayList<String> vanished = new ArrayList<>();
 	public static ArrayList<String> socialspiers = new ArrayList<>();
+	public static ArrayList<String> setHome = new ArrayList<>();
 	public static HashMap<String, Location> back = new HashMap<>();
 	public static HashMap<String, String> tpahere = new HashMap<>();
+	public static HashMap<String, String> messaging = new HashMap<>();
 	public static ConfigManager c;
 	public static Economy econ = null;
 	public static MySQLManager sql;
 	public static CommandManager cman;
 	public static Plugin p;
+	public static File vaultDir;
 	public static boolean lockdown = false;
 	public static boolean remove;
 	private static boolean lobby = false;
@@ -64,6 +68,10 @@ public class Main extends JavaPlugin {
 		c = ConfigManager.getInstance();
 		c.setup(this);
 		setupUtils();
+		vaultDir = new File(getDataFolder(), "playervaults");
+		if (!vaultDir.exists() || !vaultDir.isDirectory()) {
+			vaultDir.mkdir();
+		}
 		//loadVault();
 		sql = MySQLManager.getInstance();
 		sql.setup();

@@ -53,7 +53,18 @@ public class Item implements CommandExecutor {
                                         p.sendMessage(PREFIX + "You have added " + GOLD + amount + YELLOW + " of " + GOLD + itemName + YELLOW + " to your inventory!");
                                     }
                                 } else {
-                                    p.sendMessage(PREFIX + "You must enter a number!");
+                                    Player target = Bukkit.getPlayerExact(args[1]);
+                                    if (target != null && target.isOnline()) {
+                                        ItemStack is = new ItemStack(getMaterialFromString(item), 1);
+                                        String itemName = StringHelper.normalCase(item);
+                                        target.getInventory().addItem(is);
+                                        target.sendMessage(PREFIX + GOLD + p.getName() + YELLOW + " has added " + GOLD + "1" + YELLOW + " of " + GOLD
+                                                + StringHelper.normalCase(item) + YELLOW + "to your inventory!");
+                                        p.sendMessage(PREFIX + "You have added " + GOLD + "1" + YELLOW + " of " + GOLD + itemName + YELLOW + " to the inventory of " +
+                                                GOLD + target.getName() + YELLOW + "!");
+                                    } else {
+                                        p.sendMessage(PREFIX + "You must enter a number or a valid player name!");
+                                    }
                                 }
                             }
                         } else {
@@ -65,7 +76,28 @@ public class Item implements CommandExecutor {
                 }
             } else {
                 if (args.length == 2 || args.length == 3) {
-
+                    String item = args[0];
+                    if (Numbers.isNumber(args[1])) {
+                        int amount = Numbers.getInt(args[1]);
+                        ItemStack is = new ItemStack(getMaterialFromString(item), amount);
+                        String itemName = StringHelper.normalCase(item);
+                        if (args.length == 3) {
+                            Player target = Bukkit.getPlayerExact(args[2]);
+                            if (target != null && target.isOnline()) {
+                                target.getInventory().addItem(is);
+                                target.sendMessage(PREFIX + GOLD + "Console" + YELLOW + " has added " + GOLD + amount + YELLOW + " of " + GOLD
+                                        + StringHelper.normalCase(item) + YELLOW + "to your inventory!");
+                                sender.sendMessage(PREFIX + "You have added " + GOLD + amount + YELLOW + " of " + GOLD + itemName + YELLOW + " to the inventory of " +
+                                        GOLD + target.getName() + YELLOW + "!");
+                            } else {
+                                ErrorMessages.doErrorMessage(sender, ErrorMessages.Messages.PLAYER_OFFLINE, args[1]);
+                            }
+                        } else {
+                            sender.sendMessage(PREFIX + "You must specify a player to give the item to!");
+                        }
+                    } else {
+                        sender.sendMessage(PREFIX + "You must enter a number!");
+                    }
                 } else {
                     ErrorMessages.doErrorMessage(sender, ErrorMessages.Messages.INVALID_USAGE, "/item <item> [amount] [player]");
                 }
@@ -75,10 +107,10 @@ public class Item implements CommandExecutor {
     }
 
     private Material getMaterialFromString(String mat) {
-        return Material.getMaterial(mat);
+        return Material.getMaterial(mat.toUpperCase());
     }
 
     private boolean isMaterial(String mat) {
-        return Material.getMaterial(mat) != null;
+        return Material.getMaterial(mat.toUpperCase()) != null;
     }
 }

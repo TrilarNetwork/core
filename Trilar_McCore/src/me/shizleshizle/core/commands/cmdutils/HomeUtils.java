@@ -13,12 +13,17 @@ import org.bukkit.World;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 import static org.bukkit.ChatColor.GOLD;
 import static org.bukkit.ChatColor.YELLOW;
 
 public class HomeUtils {
 	private static HashMap<String, ArrayList<String>> homes = new HashMap<>();
+
+	public static void setHome(User p, String name, Location loc) {
+		setHome(p, name, loc.getX(), loc.getY(), loc.getZ(), (double) loc.getYaw(), (double) loc.getPitch(), Objects.requireNonNull(loc.getWorld()).getName());
+	}
 	
 	public static void setHome(User p, String name, double x, double y, double z, double yaw, double pitch, String wname) {
 		setHome(p.getName(), name, x, y, z, yaw, pitch, wname);

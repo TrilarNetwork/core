@@ -30,6 +30,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scoreboard.Scoreboard;
 
+import javax.annotation.Nullable;
 import java.net.InetSocketAddress;
 import java.sql.*;
 import java.time.Clock;
@@ -43,7 +44,6 @@ import static org.bukkit.ChatColor.*;
 public class User {
     private Player p;
     private final Clock permanentMute;
-    private User lastMessager;
 
     public User(Player p) {
         this.p = p;
@@ -246,8 +246,20 @@ public class User {
         return p.getKiller();
     }
 
+    @Nullable
     public User getLastMessager() {
-        return lastMessager;
+        String messagerName = "";
+        if (Main.messaging.containsKey(getName())) {
+            messagerName = Main.messaging.get(getName());
+        } else if (Main.messaging.containsValue(getName())){
+            for (String pl : Main.messaging.keySet()) {
+                if (Main.messaging.get(pl).equals(getName())) {
+                    messagerName = pl;
+
+                }
+            }
+        }
+        return new User(Bukkit.getPlayerExact(messagerName));
     }
 
     public int getLevel() {
@@ -371,10 +383,7 @@ public class User {
     }
 
     public boolean hasLastMessager() {
-        if (lastMessager != null) {
-            return lastMessager.isOnline();
-        }
-        return false;
+        return (Main.messaging.containsKey(getName()) || Main.messaging.containsValue(getName()));
     }
 
     public boolean hasNick() {
@@ -523,13 +532,36 @@ public class User {
     public void message(User target, String msg) {
         target.sendMessage(GOLD + getName() + YELLOW + " > " + GOLD + "You" + YELLOW + " >> " + WHITE + msg);
         sendMessage(GOLD + "You" + YELLOW + " > " + GOLD + target.getName() + YELLOW + " >> " + WHITE + msg);
-        lastMessager = target;
-        target.lastMessager = this;
+        if (!isMessaging(getName(), target.getName())) {
+            if (isMessaging(getName())) removeMessaging(getName());
+            if (isMessaging(target.getName())) removeMessaging(target.getName());
+            Main.messaging.put(getName(), target.getName());
+        }
         for (String playerName : Main.socialspiers) {
             Player spy = Bukkit.getPlayerExact(playerName);
             if (spy != null && spy.isOnline()) {
                 if (!spy.getName().equals(target.getName()) && !spy.getName().equals(getName())) {
                     spy.sendMessage(GOLD + getName() + YELLOW + " > " + GOLD + target.getName() + YELLOW + " >> " + WHITE + msg);
+                }
+            }
+        }
+    }
+
+    private boolean isMessaging(String p) {
+        return Main.messaging.containsKey(p) || Main.messaging.containsValue(p);
+    }
+
+    private boolean isMessaging(String p1, String p2) {
+        return Main.messaging.containsKey(p1) && Main.messaging.get(p1).equals(p2);
+    }
+
+    private void removeMessaging(String p) {
+        if (Main.messaging.containsKey(p)) {
+            Main.messaging.remove(p);
+        } else if (Main.messaging.containsValue(p)) {
+            for (String pl : Main.messaging.keySet()) {
+                if (Main.messaging.get(pl).equals(p)) {
+                    Main.messaging.remove(pl, p);
                 }
             }
         }
@@ -655,6 +687,11 @@ public class User {
 
     public void reply(String msg) {
         if (hasLastMessager()) {
+            User lastMessager = getLastMessager();
+            if (lastMessager == null) {
+                sendMessage(Msg.PREFIX + "You have no one to reply to!");
+                return;
+            }
             lastMessager.sendMessage(GOLD + getName() + YELLOW + " > " + GOLD + "You" + YELLOW + " >> " + WHITE + msg);
             sendMessage(GOLD + "You" + YELLOW + " > " + GOLD + lastMessager.getName() + YELLOW + " >> " + WHITE + msg);
             for (String playerName : Main.socialspiers) {
@@ -666,7 +703,7 @@ public class User {
                 }
             }
         } else {
-            sendMessage(Msg.PREFIX + "Player " + GOLD + lastMessager.getName() + YELLOW + " is not online!");
+            sendMessage(Msg.PREFIX + "You have no one to reply to!");
         }
     }
 

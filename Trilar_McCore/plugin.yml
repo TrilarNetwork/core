@@ -26,8 +26,10 @@ commands:
 #messages
   msg:
     description: Message a person
+    aliases: [message, mssg]
   reply:
     description: Reply to a person
+    aliases: [r]
   socialspy:
     description: Spy on people messaging
 #spawn

@@ -3,16 +3,16 @@ package me.shizleshizle.core.commands.cmdutils;
 import me.shizleshizle.core.Main;
 import me.shizleshizle.core.listeners.PlayerQuit;
 import me.shizleshizle.core.objects.User;
-import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.attribute.AttributeInstance;
 
+import static org.bukkit.ChatColor.*;
 public class WhoIsUtils {
 
     public static String getOfflineID(OfflinePlayer op) {
         String s;
-        s = ChatColor.GOLD + op.getUniqueId().toString();
+        s = GOLD + op.getUniqueId().toString();
         return s;
     }
 
@@ -21,7 +21,7 @@ public class WhoIsUtils {
         if (PlayerQuit.health.containsKey(op.getName())) {
             double h = PlayerQuit.health.get(op.getName());
             int health = (int) h;
-            s = ChatColor.GOLD.toString() + health;
+            s = GOLD.toString() + health;
         }
         return s;
     }
@@ -30,7 +30,7 @@ public class WhoIsUtils {
         String s = null;
         if (PlayerQuit.hunger.containsKey(op.getName())) {
             int h = PlayerQuit.hunger.get(op.getName());
-            s = ChatColor.GOLD.toString() + h;
+            s = GOLD.toString() + h;
         }
         return s;
     }
@@ -40,7 +40,7 @@ public class WhoIsUtils {
         if (PlayerQuit.xp.containsKey(op.getName()) && PlayerQuit.xplevel.containsKey(op.getName())) {
             int xp = PlayerQuit.xp.get(op.getName());
             int level = PlayerQuit.xplevel.get(op.getName());
-            s = ChatColor.GOLD.toString() + xp + ChatColor.YELLOW + " (" + ChatColor.GOLD + "Level " + level + ChatColor.YELLOW + ")";
+            s = GOLD.toString() + xp + YELLOW + " (" + GOLD + "Level " + level + YELLOW + ")";
         }
         return s;
     }
@@ -50,13 +50,13 @@ public class WhoIsUtils {
         if (PlayerQuit.gm.containsKey(op.getName())) {
             GameMode gm = PlayerQuit.gm.get(op.getName());
             if (gm.equals(GameMode.SURVIVAL)) {
-                s = ChatColor.GOLD + "Survival";
+                s = GOLD + "Survival";
             } else if (gm.equals(GameMode.SPECTATOR)) {
-                s = ChatColor.GOLD + "Spectator";
+                s = GOLD + "Spectator";
             } else if (gm.equals(GameMode.CREATIVE)) {
-                s = ChatColor.GOLD + "Creative";
+                s = GOLD + "Creative";
             } else if (gm.equals(GameMode.ADVENTURE)) {
-                s = ChatColor.GOLD + "Adventure";
+                s = GOLD + "Adventure";
             }
         }
         return s;
@@ -67,9 +67,9 @@ public class WhoIsUtils {
         if (PlayerQuit.god.containsKey(op.getName())) {
             boolean b = PlayerQuit.god.get(op.getName());
             if (b) {
-                s = ChatColor.GREEN + "true";
+                s = GREEN + "true";
             } else {
-                s = ChatColor.RED + "false";
+                s = RED + "false";
             }
         }
         return s;
@@ -80,9 +80,9 @@ public class WhoIsUtils {
         if (PlayerQuit.frozen.containsKey(op.getName())) {
             boolean b = PlayerQuit.frozen.get(op.getName());
             if (b) {
-                s = ChatColor.GREEN + "true";
+                s = GREEN + "true";
             } else {
-                s = ChatColor.RED + "false";
+                s = RED + "false";
             }
         }
         return s;
@@ -93,9 +93,9 @@ public class WhoIsUtils {
         if (PlayerQuit.t.containsKey(op.getName())) {
             boolean b = PlayerQuit.t.get(op.getName());
             if (b) {
-                s = ChatColor.GREEN + "true";
+                s = GREEN + "true";
             } else {
-                s = ChatColor.RED + "false";
+                s = RED + "false";
             }
         }
         return s;
@@ -106,9 +106,9 @@ public class WhoIsUtils {
         if (PlayerQuit.vanished.containsKey(op.getName())) {
             boolean b = PlayerQuit.vanished.get(op.getName());
             if (b) {
-                s = ChatColor.GREEN + "true";
+                s = GREEN + "true";
             } else {
-                s = ChatColor.RED + "false";
+                s = RED + "false";
             }
         }
         return s;
@@ -118,28 +118,36 @@ public class WhoIsUtils {
         String s;
         double b = Main.econ.getBalance(op);
         String val = Main.econ.currencyNamePlural();
-        s = ChatColor.GOLD.toString() + b + ChatColor.YELLOW + " " + val;
+        s = GOLD.toString() + b + YELLOW + " " + val;
         return s;
     }
 
+    public static String getAfk(User p) {
+        return (p.isAfk() ? GREEN + "true" : RED + "false");
+    }
+
+    public static String getMuted(User p) {
+        return (p.isMuted() ? GREEN + "true" : RED + "false");
+    }
+
     public static String getID(User p) {
-        return ChatColor.GOLD + p.getUUID().toString();
+        return GOLD + p.getUUID().toString();
     }
 
     public static String getXP(User p) {
-        return ChatColor.GOLD.toString() + p.getTotalExperience() + ChatColor.YELLOW + " (Level " + ChatColor.GOLD + p.getLevel() + ChatColor.YELLOW + ")";
+        return GOLD.toString() + p.getTotalExperience() + YELLOW + " (Level " + GOLD + p.getLevel() + YELLOW + ")";
     }
 
     public static String getFood(User p) {
-        return ChatColor.GOLD.toString() + p.getFoodLevel() + ChatColor.YELLOW + "/" + ChatColor.GOLD + "20";
+        return GOLD.toString() + p.getFoodLevel() + YELLOW + "/" + GOLD + "20";
     }
 
     public static String getAddress(String name) {
         String s;
         if (Main.sql.getIP(name) != null) {
-        	s = ChatColor.GOLD + Main.sql.getIP(name);
+        	s = GOLD + Main.sql.getIP(name);
         } else {
-        	s = ChatColor.GOLD + "No IP is known of this person.";
+        	s = GOLD + "No IP is known of this person.";
         }
         return s;
     }
@@ -147,13 +155,13 @@ public class WhoIsUtils {
     public static String getGameMode(User p) {
         String s = null;
         if (p.getGameMode().equals(GameMode.SURVIVAL)) {
-            s = ChatColor.GOLD + "Survival";
+            s = GOLD + "Survival";
         } else if (p.getGameMode().equals(GameMode.SPECTATOR)) {
-            s = ChatColor.GOLD + "Spectator";
+            s = GOLD + "Spectator";
         } else if (p.getGameMode().equals(GameMode.CREATIVE)) {
-            s = ChatColor.GOLD + "Creative";
+            s = GOLD + "Creative";
         } else if (p.getGameMode().equals(GameMode.ADVENTURE)) {
-            s = ChatColor.GOLD + "Adventure";
+            s = GOLD + "Adventure";
         }
         return s;
     }
@@ -164,7 +172,7 @@ public class WhoIsUtils {
         int x = p.getLocation().getBlockX();
         int y = p.getLocation().getBlockY();
         int z = p.getLocation().getBlockZ();
-        s = ChatColor.GOLD + n + ChatColor.YELLOW + ", " + ChatColor.GOLD + x + ChatColor.YELLOW + ", " + ChatColor.GOLD + y + ChatColor.YELLOW + ", " + ChatColor.GOLD + z;
+        s = GOLD + n + YELLOW + ", X:" + GOLD + x + YELLOW + ", Y:" + GOLD + y + YELLOW + ", Z:" + GOLD + z;
         return s;
     }
 
@@ -172,16 +180,16 @@ public class WhoIsUtils {
         String s;
         int health = (int) p.getHealth();
         AttributeInstance mh = p.getMaxHealth();
-        s = ChatColor.GOLD.toString() + health + ChatColor.YELLOW + "/" + ChatColor.GOLD + mh.getValue();
+        s = GOLD.toString() + health + YELLOW + "/" + GOLD + mh.getValue();
         return s;
     }
 
     public static String getOp(User p) {
         String s;
         if (p.isOp()) {
-            s = ChatColor.GREEN + "true";
+            s = GREEN + "true";
         } else {
-            s = ChatColor.RED + "false";
+            s = RED + "false";
         }
         return s;
     }
@@ -189,9 +197,9 @@ public class WhoIsUtils {
     public static String getGod(User p) {
         String s;
         if (p.isGod()) {
-            s = ChatColor.GREEN + "true";
+            s = GREEN + "true";
         } else {
-            s = ChatColor.RED + "false";
+            s = RED + "false";
         }
         return s;
     }
@@ -200,12 +208,12 @@ public class WhoIsUtils {
         String s;
         if (p.getAllowFlight()) {
             if (p.isFlying()) {
-                s = ChatColor.GREEN + "true " + ChatColor.YELLOW + "(" + ChatColor.GOLD + "flying" + ChatColor.YELLOW + ")";
+                s = GREEN + "true " + YELLOW + "(" + GOLD + "flying" + YELLOW + ")";
             } else {
-                s = ChatColor.GREEN + "true " + ChatColor.YELLOW + "(" + ChatColor.GOLD + "not flying" + ChatColor.YELLOW + ")";
+                s = GREEN + "true " + YELLOW + "(" + GOLD + "not flying" + YELLOW + ")";
             }
         } else {
-            s = ChatColor.RED + "false";
+            s = RED + "false";
         }
         return s;
     }
@@ -213,9 +221,9 @@ public class WhoIsUtils {
     public static String getFrozen(User p) {
         String s;
         if (p.isFrozen()) {
-            s = ChatColor.GREEN + "true";
+            s = GREEN + "true";
         } else {
-            s = ChatColor.RED + "false";
+            s = RED + "false";
         }
         return s;
     }
@@ -223,9 +231,9 @@ public class WhoIsUtils {
     public static String getSpeed(User p) {
         String s;
         if (p.isFlying()) {
-            s = ChatColor.GOLD.toString() + p.getFlySpeed() + ChatColor.YELLOW + " (" + ChatColor.GOLD + "flying speed" + ChatColor.YELLOW + ")";
+            s = GOLD.toString() + p.getFlySpeed() + YELLOW + " (" + GOLD + "flying speed" + YELLOW + ")";
         } else {
-            s = ChatColor.GOLD.toString() + p.getWalkSpeed() + ChatColor.YELLOW + " (" + ChatColor.GOLD + "walking speed" + ChatColor.YELLOW + ")";
+            s = GOLD.toString() + p.getWalkSpeed() + YELLOW + " (" + GOLD + "walking speed" + YELLOW + ")";
         }
         return s;
     }
@@ -233,9 +241,9 @@ public class WhoIsUtils {
     public static String getTpToggle(User p) {
         String s;
         if (p.hasTpDisabled()) {
-            s = ChatColor.GREEN + "true";
+            s = GREEN + "true";
         } else {
-            s = ChatColor.RED + "false";
+            s = RED + "false";
         }
         return s;
     }
@@ -243,9 +251,9 @@ public class WhoIsUtils {
     public static String getVanished(User p) {
         String s;
         if (p.isVanished()) {
-            s = ChatColor.GREEN + "true";
+            s = GREEN + "true";
         } else {
-            s = ChatColor.RED + "false";
+            s = RED + "false";
         }
         return s;
     }
@@ -255,7 +263,7 @@ public class WhoIsUtils {
         String s;
         double b = Main.econ.getBalance(op);
         String val = Main.econ.currencyNamePlural();
-        s = ChatColor.GOLD.toString() + b + ChatColor.YELLOW + " " + val;
+        s = GOLD.toString() + b + YELLOW + " " + val;
         return s;
     }
 }
