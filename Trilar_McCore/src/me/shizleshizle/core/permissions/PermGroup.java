@@ -14,10 +14,10 @@ public enum PermGroup {
 	ADMIN(400, GRAY + "(" + RED + "Admin" + GRAY + ") " + RED, "Admin", RED, "&c"),
 	MODERATOR(300, GRAY + "(" + AQUA + "Moderator" + GRAY + ") " + AQUA, "Moderator", AQUA, "&b"),
 	HELPER(200, GRAY + "(" + GOLD + "Helper" + GRAY + ") " + GOLD, "Helper", GOLD, "&6"),
-	JR_HELPER(175, GRAY + "(" + GOLD + "Junior" + GOLD + "-" + GOLD + "Helper" + GRAY + ") " + GOLD, "Junior-Helper", GOLD, "&6"),
+	TRIAL_HELPER(175, GRAY + "(" + GOLD + "Junior" + GOLD + "-" + GOLD + "Helper" + GRAY + ") " + GOLD, "Junior-Helper", GOLD, "&6"),
 	HEAD_BUILDER(150, GRAY + "(" + GREEN + "Head-Builder" + GRAY + ") " + GREEN, "Head-Builder", GREEN, "&a"),
 	BUILDER(100, GRAY + "(" + GREEN + "Builder" + GRAY + ") " + GREEN, "Builder", GREEN, "&a"),
-	JR_BUILDER(150, GRAY + "(" + GREEN + "Junior-Builder" + GRAY + ") " + GREEN, "Junior-Builder", GREEN, "&a"),
+	TRIAL_BUILDER(150, GRAY + "(" + GREEN + "Junior-Builder" + GRAY + ") " + GREEN, "Junior-Builder", GREEN, "&a"),
 	YOUTUBE(50, GRAY + "(" + WHITE + "You" + RED + "Tube" + GRAY + ") " + RED, "YouTube", WHITE, "&f"),
 	VIP(20, GRAY + "(" + DARK_PURPLE + "VIP" + GRAY + ") " + DARK_PURPLE, "Vip", DARK_PURPLE, "&5"),
 	MEMBER(1, GRAY + "(" + DARK_GRAY + "Member" + GRAY + ") " + GREEN, "Member", GREEN, "&7");

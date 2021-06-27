@@ -54,7 +54,7 @@ public class StaffList implements CommandExecutor {
 				String jrh = "";
 				for (String s : staff.keySet()) {
 					switch (staff.get(s)) {
-					case JR_HELPER:
+					case TRIAL_HELPER:
 						jrhelpers.append(s).append(", ");
 						break;
 					case HELPER:
@@ -104,7 +104,7 @@ public class StaffList implements CommandExecutor {
 					hel = ChatColor.GOLD + "[ " + PermGroup.HELPER.getPrefix() + ChatColor.GOLD + ": " + PermGroup.HELPER.getColor() + helpers.toString().trim();
 				}
 				if (!jrhelpers.toString().isEmpty()) {
-					jrh = ChatColor.GOLD + "[ " + PermGroup.JR_HELPER.getPrefix() + ChatColor.GOLD + ": " + PermGroup.HELPER.getColor() + jrhelpers.toString().trim();
+					jrh = ChatColor.GOLD + "[ " + PermGroup.TRIAL_HELPER.getPrefix() + ChatColor.GOLD + ": " + PermGroup.HELPER.getColor() + jrhelpers.toString().trim();
 				}
 				sender.sendMessage(ChatColor.GOLD + "]=-");
 				sender.sendMessage(ChatColor.GOLD + "[");

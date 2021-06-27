@@ -5,6 +5,7 @@ import me.shizleshizle.core.commands.Wild;
 import me.shizleshizle.core.commands.cmdutils.VanishUtils;
 import me.shizleshizle.core.commands.cmdutils.WarpUtils;
 import me.shizleshizle.core.commands.messaging.Msg;
+import me.shizleshizle.core.commands.vaults.utils.VaultHandler;
 import me.shizleshizle.core.commands.warps.Warp;
 import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermGroup;
@@ -99,6 +100,18 @@ public class User {
         return p.canSee(u.getUser());
     }
 
+    public boolean canCreateNewVault() {
+        int hasVaults = VaultHandler.getAmountOfVaults(getName());
+        if (Perm.hasPerm(getName(), PermGroup.ADMIN)) {
+            return true;
+        } else if (Perm.hasPerm(getName(), PermGroup.MODERATOR)) {
+            return (hasVaults < 5);
+        } else if (Perm.hasPerm(getName(), PermGroup.VIP)) {
+            return (hasVaults < 1);
+        }
+        return false;
+    }
+
     public void clearInventory() {
         p.getInventory().clear();
         p.getInventory().setArmorContents(null);
@@ -106,6 +119,11 @@ public class User {
 
     public void closeInventory() {
         p.closeInventory();
+    }
+
+    public void createVault(int vaultNumber, int... size) {
+        int invSize = size.length > 0 ? size[0] : 54;
+        VaultHandler.addVault(getName(), Bukkit.createInventory(null, invSize, getName() + "'s Vault " + vaultNumber), vaultNumber);
     }
 
     public void freezeUser(boolean freeze) {
@@ -402,12 +420,16 @@ public class User {
         return Prefix.hasPrefix(p.getName());
     }
 
+    public boolean hasSocialSpyEnabled() {
+        return Main.socialspiers.contains(getName());
+    }
+
     public boolean hasTpDisabled() {
         return Main.tptoggle.contains(p.getName());
     }
 
-    public boolean hasSocialSpyEnabled() {
-        return Main.socialspiers.contains(getName());
+    public boolean hasVault(int vaultNumber) {
+        return VaultHandler.hasVault(getName(), vaultNumber);
     }
 
     public void heal() {
@@ -590,6 +612,14 @@ public class User {
 
     public void openInventory(InventoryView i) {
         p.openInventory(i);
+    }
+
+    public void openVault(int vaultNumber) {
+        openInventory(VaultHandler.getInventory(getName(), vaultNumber));
+    }
+
+    public void openOtherVault(String name, int vaultNumber) {
+        openInventory(VaultHandler.getInventory(name, vaultNumber));
     }
 
     public InventoryView openWorkbench(Location loc, boolean open) {

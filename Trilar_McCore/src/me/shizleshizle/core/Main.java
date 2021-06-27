@@ -1,5 +1,6 @@
 package me.shizleshizle.core;
 
+import me.shizleshizle.core.commands.vaults.utils.VaultHandler;
 import me.shizleshizle.core.mysql.MySQLManager;
 import me.shizleshizle.core.objects.ChatColorHandler;
 import me.shizleshizle.core.permissions.PermUser;
@@ -46,7 +47,7 @@ public class Main extends JavaPlugin {
 	public static boolean lockdown = false;
 	public static boolean remove;
 	private static boolean lobby = false;
-	public static boolean broadcastFuntion;
+	public static boolean broadcastFunction;
 	public static String host;
 	public static String db;
 	public static String user;
@@ -72,6 +73,7 @@ public class Main extends JavaPlugin {
 		if (!vaultDir.exists() || !vaultDir.isDirectory()) {
 			vaultDir.mkdir();
 		}
+		VaultHandler.loadFromFile();
 		//loadVault();
 		sql = MySQLManager.getInstance();
 		sql.setup();
@@ -82,7 +84,7 @@ public class Main extends JavaPlugin {
 		cman = new CommandManager(this);
 		cman.registerToServer();
 		Cooldowns.runCooldown();
-		AutoB.setBroadcasting(broadcastFuntion);
+		AutoB.setBroadcasting(broadcastFunction);
 		broadcast();
 		long fin = System.currentTimeMillis() - time;
 		l.info("McCore >> successfully enabled! (" + fin + " ms)");
@@ -100,6 +102,7 @@ public class Main extends JavaPlugin {
 			e.printStackTrace();
 		}
 		AutoB.saveToConfig();
+		VaultHandler.saveVaults();
 		long fin = System.currentTimeMillis() - time;
 		l.info("McCore >> successfully disabled! (" + fin + " ms)");
 	}
@@ -116,7 +119,7 @@ public class Main extends JavaPlugin {
 		tpTime = c.getConfig().getInt("settings.teleportWaitTime");
 		maxHealth = c.getConfig().getInt("settings.maxHealth");
 		autobroadcastDelay = c.getConfig().getInt("settings.autoBroadcastDelay");
-		broadcastFuntion = c.getConfig().getBoolean("settings.enableAutoBroadcast");
+		broadcastFunction = c.getConfig().getBoolean("settings.enableAutoBroadcast");
 		msgs = Main.c.getConfig().getStringList("settings.broadcastMessages");
 	}
 

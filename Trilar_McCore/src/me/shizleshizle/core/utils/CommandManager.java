@@ -16,6 +16,7 @@ import me.shizleshizle.core.commands.time.DayCmd;
 import me.shizleshizle.core.commands.time.NightCmd;
 import me.shizleshizle.core.commands.time.PTime;
 import me.shizleshizle.core.commands.time.Time;
+import me.shizleshizle.core.commands.vaults.Vault;
 import me.shizleshizle.core.commands.warps.Deletewarps;
 import me.shizleshizle.core.commands.warps.Setwarps;
 import me.shizleshizle.core.commands.warps.Warp;
@@ -129,6 +130,9 @@ public class CommandManager {
         registerCommand("day", new DayCmd());
         registerCommand("night", new NightCmd());
         registerCommand("ptime", new PTime());
+
+        // vault
+        registerCommand("playervaults", new Vault());
 
         // warps
         registerCommand("removewarp", new Deletewarps());

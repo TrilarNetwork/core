@@ -86,7 +86,11 @@ commands:
   ptime:
     description: Change your personal time.
     aliases: [playertime]
-#econ
+#vault
+  playervaults:
+    description: Open or create a personal vault
+    aliases: [playervault, pv, playerv, pvault]
+  #econ
   balance:
     description: Check your balance.
   pay:

@@ -5,6 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
+import javax.annotation.Nullable;
 import java.io.File;
 import java.io.IOException;
 
@@ -30,6 +31,7 @@ public class VaultFileHandler {
         return createdFile;
     }
 
+    // TODO: ? Make able to delete file?
     public static boolean deleteFile(String name) {
         File f = new File(Main.vaultDir, name + ".yml");
         boolean delete = f.delete();
@@ -49,7 +51,17 @@ public class VaultFileHandler {
         }
     }
 
+    @Nullable
     public static File getFile(String name) {
-        return new File(Main.vaultDir, name + ".yml");
+        if (hasFile(name)) {
+            return new File(Main.vaultDir, name + ".yml");
+        } else {
+            boolean created = createFile(name);
+            if (created) {
+                return new File(Main.vaultDir, name + ".yml");
+            } else {
+                return null;
+            }
+        }
     }
 }
