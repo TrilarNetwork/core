@@ -13,8 +13,10 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import static org.bukkit.ChatColor.*;
+
 public class Weather implements CommandExecutor {
-	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Weather" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+	public static final String PREFIX = YELLOW.toString() + BOLD + "Weather" + GOLD + " >> " + YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("weather")) {
@@ -23,10 +25,12 @@ public class Weather implements CommandExecutor {
 				User p = new User(x);
 				if (Perm.hasPerm(p, PermGroup.HELPER)) {
 					if (args.length == 1) {
-						if (args[0].equalsIgnoreCase("downfall")) {
+						if (args[0].equalsIgnoreCase("downfall") || args[0].equalsIgnoreCase("rain")) {
 							p.setWeather(WeatherTypes.STORM);
+							p.sendMessage(PREFIX + "Weather set to " + GOLD + "Downfall" + YELLOW + "!");
 						} else if (args[0].equalsIgnoreCase("clear")) {
 							p.setWeather(WeatherTypes.CLEAR);
+							p.sendMessage(PREFIX + "Weather set to " + GOLD + "Clear" + YELLOW + "!");
 						} else {
 							ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/weather");
 						}
@@ -34,8 +38,10 @@ public class Weather implements CommandExecutor {
 						if (args[1].equalsIgnoreCase("self")) {
 							if (args[0].equalsIgnoreCase("downfall")) {
 								p.setUserWeather(WeatherType.DOWNFALL);
+								p.sendMessage(PREFIX + "Personal weather set to " + GOLD + "Downfall" + YELLOW + "!");
 							} else if (args[0].equalsIgnoreCase("clear")) {
 								p.setUserWeather(WeatherType.CLEAR);
+								p.sendMessage(PREFIX + "Personal weather set to " + GOLD + "Clear" + YELLOW + "!");
 							} else {
 								ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/weather");
 							}

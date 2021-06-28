@@ -43,7 +43,11 @@ public class VaultHandler {
     }
 
     public static boolean hasVault(String name, int vaultNumber) {
-        return vaults.get(name).containsKey(vaultNumber);
+        if (hasAnyVaults(name)) {
+            return vaults.get(name).containsKey(vaultNumber);
+        } else {
+            return false;
+        }
     }
 
     public static String getVaultNumbers(String name) {
@@ -100,5 +104,9 @@ public class VaultHandler {
         vaultsToStore.put(vaultNumber, inv);
         vaults.put(name, vaultsToStore);
         saveVaults();
+    }
+
+    public static boolean hasAnyVaults(String name) {
+        return vaults.containsKey(name);
     }
 }

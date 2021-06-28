@@ -34,8 +34,12 @@ public class Vault implements CommandExecutor {
                                 p.sendMessage(PREFIX + "Created Vault #" + GOLD + vaultNumber + YELLOW + "!");
                             }
                         } else if (args[0].equalsIgnoreCase("list")) {
-                            p.sendMessage(PREFIX + "These are your vaults: ");
-                            p.sendMessage(VaultHandler.getVaultNumbers(p.getName()));
+                            if (p.hasAnyVaults()) {
+                                p.sendMessage(PREFIX + "These are your vaults: ");
+                                p.sendMessage(VaultHandler.getVaultNumbers(p.getName()));
+                            } else {
+                                p.sendMessage(PREFIX + "You do not have any vaults!1");
+                            }
                         } else {
                             p.sendMessage(PREFIX + "You must enter a vault number!");
                         }

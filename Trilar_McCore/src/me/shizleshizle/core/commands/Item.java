@@ -7,8 +7,8 @@ import me.shizleshizle.core.permissions.PermGroup;
 import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.Numbers;
 import me.shizleshizle.core.utils.StringHelper;
+import me.shizleshizle.core.utils.StringToMaterial;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -27,16 +27,16 @@ public class Item implements CommandExecutor {
                 if (Perm.hasPerm(p, PermGroup.ADMIN)) {
                     if (args.length == 1 || args.length == 2 || args.length == 3) {
                         String item = args[0];
-                        if (isMaterial(item)) {
+                        if (StringToMaterial.isMaterial(item)) {
                             if (args.length == 1) {
-                                ItemStack is = new ItemStack(getMaterialFromString(item), 1);
+                                ItemStack is = new ItemStack(StringToMaterial.getMaterialFromString(item), 1);
                                 p.getInventory().addItem(is);
                                 p.sendMessage(PREFIX + "Added 1 of " + GOLD + StringHelper.normalCase(item) + YELLOW + " to your inventory!");
                                 return false;
                             } else {
                                 if (Numbers.isNumber(args[1])) {
                                     int amount = Numbers.getInt(args[1]);
-                                    ItemStack is = new ItemStack(getMaterialFromString(item), amount);
+                                    ItemStack is = new ItemStack(StringToMaterial.getMaterialFromString(item), amount);
                                     String itemName = StringHelper.normalCase(item);
                                     if (args.length == 3) {
                                         Player target = Bukkit.getPlayerExact(args[2]);
@@ -56,7 +56,7 @@ public class Item implements CommandExecutor {
                                 } else {
                                     Player target = Bukkit.getPlayerExact(args[1]);
                                     if (target != null && target.isOnline()) {
-                                        ItemStack is = new ItemStack(getMaterialFromString(item), 1);
+                                        ItemStack is = new ItemStack(StringToMaterial.getMaterialFromString(item), 1);
                                         String itemName = StringHelper.normalCase(item);
                                         target.getInventory().addItem(is);
                                         target.sendMessage(PREFIX + GOLD + p.getName() + YELLOW + " has added " + GOLD + "1" + YELLOW + " of " + GOLD
@@ -80,7 +80,7 @@ public class Item implements CommandExecutor {
                     String item = args[0];
                     if (Numbers.isNumber(args[1])) {
                         int amount = Numbers.getInt(args[1]);
-                        ItemStack is = new ItemStack(getMaterialFromString(item), amount);
+                        ItemStack is = new ItemStack(StringToMaterial.getMaterialFromString(item), amount);
                         String itemName = StringHelper.normalCase(item);
                         if (args.length == 3) {
                             Player target = Bukkit.getPlayerExact(args[2]);
@@ -105,13 +105,5 @@ public class Item implements CommandExecutor {
             }
         }
         return false;
-    }
-
-    private Material getMaterialFromString(String mat) {
-        return Material.getMaterial(mat.toUpperCase());
-    }
-
-    private boolean isMaterial(String mat) {
-        return Material.getMaterial(mat.toUpperCase()) != null;
     }
 }

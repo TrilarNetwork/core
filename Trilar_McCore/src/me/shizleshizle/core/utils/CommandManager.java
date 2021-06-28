@@ -185,6 +185,7 @@ public class CommandManager {
         registerCommand("rules", new Rules());
         registerCommand("socialmedia", new SocialMedia());
         registerCommand("skull", new Skulls());
+        registerCommand("smelt", new Smelt());
         registerCommand("spawnmob", new Spawnmob());
         registerCommand("speed", new Speed());
         registerCommand("staff", new StaffList());

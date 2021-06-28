@@ -203,6 +203,8 @@ commands:
     description: View the rules.
   skull:
     description: Get yourself a skull.
+  smelt:
+    description: Smelt ores into ingots
   socialmedia:
     description: View our socialmedia!
   spawnmob:

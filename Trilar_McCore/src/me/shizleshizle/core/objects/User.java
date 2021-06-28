@@ -432,6 +432,10 @@ public class User {
         return VaultHandler.hasVault(getName(), vaultNumber);
     }
 
+    public boolean hasAnyVaults() {
+        return VaultHandler.hasAnyVaults(getName());
+    }
+
     public void heal() {
         p.setHealthScale(20D);
         p.setHealth(20);
@@ -1032,23 +1036,29 @@ public class User {
     }
 
     public void setWeather(WeatherTypes type) {
+        Random r = new Random();
+        int rand = r.nextInt(601);
+        if (rand < 30) rand = 30;
         switch(type) {
             case CLEAR:
                 for (World w : Bukkit.getWorlds()) {
                     w.setStorm(false);
                     w.setThundering(false);
+                    w.setWeatherDuration(rand*20);
                 }
                 break;
             case STORM:
                 for (World w : Bukkit.getWorlds()) {
                     w.setStorm(true);
                     w.setThundering(false);
+                    w.setWeatherDuration(rand*20);
                 }
                 break;
             case THUNDER:
                 for (World w : Bukkit.getWorlds()) {
                     w.setStorm(true);
                     w.setThundering(true);
+                    w.setWeatherDuration(rand*20);
                 }
                 break;
         }
