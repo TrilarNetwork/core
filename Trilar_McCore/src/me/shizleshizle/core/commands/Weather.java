@@ -1,6 +1,7 @@
 package me.shizleshizle.core.commands;
 
 import me.shizleshizle.core.objects.User;
+import me.shizleshizle.core.objects.WeatherTypes;
 import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermGroup;
 import me.shizleshizle.core.utils.ErrorMessages;
@@ -23,14 +24,26 @@ public class Weather implements CommandExecutor {
 				if (Perm.hasPerm(p, PermGroup.HELPER)) {
 					if (args.length == 1) {
 						if (args[0].equalsIgnoreCase("downfall")) {
-							p.setUserWeather(WeatherType.DOWNFALL);
+							p.setWeather(WeatherTypes.STORM);
 						} else if (args[0].equalsIgnoreCase("clear")) {
-							p.setUserWeather(WeatherType.CLEAR);
+							p.setWeather(WeatherTypes.CLEAR);
 						} else {
 							ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/weather");
 						}
+					} else if (args.length == 2) {
+						if (args[1].equalsIgnoreCase("self")) {
+							if (args[0].equalsIgnoreCase("downfall")) {
+								p.setUserWeather(WeatherType.DOWNFALL);
+							} else if (args[0].equalsIgnoreCase("clear")) {
+								p.setUserWeather(WeatherType.CLEAR);
+							} else {
+								ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/weather");
+							}
+						} else {
+							ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/weather <downfall|clear> [self]");
+						}
 					} else {
-						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/weather <downfall|clear>");
+						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/weather <downfall|clear> [self]");
 					}
 				} else {
 					ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/weather");
@@ -44,7 +57,7 @@ public class Weather implements CommandExecutor {
 				User p = new User(x);
 				if (Perm.hasPerm(p, PermGroup.HELPER)) {
 					if (args.length == 0) {
-						p.setUserWeather(WeatherType.CLEAR);
+						p.setWeather(WeatherTypes.CLEAR);
 					} else {
 						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/sun");
 					}
@@ -60,7 +73,7 @@ public class Weather implements CommandExecutor {
 				User p = new User(x);
 				if (Perm.hasPerm(p, PermGroup.HELPER)) {
 					if (args.length == 0) {
-						p.setUserWeather(WeatherType.DOWNFALL);
+						p.setWeather(WeatherTypes.STORM);
 					} else {
 						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/storm");
 					}

@@ -1031,6 +1031,29 @@ public class User {
         p.setWalkSpeed(speed);
     }
 
+    public void setWeather(WeatherTypes type) {
+        switch(type) {
+            case CLEAR:
+                for (World w : Bukkit.getWorlds()) {
+                    w.setStorm(false);
+                    w.setThundering(false);
+                }
+                break;
+            case STORM:
+                for (World w : Bukkit.getWorlds()) {
+                    w.setStorm(true);
+                    w.setThundering(false);
+                }
+                break;
+            case THUNDER:
+                for (World w : Bukkit.getWorlds()) {
+                    w.setStorm(true);
+                    w.setThundering(true);
+                }
+                break;
+        }
+    }
+
     public void setWhitelisted(boolean whitelisted) {
         p.setWhitelisted(whitelisted);
     }
