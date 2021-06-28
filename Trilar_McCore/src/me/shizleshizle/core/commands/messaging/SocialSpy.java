@@ -1,5 +1,6 @@
 package me.shizleshizle.core.commands.messaging;
 
+import me.shizleshizle.core.objects.Messages;
 import me.shizleshizle.core.objects.User;
 import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermGroup;
@@ -20,7 +21,7 @@ public class SocialSpy implements CommandExecutor {
                 User p = new User((Player) sender);
                 if (Perm.hasPerm(p, PermGroup.MODERATOR)) {
                     if (args.length != 0) {
-                        ErrorMessages.doErrorMessage(p, ErrorMessages.Messages.INVALID_USAGE, "/socialspy");
+                        ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/socialspy");
                         return false;
                     }
                     if (p.hasSocialSpyEnabled()) {
@@ -31,10 +32,10 @@ public class SocialSpy implements CommandExecutor {
                         p.sendMessage(PREFIX + "You have " + GOLD + "enabled" + YELLOW + " social spy!");
                     }
                 } else {
-                    ErrorMessages.doErrorMessage(p, ErrorMessages.Messages.NOPERM, "/socialspy");
+                    ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/socialspy");
                 }
             } else {
-                ErrorMessages.doErrorMessage(sender, ErrorMessages.Messages.PLAYER_ONLY_CMD, "/socialspy");
+                ErrorMessages.doErrorMessage(sender, Messages.PLAYER_ONLY_CMD, "/socialspy");
             }
         }
         return false;

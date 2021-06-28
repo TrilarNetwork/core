@@ -2,6 +2,7 @@ package me.shizleshizle.core.commands.vaults;
 
 import me.shizleshizle.core.commands.vaults.utils.VaultFileHandler;
 import me.shizleshizle.core.commands.vaults.utils.VaultHandler;
+import me.shizleshizle.core.objects.Messages;
 import me.shizleshizle.core.objects.User;
 import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermGroup;
@@ -74,13 +75,13 @@ public class Vault implements CommandExecutor {
                             p.sendMessage(PREFIX + "You must enter a vault number!");
                         }
                     } else {
-                        ErrorMessages.doErrorMessage(p, ErrorMessages.Messages.INVALID_USAGE, "/playervaults <vaultNumber> [size]");
+                        ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/playervaults <vaultNumber> [size]");
                     }
                 } else {
-                    ErrorMessages.doErrorMessage(p, ErrorMessages.Messages.NOPERM, "/playervaults");
+                    ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/playervaults");
                 }
             } else {
-                ErrorMessages.doErrorMessage(sender, ErrorMessages.Messages.PLAYER_ONLY_CMD, "/playervaults");
+                ErrorMessages.doErrorMessage(sender, Messages.PLAYER_ONLY_CMD, "/playervaults");
             }
         }
         return false;

@@ -1,5 +1,6 @@
 package me.shizleshizle.core.commands.bansystem;
 
+import me.shizleshizle.core.objects.Messages;
 import me.shizleshizle.core.objects.User;
 import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermGroup;
@@ -38,7 +39,7 @@ public class Mute implements CommandExecutor {
                     if (sender instanceof Player) {
                         User p = new User((Player) sender);
                         if (!Perm.hasPerm(p, PermGroup.HELPER)) {
-                            ErrorMessages.doErrorMessage(p, ErrorMessages.Messages.NOPERM, "/mute");
+                            ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/mute");
                             return false;
                         }
                     }
@@ -85,10 +86,10 @@ public class Mute implements CommandExecutor {
                         target.sendMessage(Ban.PREFIX + "You have been muted by " + senderName);
                     }
                 } else {
-                    ErrorMessages.doErrorMessage(sender, ErrorMessages.Messages.PLAYER_OFFLINE, args[0]);
+                    ErrorMessages.doErrorMessage(sender, Messages.PLAYER_OFFLINE, args[0]);
                 }
             } else {
-                ErrorMessages.doErrorMessage(sender, ErrorMessages.Messages.INVALID_USAGE, "/mute <player> <time>");
+                ErrorMessages.doErrorMessage(sender, Messages.INVALID_USAGE, "/mute <player> <time>");
             }
         }
         return false;

@@ -1,5 +1,6 @@
 package me.shizleshizle.core.commands;
 
+import me.shizleshizle.core.objects.Messages;
 import me.shizleshizle.core.objects.User;
 import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermGroup;
@@ -60,13 +61,13 @@ public class KillMobs implements CommandExecutor {
                             p.sendMessage(PREFIX + "You must enter a number as radius!");
                         }
                     } else {
-                        ErrorMessages.doErrorMessage(p, ErrorMessages.Messages.INVALID_USAGE, "/killmobs <radius>");
+                        ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/killmobs <radius>");
                     }
                 } else {
-                    ErrorMessages.doErrorMessage(p, ErrorMessages.Messages.NOPERM, "/killmobs");
+                    ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/killmobs");
                 }
             } else {
-                ErrorMessages.doErrorMessage(sender, ErrorMessages.Messages.PLAYER_ONLY_CMD, "/killmobs");
+                ErrorMessages.doErrorMessage(sender, Messages.PLAYER_ONLY_CMD, "/killmobs");
             }
         }
         return false;

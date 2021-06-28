@@ -2,11 +2,11 @@ package me.shizleshizle.core.commands.tickets;
 
 import me.shizleshizle.core.Main;
 import me.shizleshizle.core.commands.cmdutils.TicketUtils;
+import me.shizleshizle.core.objects.Messages;
 import me.shizleshizle.core.objects.User;
 import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermGroup;
 import me.shizleshizle.core.utils.ErrorMessages;
-import me.shizleshizle.core.utils.ErrorMessages.Messages;
 import me.shizleshizle.core.utils.Numbers;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

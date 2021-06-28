@@ -1,5 +1,6 @@
 package me.shizleshizle.core.commands.messaging;
 
+import me.shizleshizle.core.objects.Messages;
 import me.shizleshizle.core.objects.User;
 import me.shizleshizle.core.utils.ErrorMessages;
 import org.bukkit.Bukkit;
@@ -29,10 +30,10 @@ public class Msg implements CommandExecutor {
                         String msg = ChatColor.translateAlternateColorCodes('&', sb.toString().trim());
                         p.message(target, msg);
                     } else {
-                        ErrorMessages.doErrorMessage(p, ErrorMessages.Messages.PLAYER_OFFLINE, args[0]);
+                        ErrorMessages.doErrorMessage(p, Messages.PLAYER_OFFLINE, args[0]);
                     }
                 } else {
-                    ErrorMessages.doErrorMessage(p, ErrorMessages.Messages.INVALID_USAGE, "/msg <player> <message>");
+                    ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/msg <player> <message>");
                 }
             } else {
                 if (args.length >= 2) {
@@ -47,10 +48,10 @@ public class Msg implements CommandExecutor {
                         target.sendMessage(GOLD + "Console" + YELLOW + " > " + GOLD + "You" + YELLOW + " >> " + msg);
                         target.sendMessage(PREFIX + "You cannot respond to the Console.");
                     } else {
-                        ErrorMessages.doErrorMessage(sender, ErrorMessages.Messages.PLAYER_OFFLINE, args[0]);
+                        ErrorMessages.doErrorMessage(sender, Messages.PLAYER_OFFLINE, args[0]);
                     }
                 } else {
-                    ErrorMessages.doErrorMessage(sender, ErrorMessages.Messages.INVALID_USAGE, "/msg <player> <message>");
+                    ErrorMessages.doErrorMessage(sender, Messages.INVALID_USAGE, "/msg <player> <message>");
                 }
             }
         }

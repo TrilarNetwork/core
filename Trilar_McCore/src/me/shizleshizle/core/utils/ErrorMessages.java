@@ -1,16 +1,13 @@
 package me.shizleshizle.core.utils;
 
-import static org.bukkit.ChatColor.*;
+import me.shizleshizle.core.objects.Messages;
+import me.shizleshizle.core.objects.User;
 import org.bukkit.command.CommandSender;
 
-import me.shizleshizle.core.objects.User;
+import static org.bukkit.ChatColor.*;
 
 public class ErrorMessages {
 	public static String prefix = RED.toString() + BOLD + "Error" + GOLD + BOLD + " >> " + YELLOW;
-	
-	public enum Messages {
-		NOPERM, INVALID_USAGE, PLAYER_OFFLINE, PLAYERS_OFFLINE, NOPERM_WEARITEM, LOBBY, PLAYER_ONLY_CMD
-	}
 	
 	public static void doErrorMessage(CommandSender p, Messages message, String Entity){
 		if (message.equals(Messages.PLAYER_OFFLINE)){

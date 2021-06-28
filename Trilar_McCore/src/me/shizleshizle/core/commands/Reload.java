@@ -2,10 +2,10 @@
 
 	import me.shizleshizle.core.Main;
 	import me.shizleshizle.core.objects.ChatColorHandler;
+	import me.shizleshizle.core.objects.Messages;
 	import me.shizleshizle.core.objects.User;
 	import me.shizleshizle.core.permissions.*;
 	import me.shizleshizle.core.utils.ErrorMessages;
-	import me.shizleshizle.core.utils.ErrorMessages.Messages;
 	import org.bukkit.ChatColor;
 	import org.bukkit.command.Command;
 	import org.bukkit.command.CommandExecutor;

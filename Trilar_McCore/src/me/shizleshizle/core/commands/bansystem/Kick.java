@@ -1,5 +1,6 @@
 package me.shizleshizle.core.commands.bansystem;
 
+import me.shizleshizle.core.objects.Messages;
 import me.shizleshizle.core.objects.User;
 import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermGroup;
@@ -24,7 +25,7 @@ public class Kick implements CommandExecutor {
                      senderName = GOLD + sender.getName();
                      User p = new User((Player) sender);
                      if (!Perm.hasPerm(p, PermGroup.HELPER)) {
-                         ErrorMessages.doErrorMessage(p, ErrorMessages.Messages.NOPERM, "/kick");
+                         ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/kick");
                          return false;
                      }
                  } else {
@@ -46,10 +47,10 @@ public class Kick implements CommandExecutor {
                          sender.sendMessage(Ban.PREFIX + "Player " + GOLD + target.getName() + YELLOW + " has been kicked for: " + GOLD + reason);
                      }
                  } else {
-                     ErrorMessages.doErrorMessage(sender, ErrorMessages.Messages.PLAYER_OFFLINE, args[0]);
+                     ErrorMessages.doErrorMessage(sender, Messages.PLAYER_OFFLINE, args[0]);
                  }
              } else {
-                 ErrorMessages.doErrorMessage(sender, ErrorMessages.Messages.INVALID_USAGE, "/kick <player> [reason]");
+                 ErrorMessages.doErrorMessage(sender, Messages.INVALID_USAGE, "/kick <player> [reason]");
              }
          }
         return false;

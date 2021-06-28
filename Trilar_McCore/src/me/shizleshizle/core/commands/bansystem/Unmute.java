@@ -1,5 +1,6 @@
 package me.shizleshizle.core.commands.bansystem;
 
+import me.shizleshizle.core.objects.Messages;
 import me.shizleshizle.core.objects.User;
 import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermGroup;
@@ -25,7 +26,7 @@ public class Unmute implements CommandExecutor {
                      if (sender instanceof Player) {
                          User p = new User((Player) sender);
                          if (!Perm.hasPerm(p, PermGroup.HELPER)) {
-                             ErrorMessages.doErrorMessage(p, ErrorMessages.Messages.NOPERM, "/unmute");
+                             ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/unmute");
                              return false;
                          }
                      }
@@ -37,10 +38,10 @@ public class Unmute implements CommandExecutor {
                          sender.sendMessage(Ban.PREFIX + "Player " + GOLD + target.getName() + YELLOW + " has not been muted!");
                      }
                  } else {
-                     ErrorMessages.doErrorMessage(sender, ErrorMessages.Messages.PLAYER_OFFLINE, args[0]);
+                     ErrorMessages.doErrorMessage(sender, Messages.PLAYER_OFFLINE, args[0]);
                  }
              } else {
-                 ErrorMessages.doErrorMessage(sender, ErrorMessages.Messages.INVALID_USAGE, "/unban <player>");
+                 ErrorMessages.doErrorMessage(sender, Messages.INVALID_USAGE, "/unban <player>");
              }
          }
          return false;

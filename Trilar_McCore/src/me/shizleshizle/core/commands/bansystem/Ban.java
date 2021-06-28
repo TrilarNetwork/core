@@ -1,5 +1,6 @@
 package me.shizleshizle.core.commands.bansystem;
 
+import me.shizleshizle.core.objects.Messages;
 import me.shizleshizle.core.objects.User;
 import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermGroup;
@@ -58,7 +59,7 @@ public class Ban implements CommandExecutor {
                             } else if (date.endsWith("month") || date.endsWith("months")) {
                                 time.add(Calendar.MONTH, timeToAdd);
                             } else {
-                                ErrorMessages.doErrorMessage(p, ErrorMessages.Messages.INVALID_USAGE, "/ban <perm|temp|ip|lookup> <player> [time]");
+                                ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/ban <perm|temp|ip|lookup> <player> [time]");
                                 return false;
                             }
                             for (int i = 3; i < args.length; i++) {
@@ -133,15 +134,15 @@ public class Ban implements CommandExecutor {
                             }
                             p.sendMessage(GOLD + "==================");
                         } else {
-                            ErrorMessages.doErrorMessage(p, ErrorMessages.Messages.INVALID_USAGE, "/ban <perm|temp|ip|lookup> <player> [time]");
+                            ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/ban <perm|temp|ip|lookup> <player> [time]");
                             return false;
                         }
                     } else {
-                        ErrorMessages.doErrorMessage(p, ErrorMessages.Messages.INVALID_USAGE, "/ban <perm|temp|ip|lookup> <player> [time]");
+                        ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/ban <perm|temp|ip|lookup> <player> [time]");
                         return false;
                     }
                 } else {
-                    ErrorMessages.doErrorMessage(p, ErrorMessages.Messages.NOPERM, "/ban");
+                    ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/ban");
                 }
             } else {
                 if (args.length >= 2) {
@@ -176,7 +177,7 @@ public class Ban implements CommandExecutor {
                         } else if (date.endsWith("month") || date.endsWith("months")) {
                             time.add(Calendar.MONTH, timeToAdd);
                         } else {
-                            ErrorMessages.doErrorMessage(sender, ErrorMessages.Messages.INVALID_USAGE, "/ban <perm|temp|ip|lookup> <player> [time]");
+                            ErrorMessages.doErrorMessage(sender, Messages.INVALID_USAGE, "/ban <perm|temp|ip|lookup> <player> [time]");
                             return false;
                         }
                         for (int i = 3; i < args.length; i++) {
@@ -251,11 +252,11 @@ public class Ban implements CommandExecutor {
                         }
                         sender.sendMessage(GOLD + "==================");
                     } else {
-                        ErrorMessages.doErrorMessage(sender, ErrorMessages.Messages.INVALID_USAGE, "/ban <perm|temp|ip|lookup> <player> [time]");
+                        ErrorMessages.doErrorMessage(sender, Messages.INVALID_USAGE, "/ban <perm|temp|ip|lookup> <player> [time]");
                         return false;
                     }
                 } else {
-                    ErrorMessages.doErrorMessage(sender, ErrorMessages.Messages.INVALID_USAGE, "/ban <perm|temp|ip|lookup> <player> [time]");
+                    ErrorMessages.doErrorMessage(sender, Messages.INVALID_USAGE, "/ban <perm|temp|ip|lookup> <player> [time]");
                     return false;
                 }
             }

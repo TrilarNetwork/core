@@ -1,5 +1,6 @@
 package me.shizleshizle.core.commands;
 
+import me.shizleshizle.core.objects.Messages;
 import me.shizleshizle.core.objects.User;
 import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermGroup;
@@ -46,7 +47,7 @@ public class Item implements CommandExecutor {
                                             p.sendMessage(PREFIX + "You have added " + GOLD + amount + YELLOW + " of " + GOLD + itemName + YELLOW + " to the inventory of " +
                                                     GOLD + target.getName() + YELLOW + "!");
                                         } else {
-                                            ErrorMessages.doErrorMessage(p, ErrorMessages.Messages.PLAYER_OFFLINE, args[1]);
+                                            ErrorMessages.doErrorMessage(p, Messages.PLAYER_OFFLINE, args[1]);
                                         }
                                     } else {
                                         p.getInventory().addItem(is);
@@ -71,7 +72,7 @@ public class Item implements CommandExecutor {
                             p.sendMessage(PREFIX + "You must specify an item!");
                         }
                     } else {
-                        ErrorMessages.doErrorMessage(p, ErrorMessages.Messages.INVALID_USAGE, "/item <item> [amount] [player]");
+                        ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/item <item> [amount] [player]");
                     }
                 }
             } else {
@@ -90,7 +91,7 @@ public class Item implements CommandExecutor {
                                 sender.sendMessage(PREFIX + "You have added " + GOLD + amount + YELLOW + " of " + GOLD + itemName + YELLOW + " to the inventory of " +
                                         GOLD + target.getName() + YELLOW + "!");
                             } else {
-                                ErrorMessages.doErrorMessage(sender, ErrorMessages.Messages.PLAYER_OFFLINE, args[1]);
+                                ErrorMessages.doErrorMessage(sender, Messages.PLAYER_OFFLINE, args[1]);
                             }
                         } else {
                             sender.sendMessage(PREFIX + "You must specify a player to give the item to!");
@@ -99,7 +100,7 @@ public class Item implements CommandExecutor {
                         sender.sendMessage(PREFIX + "You must enter a number!");
                     }
                 } else {
-                    ErrorMessages.doErrorMessage(sender, ErrorMessages.Messages.INVALID_USAGE, "/item <item> [amount] [player]");
+                    ErrorMessages.doErrorMessage(sender, Messages.INVALID_USAGE, "/item <item> [amount] [player]");
                 }
             }
         }

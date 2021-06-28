@@ -1,5 +1,6 @@
 package me.shizleshizle.core.commands.messaging;
 
+import me.shizleshizle.core.objects.Messages;
 import me.shizleshizle.core.objects.User;
 import me.shizleshizle.core.utils.ErrorMessages;
 import org.bukkit.ChatColor;
@@ -22,7 +23,7 @@ public class Reply implements CommandExecutor {
                         }
                         p.reply(ChatColor.translateAlternateColorCodes('&', sb.toString().trim()));
                     } else {
-                        ErrorMessages.doErrorMessage(p, ErrorMessages.Messages.INVALID_USAGE, "/reply <message>");
+                        ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/reply <message>");
                     }
                 } else {
                     p.sendMessage(Msg.PREFIX + "You have no one to reply to!");

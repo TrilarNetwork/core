@@ -1,5 +1,6 @@
 package me.shizleshizle.core.commands;
 
+import me.shizleshizle.core.objects.Messages;
 import me.shizleshizle.core.objects.User;
 import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermGroup;
@@ -47,13 +48,13 @@ public class Spawnmob implements CommandExecutor {
                             p.sendMessage(PREFIX + "You must enter a valid entity type!");
                         }
                     } else {
-                        ErrorMessages.doErrorMessage(p, ErrorMessages.Messages.INVALID_USAGE, "/spawnmob <name> [amount]");
+                        ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/spawnmob <name> [amount]");
                     }
                 } else {
-                    ErrorMessages.doErrorMessage(p, ErrorMessages.Messages.NOPERM, "/spawnmob");
+                    ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/spawnmob");
                 }
             } else {
-                ErrorMessages.doErrorMessage(sender, ErrorMessages.Messages.PLAYER_ONLY_CMD, "/spawnmob");
+                ErrorMessages.doErrorMessage(sender, Messages.PLAYER_ONLY_CMD, "/spawnmob");
             }
         }
         return false;
@@ -65,7 +66,7 @@ public class Spawnmob implements CommandExecutor {
 
     private boolean isEntity(String entity) {
         try {
-            EntityType type = EntityType.valueOf(entity.toUpperCase());
+            EntityType.valueOf(entity.toUpperCase());
             return true;
         } catch (IllegalArgumentException e) {
             return false;

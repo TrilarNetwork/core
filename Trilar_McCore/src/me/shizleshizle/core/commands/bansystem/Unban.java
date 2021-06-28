@@ -1,5 +1,6 @@
 package me.shizleshizle.core.commands.bansystem;
 
+import me.shizleshizle.core.objects.Messages;
 import me.shizleshizle.core.objects.User;
 import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermGroup;
@@ -38,10 +39,10 @@ public class Unban implements CommandExecutor {
                             }
                         }
                     } else {
-                        ErrorMessages.doErrorMessage(p, ErrorMessages.Messages.INVALID_USAGE, "/unban <player|ip>");
+                        ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/unban <player|ip>");
                     }
                 } else {
-                    ErrorMessages.doErrorMessage(p, ErrorMessages.Messages.NOPERM, "/unban");
+                    ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/unban");
                 }
             } else {
                 if (args.length == 1) {
@@ -61,7 +62,7 @@ public class Unban implements CommandExecutor {
                         }
                     }
                 } else {
-                    ErrorMessages.doErrorMessage(sender, ErrorMessages.Messages.INVALID_USAGE, "/unban <player|ip>");
+                    ErrorMessages.doErrorMessage(sender, Messages.INVALID_USAGE, "/unban <player|ip>");
                 }
             }
         }
