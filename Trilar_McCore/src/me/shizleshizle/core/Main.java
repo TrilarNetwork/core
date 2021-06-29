@@ -53,7 +53,8 @@ public class Main extends JavaPlugin {
 	public static String db;
 	public static String user;
 	public static String pw;
-	public static final String PREFIX = ChatColor.GOLD + "-={ " + ChatColor.YELLOW + "Trilar" + ChatColor.GOLD + " }=- "
+	public static String motd;
+	public static final String PREFIX = ChatColor.GOLD + "-={ " + ChatColor.YELLOW + "Eliarant" + ChatColor.GOLD + " }=- "
 			+ ChatColor.YELLOW;
 	public static int port;
 	public static int maxhomes;
@@ -116,6 +117,7 @@ public class Main extends JavaPlugin {
 		db = c.getConfig().getString("settings.database.database");
 		user = c.getConfig().getString("settings.database.username");
 		pw = c.getConfig().getString("settings.database.password");
+		motd = c.getConfig().getString("settings.motd");
 		maxhomes = c.getConfig().getInt("settings.maxhomes");
 		tpTime = c.getConfig().getInt("settings.teleportWaitTime");
 		maxHealth = c.getConfig().getInt("settings.maxHealth");

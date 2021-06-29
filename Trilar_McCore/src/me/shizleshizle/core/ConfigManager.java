@@ -136,6 +136,12 @@ public class ConfigManager {
 			this.config.set("settings.broadcastMessages", Arrays.asList("&6Welcome to &eTrilar&6!", "&6Do you have any questions? Feel free to ask!", 
 					"&6See a bug? Visit the forum and tell us!"));
 		}
+		if (!this.config.contains("settings.enableAutoBroadcast")) {
+			this.config.set("settings.enableAutoBroadcast", false);
+		}
+		if (!this.config.contains("settings.motd")) {
+			this.config.set("settings.motd", "&eWelcome to &6The World of Eliarant&e!");
+		}
 	}
 	
 	public void saveAll() {

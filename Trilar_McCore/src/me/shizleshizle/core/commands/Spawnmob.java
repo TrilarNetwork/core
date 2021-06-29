@@ -38,12 +38,11 @@ public class Spawnmob implements CommandExecutor {
                                 int amount = Numbers.getInt(args[1]);
                                 for (int i = 0; i < amount; i++) {
                                     p.getWorld().spawnEntity(p.getLocation(), getEntityFromString(entity));
+                                    p.sendMessage(PREFIX + "Spawned " + GOLD + amount + YELLOW + " mob of " + GOLD + StringHelper.normalCase(entity) + YELLOW + "!");
                                 }
                             } else {
                                 p.sendMessage(PREFIX + "You must enter a number!");
                             }
-                            p.getWorld().spawnEntity(p.getLocation(), getEntityFromString(entity));
-                            p.sendMessage(PREFIX + "Spawned one mob of " + GOLD + StringHelper.normalCase(entity) + YELLOW + "!");
                         } else {
                             p.sendMessage(PREFIX + "You must enter a valid entity type!");
                         }

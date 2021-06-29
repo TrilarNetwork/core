@@ -183,6 +183,7 @@ public class CommandManager {
         registerCommand("mccore", new Reload());
         registerCommand("me", new Me());
         registerCommand("mods", new Mods());
+        registerCommand("motd", new MOTD());
         registerCommand("nickname", new Nickname());
         registerCommand("permission", new PermissionsCmd());
         registerCommand("prefix", new PrefixCmd());

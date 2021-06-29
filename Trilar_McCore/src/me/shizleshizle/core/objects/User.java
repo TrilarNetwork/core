@@ -949,6 +949,12 @@ public class User {
         p.setLevel(level);
     }
 
+    public void setMOTD(String motd) {
+        Main.motd = motd;
+        Main.c.getConfig().set("settings.motd", motd);
+        Main.c.saveConfig();
+    }
+
     public void setNick(String nick) {
         NickNameManager.nicks.put(p.getName(), nick);
         nick = ChatColor.translateAlternateColorCodes('&', nick);
@@ -1077,6 +1083,10 @@ public class User {
                 }
             }
         }
+    }
+
+    public void showMOTD() {
+        sendMessage(ChatColor.translateAlternateColorCodes('&', Main.motd));
     }
 
     public void showUser(User u) {

@@ -192,6 +192,8 @@ commands:
     description: Talk in third person.
   mods:
     description: View the allowed mods.
+  motd:
+    description: Set or view the message of the day
   nickname:
     description: Change your nickname.
     aliases: [nick]
