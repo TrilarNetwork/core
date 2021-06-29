@@ -133,4 +133,45 @@ public class TicketUtils {
 		}
 		return ex;
 	}
+
+	public static int getOpenTickets() {
+		int tickets = 0;
+		try {
+			Statement s;
+			Main.sql.getReady();
+			s = Main.sql.getConnection().createStatement();
+			ResultSet rs = s.executeQuery("SELECT * FROM tickets WHERE status='OPEN' ORDER BY id ASC");
+			int its = 0;
+			while (rs.next()) {
+				its++;
+			}
+			rs.close();
+			s.close();
+			tickets = its;
+		} catch (SQLException sql) {
+			Bukkit.getLogger().log(Level.WARNING, "Could not connect to database!");
+			Bukkit.getLogger().log(Level.WARNING, "Error: " + sql);
+		}
+		return tickets;
+	}
+
+	public static int getOpenTickets(String owner) {
+		int t = 0;
+		try {
+			Main.sql.getReady();
+			Statement s = Main.sql.getConnection().createStatement();
+			ResultSet rs = s.executeQuery("SELECT * FROM tickets WHERE owner='" + owner + "' ORDER BY id ASC");
+			int its = 0;
+			while (rs.next()) {
+				its++;
+			}
+			rs.close();
+			s.close();
+			t = its;
+		} catch (SQLException sql) {
+			Bukkit.getLogger().log(Level.WARNING, "Could not connect to database!");
+			Bukkit.getLogger().log(Level.WARNING, "Error: " + sql);
+		}
+		return t;
+	}
 }

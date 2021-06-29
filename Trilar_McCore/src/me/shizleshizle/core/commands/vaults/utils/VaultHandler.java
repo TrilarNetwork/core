@@ -10,6 +10,7 @@ import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nullable;
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 
 import static org.bukkit.ChatColor.GOLD;
@@ -30,7 +31,11 @@ public class VaultHandler {
             }
             config.set(path + i, item.serialize());
         }
-        VaultFileHandler.saveFile(name);
+        try {
+            config.save(f);
+        } catch (IOException e) {
+            Bukkit.getLogger().info("Core >> Cannot save vault file!");
+        }
     }
 
     @Nullable
@@ -84,7 +89,7 @@ public class VaultHandler {
             for (int i = 1; i < 99; i++) {
                 ConfigurationSection individualVault = conf.getConfigurationSection("vault." + i);
                 if (individualVault != null) {
-                    int size = individualVault.getInt(path + i + ".size");
+                    int size = individualVault.getInt("size");
                     Inventory inv = Bukkit.createInventory(null, size, GOLD + name + YELLOW + "'s Vault " + i);
                     for (int k = 0; k < size; k++) {
                         ConfigurationSection itemInConfig = individualVault.getConfigurationSection("." + k);

@@ -228,12 +228,20 @@ public class User {
         return p.getFoodLevel();
     }
 
+    public String getFooter() {
+        return p.getPlayerListFooter();
+    }
+
     public GameMode getGameMode() {
         return p.getGameMode();
     }
 
     public PermGroup getGroup() {
         return Perm.getGroup(p.getName());
+    }
+
+    public String getHeader() {
+        return p.getPlayerListHeader();
     }
 
     public double getHealth() {
@@ -759,8 +767,24 @@ public class User {
         }
     }
 
+    public void sendFooter(String footer) {
+        p.setPlayerListFooter(footer);
+    }
+
+    public void sendHeader(String header) {
+        p.setPlayerListHeader(header);
+    }
+
+    public void sendHeaderAndFooter(String header, String footer) {
+        p.setPlayerListHeaderFooter(header, footer);
+    }
+
     public void sendMessage(String message) {
         p.sendMessage(message);
+    }
+
+    public void sendTitle(String title, String subtitle, int fadeIn, int stay, int fadeOut) {
+        p.sendTitle(title, subtitle, fadeIn, stay, fadeOut);
     }
 
     public void setAfk(boolean afk) {

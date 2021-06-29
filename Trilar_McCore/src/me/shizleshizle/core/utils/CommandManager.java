@@ -3,6 +3,8 @@ package me.shizleshizle.core.utils;
 import me.shizleshizle.core.Main;
 import me.shizleshizle.core.commands.*;
 import me.shizleshizle.core.commands.bansystem.*;
+import me.shizleshizle.core.commands.clearlag.Chunks;
+import me.shizleshizle.core.commands.clearlag.ClearEntities;
 import me.shizleshizle.core.commands.homes.Delhome;
 import me.shizleshizle.core.commands.homes.Home;
 import me.shizleshizle.core.commands.homes.Sethome;
@@ -89,6 +91,10 @@ public class CommandManager {
         registerCommand("kick", new Kick());
         registerCommand("mute", new Mute());
         registerCommand("unmute", new Unmute());
+
+        // clearlag
+        registerCommand("unloadchunks", new Chunks());
+        registerCommand("clearentities", new ClearEntities());
 
         //home
         registerCommand("delhome", new Delhome());

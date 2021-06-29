@@ -16,6 +16,11 @@ commands:
     description: Mute a player
   unmute:
     description: Unmute a player
+#clearlag
+  unloadchunks:
+    description: Unload unused chunks
+  clearentities:
+    description: Clear entites on the ground
 #home
   delhome:
     description: Delete a home.

@@ -4,6 +4,7 @@ import me.shizleshizle.core.Main;
 import me.shizleshizle.core.commands.Freeze;
 import me.shizleshizle.core.commands.Lockdown;
 import me.shizleshizle.core.commands.cmdutils.HomeUtils;
+import me.shizleshizle.core.commands.cmdutils.TicketUtils;
 import me.shizleshizle.core.objects.User;
 import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermAttachments;
@@ -13,17 +14,11 @@ import me.shizleshizle.core.utils.NickNameManager;
 import me.shizleshizle.core.utils.Tablist;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
 
 public class PlayerJoin implements Listener {
 
@@ -38,14 +33,11 @@ public class PlayerJoin implements Listener {
 		}
 		HomeUtils.initPlayer(p);
 		p.setBack(p.getLocation());
-		if (!p.hasPlayedBefore()) {
+		if (!p.hasPlayedBefore() || Perm.getGroup(p) == null) {
 			Perm.updateGroup(p, PermGroup.MEMBER);
 			p.setNick(p.getName());
 		} else {
 			HomeUtils.loadHomes(p.getName());
-		}
-		if (Perm.getGroup(p) == null) {
-			Perm.updateGroup(p, PermGroup.MEMBER);
 		}
 		Perm.loginPlayer(p.getName());
 		PermAttachments.addPerms(p);
@@ -54,8 +46,7 @@ public class PlayerJoin implements Listener {
 		if (!NickNameManager.isLoaded(p)) {
 			p.loadNick();
 		}
-		Location l = p.getLocation();
-		if (l.getBlock().getType() == Material.AIR) {
+		if (p.getLocation().getBlock().getType() == Material.AIR) {
 			p.setFallDistance(0);
 		}	
 		if (p.isFrozen()) {
@@ -68,57 +59,21 @@ public class PlayerJoin implements Listener {
 			Main.c.saveConfig();
 		}
 		if (Perm.hasPerm(p, PermGroup.MODERATOR)) {
-            int tickets = 0;
-            try {
-                Statement s;
-                Main.sql.getReady();
-                s = Main.sql.getConnection().createStatement();
-                ResultSet rs = s.executeQuery("SELECT * FROM tickets WHERE status='OPEN' ORDER BY id ASC");
-                int its = 0;
-                while (rs.next()) {
-                    its++;
-                }
-                rs.close();
-                s.close();
-                tickets = its;
-            } catch (SQLException sql) {
-                Bukkit.getLogger().log(Level.WARNING, "Could not connect to database!");
-                Bukkit.getLogger().log(Level.WARNING, "Error: " + sql);
-            }
+            int tickets = TicketUtils.getOpenTickets();
             if (tickets == 1) {
                 p.sendMessage(ChatColor.GOLD + "[" + ChatColor.YELLOW + "There is " + ChatColor.GOLD + tickets + ChatColor.YELLOW + " open ticket!" + ChatColor.GOLD + "]");
-            } else if (tickets > 1) {
-                p.sendMessage(ChatColor.GOLD + "[" + ChatColor.YELLOW + "There are " + ChatColor.GOLD + tickets + ChatColor.YELLOW + " open tickets!" + ChatColor.GOLD + "]");
             } else {
-                p.sendMessage(ChatColor.GOLD + "[" + ChatColor.YELLOW + "There are " + ChatColor.GOLD + "0" + ChatColor.YELLOW + " open tickets!" + ChatColor.GOLD + "]" );
+                p.sendMessage(ChatColor.GOLD + "[" + ChatColor.YELLOW + "There are " + ChatColor.GOLD + tickets + ChatColor.YELLOW + " open tickets!" + ChatColor.GOLD + "]");
             }
         } else {
-            int t = 0;
-            try {
-                Main.sql.getReady();
-                Statement s = Main.sql.getConnection().createStatement();
-                ResultSet rs = s.executeQuery("SELECT * FROM tickets WHERE owner='" + p.getName() + "' ORDER BY id ASC");
-                int its = 0;
-                while (rs.next()) {
-                    its++;
-                }
-                rs.close();
-                s.close();
-                t = its;
-            } catch (SQLException sql) {
-                Bukkit.getLogger().log(Level.WARNING, "Could not connect to database!");
-                Bukkit.getLogger().log(Level.WARNING, "Error: " + sql);
-            }
-            if (t == 0) {
-                p.sendMessage(ChatColor.GOLD + "[" + ChatColor.YELLOW + "You have " + ChatColor.GOLD + t + ChatColor.YELLOW + " open tickets!" + ChatColor.GOLD + "]" );
-            } else if (t == 1) {
+            int t = TicketUtils.getOpenTickets(p.getName());
+            if (t == 1) {
                 p.sendMessage(ChatColor.GOLD + "[" + ChatColor.YELLOW + "You have " + ChatColor.GOLD + t + ChatColor.YELLOW + " open ticket!" + ChatColor.GOLD + "]");
             } else {
                 p.sendMessage(ChatColor.GOLD + "[" + ChatColor.YELLOW + "You have " + ChatColor.GOLD + t + ChatColor.YELLOW + " open tickets!" + ChatColor.GOLD + "]");
             }
         }
 		e.setJoinMessage(ChatColor.DARK_AQUA + p.getName() + ChatColor.GOLD + " has joined the game.");
-		int size = Bukkit.getOnlinePlayers().size();
-		Tablist.updateTablist(Bukkit.getOnlinePlayers().toArray(new Player[size]));
+		Tablist.updateTablist(Bukkit.getOnlinePlayers().toArray(new Player[0]));
 	}
 }

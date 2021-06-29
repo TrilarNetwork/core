@@ -4,15 +4,18 @@ import me.shizleshizle.core.objects.User;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import static org.bukkit.ChatColor.AQUA;
+import static org.bukkit.ChatColor.GRAY;
+
 public class Tablist {
 	
 	public static void updateTablist(Player... players) {
 		try {
 			for (Player p : players) {
 				User p2 = new User(p);
-				//Title.sendHeaderAndFooter(p, ChatColor.AQUA + "https://www.trilarnetwork.nl"
-				//				+ ChatColor.GOLD + "\n   Online:" + ChatColor.DARK_GRAY + ChatColor.BOLD.toString() + " -» " + ChatColor.GOLD + getTotal() + " players"
-				//				+ ChatColor.GRAY + "\n Rank: " + p2.getGroup().getPrefix());
+				final String header = AQUA + "https://www.ourpersonalwebsite.com";
+				final String footer = GRAY + "Rank: " + p2.getGroup().getPrefix();
+				p2.sendHeaderAndFooter(header, footer);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
