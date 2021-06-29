@@ -216,6 +216,9 @@ commands:
     description: Spawn a specific mob
   speed:
     description: Change your fly or walk speed.
+  staffchat:
+    description: Talk among your self staff members
+    aliases: [sc, staffc, schat]
   staff:
     description: View online staff.
     aliases: [stafflist, sl]

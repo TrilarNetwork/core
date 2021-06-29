@@ -1,5 +1,5 @@
 settings:
-  lobbyVersion: true
+  lobbyVersion: false
   maxHealth: 60
   maxhomes: 1
   teleportWaitTime: 5

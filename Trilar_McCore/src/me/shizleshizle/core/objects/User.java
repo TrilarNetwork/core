@@ -160,7 +160,7 @@ public class User {
         return p.getBedSpawnLocation();
     }
 
-    public String getChatColor() {
+    public String getChatColorString() {
         String cc;
         if (ChatColorHandler.hasColor(p.getName())) {
             cc = ChatColorHandler.getChatColor(p.getName());
@@ -168,6 +168,11 @@ public class User {
             cc = getGroup().getChatColor();
         }
         return cc;
+    }
+
+    @Nullable
+    public ChatColor getChatColor() {
+        return ChatColor.getByChar(getChatColorString().substring(1));
     }
 
     public String getCustomName() {
@@ -542,6 +547,10 @@ public class User {
         return p.isSprinting();
     }
 
+    public boolean isTalkingInStaffChat() {
+        return Main.staffchat.contains(getName());
+    }
+
     public boolean isVanished() {
         return Main.vanished.contains(p.getName());
     }
@@ -783,6 +792,17 @@ public class User {
         p.sendMessage(message);
     }
 
+    public void sendStaffMessage(String message) {
+        for (Player pl : p.getServer().getOnlinePlayers()) {
+            User target = new User(pl);
+            if (Perm.hasPerm(target, PermGroup.TRIAL_HELPER)) {
+                ChatColor c = getChatColor();
+                if (c == null) c = WHITE;
+                target.sendMessage(DARK_AQUA + "Staff-Chat: " + getDisplayName() + GOLD + " >> " + c + ITALIC + message);
+            }
+        }
+    }
+
     public void sendTitle(String title, String subtitle, int fadeIn, int stay, int fadeOut) {
         p.sendTitle(title, subtitle, fadeIn, stay, fadeOut);
     }
@@ -974,6 +994,14 @@ public class User {
 
     public void setSprinting(boolean sprint) {
         p.setSprinting(sprint);
+    }
+
+    public void setStaffChat(boolean staffChat) {
+        if (staffChat) {
+            Main.staffchat.add(getName());
+        } else {
+            Main.staffchat.remove(getName());
+        }
     }
 
     public void setTotalExperience(int exp) {

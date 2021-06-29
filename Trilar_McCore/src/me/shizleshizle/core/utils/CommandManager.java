@@ -194,6 +194,7 @@ public class CommandManager {
         registerCommand("smelt", new Smelt());
         registerCommand("spawnmob", new Spawnmob());
         registerCommand("speed", new Speed());
+        registerCommand("staffchat", new StaffChat());
         registerCommand("staff", new StaffList());
         registerCommand("suicide", new Suicide());
         registerCommand("vanish", new Vanish());

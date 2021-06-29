@@ -35,6 +35,7 @@ public class Main extends JavaPlugin {
 	public static ArrayList<String> vanished = new ArrayList<>();
 	public static ArrayList<String> socialspiers = new ArrayList<>();
 	public static ArrayList<String> setHome = new ArrayList<>();
+	public static ArrayList<String> staffchat = new ArrayList<>();
 	public static HashMap<String, Location> back = new HashMap<>();
 	public static HashMap<String, String> tpahere = new HashMap<>();
 	public static HashMap<String, String> messaging = new HashMap<>();
