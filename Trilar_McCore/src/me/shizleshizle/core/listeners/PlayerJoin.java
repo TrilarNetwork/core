@@ -2,7 +2,7 @@ package me.shizleshizle.core.listeners;
 
 import me.shizleshizle.core.Main;
 import me.shizleshizle.core.commands.Freeze;
-import me.shizleshizle.core.commands.Lockdown;
+import me.shizleshizle.core.commands.Maintenance;
 import me.shizleshizle.core.commands.cmdutils.HomeUtils;
 import me.shizleshizle.core.commands.cmdutils.TicketUtils;
 import me.shizleshizle.core.objects.User;
@@ -27,9 +27,9 @@ public class PlayerJoin implements Listener {
 	public void onJoin(PlayerJoinEvent e) {
 		Player x = e.getPlayer();
 		User p = new User(x);
-		if (Lockdown.hasLockdown()) {
+		if (Maintenance.hasMaintenance()) {
 			if (!Perm.hasPerm(p, PermGroup.BUILDER)) {
-				p.kickUser(GOLD + "-=[ Trilar ]=- \nServer is in Lockdown mode, Staff will look into the server(s). \nPlease try again later.");
+				p.kickUser(GOLD + "-=[ Eliarant ]=- \nServer is in Lockdown mode, Staff will look into the server(s). \nPlease try again later.");
 			}
 		}
 		HomeUtils.initPlayer(p);
@@ -37,10 +37,10 @@ public class PlayerJoin implements Listener {
 		if (!p.hasPlayedBefore() || Perm.getGroup(p) == null) {
 			Perm.updateGroup(p, PermGroup.MEMBER);
 			p.setNick(p.getName());
-			p.sendMessage(YELLOW + "Welcome to " + GOLD + "The World of Trilar!");
+			p.sendTitle(YELLOW + "World of " + GOLD + "Eliarant", GRAY + "Welcome!", 10, 40, 10);
 		} else {
 			HomeUtils.loadHomes(p.getName());
-			p.sendMessage(YELLOW + "Welcome back to " + GOLD + "The World of Trilar!");
+			p.sendTitle(YELLOW + "World of " + GOLD + "Eliarant", GRAY + "Welcome back!", 10, 40, 10);
 		}
 		Perm.loginPlayer(p.getName());
 		PermAttachments.addPerms(p);

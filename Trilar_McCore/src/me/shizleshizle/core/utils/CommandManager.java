@@ -179,11 +179,12 @@ public class CommandManager {
         registerCommand("kill", new Kill());
         registerCommand("killmobs", new KillMobs());
         registerCommand("list", new ListCmd());
-        registerCommand("lockdown", new Lockdown());
+        registerCommand("maintenance", new Maintenance());
         registerCommand("mccore", new Reload());
         registerCommand("me", new Me());
         registerCommand("mods", new Mods());
         registerCommand("motd", new MOTD());
+        registerCommand("name", new Name());
         registerCommand("nickname", new Nickname());
         registerCommand("permission", new PermissionsCmd());
         registerCommand("prefix", new PrefixCmd());

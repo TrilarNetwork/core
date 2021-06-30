@@ -13,7 +13,7 @@ settings:
     username: trilar
     password: pgr6WdgRXhnhwJNm
   broadcastMessages:
-    - '&6Welcome to &eTrilar&6!'
+    - '&6Welcome to &eEliarant&6!'
     - '&6Do you have any questions? Feel free to ask!'
     - '&6See a bug? Visit the forum and tell us!'
   motd: "&eWelcome to &6The World of Eliarant&e!"

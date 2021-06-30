@@ -133,7 +133,7 @@ public class ConfigManager {
 			this.config.set("settings.database.password", "Trilar2018");
 		}
 		if (!this.config.contains("settings.broadcastMessages")) {
-			this.config.set("settings.broadcastMessages", Arrays.asList("&6Welcome to &eTrilar&6!", "&6Do you have any questions? Feel free to ask!", 
+			this.config.set("settings.broadcastMessages", Arrays.asList("&6Welcome to &eEliarant&6!", "&6Do you have any questions? Feel free to ask!",
 					"&6See a bug? Visit the forum and tell us!"));
 		}
 		if (!this.config.contains("settings.enableAutoBroadcast")) {

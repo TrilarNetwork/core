@@ -803,7 +803,7 @@ public class User {
         }
     }
 
-    public void sendTitle(String title, String subtitle, int fadeIn, int stay, int fadeOut) {
+    public void sendTitle(@Nullable String title, @Nullable String subtitle, int fadeIn, int stay, int fadeOut) {
         p.sendTitle(title, subtitle, fadeIn, stay, fadeOut);
     }
 

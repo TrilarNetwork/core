@@ -1,7 +1,6 @@
 package me.shizleshizle.core.listeners;
 
 import me.shizleshizle.core.Main;
-import me.shizleshizle.core.commands.Lockdown;
 import me.shizleshizle.core.commands.bansystem.Ban;
 import me.shizleshizle.core.commands.cmdutils.HomeUtils;
 import me.shizleshizle.core.objects.User;
@@ -22,12 +21,6 @@ public class PlayerChat implements Listener {
         String msg = e.getMessage();
         if (Perm.getGroup(p) == null) {
             Perm.updateGroup(p, PermGroup.MEMBER);
-        }
-        if (Perm.hasPerm(p, PermGroup.ADMIN)) {
-            if (e.getMessage().equalsIgnoreCase("!panic") || e.getMessage().contains("!panic")) {
-                Lockdown.initiateLockdown();
-                e.setMessage("");
-            }
         }
         if (Perm.hasPerm(p, PermGroup.HELPER)) {
             msg = ChatColor.translateAlternateColorCodes('&', msg);

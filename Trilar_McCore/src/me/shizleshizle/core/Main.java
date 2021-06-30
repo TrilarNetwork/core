@@ -45,7 +45,7 @@ public class Main extends JavaPlugin {
 	public static CommandManager cman;
 	public static Plugin p;
 	public static File vaultDir;
-	public static boolean lockdown = false;
+	public static boolean maintenance = false;
 	public static boolean remove;
 	private static boolean lobby = false;
 	public static boolean broadcastFunction;
@@ -129,7 +129,7 @@ public class Main extends JavaPlugin {
 	private void broadcast() {
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> {
 			if (AutoB.isBroadcasting()) {
-				Bukkit.broadcastMessage(ChatColor.GOLD + "[" + ChatColor.YELLOW + "Trilar" + ChatColor.GOLD + "]");
+				Bukkit.broadcastMessage(ChatColor.GOLD + "[" + ChatColor.YELLOW + "Eliarant" + ChatColor.GOLD + "]");
 				// Bukkit.broadcastMessage(ChatColor.GOLD +
 				// "<=====================>");
 				// Bukkit.broadcastMessage(" ");

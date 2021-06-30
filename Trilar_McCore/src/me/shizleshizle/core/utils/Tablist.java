@@ -13,7 +13,7 @@ public class Tablist {
 		try {
 			for (Player p : players) {
 				User p2 = new User(p);
-				final String header = AQUA + "https://www.ourpersonalwebsite.com";
+				final String header = AQUA + "https://www.eliarant.com";
 				final String footer = GRAY + "Rank: " + p2.getGroup().getPrefix();
 				p2.sendHeaderAndFooter(header, footer);
 			}

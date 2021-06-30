@@ -15,7 +15,7 @@
 	import java.sql.SQLException;
 
 public class Reload implements CommandExecutor {
- 	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Trilar Core" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+ 	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Eliarant Core" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("mccore")) {

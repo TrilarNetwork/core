@@ -184,7 +184,7 @@ commands:
     description: Kill mobs within specified radius
   list:
     description: List all online player(s).
-  lockdown:
+  maintenance:
     description: Toggle lockdown mode.
   mccore:
     description: Reload the plugin
@@ -194,6 +194,8 @@ commands:
     description: View the allowed mods.
   motd:
     description: Set or view the message of the day
+  name:
+    description: Set an item name or description
   nickname:
     description: Change your nickname.
     aliases: [nick]

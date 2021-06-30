@@ -22,12 +22,12 @@ public class SocialMedia implements CommandExecutor {
 				if (Perm.hasPerm(p, PermGroup.MEMBER)) {
 					if (args.length == 0) {
 						p.sendMessage(ChatColor.GOLD + "========"  + ChatColor.YELLOW + " SocialMedia " + ChatColor.GOLD + "========");
-						p.sendMessage(ChatColor.RED + "Volg ons op socialmedia om op de hoogte te blijven!");
+						p.sendMessage(ChatColor.RED + "Follow us on social media to stay up to date!");
 						p.sendMessage(" ");
-						p.sendMessage(ChatColor.GOLD + "Snapchat:" + ChatColor.YELLOW + " Trilarnetwork");
-						p.sendMessage(ChatColor.GOLD + "Instagram:" + ChatColor.YELLOW + " Trilarnetwork");
-						p.sendMessage(ChatColor.GOLD + "Youtube:" + ChatColor.YELLOW + " Trilar");
-						p.sendMessage(ChatColor.GOLD + "Twitter:" + ChatColor.YELLOW + " Trilarnetwork");
+						p.sendMessage(ChatColor.GOLD + "Snapchat:" + ChatColor.YELLOW + " /");
+						p.sendMessage(ChatColor.GOLD + "Instagram:" + ChatColor.YELLOW + " /");
+						p.sendMessage(ChatColor.GOLD + "Youtube:" + ChatColor.YELLOW + " /");
+						p.sendMessage(ChatColor.GOLD + "Twitter:" + ChatColor.YELLOW + " /");
 						p.sendMessage(" ");
 					} else {
 						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/SocialMedia");
