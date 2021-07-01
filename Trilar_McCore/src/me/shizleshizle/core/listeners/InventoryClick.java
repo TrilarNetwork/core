@@ -1,6 +1,7 @@
 package me.shizleshizle.core.listeners;
 
 import me.shizleshizle.core.Main;
+import me.shizleshizle.core.commands.bansystem.GUIFunction;
 import me.shizleshizle.core.commands.cmdutils.VanishUtils;
 import me.shizleshizle.core.objects.User;
 import org.bukkit.Bukkit;
@@ -28,8 +29,9 @@ public class InventoryClick implements Listener {
 			}
 		}
 		ItemStack i = e.getCurrentItem();
+		String title = ChatColor.stripColor(p.getOpenInventory().getTitle());
 		if (i == null) return;
-		if (ChatColor.stripColor(p.getOpenInventory().getTitle()).equals("Player List")) {
+		if (title.equals("Player List")) {
 			e.setCancelled(true);
 			if (i.getType() == Material.PLAYER_HEAD) {
 				if (i.hasItemMeta()) {
@@ -42,8 +44,31 @@ public class InventoryClick implements Listener {
 					p.closeInventory();
 				}
 			}
-		} else if (ChatColor.stripColor(p.getOpenInventory().getTitle()).equals("Invsee")) {
+		} else if (title.equals("Invsee")) {
 			e.setCancelled(true);
+		} else if (title.equals("Staff GUI")) {
+			e.setCancelled(true);
+			handleStaffGUI(p, i);
+		}
+	}
+
+	private void handleStaffGUI(User p, ItemStack currentItem) {
+		Material itemMat = currentItem.getType();
+		// TODO: Open functions
+		if (itemMat == Material.CRIMSON_DOOR) { // kick function
+			Main.staffgui.put(p.getName(), GUIFunction.KICK);
+		} else if (itemMat == Material.RED_WOOL) { // warn function
+			Main.staffgui.put(p.getName(), GUIFunction.WARN);
+		} else if (itemMat == Material.NETHERITE_AXE) { // ban function
+			Main.staffgui.put(p.getName(), GUIFunction.BAN);
+		} else if (itemMat == Material.BLUE_ICE) { // freeze function
+			Main.staffgui.put(p.getName(), GUIFunction.FREEZE);
+		} else if (itemMat == Material.COBWEB) { // mute function
+			Main.staffgui.put(p.getName(), GUIFunction.MUTE);
+		} else if (itemMat == Material.COMPASS) { // teleport function
+			Main.staffgui.put(p.getName(), GUIFunction.TELEPORT);
+		} else if (itemMat == Material.RED_BANNER) { // exit
+			p.closeInventory();
 		}
 	}
 }

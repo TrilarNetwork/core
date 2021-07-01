@@ -52,7 +52,7 @@ public class Home implements CommandExecutor {
 											+ ChatColor.YELLOW + " homes, and can set a total of " + ChatColor.GOLD + max + ChatColor.YELLOW + " homes!");
 								} else if (args[0].equalsIgnoreCase("list")) {
 									p.sendMessage(PREFIX + "These are " + ChatColor.GOLD + args[1] + ChatColor.YELLOW + "'s homes, they have "
-											+ ChatColor.GOLD + HomeUtils.getHomes(p.getName()) + ChatColor.YELLOW + " homes:");
+											+ ChatColor.GOLD + HomeUtils.getHomes(args[1]) + ChatColor.YELLOW + " homes:");
 									p.sendMessage(HomeUtils.listHomes(args[1]));
 								} else {
 									if (HomeUtils.hasHome(args[1], args[0])) {

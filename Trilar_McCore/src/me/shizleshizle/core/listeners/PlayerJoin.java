@@ -39,7 +39,6 @@ public class PlayerJoin implements Listener {
 			p.setNick(p.getName());
 			p.sendTitle(YELLOW + "World of " + GOLD + "Eliarant", GRAY + "Welcome!", 10, 40, 10);
 		} else {
-			HomeUtils.loadHomes(p.getName());
 			p.sendTitle(YELLOW + "World of " + GOLD + "Eliarant", GRAY + "Welcome back!", 10, 40, 10);
 		}
 		Perm.loginPlayer(p.getName());

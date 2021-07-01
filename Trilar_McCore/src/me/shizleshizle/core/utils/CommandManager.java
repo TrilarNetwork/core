@@ -90,6 +90,7 @@ public class CommandManager {
         registerCommand("unban", new Unban());
         registerCommand("kick", new Kick());
         registerCommand("mute", new Mute());
+        registerCommand("staffmode", new Staffmode());
         registerCommand("unmute", new Unmute());
 
         // clearlag

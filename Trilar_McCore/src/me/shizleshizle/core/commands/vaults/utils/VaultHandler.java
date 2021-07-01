@@ -22,6 +22,7 @@ public class VaultHandler {
     public static void saveVaultToFile(String name, Inventory inv, int vaultNumber) {
         String path = "vault." + vaultNumber + ".";
         File f = VaultFileHandler.getFile(name);
+        assert f != null;
         FileConfiguration config = YamlConfiguration.loadConfiguration(f);
         config.set(path + "size", inv.getSize());
         for (int i = 0; i < inv.getSize(); i++) {

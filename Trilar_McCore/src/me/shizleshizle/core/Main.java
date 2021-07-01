@@ -1,5 +1,7 @@
 package me.shizleshizle.core;
 
+import me.shizleshizle.core.commands.bansystem.GUIFunction;
+import me.shizleshizle.core.commands.cmdutils.HomeUtils;
 import me.shizleshizle.core.commands.vaults.utils.VaultHandler;
 import me.shizleshizle.core.mysql.MySQLManager;
 import me.shizleshizle.core.objects.ChatColorHandler;
@@ -39,6 +41,7 @@ public class Main extends JavaPlugin {
 	public static HashMap<String, Location> back = new HashMap<>();
 	public static HashMap<String, String> tpahere = new HashMap<>();
 	public static HashMap<String, String> messaging = new HashMap<>();
+	public static HashMap<String, GUIFunction> staffgui = new HashMap<>();
 	public static ConfigManager c;
 	public static Economy econ = null;
 	public static MySQLManager sql;
@@ -85,6 +88,7 @@ public class Main extends JavaPlugin {
 		ChatColorHandler.setup();
 		cman = new CommandManager(this);
 		cman.registerToServer();
+		HomeUtils.loadHomes();
 		Cooldowns.runCooldown();
 		AutoB.setBroadcasting(broadcastFunction);
 		broadcast();
@@ -103,6 +107,7 @@ public class Main extends JavaPlugin {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		HomeUtils.saveHomeNames();
 		AutoB.saveToConfig();
 		VaultHandler.saveVaults();
 		long fin = System.currentTimeMillis() - time;
