@@ -1,34 +1,16 @@
 package me.shizleshizle.core.utils;
 
 import me.shizleshizle.core.Main;
-import me.shizleshizle.core.commands.*;
-import me.shizleshizle.core.commands.bansystem.*;
-import me.shizleshizle.core.commands.clearlag.Chunks;
-import me.shizleshizle.core.commands.clearlag.ClearEntities;
-import me.shizleshizle.core.commands.homes.Delhome;
-import me.shizleshizle.core.commands.homes.Home;
-import me.shizleshizle.core.commands.homes.Sethome;
-import me.shizleshizle.core.commands.messaging.Msg;
-import me.shizleshizle.core.commands.messaging.Reply;
-import me.shizleshizle.core.commands.messaging.SocialSpy;
-import me.shizleshizle.core.commands.spawn.Spawn;
-import me.shizleshizle.core.commands.teleportation.*;
-import me.shizleshizle.core.commands.tickets.*;
-import me.shizleshizle.core.commands.time.DayCmd;
-import me.shizleshizle.core.commands.time.NightCmd;
-import me.shizleshizle.core.commands.time.PTime;
-import me.shizleshizle.core.commands.time.Time;
-import me.shizleshizle.core.commands.vaults.Vault;
-import me.shizleshizle.core.commands.warps.Deletewarps;
-import me.shizleshizle.core.commands.warps.Setwarps;
-import me.shizleshizle.core.commands.warps.Warp;
 import me.shizleshizle.core.listeners.*;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class CommandManager {
@@ -80,12 +62,77 @@ public class CommandManager {
     }
 
     private void Fetch() {
-        FetchCommands();
+        SmartFetchCommands();
         FetchEvents();
     }
 
+    private String getPath(String cmdName) {
+        String path = "me.shizleshizle.core.commands";
+        if (cmdName.equalsIgnoreCase("ban")||cmdName.equalsIgnoreCase("unban")||cmdName.equalsIgnoreCase("kick")||cmdName.equalsIgnoreCase("mute")
+            ||cmdName.equalsIgnoreCase("staffmode")||cmdName.equalsIgnoreCase("unmute")) {
+            path = path + ".bansystem";
+        } else if (cmdName.equalsIgnoreCase("unloadchunks")||cmdName.equalsIgnoreCase("clearentities")) {
+            path = path + ".clearlag";
+        } else if (cmdName.contains("home")) {
+            path = path + ".homes";
+        } else if (cmdName.equalsIgnoreCase("msg")||cmdName.equalsIgnoreCase("reply")||cmdName.equalsIgnoreCase("socialspy")) {
+            path = path + ".messaging";
+        } else if ((cmdName.contains("spawn")||cmdName.equalsIgnoreCase("spawn")) && !cmdName.equalsIgnoreCase("spawnmob")) {
+            path = path + ".spawn";
+        } else if (cmdName.startsWith("tp")) {
+            path = path + ".teleportation";
+        } else if (cmdName.contains("ticket")||cmdName.equalsIgnoreCase("ticket")||cmdName.equalsIgnoreCase("tickets")) {
+            path = path + ".tickets";
+        } else if (cmdName.equalsIgnoreCase("day")||cmdName.equalsIgnoreCase("night")||cmdName.equalsIgnoreCase("ptime")
+                ||cmdName.equalsIgnoreCase("time")) {
+            path = path + ".time";
+        } else if (cmdName.equalsIgnoreCase("vault")) {
+            path = path + ".vaults";
+        } else if (cmdName.contains("warp")||cmdName.equalsIgnoreCase("warp")) {
+            path = path + ".warps";
+        }
+        return path;
+    }
+
+    private void SmartFetchCommands() {
+        Map<String, Map<String, Object>> cmds = core.getDescription().getCommands();
+        Bukkit.getLogger().info(cmds.keySet().toString());
+        for (String cmd : cmds.keySet()) {
+            if ((cmd.equalsIgnoreCase("pay")||cmd.equalsIgnoreCase("balance")) && !core.checkVault()) continue;
+            String pathToClass = getPath(cmd);
+            String className = StringHelper.normalCase(cmd);
+            if (cmd.equalsIgnoreCase("sun") || cmd.equalsIgnoreCase("storm")) {
+                className = "Weather";
+            } else if (cmd.startsWith("gm")) {
+                className = "Gamemode";
+            }
+            try {
+                Class clazz = Class.forName(pathToClass + "." + className);
+                if (CommandExecutor.class.isAssignableFrom(clazz)) {
+                    CommandExecutor exe = (CommandExecutor) clazz.getDeclaredConstructor().newInstance();
+                    registerCommand(cmd, exe);
+                }
+            } catch(ClassNotFoundException | NoSuchMethodException|InvocationTargetException|InstantiationException|IllegalAccessException e) {
+                Bukkit.getLogger().info("Core >> Error: " + e);
+            }
+        }
+    }
+
     private void FetchCommands() {
+        /*
         // ban
+        String className = "Ban";
+        try {
+            Class c = Class.forName("me.shizleshizle.core.commands.bansystem." + className);
+            if (CommandExecutor.class.isAssignableFrom(c)) {
+                CommandExecutor ce = (CommandExecutor) c.getDeclaredConstructor().newInstance();
+                registerCommand("ban", ce);
+                Bukkit.getLogger().info("wow! it works!");
+            }
+        } catch(ClassNotFoundException | NoSuchMethodException|InvocationTargetException|InstantiationException|IllegalAccessException e) {
+            Bukkit.getLogger().info("Core >> Error: " + e);
+        }
+        //registerCommand("ban", new Ban());
         registerCommand("ban", new Ban());
         registerCommand("unban", new Unban());
         registerCommand("kick", new Kick());
@@ -94,8 +141,8 @@ public class CommandManager {
         registerCommand("unmute", new Unmute());
 
         // clearlag
-        registerCommand("unloadchunks", new Chunks());
-        registerCommand("clearentities", new ClearEntities());
+        registerCommand("unloadchunks", new Unloadchunks());
+        registerCommand("clearentities", new Clearentities());
 
         //home
         registerCommand("delhome", new Delhome());
@@ -105,7 +152,7 @@ public class CommandManager {
         // messaging
         registerCommand("msg", new Msg());
         registerCommand("reply", new Reply());
-        registerCommand("socialspy", new SocialSpy());
+        registerCommand("socialspy", new Socialspy());
 
         // spawn
         registerCommand("spawn", new Spawn());
@@ -118,7 +165,7 @@ public class CommandManager {
         registerCommand("tpaccept", new Tpaccept());
         registerCommand("tpahere", new Tpahere());
         registerCommand("tpall", new Tpall());
-        registerCommand("tpdeny", new TpDeny());
+        registerCommand("tpdeny", new Tpdeny());
         registerCommand("tphere", new Tphere());
         registerCommand("tpo", new Tpo());
         registerCommand("tpohere", new Tpohere());
@@ -126,17 +173,17 @@ public class CommandManager {
         registerCommand("tptoggle", new Tptoggle());
 
         // tickets
-        registerCommand("checkticket", new CheckTicket());
-        registerCommand("closeticket", new CloseTicket());
-        registerCommand("taketicket", new TakeTicket());
+        registerCommand("checkticket", new Checkticket());
+        registerCommand("closeticket", new Closeticket());
+        registerCommand("taketicket", new Taketicket());
         registerCommand("ticket", new Ticket());
         registerCommand("tickets", new Tickets());
 
         // time
         registerCommand("time", new Time());
-        registerCommand("day", new DayCmd());
-        registerCommand("night", new NightCmd());
-        registerCommand("ptime", new PTime());
+        registerCommand("day", new Day());
+        registerCommand("night", new Night());
+        registerCommand("ptime", new Ptime());
 
         // vault
         registerCommand("playervaults", new Vault());
@@ -152,14 +199,14 @@ public class CommandManager {
         registerCommand("storm", new Weather());
 
         // regular
-        registerCommand("autobroadcaster", new AB());
+        registerCommand("autobroadcaster", new Autobroadcaster());
         registerCommand("afk", new Afk());
         registerCommand("back", new Back());
         registerCommand("broadcast", new Broadcast());
-        registerCommand("chatcolor", new ChatColorCmd());
-        registerCommand("clearchat", new ClearChat());
-        registerCommand("clearinventory", new ClearInventory());
-        registerCommand("commandspy", new CommandSpy());
+        registerCommand("chatcolor", new Chatcolor());
+        registerCommand("clearchat", new Clearchat());
+        registerCommand("clearinventory", new Clearinventory());
+        registerCommand("commandspy", new Commandspy());
         registerCommand("enchant", new Enchant());
         registerCommand("enderchest", new Enderchest());
         registerCommand("feed", new Feed());
@@ -178,36 +225,37 @@ public class CommandManager {
         registerCommand("Invsee", new Invsee());
         registerCommand("item", new Item());
         registerCommand("kill", new Kill());
-        registerCommand("killmobs", new KillMobs());
-        registerCommand("list", new ListCmd());
+        registerCommand("killmobs", new Killmobs());
+        registerCommand("list", new List());
         registerCommand("maintenance", new Maintenance());
-        registerCommand("mccore", new Reload());
+        registerCommand("mccore", new Mccore());
         registerCommand("me", new Me());
         registerCommand("mods", new Mods());
-        registerCommand("motd", new MOTD());
+        registerCommand("motd", new Motd());
         registerCommand("name", new Name());
         registerCommand("nickname", new Nickname());
-        registerCommand("permission", new PermissionsCmd());
-        registerCommand("prefix", new PrefixCmd());
-        registerCommand("rank", new Ranks());
+        registerCommand("permission", new Permission());
+        registerCommand("prefix", new Prefix());
+        registerCommand("rank", new Rank());
         registerCommand("repair", new Repair());
         registerCommand("rules", new Rules());
-        registerCommand("socialmedia", new SocialMedia());
-        registerCommand("skull", new Skulls());
+        registerCommand("socialmedia", new Socialmedia());
+        registerCommand("skull", new Skull());
         registerCommand("smelt", new Smelt());
         registerCommand("spawnmob", new Spawnmob());
         registerCommand("speed", new Speed());
-        registerCommand("staffchat", new StaffChat());
-        registerCommand("staff", new StaffList());
+        registerCommand("staffchat", new Staffchat());
+        registerCommand("staff", new Staff());
         registerCommand("suicide", new Suicide());
         registerCommand("vanish", new Vanish());
-        registerCommand("whois", new WhoIs());
+        registerCommand("whois", new Whois());
         registerCommand("wild", new Wild());
         registerCommand("workbench", new Workbench());
         if (core.checkVault()) {
             registerCommand("balance", new Balance());
             registerCommand("pay", new Pay());
         }
+        */
     }
 
     private void FetchEvents() {

@@ -9,7 +9,7 @@ import me.shizleshizle.core.commands.vaults.utils.VaultHandler;
 import me.shizleshizle.core.commands.warps.Warp;
 import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermGroup;
-import me.shizleshizle.core.permissions.Prefix;
+import me.shizleshizle.core.permissions.PrefixHelper;
 import me.shizleshizle.core.utils.CI;
 import me.shizleshizle.core.utils.Cooldowns;
 import me.shizleshizle.core.utils.NickNameManager;
@@ -188,8 +188,8 @@ public class User {
             if (hasPrefix()) {
                 nick = getPrefix().trim() + " " + nick;
             } else {
-                if (Prefix.hasPrefix(getGroup())) {
-                    nick = Prefix.getPrefix(getGroup()).trim() + " " + nick;
+                if (PrefixHelper.hasPrefix(getGroup())) {
+                    nick = PrefixHelper.getPrefix(getGroup()).trim() + " " + nick;
                 } else {
                     nick = getGroup().getPrefix() + nick;
                 }
@@ -340,11 +340,11 @@ public class User {
     }
 
     public String getPrefix() {
-        return Prefix.getPrefix(p.getName());
+        return PrefixHelper.getPrefix(p.getName());
     }
 
     public String getRawPrefix() {
-        return Prefix.getRawPrefix(p.getName());
+        return PrefixHelper.getRawPrefix(p.getName());
     }
 
     public int getRemainingCooldownTime() {
@@ -430,7 +430,7 @@ public class User {
     }
 
     public boolean hasPrefix() {
-        return Prefix.hasPrefix(p.getName());
+        return PrefixHelper.hasPrefix(p.getName());
     }
 
     public boolean hasSocialSpyEnabled() {
@@ -689,7 +689,7 @@ public class User {
     }
 
     public void removePrefix() {
-        Prefix.removePrefix(p.getName());
+        PrefixHelper.removePrefix(p.getName());
     }
 
     public void repairInHand() {
@@ -979,7 +979,7 @@ public class User {
     }
 
     public void setPrefix(String prefix) {
-        Prefix.setPrefix(p.getName(), prefix);
+        PrefixHelper.setPrefix(p.getName(), prefix);
     }
 
     public void setScoreboard(Scoreboard board) {

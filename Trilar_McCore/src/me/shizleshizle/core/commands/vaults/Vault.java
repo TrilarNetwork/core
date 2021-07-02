@@ -19,7 +19,7 @@ public class Vault implements CommandExecutor {
     public static final String PREFIX = YELLOW.toString() + BOLD + "Vaults" + GOLD + " >> " + YELLOW;
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (cmd.getName().equalsIgnoreCase("playervaults")) {
+        if (cmd.getName().equalsIgnoreCase("vault")) {
             if (sender instanceof Player) {
                 User p = new User((Player) sender);
                 if (Perm.hasPerm(p, PermGroup.VIP)) {

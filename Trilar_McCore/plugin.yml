@@ -94,9 +94,9 @@ commands:
     description: Change your personal time.
     aliases: [playertime]
 #vault
-  playervaults:
+  vault:
     description: Open or create a personal vault
-    aliases: [playervault, pv, playerv, pvault]
+    aliases: [playervault, pv, playerv, pvault, playervaults]
   #econ
   balance:
     description: Check your balance.

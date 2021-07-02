@@ -6,7 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
-import me.shizleshizle.core.commands.CommandSpy;
+import me.shizleshizle.core.commands.Commandspy;
 
 public class PlayerPreProcess implements Listener {
 
@@ -15,7 +15,7 @@ public class PlayerPreProcess implements Listener {
 		Player t = e.getPlayer();
 
 		for (Player p : Bukkit.getOnlinePlayers()) {
-			if (CommandSpy.spy.contains(p.getName())) {
+			if (Commandspy.spy.contains(p.getName())) {
 				p.sendMessage(t.getName() + " >> " + e.getMessage());
 			}
 		}
