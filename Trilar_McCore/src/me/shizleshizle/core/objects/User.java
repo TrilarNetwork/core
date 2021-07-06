@@ -3,6 +3,7 @@ package me.shizleshizle.core.objects;
 import me.shizleshizle.core.Main;
 import me.shizleshizle.core.commands.Wild;
 import me.shizleshizle.core.commands.cmdutils.VanishUtils;
+import me.shizleshizle.core.commands.cmdutils.WarnUtils;
 import me.shizleshizle.core.commands.cmdutils.WarpUtils;
 import me.shizleshizle.core.commands.messaging.Msg;
 import me.shizleshizle.core.commands.vaults.utils.VaultHandler;
@@ -383,6 +384,10 @@ public class User {
         return p.getWalkSpeed();
     }
 
+    public String[] getWarns() {
+        return WarnUtils.getWarns(getName());
+    }
+
     public World getWorld() {
         return p.getWorld();
     }
@@ -447,6 +452,10 @@ public class User {
 
     public boolean hasAnyVaults() {
         return VaultHandler.hasAnyVaults(getName());
+    }
+
+    public boolean hasWarn(int id) {
+        return WarnUtils.hasWarn(getName(), id);
     }
 
     public void heal() {
@@ -690,6 +699,10 @@ public class User {
 
     public void removePrefix() {
         PrefixHelper.removePrefix(p.getName());
+    }
+
+    public void removeWarn(int id) {
+        WarnUtils.RemoveWarn(getName(), id);
     }
 
     public void repairInHand() {
@@ -1194,6 +1207,15 @@ public class User {
         }
     }
 
+    /**
+     * Warn a player. The warn is put in the database.
+     *
+     * @param reason The reason why the player is warned.
+     * @param warner The name of the person who warned the player.
+     */
+    public void warn(String reason, @Nullable String warner) {
+        WarnUtils.warn(getName(), reason, warner);
+    }
 
     /**
      * Teleports the player to certain warp.

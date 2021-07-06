@@ -60,7 +60,10 @@ public class GUI {
     public static void openKickGUI(User p) {
         Inventory inv = Bukkit.createInventory(null, 27, AQUA + "Kick GUI");
         HashMap<Integer, ItemStack> items = new HashMap<>();
-        // TODO: set items
+        items.put(4, CI.createItem(Material.CRIMSON_DOOR, 1, -1, AQUA + "Kick", YELLOW + "Choose a reason for kicking a player."));
+        items.put(12, CI.createItem(Material.OAK_PLANKS, 1, -1, BLUE + "You have been kicked!"));
+        items.put(14, CI.createItem(Material.DARK_OAK_PLANKS, 1, -1, DARK_PURPLE + "Other", LIGHT_PURPLE + "Type a reason yourself"));
+        items.put(22, CI.createItem(Material.RED_BANNER, 1, -1, WHITE + "Back"));
         for (int slot : items.keySet()) {
             inv.setItem(slot, items.get(slot));
         }
@@ -80,7 +83,13 @@ public class GUI {
     public static void openBanGUI(User p) {
         Inventory inv = Bukkit.createInventory(null, 36, AQUA + "Ban GUI");
         HashMap<Integer, ItemStack> items = new HashMap<>();
-        // TODO: set items
+        items.put(4, CI.createItem(Material.NETHERITE_AXE, 1, -1, DARK_BLUE + "Ban"));
+        items.put(11, CI.createItem(Material.OAK_PLANKS, 1, -1, DARK_PURPLE + "Swearing"));
+        items.put(15, CI.createItem(Material.BIRCH_PLANKS, 1, -1, DARK_PURPLE + "Hacking"));
+        items.put(21, CI.createItem(Material.SPRUCE_PLANKS, 1, -1, DARK_PURPLE + "Advertising"));
+        items.put(23, CI.createItem(Material.JUNGLE_PLANKS, 1, -1, DARK_PURPLE + "Discriminating/Racism"));
+        items.put(31, CI.createItem(Material.DARK_OAK_PLANKS, 1, -1, DARK_PURPLE + "Other", LIGHT_PURPLE + "Type a reason yourself"));
+        items.put(27, CI.createItem(Material.RED_BANNER, 1, -1, WHITE + "Back"));
         for (int slot : items.keySet()) {
             inv.setItem(slot, items.get(slot));
         }
@@ -90,7 +99,10 @@ public class GUI {
     public static void openMuteGUI(User p) {
         Inventory inv = Bukkit.createInventory(null, 36, AQUA + "Mute GUI");
         HashMap<Integer, ItemStack> items = new HashMap<>();
-        // TODO: set items
+        items.put(4, CI.createItem(Material.COBWEB, 1, -1, DARK_GRAY + "Mute"));
+        items.put(12, CI.createItem(Material.BEDROCK, 1, -1, DARK_AQUA + "No time defined (permanent, until unmuted)"));
+        items.put(14, CI.createItem(Material.BEDROCK, 1, -1, DARK_AQUA + "Set a time"));
+        items.put(22, CI.createItem(Material.RED_BANNER, 1, -1, WHITE + "Back"));
         for (int slot : items.keySet()) {
             inv.setItem(slot, items.get(slot));
         }

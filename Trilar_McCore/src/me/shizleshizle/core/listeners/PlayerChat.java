@@ -6,6 +6,7 @@ import me.shizleshizle.core.commands.cmdutils.HomeUtils;
 import me.shizleshizle.core.objects.User;
 import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermGroup;
+import me.shizleshizle.core.utils.GUI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
@@ -24,6 +25,11 @@ public class PlayerChat implements Listener {
         }
         if (Perm.hasPerm(p, PermGroup.HELPER)) {
             msg = ChatColor.translateAlternateColorCodes('&', msg);
+        }
+        if (Main.giveReasonForPunishment.contains(p.getName())) {
+            Main.staffguiReason.put(p.getName(), ChatColor.translateAlternateColorCodes('&', msg));
+            Main.giveReasonForPunishment.remove(p.getName());
+            GUI.openPlayerList(p);
         }
         if (Main.setHome.contains(p.getName())) {
             if (msg.toLowerCase().contains("!overwrite")) {

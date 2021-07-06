@@ -33,11 +33,16 @@ public class Ban implements CommandExecutor {
                         String targetName = args[1];
                         StringBuilder sb = new StringBuilder();
                         if (type.equalsIgnoreCase("perm") || type.equalsIgnoreCase("permanent")) {
-                            for (int i = 2; i < args.length; i++) {
-                                sb.append(args[i]).append(" ");
+                            String reason;
+                            if (args.length > 2) {
+                                for (int i = 2; i < args.length; i++) {
+                                    sb.append(args[i]).append(" ");
+                                }
+                                reason = sb.substring(0, sb.length() - 1);
+                                reason = ChatColor.translateAlternateColorCodes('&', reason);
+                            } else {
+                                reason = RED + "The Ban-Hammer has spoken!";
                             }
-                            String reason = sb.substring(0, sb.length() - 1);
-                            reason = ChatColor.translateAlternateColorCodes('&', reason);
                             Bukkit.getBanList(BanList.Type.NAME).addBan(targetName, reason, null, p.getName());
                             p.sendMessage(PREFIX + "Player " + GOLD + targetName + YELLOW + " has been permanently banned!");
                             Player target = Bukkit.getPlayerExact(targetName);

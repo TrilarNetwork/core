@@ -52,6 +52,7 @@ public class MySQLManager extends MySQL {
         tables.add("CREATE TABLE IF NOT EXISTS Tickets (id INTEGER AUTO_INCREMENT PRIMARY KEY, owner varchar(32), status varchar(32), description varchar(128), "
                 + "x double, y double, z double, world varchar(128))");
         tables.add("CREATE TABLE IF NOT EXISTS Muted (player varchar(32), mutedUntil datetime, FOREIGN KEY(player) REFERENCES Player(player));");
+        tables.add("CREATE TABLE IF NOT EXISTS Warn (player varchar(32), id int, reason text, warner varchar(32), FOREIGN KEY(player) REFERENCES Player(player), PRIMARY KEY(player, id))");
     }
 	
 	public void getReady() {

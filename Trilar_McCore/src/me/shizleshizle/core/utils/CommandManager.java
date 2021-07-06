@@ -69,7 +69,7 @@ public class CommandManager {
     private String getPath(String cmdName) {
         String path = "me.shizleshizle.core.commands";
         if (cmdName.equalsIgnoreCase("ban")||cmdName.equalsIgnoreCase("unban")||cmdName.equalsIgnoreCase("kick")||cmdName.equalsIgnoreCase("mute")
-            ||cmdName.equalsIgnoreCase("staffmode")||cmdName.equalsIgnoreCase("unmute")) {
+            ||cmdName.equalsIgnoreCase("staffmode")||cmdName.equalsIgnoreCase("unmute")||cmdName.equalsIgnoreCase("warn")) {
             path = path + ".bansystem";
         } else if (cmdName.equalsIgnoreCase("unloadchunks")||cmdName.equalsIgnoreCase("clearentities")) {
             path = path + ".clearlag";
@@ -96,7 +96,6 @@ public class CommandManager {
 
     private void SmartFetchCommands() {
         Map<String, Map<String, Object>> cmds = core.getDescription().getCommands();
-        Bukkit.getLogger().info(cmds.keySet().toString());
         for (String cmd : cmds.keySet()) {
             if ((cmd.equalsIgnoreCase("pay")||cmd.equalsIgnoreCase("balance")) && !core.checkVault()) continue;
             String pathToClass = getPath(cmd);
