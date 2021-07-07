@@ -1,7 +1,6 @@
 package me.shizleshizle.core.mysql;
 
 import me.shizleshizle.core.Main;
-import org.bukkit.Bukkit;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -98,6 +97,7 @@ public class MySQL extends Database {
 	}
 	
 	public Connection getConnection() {
+		if (!hasConnection()) openConnection();
 		return conn;
 	}
 	

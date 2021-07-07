@@ -7,6 +7,7 @@ import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermGroup;
 import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.Numbers;
+import org.bukkit.BanList;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -25,7 +26,15 @@ public class Warn implements CommandExecutor {
             if (sender instanceof Player) {
                 User p = new User((Player) sender);
                 if (!Perm.hasPerm(p, PermGroup.HELPER)) {
-                    ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/warn");
+                    int warnAmnt = p.getWarnAmount();
+                    if (warnAmnt == 0) {
+                        p.sendMessage(Ban.PREFIX + "You do not have any warnings!");
+                    } else {
+                        p.sendMessage(Ban.PREFIX + "You have " + GOLD + warnAmnt + YELLOW + " warnings!");
+                        for (String warning : p.getWarns()) {
+                            p.sendMessage(warning);
+                        }
+                    }
                     return false;
                 }
                 senderName = GOLD + p.getName();
@@ -54,7 +63,17 @@ public class Warn implements CommandExecutor {
                 if (args.length == 3 && args[0].equalsIgnoreCase("remove")) {
                     Player targetPlayer = Bukkit.getPlayerExact(args[1]);
                     if (targetPlayer == null) {
-                        ErrorMessages.doErrorMessage(sender, Messages.PLAYER_OFFLINE, args[1]);
+                        String target = args[1];
+                        if (Numbers.isNumber(args[2])) {
+                            int warnId = Numbers.getInt(args[2]);
+                            if (WarnUtils.hasWarn(target, warnId)) {
+                                WarnUtils.RemoveWarn(target, warnId);
+                            } else {
+                                sender.sendMessage(Ban.PREFIX + "Player " + GOLD + target + YELLOW + " does not have warning #" + GOLD + warnId + YELLOW + "!");
+                            }
+                        } else {
+                            sender.sendMessage(Ban.PREFIX + "You must enter a number!");
+                        }
                     } else {
                         User target = new User(targetPlayer);
                         if (Numbers.isNumber(args[2])) {
@@ -71,7 +90,14 @@ public class Warn implements CommandExecutor {
                 } else {
                     Player targetPlayer = Bukkit.getPlayerExact(args[0]);
                     if (targetPlayer == null) {
-                        ErrorMessages.doErrorMessage(sender, Messages.PLAYER_OFFLINE, args[0]);
+                        StringBuilder sb = new StringBuilder();
+                        for (int i = 1; i < args.length; i++) {
+                            sb.append(args[i]).append(" ");
+                        }
+                        WarnUtils.warn(args[0], ChatColor.translateAlternateColorCodes('&', sb.toString().trim()), senderName);
+                        if (WarnUtils.getWarnAmount(args[0]) >= 3) {
+                            Bukkit.getBanList(BanList.Type.NAME).addBan(args[0], "You have received too many warnings!", null, senderName);
+                        }
                     } else {
                         User target = new User(targetPlayer);
                         StringBuilder sb = new StringBuilder();
@@ -79,6 +105,9 @@ public class Warn implements CommandExecutor {
                             sb.append(args[i]).append(" ");
                         }
                         target.warn(ChatColor.translateAlternateColorCodes('&', sb.toString().trim()), senderName);
+                        if (target.getWarnAmount() >= 3) {
+                            Bukkit.getBanList(BanList.Type.NAME).addBan(target.getName(), "You have received too many warnings!", null, senderName);
+                        }
                     }
                 }
             } else {

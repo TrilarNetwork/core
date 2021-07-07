@@ -103,4 +103,18 @@ public class WarnUtils {
             Bukkit.getLogger().info("Core >> WarnUtils: Error: " + e);
         }
     }
+
+    public static int getWarnAmount(String name) {
+        int warns = 0;
+        try {
+            Statement s = Main.sql.getConnection().createStatement();
+            ResultSet rs = s.executeQuery("SELECT * FROM Warn WHERE player='" + name + "';");
+            while (rs.next()) {
+                warns++;
+            }
+        } catch (SQLException e) {
+            Bukkit.getLogger().info("Core >> WarnUtils: Error: " + e);
+        }
+        return warns;
+    }
 }

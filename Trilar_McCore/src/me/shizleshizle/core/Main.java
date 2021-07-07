@@ -78,7 +78,7 @@ public class Main extends JavaPlugin {
         setupUtils();
         vaultDir = new File(getDataFolder(), "playervaults");
         if (!vaultDir.exists() || !vaultDir.isDirectory()) {
-            vaultDir.mkdir();
+            if (vaultDir.mkdir()) l.info("McCore >> created player vaults directory!");
         }
         VaultHandler.loadFromFile();
         //loadVault();

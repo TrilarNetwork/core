@@ -18,6 +18,8 @@ commands:
     description: Opens staff gui
   unmute:
     description: Unmute a player
+  warn:
+    description: Warn a player
 #clearlag
   unloadchunks:
     description: Unload unused chunks

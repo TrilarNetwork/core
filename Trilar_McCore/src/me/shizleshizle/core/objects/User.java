@@ -384,6 +384,10 @@ public class User {
         return p.getWalkSpeed();
     }
 
+    public int getWarnAmount() {
+        return WarnUtils.getWarnAmount(getName());
+    }
+
     public String[] getWarns() {
         return WarnUtils.getWarns(getName());
     }
