@@ -117,6 +117,8 @@ public class Main extends JavaPlugin {
         HomeUtils.saveHomeNames();
         AutoB.saveToConfig();
         VaultHandler.saveVaults();
+        c.getConfig().set("settings.disabledCommands", disabledCommands);
+        c.saveConfig();
     }
 
     public static void setupUtils() {
