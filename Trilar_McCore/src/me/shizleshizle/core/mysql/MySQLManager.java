@@ -12,21 +12,21 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 
 public class MySQLManager extends MySQL {
-	private MySQL db;
-	private ArrayList<String> tables = new ArrayList<>();
-	
-	private static final MySQLManager instance = new MySQLManager();
-	
-	public static MySQLManager getInstance() {
-		return instance;
-	}
-	
-	public void setup() {
-	    FetchTables();
-		createTables();
-	}
+    private MySQL db;
+    private ArrayList<String> tables = new ArrayList<>();
 
-	private void createTables() {
+    private static final MySQLManager instance = new MySQLManager();
+
+    public static MySQLManager getInstance() {
+        return instance;
+    }
+
+    public void setup() {
+        FetchTables();
+        createTables();
+    }
+
+    private void createTables() {
         try {
             this.db = new MySQL();
             openConnection();
@@ -46,22 +46,24 @@ public class MySQLManager extends MySQL {
         }
     }
 
-	private void FetchTables() {
+    private void FetchTables() {
         tables.add("CREATE TABLE IF NOT EXISTS Player (player varchar(32), mcrank varchar(50) NOT NULL, ip varchar(50), PRIMARY KEY(player))");
         //tables.add("CREATE TABLE IF NOT EXISTS player_ips (player varchar(32), ip varchar(32))");
         tables.add("CREATE TABLE IF NOT EXISTS Tickets (id INTEGER AUTO_INCREMENT PRIMARY KEY, owner varchar(32), status varchar(32), description varchar(128), "
                 + "x double, y double, z double, world varchar(128))");
         tables.add("CREATE TABLE IF NOT EXISTS Muted (player varchar(32), mutedUntil datetime, FOREIGN KEY(player) REFERENCES Player(player));");
         tables.add("CREATE TABLE IF NOT EXISTS Warn (player varchar(32), id int, reason text, warner varchar(32), FOREIGN KEY(player) REFERENCES Player(player), PRIMARY KEY(player, id))");
+        tables.add("CREATE TABLE IF NOT EXISTS Chatcolor (player varchar(32), chatcolor varchar(32), FOREIGN KEY(player) REFERENCES Player(player));");
+        tables.add("CREATE TABLE IF NOT EXISTS Groupcolor (`group` varchar(50), chatcolor varchar(32))");
     }
-	
-	public void getReady() {
-		if (this.db.getConnection() == null) {
-			this.db.openConnection();
-		}
-	}
-	
-	public synchronized String getIP(String name) {
+
+    public void getReady() {
+        if (this.db.getConnection() == null) {
+            this.db.openConnection();
+        }
+    }
+
+    public synchronized String getIP(String name) {
         String ip = "";
         String pn = name.toLowerCase();
         try {
@@ -71,14 +73,16 @@ public class MySQLManager extends MySQL {
             if (rs.next()) {
                 ip = rs.getString("ip");
             }
+            rs.close();
+            s.close();
         } catch (SQLException e) {
             Bukkit.getLogger().log(Level.WARNING, "Could not connect to database!");
             Bukkit.getLogger().log(Level.WARNING, "Error: " + e);
         }
         return ip;
     }
-	
-	public synchronized void updatePlayer(User p) {
+
+    public synchronized void updatePlayer(User p) {
         String pn = p.getName().toLowerCase();
         String ip = p.getAddress().toString();
         ip = ip.substring(0, ip.length() - 6);

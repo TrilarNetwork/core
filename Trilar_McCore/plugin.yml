@@ -2,14 +2,14 @@ name: Trilar_Core
 main: me.shizleshizle.core.Main
 version: 0.0.1
 api-version: 1.13
-authors: [shizleshizle, iMelvin]
+authors: [ shizleshizle, iMelvin ]
 commands:
-#ban
+  #ban
   ban:
     description: Ban a player
   unban:
     description: Unban a player
-    aliases: [pardon]
+    aliases: [ pardon ]
   kick:
     description: Kick a player
   mute:
@@ -20,50 +20,50 @@ commands:
     description: Unmute a player
   warn:
     description: Warn a player
-#clearlag
+  #clearlag
   unloadchunks:
     description: Unload unused chunks
   clearentities:
     description: Clear entites on the ground
-#home
+  #home
   delhome:
     description: Delete a home.
   home:
     description: Teleport to your home.
   sethome:
     description: Set a home.
-#messages
+  #messages
   msg:
     description: Message a person
-    aliases: [message, mssg]
+    aliases: [ message, mssg ]
   reply:
     description: Reply to a person
-    aliases: [r]
+    aliases: [ r ]
   socialspy:
     description: Spy on people messaging
-#spawn
+  #spawn
   spawn:
     description: Go to spawn.
   setspawn:
     description: set spawn.
   removespawn:
     description: remove spawn.
-#teleportation
+  #teleportation
   tp:
     description: Teleport yourself or others.
-    aliases: [teleport]
+    aliases: [ teleport ]
   tpa:
     description: Send a teleport request to a player.
   tpaccept:
     description: Accept a teleport request from a player.
-    aliases: [tpyes, tpconfirm, tpja]
+    aliases: [ tpyes, tpconfirm, tpja ]
   tpahere:
     description: Send a request to make a player teleport to you.
   tpall:
     description: Teleport all players to you.
   tpdeny:
     description: Deny a teleport request from a player.
-    aliases: [tpno, tpcancel, tpnee]
+    aliases: [ tpno, tpcancel, tpnee ]
   tphere:
     description: Teleport a player to you.
   tpo:
@@ -74,18 +74,18 @@ commands:
     description: Teleport to a certain location.
   tptoggle:
     description: Toggle teleportation to you.
-#tickets
+  #tickets
   checkticket:
     description: Look up a ticket and its info.
   closeticket:
     description: Close or reopen a ticket.
   taketicket:
     description: Teleport to a ticket.
-  ticket: 
+  ticket:
     description: Create a ticket.
   tickets:
-    description: View all (your) tickets.  
-#time
+    description: View all (your) tickets.
+  #time
   time:
     description: Change the timeline like the Flash.
   day:
@@ -94,62 +94,65 @@ commands:
     description: Change the time to night because you dont like day.
   ptime:
     description: Change your personal time.
-    aliases: [playertime]
-#vault
+    aliases: [ playertime ]
+  #vault
   vault:
     description: Open or create a personal vault
-    aliases: [playervault, pv, playerv, pvault, playervaults]
+    aliases: [ playervault, pv, playerv, pvault, playervaults ]
   #econ
   balance:
     description: Check your balance.
   pay:
     description: Pay someone money.
-#warps
+  #warps
   removewarp:
     description: Remove a Warp.
-    aliases: [deletewarp, delwarp, dwarp]
+    aliases: [ deletewarp, delwarp, dwarp ]
   setwarp:
     description: Set a Warp to your Location.
-    aliases: [swarp]
+    aliases: [ swarp ]
   warp:
     description: Teleport to a Warp.
-#weather
+  #weather
   weather:
     description: Change the weather.
   sun:
     description: Change it to sun.
-    aliases: [clear]
+    aliases: [ clear ]
   storm:
     description: Change it to storm.
-    aliases: [rain, downfall]
-#gewone commands
+    aliases: [ rain, downfall ]
+  #gewone commands
   autobroadcaster:
     description: Toggle Auto-Broadcaster
-    aliases: [ab, autob, autobroadcast]
+    aliases: [ ab, autob, autobroadcast ]
   afk:
     description: Toggle AFK.
   back:
     description: Go to your previous location.
   broadcast:
     description: Send a message to everyone on the server.
-    aliases: [bc]
+    aliases: [ bc ]
   chatcolor:
     description: Change your ChatColor.
-    aliases: [chatc]
+    aliases: [ chatc ]
   clearchat:
     description: Clear the chat.
-    aliases: [clearc]
+    aliases: [ clearc ]
   clearinventory:
     description: Clear an inventory.
-    aliases: [clear, ci]
+    aliases: [ clear, ci ]
+  commands:
+    description: Enable and disable commands at your leisure
+    aliases: [ cmds, cmd ]
   commandspy:
     description: See all commandspy commands.
-    aliases: [cspy]
+    aliases: [ cspy ]
   enchant:
     description: Enchant an item
   enderchest:
     description: Open an enderchest
-    aliases: [echest, ec]
+    aliases: [ echest, ec ]
   feed:
     description: Feed yourself or others.
   fly:
@@ -158,7 +161,7 @@ commands:
     description: Freeze a player.
   gamemode:
     description: Change your gamemode.
-    aliases: [gm]
+    aliases: [ gm ]
   gms:
     description: Change your gamemode.
   gmc:
@@ -181,7 +184,7 @@ commands:
     description: Open someone inventory.
   item:
     description: Give yourself or someone an item
-    aliases: [give, giveitem]
+    aliases: [ give, giveitem ]
   kill:
     description: Kill a player.
   killmobs:
@@ -202,7 +205,7 @@ commands:
     description: Set an item name or description
   nickname:
     description: Change your nickname.
-    aliases: [nick]
+    aliases: [ nick ]
   permission:
     description: View or change peoples permission(s).
   prefix:
@@ -211,7 +214,7 @@ commands:
     description: Change a persons rank.
   repair:
     description: Repair one or more items.
-    aliases: [fix]
+    aliases: [ fix ]
   rules:
     description: View the rules.
   skull:
@@ -226,19 +229,19 @@ commands:
     description: Change your fly or walk speed.
   staffchat:
     description: Talk among your self staff members
-    aliases: [sc, staffc, schat]
+    aliases: [ sc, staffc, schat ]
   staff:
     description: View online staff.
-    aliases: [stafflist, sl]
+    aliases: [ stafflist, sl ]
   suicide:
     description: Kill yourself.
   vanish:
     description: View/hide yourself.
-    aliases: [v]
+    aliases: [ v ]
   whois:
     description: View a player and they settings
   wild:
     description: Teleport somewhere random.
   workbench:
     description: Open a workbench.
-    aliases: [wb]
+    aliases: [ wb ]

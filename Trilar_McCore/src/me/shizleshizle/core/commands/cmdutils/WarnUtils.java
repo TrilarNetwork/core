@@ -23,12 +23,20 @@ public class WarnUtils {
     public static void warn(String name, String reason, @Nullable String warner) {
         if (warner == null) warner = "Anonymous";
         final int latestWarnNmbr = getLatestWarnNumber(name) + 1;
+        Statement s = null;
         try {
-            Statement s = Main.sql.getConnection().createStatement();
+            s = Main.sql.getConnection().createStatement();
             s.executeUpdate("INSERT INTO Warn (player, id, reason, warner) VALUES ('" + name + "', '" + latestWarnNmbr + "', '" + reason + "', '" + warner + "');");
-            s.close();
         } catch (SQLException e) {
             Bukkit.getLogger().info("Core >> WarnUtils: Error: " + e);
+        } finally {
+            try {
+                if (s != null) {
+                    s.close();
+                }
+            } catch (SQLException e) {
+                Bukkit.getLogger().info("Core >> WarnUtils: Error: " + e);
+            }
         }
     }
 
@@ -112,6 +120,8 @@ public class WarnUtils {
             while (rs.next()) {
                 warns++;
             }
+            rs.close();
+            s.close();
         } catch (SQLException e) {
             Bukkit.getLogger().info("Core >> WarnUtils: Error: " + e);
         }

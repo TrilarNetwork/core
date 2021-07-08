@@ -3,18 +3,23 @@ package me.shizleshizle.core.utils;
 import me.shizleshizle.core.Main;
 import me.shizleshizle.core.listeners.*;
 import org.bukkit.Bukkit;
-import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.*;
 import org.bukkit.event.Listener;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.SimplePluginManager;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
+
+import static org.bukkit.Bukkit.getServer;
+import static org.bukkit.ChatColor.*;
 
 public class CommandManager {
     private HashMap<String, CommandExecutor> commands = new HashMap<>();
+    private HashMap<String, Boolean> commandStatus = new HashMap<>();
     private ArrayList<Listener> events = new ArrayList<>();
     private Main core;
 
@@ -23,8 +28,25 @@ public class CommandManager {
         Fetch();
     }
 
+    public boolean exists(String commandLabel) {
+        return commandStatus.containsKey(commandLabel.toLowerCase());
+    }
+
+    public String[] getCommandStatuses() {
+        String[] commands = new String[commandStatus.size()];
+        int counter = 0;
+        for (String cmd : commandStatus.keySet()) {
+            boolean enabled = commandStatus.get(cmd);
+            String commandValue = enabled ? GREEN + "true" : RED + "false";
+            String line = GOLD + StringHelper.normalCase(cmd) + YELLOW + ": " + commandValue;
+            commands[counter] = line;
+            counter++;
+        }
+        return commands;
+    }
+
     public boolean isEnabled(String commandLabel) {
-        return commands.containsKey(commandLabel);
+        return commandStatus.get(commandLabel);
     }
 
     public void registerCommand(String commandLabel, CommandExecutor exec) {
@@ -37,6 +59,35 @@ public class CommandManager {
         if (commands.containsKey((commandLabel))) {
             commands.remove(commandLabel);
         }
+        unregisterPluginCommand(commandLabel);
+    }
+
+    private Object getPrivateField(Object object, String field) throws SecurityException,
+            NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+        Class<?> clazz = object.getClass();
+        Field objectField = clazz.getDeclaredField(field);
+        objectField.setAccessible(true);
+        Object result = objectField.get(object);
+        objectField.setAccessible(false);
+        return result;
+    }
+
+    private void unregisterPluginCommand(String cmd) {
+        try {
+            Object result = getPrivateField(getServer().getPluginManager(), "commandMap");
+            SimpleCommandMap commandMap = (SimpleCommandMap) result;
+            Object map = getPrivateField(commandMap, "knownCommands");
+            @SuppressWarnings("unchecked")
+            HashMap<String, Command> knownCommands = (HashMap<String, Command>) map;
+            knownCommands.remove(cmd);
+            for (String alias : knownCommands.keySet()) {
+                if (knownCommands.get(alias).getName().equals(cmd)) {
+                    knownCommands.remove(alias);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void registerEvent(Listener event) {
@@ -46,6 +97,52 @@ public class CommandManager {
     public void registerToServer() {
         registerCommandsToServer();
         registerEventsToServer();
+    }
+
+    public void enableCommand(String... aliases) {
+        PluginCommand command = getCommand(aliases[0], core);
+        command.setAliases(Arrays.asList(aliases));
+        getCommandMap().register(core.getDescription().getName(), command);
+        String className = StringHelper.normalCase(aliases[0]);
+        String pathToClass = getPath(className);
+        try {
+            Class clazz = Class.forName(pathToClass + "." + className);
+            if (CommandExecutor.class.isAssignableFrom(clazz)) {
+                CommandExecutor exe = (CommandExecutor) clazz.getDeclaredConstructor().newInstance();
+                registerCommand(aliases[0], exe);
+                commandStatus.put(aliases[0], true);
+            }
+        } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
+            Bukkit.getLogger().info("Core >> Error: " + e);
+        }
+    }
+
+    private static PluginCommand getCommand(String name, Plugin plugin) {
+        PluginCommand command = null;
+
+        try {
+            Constructor<PluginCommand> c = PluginCommand.class.getDeclaredConstructor(String.class, Plugin.class);
+            c.setAccessible(true);
+
+            command = c.newInstance(name, plugin);
+        } catch (SecurityException | IllegalArgumentException | IllegalAccessException | InstantiationException | InvocationTargetException | NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+        return command;
+    }
+
+    private static CommandMap getCommandMap() {
+        CommandMap commandMap = null;
+        try {
+            if (Bukkit.getPluginManager() instanceof SimplePluginManager) {
+                Field f = SimplePluginManager.class.getDeclaredField("commandMap");
+                f.setAccessible(true);
+                commandMap = (CommandMap) f.get(Bukkit.getPluginManager());
+            }
+        } catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return commandMap;
     }
 
     private void registerCommandsToServer() {
@@ -68,27 +165,27 @@ public class CommandManager {
 
     private String getPath(String cmdName) {
         String path = "me.shizleshizle.core.commands";
-        if (cmdName.equalsIgnoreCase("ban")||cmdName.equalsIgnoreCase("unban")||cmdName.equalsIgnoreCase("kick")||cmdName.equalsIgnoreCase("mute")
-            ||cmdName.equalsIgnoreCase("staffmode")||cmdName.equalsIgnoreCase("unmute")||cmdName.equalsIgnoreCase("warn")) {
+        if (cmdName.equalsIgnoreCase("ban") || cmdName.equalsIgnoreCase("unban") || cmdName.equalsIgnoreCase("kick") || cmdName.equalsIgnoreCase("mute")
+                || cmdName.equalsIgnoreCase("staffmode") || cmdName.equalsIgnoreCase("unmute") || cmdName.equalsIgnoreCase("warn")) {
             path = path + ".bansystem";
-        } else if (cmdName.equalsIgnoreCase("unloadchunks")||cmdName.equalsIgnoreCase("clearentities")) {
+        } else if (cmdName.equalsIgnoreCase("unloadchunks") || cmdName.equalsIgnoreCase("clearentities")) {
             path = path + ".clearlag";
         } else if (cmdName.contains("home")) {
             path = path + ".homes";
-        } else if (cmdName.equalsIgnoreCase("msg")||cmdName.equalsIgnoreCase("reply")||cmdName.equalsIgnoreCase("socialspy")) {
+        } else if (cmdName.equalsIgnoreCase("msg") || cmdName.equalsIgnoreCase("reply") || cmdName.equalsIgnoreCase("socialspy")) {
             path = path + ".messaging";
-        } else if ((cmdName.contains("spawn")||cmdName.equalsIgnoreCase("spawn")) && !cmdName.equalsIgnoreCase("spawnmob")) {
+        } else if ((cmdName.contains("spawn") || cmdName.equalsIgnoreCase("spawn")) && !cmdName.equalsIgnoreCase("spawnmob")) {
             path = path + ".spawn";
         } else if (cmdName.startsWith("tp")) {
             path = path + ".teleportation";
-        } else if (cmdName.contains("ticket")||cmdName.equalsIgnoreCase("ticket")||cmdName.equalsIgnoreCase("tickets")) {
+        } else if (cmdName.contains("ticket") || cmdName.equalsIgnoreCase("ticket") || cmdName.equalsIgnoreCase("tickets")) {
             path = path + ".tickets";
-        } else if (cmdName.equalsIgnoreCase("day")||cmdName.equalsIgnoreCase("night")||cmdName.equalsIgnoreCase("ptime")
-                ||cmdName.equalsIgnoreCase("time")) {
+        } else if (cmdName.equalsIgnoreCase("day") || cmdName.equalsIgnoreCase("night") || cmdName.equalsIgnoreCase("ptime")
+                || cmdName.equalsIgnoreCase("time")) {
             path = path + ".time";
         } else if (cmdName.equalsIgnoreCase("vault")) {
             path = path + ".vaults";
-        } else if (cmdName.contains("warp")||cmdName.equalsIgnoreCase("warp")) {
+        } else if (cmdName.contains("warp") || cmdName.equalsIgnoreCase("warp")) {
             path = path + ".warps";
         }
         return path;
@@ -97,7 +194,9 @@ public class CommandManager {
     private void SmartFetchCommands() {
         Map<String, Map<String, Object>> cmds = core.getDescription().getCommands();
         for (String cmd : cmds.keySet()) {
-            if ((cmd.equalsIgnoreCase("pay")||cmd.equalsIgnoreCase("balance")) && !core.checkVault()) continue;
+            if (Main.disabledCommands.contains(cmd)) continue;
+            if ((cmd.equalsIgnoreCase("pay") || cmd.equalsIgnoreCase("balance")) && !core.checkVault()) continue;
+            commandStatus.put(cmd, false);
             String pathToClass = getPath(cmd);
             String className = StringHelper.normalCase(cmd);
             if (cmd.equalsIgnoreCase("sun") || cmd.equalsIgnoreCase("storm")) {
@@ -110,8 +209,9 @@ public class CommandManager {
                 if (CommandExecutor.class.isAssignableFrom(clazz)) {
                     CommandExecutor exe = (CommandExecutor) clazz.getDeclaredConstructor().newInstance();
                     registerCommand(cmd, exe);
+                    commandStatus.put(cmd, true);
                 }
-            } catch(ClassNotFoundException | NoSuchMethodException|InvocationTargetException|InstantiationException|IllegalAccessException e) {
+            } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
                 Bukkit.getLogger().info("Core >> Error: " + e);
             }
         }

@@ -1,19 +1,41 @@
 settings:
+  # If this plugin is meant for a lobby, set the lobbyVersion to true.
   lobbyVersion: false
+
+  # Max health a player can have.
   maxHealth: 60
+
+  # Max amount of homes the default rank (member) can have.
   maxhomes: 1
+
+  # Time the player needs to wait in order to teleport when using, for example, /tpa.
   teleportWaitTime: 5
-  autoBroadcastDelay: 60
-  enableAutoBroadcast: false
+
+  # Remove God mode, vanish, and nickname upon leaving the server.
   removeOnQuit: false
+
+  # Database values
   database:
     hostname: phpmyadmin.danibaas.nl
     port: 3306
     database: trilar
     username: trilar
     password: pgr6WdgRXhnhwJNm
+
+  # Time in seconds to display a broadcast message.
+  autoBroadcastDelay: 60
+  # Enable the automatic broadcaster.
+  enableAutoBroadcast: false
+  # Messages to broadcast.
   broadcastMessages:
     - '&6Welcome to &eEliarant&6!'
     - '&6Do you have any questions? Feel free to ask!'
     - '&6See a bug? Visit the forum and tell us!'
+
+  # Message of the display that displays to the player upon joining the server.
   motd: "&eWelcome to &6The World of Eliarant&e!"
+
+  # Commands to disable.
+  disabledCommands:
+    - rules
+    - socialmedia

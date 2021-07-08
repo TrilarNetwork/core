@@ -58,7 +58,9 @@ public class Perm {
 				pS = Main.sql.getConnection().prepareStatement("UPDATE Player SET mcrank='" + (g.toString().toLowerCase()) + "' WHERE player='" + name + "'");
 			}
 			pS.executeUpdate();
+			rs.close();
 			pS.close();
+			s.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -73,6 +75,8 @@ public class Perm {
 			while (rs.next()) {
 				str = rs.getString("mcrank").toUpperCase();
 			}
+			rs.close();
+			s.close();
 			return PermGroup.get(str); 
 		} catch (SQLException e) {
 			e.printStackTrace();

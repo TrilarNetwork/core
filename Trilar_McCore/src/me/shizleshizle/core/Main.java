@@ -4,7 +4,6 @@ import me.shizleshizle.core.commands.bansystem.GUIFunction;
 import me.shizleshizle.core.commands.cmdutils.HomeUtils;
 import me.shizleshizle.core.commands.vaults.utils.VaultHandler;
 import me.shizleshizle.core.mysql.MySQLManager;
-import me.shizleshizle.core.objects.ChatColorHandler;
 import me.shizleshizle.core.permissions.PermUser;
 import me.shizleshizle.core.permissions.PermissionGroup;
 import me.shizleshizle.core.permissions.PrefixHelper;
@@ -30,6 +29,7 @@ import java.util.logging.Logger;
 
 public class Main extends JavaPlugin {
     public static List<String> msgs;
+    public static List<String> disabledCommands = new ArrayList<>();
     public static ArrayList<String> afks = new ArrayList<>();
     public static ArrayList<String> frozen = new ArrayList<>();
     public static ArrayList<String> gods = new ArrayList<>();
@@ -87,7 +87,6 @@ public class Main extends JavaPlugin {
         PermissionGroup.setup();
         PermUser.setup();
         PrefixHelper.setup();
-        ChatColorHandler.setup();
         cman = new CommandManager(this);
         cman.registerToServer();
         HomeUtils.loadHomes();
@@ -109,11 +108,15 @@ public class Main extends JavaPlugin {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        saveUtils();
+        long fin = System.currentTimeMillis() - time;
+        l.info("McCore >> successfully disabled! (" + fin + " ms)");
+    }
+
+    public void saveUtils() {
         HomeUtils.saveHomeNames();
         AutoB.saveToConfig();
         VaultHandler.saveVaults();
-        long fin = System.currentTimeMillis() - time;
-        l.info("McCore >> successfully disabled! (" + fin + " ms)");
     }
 
     public static void setupUtils() {
@@ -130,7 +133,8 @@ public class Main extends JavaPlugin {
         maxHealth = c.getConfig().getInt("settings.maxHealth");
         autobroadcastDelay = c.getConfig().getInt("settings.autoBroadcastDelay");
         broadcastFunction = c.getConfig().getBoolean("settings.enableAutoBroadcast");
-        msgs = Main.c.getConfig().getStringList("settings.broadcastMessages");
+        msgs = c.getConfig().getStringList("settings.broadcastMessages");
+        disabledCommands = c.getConfig().getStringList("settings.disabledCommands");
     }
 
     private void broadcast() {
