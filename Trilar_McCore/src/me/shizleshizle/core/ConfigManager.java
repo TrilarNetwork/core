@@ -145,6 +145,9 @@ public class ConfigManager {
         if (!this.config.contains("settings.disabledCommands")) {
             this.config.set("settings.disabledCommands", Arrays.asList("rules", "socialmedia"));
         }
+        if (!this.config.contains("settings.maxWarnAmount")) {
+            this.config.set("settings.maxWarnAmount", 3);
+        }
     }
 
     public void saveAll() {

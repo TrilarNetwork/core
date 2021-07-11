@@ -21,6 +21,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.sql.SQLException;
+import java.time.Clock;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -44,6 +45,7 @@ public class Main extends JavaPlugin {
     public static HashMap<String, String> messaging = new HashMap<>();
     public static HashMap<String, GUIFunction> staffgui = new HashMap<>();
     public static HashMap<String, String> staffguiReason = new HashMap<>();
+    public static HashMap<String, Clock> muteReason = new HashMap<>();
     public static ConfigManager c;
     public static Economy econ = null;
     public static MySQLManager sql;
@@ -66,6 +68,7 @@ public class Main extends JavaPlugin {
     public static int tpTime;
     public static int maxHealth;
     public static int autobroadcastDelay;
+    public static int maxWarnAmount;
     private int i = 0;
 
     public void onEnable() {
@@ -134,6 +137,7 @@ public class Main extends JavaPlugin {
         tpTime = c.getConfig().getInt("settings.teleportWaitTime");
         maxHealth = c.getConfig().getInt("settings.maxHealth");
         autobroadcastDelay = c.getConfig().getInt("settings.autoBroadcastDelay");
+        maxWarnAmount = c.getConfig().getInt("settings.maxWarnAmount");
         broadcastFunction = c.getConfig().getBoolean("settings.enableAutoBroadcast");
         msgs = c.getConfig().getStringList("settings.broadcastMessages");
         disabledCommands = c.getConfig().getStringList("settings.disabledCommands");

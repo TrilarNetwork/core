@@ -197,6 +197,8 @@ commands:
     description: Reload the plugin
   me:
     description: Talk in third person.
+  memory:
+    description: Check the server memory.
   mods:
     description: View the allowed mods.
   motd:

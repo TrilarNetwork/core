@@ -33,7 +33,7 @@ public class Mute implements CommandExecutor {
                 if (targetPlayer != null) {
                     User target = new User(targetPlayer);
                     if (target.isMuted()) {
-                        sender.sendMessage(Ban.PREFIX + "Player " + GOLD + target + YELLOW + " has already been muted, this mute will overwrite current mute.");
+                        sender.sendMessage(Ban.PREFIX + "Player " + GOLD + target.getName() + YELLOW + " has already been muted, this mute will overwrite current mute.");
                     }
                     String senderName = (sender instanceof Player) ? GOLD + sender.getName() + YELLOW : GOLD + "Console" + YELLOW;
                     if (sender instanceof Player) {
@@ -83,7 +83,7 @@ public class Mute implements CommandExecutor {
                     } else {
                         target.mute();
                         sender.sendMessage(Ban.PREFIX + "Player " + GOLD + target.getName() + YELLOW + " has been muted!");
-                        target.sendMessage(Ban.PREFIX + "You have been muted by " + senderName);
+                        target.sendMessage(Ban.PREFIX + "You have been muted by " + GOLD + senderName + YELLOW + "!");
                     }
                 } else {
                     ErrorMessages.doErrorMessage(sender, Messages.PLAYER_OFFLINE, args[0]);

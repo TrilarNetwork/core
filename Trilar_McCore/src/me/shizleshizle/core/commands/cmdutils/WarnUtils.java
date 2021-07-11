@@ -1,8 +1,11 @@
 package me.shizleshizle.core.commands.cmdutils;
 
 import me.shizleshizle.core.Main;
+import me.shizleshizle.core.commands.bansystem.Ban;
+import org.bukkit.BanList;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;
 import java.sql.ResultSet;
@@ -14,7 +17,7 @@ import static org.bukkit.ChatColor.*;
 public class WarnUtils {
 
     /**
-     * Add a warn to the database for a certain player.
+     * Add a warn to the database for a certain player. If the player has the maximum amount of warnings (value set in the config file), they will be banned automatically.
      *
      * @param name   Name of the player to warn.
      * @param reason Reason for the warning.
@@ -38,6 +41,14 @@ public class WarnUtils {
                 Bukkit.getLogger().info("Core >> WarnUtils: Error: " + e);
             }
         }
+        if (getWarnAmount(name) >= Main.maxWarnAmount) {
+            Bukkit.getBanList(BanList.Type.NAME).addBan(name, "You have received too many warnings!", null, warner);
+            Player toKick = Bukkit.getPlayerExact(name);
+            if (toKick != null) {
+                toKick.kickPlayer(RED + "You have been banned for receiving too many warnings!");
+            }
+        }
+        Bukkit.broadcastMessage(Ban.PREFIX + "Player " + GOLD + name + YELLOW + " has been warned by " + GOLD + warner + YELLOW + " for: " + GOLD + reason);
     }
 
     public static int getLatestWarnNumber(String name) {

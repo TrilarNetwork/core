@@ -97,12 +97,42 @@ public class GUI {
     }
 
     public static void openMuteGUI(User p) {
-        Inventory inv = Bukkit.createInventory(null, 36, AQUA + "Mute GUI");
+        Inventory inv = Bukkit.createInventory(null, 27, AQUA + "Mute GUI");
         HashMap<Integer, ItemStack> items = new HashMap<>();
         items.put(4, CI.createItem(Material.COBWEB, 1, -1, DARK_GRAY + "Mute"));
         items.put(12, CI.createItem(Material.BEDROCK, 1, -1, DARK_AQUA + "No time defined (permanent, until unmuted)"));
-        items.put(14, CI.createItem(Material.BEDROCK, 1, -1, DARK_AQUA + "Set a time"));
+        items.put(14, CI.createItem(Material.GRASS_BLOCK, 1, -1, DARK_AQUA + "Set a time"));
         items.put(22, CI.createItem(Material.RED_BANNER, 1, -1, WHITE + "Back"));
+        for (int slot : items.keySet()) {
+            inv.setItem(slot, items.get(slot));
+        }
+        p.openInventory(inv);
+    }
+
+    public static void openMuteTimeGUI(User p) {
+        Inventory inv = Bukkit.createInventory(null, 45, AQUA + "Mute Time GUI");
+        HashMap<Integer, ItemStack> items = new HashMap<>();
+        // adding time items
+        items.put(0, CI.createItem(Material.WARPED_PLANKS, 1, -1, DARK_GREEN + "Add 1 day"));
+        items.put(2, CI.createItem(Material.WARPED_PLANKS, 1, -1, DARK_GREEN + "Add 1 hour"));
+        items.put(4, CI.createItem(Material.WARPED_PLANKS, 1, -1, DARK_GREEN + "Add 1 minute"));
+        items.put(6, CI.createItem(Material.WARPED_PLANKS,   1, -1, DARK_GREEN + "Add 1 second"));
+
+        // objects that tell the player the time to add
+        items.put(18, CI.createItem(Material.DIAMOND_BLOCK, 1, -1, WHITE + "0 day(s)"));
+        items.put(20, CI.createItem(Material.GOLD_BLOCK, 1, -1, WHITE + "0 hour(s)"));
+        items.put(22, CI.createItem(Material.IRON_BLOCK, 1, -1, WHITE + "0 minute(s)"));
+        items.put(24, CI.createItem(Material.COAL_BLOCK, 1, -1, WHITE + "0 second(s)"));
+
+        // remove time
+        items.put(36, CI.createItem(Material.CRIMSON_PLANKS, 1, -1, DARK_GREEN + "Remove 1 day"));
+        items.put(38, CI.createItem(Material.CRIMSON_PLANKS, 1, -1, DARK_GREEN + "Remove 1 hour"));
+        items.put(40, CI.createItem(Material.CRIMSON_PLANKS, 1, -1, DARK_GREEN + "Remove 1 minute"));
+        items.put(42, CI.createItem(Material.CRIMSON_PLANKS,   1, -1, DARK_GREEN + "Remove 1 second"));
+
+        // misc
+        items.put(17, CI.createItem(Material.LIME_WOOL, 1, -1, GREEN + "Mute"));
+        items.put(35, CI.createItem(Material.RED_BANNER, 1, -1, WHITE + "Back"));
         for (int slot : items.keySet()) {
             inv.setItem(slot, items.get(slot));
         }

@@ -7,4 +7,8 @@ public class StringHelper {
         String rest = toNormalize.substring(1);
         return firstLetter.toUpperCase() + rest.toLowerCase();
     }
+
+    public static String[] splitBySpace(String toSplit) {
+        return toSplit.split("\\s+");
+    }
 }

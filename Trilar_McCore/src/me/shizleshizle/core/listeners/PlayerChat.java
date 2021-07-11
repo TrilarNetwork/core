@@ -29,7 +29,10 @@ public class PlayerChat implements Listener {
         if (Main.giveReasonForPunishment.contains(p.getName())) {
             Main.staffguiReason.put(p.getName(), ChatColor.translateAlternateColorCodes('&', msg));
             Main.giveReasonForPunishment.remove(p.getName());
-            GUI.openPlayerList(p);
+            Bukkit.getScheduler().runTask(Main.p, () -> {
+                GUI.openPlayerList(p);
+            });
+            return;
         }
         if (Main.setHome.contains(p.getName())) {
             if (msg.toLowerCase().contains("!overwrite")) {

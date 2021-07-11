@@ -95,9 +95,6 @@ public class Warn implements CommandExecutor {
                             sb.append(args[i]).append(" ");
                         }
                         WarnUtils.warn(args[0], ChatColor.translateAlternateColorCodes('&', sb.toString().trim()), senderName);
-                        if (WarnUtils.getWarnAmount(args[0]) >= 3) {
-                            Bukkit.getBanList(BanList.Type.NAME).addBan(args[0], "You have received too many warnings!", null, senderName);
-                        }
                     } else {
                         User target = new User(targetPlayer);
                         StringBuilder sb = new StringBuilder();
@@ -105,9 +102,6 @@ public class Warn implements CommandExecutor {
                             sb.append(args[i]).append(" ");
                         }
                         target.warn(ChatColor.translateAlternateColorCodes('&', sb.toString().trim()), senderName);
-                        if (target.getWarnAmount() >= 3) {
-                            Bukkit.getBanList(BanList.Type.NAME).addBan(target.getName(), "You have received too many warnings!", null, senderName);
-                        }
                     }
                 }
             } else {

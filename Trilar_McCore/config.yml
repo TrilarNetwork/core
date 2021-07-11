@@ -35,6 +35,9 @@ settings:
   # Message of the display that displays to the player upon joining the server.
   motd: "&eWelcome to &6The World of Eliarant&e!"
 
+  # Max amount of warns a player can receive before being banned. Upon receiving the warning equal to this value, they will automatically be banned.
+  maxWarnAmount: 3
+
   # Commands to disable.
   disabledCommands:
     - rules
