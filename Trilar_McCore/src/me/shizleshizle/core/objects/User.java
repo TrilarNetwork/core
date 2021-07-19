@@ -214,6 +214,10 @@ public class User {
         return p.getExp();
     }
 
+    public Location getEyeLocation() {
+        return p.getEyeLocation();
+    }
+
     public float getFallDistance() {
         return p.getFallDistance();
     }
@@ -283,7 +287,7 @@ public class User {
         String messagerName = "";
         if (Main.messaging.containsKey(getName())) {
             messagerName = Main.messaging.get(getName());
-        } else if (Main.messaging.containsValue(getName())){
+        } else if (Main.messaging.containsValue(getName())) {
             for (String pl : Main.messaging.keySet()) {
                 if (Main.messaging.get(pl).equals(getName())) {
                     messagerName = pl;
@@ -308,6 +312,10 @@ public class User {
 
     public String getName() {
         return p.getName();
+    }
+
+    public List<Entity> getNearbyEntities(double x, double y, double z) {
+        return p.getNearbyEntities(x, y, z);
     }
 
     public String getNick() {
@@ -432,6 +440,10 @@ public class User {
 
     public boolean hasPlayedBefore() {
         return p.hasPlayedBefore();
+    }
+
+    public boolean hasPermission(PermGroup pg) {
+        return Perm.hasPerm(getName(), pg);
     }
 
     public boolean hasPotionEffect(PotionEffectType e) {
@@ -1118,26 +1130,26 @@ public class User {
         Random r = new Random();
         int rand = r.nextInt(601);
         if (rand < 30) rand = 30;
-        switch(type) {
+        switch (type) {
             case CLEAR:
                 for (World w : Bukkit.getWorlds()) {
                     w.setStorm(false);
                     w.setThundering(false);
-                    w.setWeatherDuration(rand*20);
+                    w.setWeatherDuration(rand * 20);
                 }
                 break;
             case STORM:
                 for (World w : Bukkit.getWorlds()) {
                     w.setStorm(true);
                     w.setThundering(false);
-                    w.setWeatherDuration(rand*20);
+                    w.setWeatherDuration(rand * 20);
                 }
                 break;
             case THUNDER:
                 for (World w : Bukkit.getWorlds()) {
                     w.setStorm(true);
                     w.setThundering(true);
-                    w.setWeatherDuration(rand*20);
+                    w.setWeatherDuration(rand * 20);
                 }
                 break;
         }

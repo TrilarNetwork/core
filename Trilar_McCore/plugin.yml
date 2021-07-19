@@ -205,6 +205,9 @@ commands:
     description: Set or view the message of the day
   name:
     description: Set an item name or description
+  nameanimal:
+    description: Name an animal
+    aliases: [na, namea]
   nickname:
     description: Change your nickname.
     aliases: [ nick ]
@@ -214,6 +217,8 @@ commands:
     description: View or change peoples prefix.
   rank:
     description: Change a persons rank.
+  reloader:
+    description: Reload a certain plugin
   repair:
     description: Repair one or more items.
     aliases: [ fix ]

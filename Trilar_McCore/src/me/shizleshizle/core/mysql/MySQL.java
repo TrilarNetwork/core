@@ -8,30 +8,30 @@ import java.sql.SQLException;
 
 /**
  * Connects to and uses a MySQL database
- * 
+ *
  * @author -_Husky_-
  * @author tips48
  */
 public class MySQL extends Database {
-	private String user;
-	private String database;
-	private String password;
-	private int port;
-	private String hostname;
+    private String user;
+    private String database;
+    private String password;
+    private int port;
+    private String hostname;
 
-	private Connection conn;
-	/*
-	 * Creates a new MySQL instance
-	 *
-	 * @param hostname
-	 *            Name of the host
-	 * @param port
-	 *            Port number
-	 * @param username
-	 *            Username
-	 * @param password
-	 *            Password
-	 */
+    private Connection conn;
+    /*
+     * Creates a new MySQL instance
+     *
+     * @param hostname
+     *            Name of the host
+     * @param port
+     *            Port number
+     * @param username
+     *            Username
+     * @param password
+     *            Password
+     */
 	/*@Deprecated
 	public MySQL(String hostname, String port, String username,
 			String password) {
@@ -61,47 +61,47 @@ public class MySQL extends Database {
 		this.password = password;
 	} */
 
-	/*
-	 * Creates a new MySQL instance for a specific database
-	 *
-	 * @param hostname
-	 *            Name of the host
-	 * @param port
-	 *            Port number
-	 * @param database
-	 *            Database name
-	 * @param username
-	 *            Username
-	 * @param password
-	 *            Password
-	 */
-	MySQL() {
-		this.hostname = Main.host;
-		this.port = Main.port;
-		this.database = Main.db;
-		this.user = Main.user;
-		this.password = Main.pw;
-		this.conn = openConnection();
-	}
+    /*
+     * Creates a new MySQL instance for a specific database
+     *
+     * @param hostname
+     *            Name of the host
+     * @param port
+     *            Port number
+     * @param database
+     *            Database name
+     * @param username
+     *            Username
+     * @param password
+     *            Password
+     */
+    MySQL() {
+        this.hostname = Main.host;
+        this.port = Main.port;
+        this.database = Main.db;
+        this.user = Main.user;
+        this.password = Main.pw;
+        this.conn = openConnection();
+    }
 
-	public Connection openConnection() {
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://" + this.hostname + ":" + this.port + "/" + this.database
-					+ "?connectTimeout=0&socketTimeout=0&autoReconnect=true&useSSL=false", this.user, this.password);
-			return conn;
-		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		return conn;
-	}
-	
-	public Connection getConnection() {
-		if (!hasConnection()) openConnection();
-		return conn;
-	}
-	
-	public boolean hasConnection() {
-		return (conn != null);
-	}
+    public Connection openConnection() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://" + this.hostname + ":" + this.port + "/" + this.database
+                    + "?autoReconnect=true&useSSL=false", this.user, this.password);
+            return conn;
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return conn;
+    }
+
+    public Connection getConnection() {
+        if (!hasConnection()) openConnection();
+        return conn;
+    }
+
+    public boolean hasConnection() {
+        return (conn != null);
+    }
 }
