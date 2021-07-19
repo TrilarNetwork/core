@@ -23,7 +23,7 @@ public class Rank implements CommandExecutor {
             String senderName = GOLD + "Console";
             if (sender instanceof Player) {
                 User p = new User((Player) sender);
-                if (!p.hasPermission(PermGroup.MANAGER) || (!p.getName().equals("shizleshizle") || !p.getName().equals("iMelvin"))) {
+                if (!p.hasPermission(PermGroup.MANAGER) && (!p.getName().equals("shizleshizle") && !p.getName().equals("iMelvin"))) {
                     ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/rank");
                     return false;
                 }
@@ -73,21 +73,24 @@ public class Rank implements CommandExecutor {
                         sender.sendMessage(PREFIX + "Invalid rank!");
                     } else {
                         Main.sql.getReady();
-                        if (g.equals(PermGroup.OWNER) && (sender.getName().equals("shizleshizle") || sender.getName().equals("iMelvin") || Perm.hasPerm(sender.getName(), PermGroup.OWNER))) {
-                            Perm.updateGroup(user, g);
-                        } else if (g.equals(PermGroup.LEAD_DEVELOPER) && sender.getName().equals("shizleshizle")) {
-                            Perm.updateGroup(user, g);
-                        } else if (g.equals(PermGroup.DEVELOPER) && (sender.getName().equals("shizleshizle") || sender.getName().equals("iMelvin")
-                                || Perm.hasPerm(sender.getName(), PermGroup.DEVELOPER))) {
-                            Perm.updateGroup(user, g);
-                        } else if (g.equals(PermGroup.MANAGER) && ((sender.getName().equals("shizleshizle") || sender.getName().equals("iMelvin")))
-                                || Perm.hasPerm(sender.getName(), PermGroup.MANAGER)) {
-                            Perm.updateGroup(user, g);
-                        } else if (g.getId() < PermGroup.MANAGER.getId() && Perm.hasPerm(sender.getName(), PermGroup.MANAGER)) {
-                            Perm.updateGroup(user, g);
+                        if (sender instanceof Player) {
+                            if (sender.getName().equalsIgnoreCase("shizleshizle") || sender.getName().equalsIgnoreCase("iMelvin")) {
+                                Perm.updateGroup(user, g);
+                            }
+                            if (g.equals(PermGroup.OWNER) && Perm.hasPerm(sender.getName(), PermGroup.OWNER)) {
+                                Perm.updateGroup(user, g);
+                            } else if (g.equals(PermGroup.DEVELOPER) && Perm.hasPerm(sender.getName(), PermGroup.DEVELOPER)) {
+                                Perm.updateGroup(user, g);
+                            } else if (g.equals(PermGroup.MANAGER) && Perm.hasPerm(sender.getName(), PermGroup.MANAGER)) {
+                                Perm.updateGroup(user, g);
+                            } else if (g.getId() < PermGroup.MANAGER.getId() && Perm.hasPerm(sender.getName(), PermGroup.MANAGER)) {
+                                Perm.updateGroup(user, g);
+                            } else {
+                                sender.sendMessage(PREFIX + "You can not set this rank!");
+                                return true;
+                            }
                         } else {
-                            sender.sendMessage(PREFIX + "You can not set this rank!");
-                            return true;
+                            Perm.updateGroup(user, g);
                         }
                         if (user.equals(sender.getName())) {
                             sender.sendMessage(PREFIX + "Your rank has been updated to " + GOLD + g.getName() + YELLOW + "!");
