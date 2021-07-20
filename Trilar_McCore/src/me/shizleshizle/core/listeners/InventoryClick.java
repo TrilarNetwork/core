@@ -1,6 +1,7 @@
 package me.shizleshizle.core.listeners;
 
 import me.shizleshizle.core.Main;
+import me.shizleshizle.core.commands.Freeze;
 import me.shizleshizle.core.commands.bansystem.Ban;
 import me.shizleshizle.core.commands.bansystem.GUIFunction;
 import me.shizleshizle.core.commands.cmdutils.VanishUtils;
@@ -16,7 +17,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -32,12 +32,6 @@ import java.util.Objects;
 import static org.bukkit.ChatColor.*;
 
 public class InventoryClick implements Listener {
-
-    @EventHandler
-    public void onClose(InventoryCloseEvent e) {
-        Main.staffguiReason.remove(e.getPlayer().getName());
-        Main.staffgui.remove(e.getPlayer().getName());
-    }
 
     @EventHandler
     public void onIC(InventoryClickEvent e) {
@@ -122,6 +116,9 @@ public class InventoryClick implements Listener {
                         t.sendMessage(Ban.PREFIX + "You have been muted by " + GOLD + p.getName() + YELLOW + "!");
                     } else if (pFunction == GUIFunction.FREEZE) {
                         t.freezeUser(!t.isFrozen());
+                        String frozen = t.isFrozen() ? GOLD + "frozen" + YELLOW : GOLD + "unfrozen" + YELLOW;
+                        p.sendMessage(Ban.PREFIX + GOLD + t.getName() + YELLOW + " has been " + frozen + YELLOW + "!");
+                        t.sendMessage(Freeze.PREFIX + "You have been " + frozen + " by " + GOLD + p.getName() + YELLOW + "!");
                     }
                     Main.staffguiReason.remove(p.getName());
                     Main.staffgui.remove(p.getName());
