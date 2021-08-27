@@ -8,7 +8,6 @@ import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.Numbers;
 import me.shizleshizle.core.utils.StringHelper;
 import me.shizleshizle.core.utils.StringToMaterial;
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -30,7 +29,7 @@ public class Item implements CommandExecutor {
                         if (StringToMaterial.isMaterial(item)) {
                             if (args.length == 1) {
                                 ItemStack is = new ItemStack(StringToMaterial.getMaterialFromString(item), 1);
-                                p.getInventory().addItem(is);
+                                p.addItem(is);
                                 p.sendMessage(PREFIX + "Added 1 of " + GOLD + StringHelper.normalCase(item) + YELLOW + " to your inventory!");
                                 return false;
                             } else {
@@ -39,26 +38,31 @@ public class Item implements CommandExecutor {
                                     ItemStack is = new ItemStack(StringToMaterial.getMaterialFromString(item), amount);
                                     String itemName = StringHelper.normalCase(item);
                                     if (args.length == 3) {
-                                        Player target = Bukkit.getPlayerExact(args[2]);
+                                        User target = User.getUser(args[2]);
                                         if (target != null && target.isOnline()) {
-                                            target.getInventory().addItem(is);
+                                            if (target.getName().equalsIgnoreCase(p.getName())) {
+                                                target.addItem(is);
+                                                p.sendMessage(PREFIX + "You have added " + GOLD + amount + YELLOW + " of " + GOLD + itemName + YELLOW + " to your inventory!");
+                                                return false;
+                                            }
+                                            target.addItem(is);
                                             target.sendMessage(PREFIX + GOLD + p.getName() + YELLOW + " has added " + GOLD + amount + YELLOW + " of " + GOLD
-                                                    + StringHelper.normalCase(item) + YELLOW + "to your inventory!");
+                                                    + StringHelper.normalCase(item) + YELLOW + " to your inventory!");
                                             p.sendMessage(PREFIX + "You have added " + GOLD + amount + YELLOW + " of " + GOLD + itemName + YELLOW + " to the inventory of " +
                                                     GOLD + target.getName() + YELLOW + "!");
                                         } else {
                                             ErrorMessages.doErrorMessage(p, Messages.PLAYER_OFFLINE, args[1]);
                                         }
                                     } else {
-                                        p.getInventory().addItem(is);
+                                        p.addItem(is);
                                         p.sendMessage(PREFIX + "You have added " + GOLD + amount + YELLOW + " of " + GOLD + itemName + YELLOW + " to your inventory!");
                                     }
                                 } else {
-                                    Player target = Bukkit.getPlayerExact(args[1]);
+                                    User target = User.getUser(args[1]);
                                     if (target != null && target.isOnline()) {
                                         ItemStack is = new ItemStack(StringToMaterial.getMaterialFromString(item), 1);
                                         String itemName = StringHelper.normalCase(item);
-                                        target.getInventory().addItem(is);
+                                        target.addItem(is);
                                         target.sendMessage(PREFIX + GOLD + p.getName() + YELLOW + " has added " + GOLD + "1" + YELLOW + " of " + GOLD
                                                 + StringHelper.normalCase(item) + YELLOW + "to your inventory!");
                                         p.sendMessage(PREFIX + "You have added " + GOLD + "1" + YELLOW + " of " + GOLD + itemName + YELLOW + " to the inventory of " +
@@ -83,9 +87,9 @@ public class Item implements CommandExecutor {
                         ItemStack is = new ItemStack(StringToMaterial.getMaterialFromString(item), amount);
                         String itemName = StringHelper.normalCase(item);
                         if (args.length == 3) {
-                            Player target = Bukkit.getPlayerExact(args[2]);
+                            User target = User.getUser(args[2]);
                             if (target != null && target.isOnline()) {
-                                target.getInventory().addItem(is);
+                                target.addItem(is);
                                 target.sendMessage(PREFIX + GOLD + "Console" + YELLOW + " has added " + GOLD + amount + YELLOW + " of " + GOLD
                                         + StringHelper.normalCase(item) + YELLOW + "to your inventory!");
                                 sender.sendMessage(PREFIX + "You have added " + GOLD + amount + YELLOW + " of " + GOLD + itemName + YELLOW + " to the inventory of " +

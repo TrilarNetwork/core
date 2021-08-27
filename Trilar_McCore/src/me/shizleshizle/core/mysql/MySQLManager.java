@@ -12,10 +12,9 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 
 public class MySQLManager extends MySQL {
-    private MySQL db;
-    private ArrayList<String> tables = new ArrayList<>();
-
     private static final MySQLManager instance = new MySQLManager();
+    private MySQL db;
+    private final ArrayList<String> tables = new ArrayList<>();
 
     public static MySQLManager getInstance() {
         return instance;
@@ -91,7 +90,7 @@ public class MySQLManager extends MySQL {
             PreparedStatement s;
             String getip = getIP(p.getName());
             if (getip != null && getip.equals("")) {
-                s = getConnection().prepareStatement("INSERT INTO Player (player, mcrank, ip) VALUES ('" + pn + "', '" + PermGroup.MEMBER.toString() + "', '" + ip + "')");
+                s = getConnection().prepareStatement("INSERT INTO Player (player, mcrank, ip) VALUES ('" + pn + "', '" + PermGroup.MEMBER + "', '" + ip + "')");
             } else {
                 s = getConnection().prepareStatement("UPDATE Player SET ip='" + ip + "' WHERE player='" + pn + "'");
             }

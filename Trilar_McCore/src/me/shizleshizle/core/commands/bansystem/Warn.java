@@ -7,7 +7,6 @@ import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermGroup;
 import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.Numbers;
-import org.bukkit.BanList;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;

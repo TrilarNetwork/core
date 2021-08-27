@@ -1,6 +1,7 @@
 package me.shizleshizle.core.mysql;
 
 import me.shizleshizle.core.Main;
+import org.bukkit.Bukkit;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,11 +14,11 @@ import java.sql.SQLException;
  * @author tips48
  */
 public class MySQL extends Database {
-    private String user;
-    private String database;
-    private String password;
-    private int port;
-    private String hostname;
+    private final String user;
+    private final String database;
+    private final String password;
+    private final int port;
+    private final String hostname;
 
     private Connection conn;
     /*
@@ -97,11 +98,15 @@ public class MySQL extends Database {
     }
 
     public Connection getConnection() {
-        if (!hasConnection()) openConnection();
+        try {
+            if (!hasConnection()) openConnection();
+        } catch (SQLException e) {
+            Bukkit.getLogger().info("MMO > SQL Error: " + e);
+        }
         return conn;
     }
 
-    public boolean hasConnection() {
-        return (conn != null);
+    public boolean hasConnection() throws SQLException {
+        return (conn != null && !conn.isClosed());
     }
 }

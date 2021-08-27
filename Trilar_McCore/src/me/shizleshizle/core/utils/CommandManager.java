@@ -3,7 +3,10 @@ package me.shizleshizle.core.utils;
 import me.shizleshizle.core.Main;
 import me.shizleshizle.core.listeners.*;
 import org.bukkit.Bukkit;
-import org.bukkit.command.*;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandMap;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.craftbukkit.v1_17_R1.command.CraftCommandMap;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
@@ -18,14 +21,41 @@ import java.util.*;
 import static org.bukkit.ChatColor.*;
 
 public class CommandManager {
-    private HashMap<String, CommandExecutor> commands = new HashMap<>();
-    private HashMap<String, Boolean> commandStatus = new HashMap<>();
-    private ArrayList<Listener> events = new ArrayList<>();
-    private Main core;
+    private final HashMap<String, CommandExecutor> commands = new HashMap<>();
+    private final HashMap<String, Boolean> commandStatus = new HashMap<>();
+    private final ArrayList<Listener> events = new ArrayList<>();
+    private final Main core;
 
     public CommandManager(Main core) {
         this.core = core;
         Fetch();
+    }
+
+    private static PluginCommand getCommand(String name, Plugin plugin) {
+        PluginCommand command = null;
+        try {
+            Constructor<PluginCommand> c = PluginCommand.class.getDeclaredConstructor(String.class, Plugin.class);
+            c.setAccessible(true);
+
+            command = c.newInstance(name, plugin);
+        } catch (SecurityException | IllegalArgumentException | IllegalAccessException | InstantiationException | InvocationTargetException | NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+        return command;
+    }
+
+    private static CommandMap getCommandMap() {
+        CommandMap commandMap = null;
+        try {
+            if (Bukkit.getPluginManager() instanceof SimplePluginManager) {
+                Field f = SimplePluginManager.class.getDeclaredField("commandMap");
+                f.setAccessible(true);
+                commandMap = (CommandMap) f.get(Bukkit.getPluginManager());
+            }
+        } catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return commandMap;
     }
 
     public boolean exists(String commandLabel) {
@@ -115,33 +145,6 @@ public class CommandManager {
         } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
             Bukkit.getLogger().info("Core >> Error: " + e);
         }
-    }
-
-    private static PluginCommand getCommand(String name, Plugin plugin) {
-        PluginCommand command = null;
-        try {
-            Constructor<PluginCommand> c = PluginCommand.class.getDeclaredConstructor(String.class, Plugin.class);
-            c.setAccessible(true);
-
-            command = c.newInstance(name, plugin);
-        } catch (SecurityException | IllegalArgumentException | IllegalAccessException | InstantiationException | InvocationTargetException | NoSuchMethodException e) {
-            e.printStackTrace();
-        }
-        return command;
-    }
-
-    private static CommandMap getCommandMap() {
-        CommandMap commandMap = null;
-        try {
-            if (Bukkit.getPluginManager() instanceof SimplePluginManager) {
-                Field f = SimplePluginManager.class.getDeclaredField("commandMap");
-                f.setAccessible(true);
-                commandMap = (CommandMap) f.get(Bukkit.getPluginManager());
-            }
-        } catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        return commandMap;
     }
 
     private void registerCommandsToServer() {

@@ -7,7 +7,6 @@ import me.shizleshizle.core.permissions.Perm;
 import me.shizleshizle.core.permissions.PermGroup;
 import me.shizleshizle.core.utils.ErrorMessages;
 import me.shizleshizle.core.utils.StringHelper;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -15,8 +14,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
-
-import java.util.Arrays;
 
 import static org.bukkit.ChatColor.*;
 
@@ -42,7 +39,7 @@ public class Commands implements CommandExecutor {
                         bm.setAuthor(DARK_AQUA + "shizleshizle");
                         bm.setTitle(AQUA + "Commands");
                         final int amountOfCmdOnPage = 13;
-                        final int amountOfPages = Math.round((float)commands.length / (float)amountOfCmdOnPage);
+                        final int amountOfPages = Math.round((float) commands.length / (float) amountOfCmdOnPage);
                         StringBuilder sb = new StringBuilder();
                         int counter = 0;
                         for (String command : commands) {
@@ -56,7 +53,7 @@ public class Commands implements CommandExecutor {
                         }
                         bm.addPage(sb.toString().trim());
                         book.setItemMeta(bm);
-                        p.getInventory().addItem(book);
+                        p.addItem(book);
                     } else {
                         for (String commd : commands) {
                             sender.sendMessage(commd);

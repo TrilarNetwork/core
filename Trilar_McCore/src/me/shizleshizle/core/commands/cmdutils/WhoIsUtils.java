@@ -8,6 +8,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.attribute.AttributeInstance;
 
 import static org.bukkit.ChatColor.*;
+
 public class WhoIsUtils {
 
     public static String getOfflineID(OfflinePlayer op) {
@@ -145,9 +146,9 @@ public class WhoIsUtils {
     public static String getAddress(String name) {
         String s;
         if (Main.sql.getIP(name) != null) {
-        	s = GOLD + Main.sql.getIP(name);
+            s = GOLD + Main.sql.getIP(name);
         } else {
-        	s = GOLD + "No IP is known of this person.";
+            s = GOLD + "No IP is known of this person.";
         }
         return s;
     }

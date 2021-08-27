@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WarpUtils {
-    private static ConfigManager c = Main.c;
     public static ArrayList<String> warps = new ArrayList<>();
+    private static final ConfigManager c = Main.c;
 
     public static void setWarp(String name, double x, double y, double z, double yaw, double pitch, String worldname) {
         c.getWarps().set("settings.warps." + name + ".x", x);

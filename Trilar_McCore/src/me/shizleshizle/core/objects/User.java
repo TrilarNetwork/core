@@ -18,8 +18,10 @@ import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Player.Spigot;
+import org.bukkit.entity.Projectile;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
@@ -31,6 +33,8 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.util.Vector;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.net.InetSocketAddress;
@@ -44,8 +48,8 @@ import java.util.*;
 import static org.bukkit.ChatColor.*;
 
 public class User {
-    private Player p;
     private final Clock permanentMute;
+    private Player p;
 
     public User(Player p) {
         this.p = p;
@@ -53,6 +57,13 @@ public class User {
         Duration tenYears = Duration.ofDays(365 * 10);
         Instant future = now.plus(tenYears);
         permanentMute = Clock.fixed(future, ZoneId.systemDefault());
+    }
+
+    @Nullable
+    public static User getUser(@NotNull String name) {
+        Player t = Bukkit.getPlayerExact(name);
+        if (t == null) return null;
+        return new User(t);
     }
 
     public Player getUser() {
@@ -149,6 +160,10 @@ public class User {
         return p.getAllowFlight();
     }
 
+    public void setAllowFlight(boolean allowflight) {
+        p.setAllowFlight(allowflight);
+    }
+
     public Location getBack() {
         Location l = null;
         if (Main.back.containsKey(p.getName())) {
@@ -157,8 +172,16 @@ public class User {
         return l;
     }
 
+    public void setBack(Location l) {
+        Main.back.put(p.getName(), l);
+    }
+
     public Location getBedSpawnLocation() {
         return p.getBedSpawnLocation();
+    }
+
+    public void setBedSpawnLocation(Location l) {
+        p.setBedSpawnLocation(l);
     }
 
     public String getChatColorString() {
@@ -176,8 +199,16 @@ public class User {
         return ChatColor.getByChar(getChatColorString().substring(1));
     }
 
+    public void setChatColor(String cc) {
+        ChatColorHandler.setChatColor(p.getName(), cc);
+    }
+
     public String getCustomName() {
         return p.getCustomName();
+    }
+
+    public void setCustomName(String name) {
+        p.setCustomName(name);
     }
 
     public String getDisplayName() {
@@ -206,12 +237,20 @@ public class User {
         return nick;
     }
 
+    public void setDisplayName(String displayname) {
+        p.setDisplayName(displayname);
+    }
+
     public Inventory getEnderchest() {
         return p.getEnderChest();
     }
 
     public float getExp() {
         return p.getExp();
+    }
+
+    public void setExp(float exp) {
+        p.setExhaustion(exp);
     }
 
     public Location getEyeLocation() {
@@ -222,8 +261,16 @@ public class User {
         return p.getFallDistance();
     }
 
+    public void setFallDistance(float falldistance) {
+        p.setFallDistance(falldistance);
+    }
+
     public int getFireTicks() {
         return p.getFireTicks();
+    }
+
+    public void setFireTicks(int ticks) {
+        p.setFireTicks(ticks);
     }
 
     public long getFirstPlayed() {
@@ -234,8 +281,16 @@ public class User {
         return p.getFlySpeed();
     }
 
+    public void setFlySpeed(float speed) {
+        p.setFlySpeed(speed);
+    }
+
     public int getFoodLevel() {
         return p.getFoodLevel();
+    }
+
+    public void setFoodLevel(int foodlevel) {
+        p.setFoodLevel(foodlevel);
     }
 
     public String getFooter() {
@@ -246,8 +301,16 @@ public class User {
         return p.getGameMode();
     }
 
+    public void setGameMode(GameMode gm) {
+        p.setGameMode(gm);
+    }
+
     public PermGroup getGroup() {
         return Perm.getGroup(p.getName());
+    }
+
+    public void setGroup(PermGroup group) {
+        Perm.updateGroup(p.getName(), group);
     }
 
     public String getHeader() {
@@ -258,8 +321,16 @@ public class User {
         return p.getHealth();
     }
 
+    public void setHealth(double health) {
+        p.setHealth(health);
+    }
+
     public double getHealthScale() {
         return p.getHealthScale();
+    }
+
+    public void setHealthScale(double scale) {
+        p.setHealthScale(scale);
     }
 
     public PlayerInventory getInventory() {
@@ -274,8 +345,16 @@ public class User {
         return p.getInventory().getItemInOffHand();
     }
 
+    public void setItemInOffHand(ItemStack item) {
+        p.getInventory().setItemInOffHand(item);
+    }
+
     public ItemStack getItemOnCursor() {
         return p.getItemOnCursor();
+    }
+
+    public void setItemOnCursor(ItemStack item) {
+        p.setItemOnCursor(item);
     }
 
     public Player getKiller() {
@@ -302,6 +381,10 @@ public class User {
         return p.getLevel();
     }
 
+    public void setLevel(int level) {
+        p.setLevel(level);
+    }
+
     public Location getLocation() {
         return p.getLocation();
     }
@@ -324,6 +407,15 @@ public class User {
         } else {
             return null;
         }
+    }
+
+    public void setNick(String nick) {
+        NickNameManager.nicks.put(p.getName(), nick);
+        nick = ChatColor.translateAlternateColorCodes('&', nick);
+        setDisplayName(nick + ChatColor.RESET);
+        setUserListName(nick + ChatColor.RESET);
+        setCustomName(nick + ChatColor.RESET);
+        saveNick();
     }
 
     public InventoryView getOpenInventory() {
@@ -352,6 +444,10 @@ public class User {
         return PrefixHelper.getPrefix(p.getName());
     }
 
+    public void setPrefix(String prefix) {
+        PrefixHelper.setPrefix(p.getName(), prefix);
+    }
+
     public String getRawPrefix() {
         return PrefixHelper.getRawPrefix(p.getName());
     }
@@ -372,8 +468,16 @@ public class User {
         return p.getTotalExperience();
     }
 
+    public void setTotalExperience(int exp) {
+        p.setTotalExperience(exp);
+    }
+
     public String getUserListName() {
         return p.getPlayerListName();
+    }
+
+    public void setUserListName(String name) {
+        p.setPlayerListName(name);
     }
 
     public long getUserTime() {
@@ -384,12 +488,20 @@ public class User {
         return p.getPlayerWeather();
     }
 
+    public void setUserWeather(WeatherType weather) {
+        p.setPlayerWeather(weather);
+    }
+
     public UUID getUUID() {
         return p.getUniqueId();
     }
 
     public float getWalkSpeed() {
         return p.getWalkSpeed();
+    }
+
+    public void setWalkSpeed(float speed) {
+        p.setWalkSpeed(speed);
     }
 
     public int getWarnAmount() {
@@ -507,6 +619,16 @@ public class User {
         return Main.afks.contains(p.getName());
     }
 
+    public void setAfk(boolean afk) {
+        if (afk) {
+            Main.afks.add(p.getName());
+            Bukkit.broadcastMessage(getDisplayName() + ChatColor.YELLOW + ChatColor.BOLD + " is now AFK.");
+        } else {
+            Main.afks.remove(p.getName());
+            Bukkit.broadcastMessage(getDisplayName() + ChatColor.YELLOW + ChatColor.BOLD + " is no longer AFK.");
+        }
+    }
+
     public boolean isBanned() {
         return p.isBanned();
     }
@@ -523,12 +645,29 @@ public class User {
         return p.isFlying();
     }
 
+    public void setFlying(boolean flying) {
+        p.setFlying(flying);
+    }
+
     public boolean isFrozen() {
         return Main.frozen.contains(p.getName());
     }
 
     public boolean isGod() {
         return Main.gods.contains(p.getName());
+    }
+
+    public void setGod(boolean god) {
+        if (god) {
+            if (!Main.gods.contains(p.getName())) {
+                Main.gods.add(p.getName());
+                heal(20, 20);
+                setFireTicks(0);
+                untarget();
+            }
+        } else {
+            Main.gods.remove(p.getName());
+        }
     }
 
     public boolean isMuted() {
@@ -564,28 +703,117 @@ public class User {
         return p.isOp();
     }
 
+    public void setOp(boolean op) {
+        p.setOp(op);
+    }
+
     public boolean isSneaking() {
         return p.isSneaking();
+    }
+
+    public void setSneaking(boolean sneak) {
+        p.setSneaking(sneak);
     }
 
     public boolean isSprinting() {
         return p.isSprinting();
     }
 
+    public void setSprinting(boolean sprint) {
+        p.setSprinting(sprint);
+    }
+
     public boolean isTalkingInStaffChat() {
         return Main.staffchat.contains(getName());
+    }
+
+    public boolean isTargetable() {
+        return !Main.untargetable.contains(getName());
+    }
+
+    public void setTargetable(boolean targetable) {
+        if (targetable) {
+            Main.untargetable.remove(getName());
+        } else {
+            if (!Main.untargetable.contains(getName())) {
+                Main.untargetable.add(getName());
+            }
+        }
     }
 
     public boolean isVanished() {
         return Main.vanished.contains(p.getName());
     }
 
+    /**
+     * Vanish or unvanish a player.
+     *
+     * @param vanish When true the player will be vanished, when false the player will be unvanished.
+     */
+    public void setVanished(boolean vanish) {
+        if (vanish) {
+            Main.vanished.add(p.getName());
+            VanishUtils.pInv.put(p.getName(), p.getInventory().getContents());
+            p.getInventory().clear();
+            addItem(new ItemStack(CI.createItem(Material.COMPASS, 1, -1, ChatColor.AQUA + "Player Selector")));
+            setGod(true);
+            p.setAllowFlight(true);
+            p.setFlySpeed(0.3F);
+            p.setFireTicks(0);
+            p.setCanPickupItems(false);
+            for (Player x : Bukkit.getOnlinePlayers()) {
+                User ap = new User(x);
+                if (!canSee(ap) || !Perm.hasPerm(ap, PermGroup.ADMIN)) {
+                    x.hidePlayer(Main.p, p);
+                }
+            }
+            untarget();
+        } else {
+            if (Main.vanished.contains(p.getName())) {
+                Main.vanished.remove(p.getName());
+                p.getInventory().clear();
+                if (VanishUtils.pInv.get(p.getName()) != null) {
+                    p.getInventory().setContents(VanishUtils.pInv.get(p.getName()));
+                    VanishUtils.pInv.remove(p.getName());
+                }
+                setGod(false);
+                if (!p.getGameMode().equals(GameMode.CREATIVE) && !p.isFlying()) {
+                    p.setAllowFlight(false);
+                    p.setFlying(false);
+                }
+                if (hasNick()) {
+                    setUserListName(getNick());
+                } else {
+                    setUserListName(p.getName());
+                }
+                removeBack();
+                p.setFallDistance(0);
+                p.setCanPickupItems(true);
+                for (Player x : Bukkit.getOnlinePlayers()) {
+                    x.showPlayer(Main.p, p);
+                }
+            }
+        }
+    }
+
     public boolean isWhitelisted() {
         return p.isWhitelisted();
     }
 
+    public void setWhitelisted(boolean whitelisted) {
+        p.setWhitelisted(whitelisted);
+    }
+
     public void kickUser(String reason) {
         p.kickPlayer(reason);
+    }
+
+    public <T extends Projectile> T launchProjectile(Class<? extends T> projectile) {
+        return p.launchProjectile(projectile);
+    }
+
+    public <T extends Projectile> T launchProjectile(Class<? extends T> projectile, Vector vel) {
+        return p.launchProjectile(projectile, vel);
     }
 
     public void loadNick() {
@@ -836,38 +1064,8 @@ public class User {
         p.sendTitle(title, subtitle, fadeIn, stay, fadeOut);
     }
 
-    public void setAfk(boolean afk) {
-        if (afk) {
-            Main.afks.add(p.getName());
-            Bukkit.broadcastMessage(getDisplayName() + ChatColor.YELLOW.toString() + ChatColor.BOLD + " is now AFK.");
-        } else {
-            Main.afks.remove(p.getName());
-            Bukkit.broadcastMessage(getDisplayName() + ChatColor.YELLOW.toString() + ChatColor.BOLD + " is no longer AFK.");
-        }
-    }
-
-    public void setAllowFlight(boolean allowflight) {
-        p.setAllowFlight(allowflight);
-    }
-
-    public void setBack(Location l) {
-        Main.back.put(p.getName(), l);
-    }
-
-    public void setBedSpawnLocation(Location l) {
-        p.setBedSpawnLocation(l);
-    }
-
     public void setCanPickupItems(boolean canpickup) {
         p.setCanPickupItems(canpickup);
-    }
-
-    public void setChatColor(String cc) {
-        ChatColorHandler.setChatColor(p.getName(), cc);
-    }
-
-    public void setCustomName(String name) {
-        p.setCustomName(name);
     }
 
     public void setCustomNameVisble(boolean visible) {
@@ -884,22 +1082,6 @@ public class User {
         }
     }
 
-    public void setDisplayName(String displayname) {
-        p.setDisplayName(displayname);
-    }
-
-    public void setExp(float exp) {
-        p.setExhaustion(exp);
-    }
-
-    public void setFallDistance(float falldistance) {
-        p.setFallDistance(falldistance);
-    }
-
-    public void setFireTicks(int ticks) {
-        p.setFireTicks(ticks);
-    }
-
     public void setFly(boolean fly) {
         if (fly) {
             setAllowFlight(true);
@@ -910,52 +1092,12 @@ public class User {
         }
     }
 
-    public void setFlying(boolean flying) {
-        p.setFlying(flying);
-    }
-
-    public void setFlySpeed(float speed) {
-        p.setFlySpeed(speed);
-    }
-
-    public void setFoodLevel(int foodlevel) {
-        p.setFoodLevel(foodlevel);
-    }
-
-    public void setGameMode(GameMode gm) {
-        p.setGameMode(gm);
-    }
-
-    public void setGod(boolean god) {
-        if (god) {
-            if (!Main.gods.contains(p.getName())) {
-                Main.gods.add(p.getName());
-                heal(20, 20);
-                setFireTicks(0);
-            }
-        } else {
-            Main.gods.remove(p.getName());
-        }
-    }
-
-    public void setGroup(PermGroup group) {
-        Perm.updateGroup(p.getName(), group);
-    }
-
     public void setHat(ItemStack hat) {
         if ((p.getInventory().getHelmet() != null)) {
-            p.getInventory().addItem(p.getInventory().getHelmet());
+            addItem(p.getInventory().getHelmet());
             p.getInventory().setHelmet(null);
         }
         p.getInventory().setHelmet(hat);
-    }
-
-    public void setHealth(double health) {
-        p.setHealth(health);
-    }
-
-    public void setHealthScale(double scale) {
-        p.setHealthScale(scale);
     }
 
     public void setHealthScaled(boolean scaled) {
@@ -966,31 +1108,10 @@ public class User {
         p.getInventory().setItemInMainHand(item);
     }
 
-    public void setItemInOffHand(ItemStack item) {
-        p.getInventory().setItemInOffHand(item);
-    }
-
-    public void setItemOnCursor(ItemStack item) {
-        p.setItemOnCursor(item);
-    }
-
-    public void setLevel(int level) {
-        p.setLevel(level);
-    }
-
     public void setMOTD(String motd) {
         Main.motd = motd;
         Main.c.getConfig().set("settings.motd", motd);
         Main.c.saveConfig();
-    }
-
-    public void setNick(String nick) {
-        NickNameManager.nicks.put(p.getName(), nick);
-        nick = ChatColor.translateAlternateColorCodes('&', nick);
-        setDisplayName(nick + ChatColor.RESET);
-        setUserListName(nick + ChatColor.RESET);
-        setCustomName(nick + ChatColor.RESET);
-        saveNick();
     }
 
     public void setNight(boolean allworlds) {
@@ -1003,20 +1124,8 @@ public class User {
         }
     }
 
-    public void setOp(boolean op) {
-        p.setOp(op);
-    }
-
-    public void setPrefix(String prefix) {
-        PrefixHelper.setPrefix(p.getName(), prefix);
-    }
-
     public void setScoreboard(Scoreboard board) {
         p.setScoreboard(board);
-    }
-
-    public void setSneaking(boolean sneak) {
-        p.setSneaking(sneak);
     }
 
     public void setSocialSpyActive(boolean active) {
@@ -1027,20 +1136,12 @@ public class User {
         }
     }
 
-    public void setSprinting(boolean sprint) {
-        p.setSprinting(sprint);
-    }
-
     public void setStaffChat(boolean staffChat) {
         if (staffChat) {
             Main.staffchat.add(getName());
         } else {
             Main.staffchat.remove(getName());
         }
-    }
-
-    public void setTotalExperience(int exp) {
-        p.setTotalExperience(exp);
     }
 
     public void setTpDisabled(boolean dis) {
@@ -1051,67 +1152,8 @@ public class User {
         }
     }
 
-    public void setUserListName(String name) {
-        p.setPlayerListName(name);
-    }
-
     public void setUserTime(long time, boolean set) {
         p.setPlayerTime(time, set);
-    }
-
-    public void setUserWeather(WeatherType weather) {
-        p.setPlayerWeather(weather);
-    }
-
-    /**
-     * Vanish or unvanish a player.
-     *
-     * @param vanish When true the player will be vanished, when false the player will be unvanished.
-     */
-    public void setVanished(boolean vanish) {
-        if (vanish) {
-            Main.vanished.add(p.getName());
-            VanishUtils.pInv.put(p.getName(), p.getInventory().getContents());
-            p.getInventory().clear();
-            p.getInventory().addItem(new ItemStack(CI.createItem(Material.COMPASS, 1, -1, ChatColor.AQUA + "Player Selector")));
-            setGod(true);
-            p.setAllowFlight(true);
-            p.setFlySpeed(0.3F);
-            p.setFireTicks(0);
-            p.setCanPickupItems(false);
-            for (Player x : Bukkit.getOnlinePlayers()) {
-                User ap = new User(x);
-                if (!canSee(ap) || !Perm.hasPerm(ap, PermGroup.ADMIN)) {
-                    x.hidePlayer(Main.p, p);
-                }
-            }
-        } else {
-            if (Main.vanished.contains(p.getName())) {
-                Main.vanished.remove(p.getName());
-                p.getInventory().clear();
-                if (VanishUtils.pInv.get(p.getName()) != null) {
-                    p.getInventory().setContents(VanishUtils.pInv.get(p.getName()));
-                    VanishUtils.pInv.remove(p.getName());
-                }
-                setGod(false);
-                if (!p.getGameMode().equals(GameMode.CREATIVE) && !p.isFlying()) {
-                    p.setAllowFlight(false);
-                    p.setFlying(false);
-                }
-                if (hasNick()) {
-                    setUserListName(getNick());
-                } else {
-                    setUserListName(p.getName());
-                }
-                toBack();
-                removeBack();
-                p.setFallDistance(0);
-                p.setCanPickupItems(true);
-                for (Player x : Bukkit.getOnlinePlayers()) {
-                    x.showPlayer(Main.p, p);
-                }
-            }
-        }
     }
 
     public void showMOTD() {
@@ -1120,10 +1162,6 @@ public class User {
 
     public void showUser(User u) {
         p.showPlayer(Main.p, u.getUser());
-    }
-
-    public void setWalkSpeed(float speed) {
-        p.setWalkSpeed(speed);
     }
 
     public void setWeather(WeatherTypes type) {
@@ -1153,10 +1191,6 @@ public class User {
                 }
                 break;
         }
-    }
-
-    public void setWhitelisted(boolean whitelisted) {
-        p.setWhitelisted(whitelisted);
     }
 
     public Spigot spigot() {
@@ -1220,6 +1254,17 @@ public class User {
             s.close();
         } catch (SQLException e) {
             Bukkit.getLogger().info("Core >> SQL Error: " + e);
+        }
+    }
+
+    public void untarget() {
+        for (Entity ents : p.getWorld().getLivingEntities()) {
+            if (ents instanceof Mob) {
+                Mob b = (Mob) ents;
+                if (b.getTarget() == p) {
+                    b.setTarget(null);
+                }
+            }
         }
     }
 

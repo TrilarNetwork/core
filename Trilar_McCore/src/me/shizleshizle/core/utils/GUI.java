@@ -116,7 +116,7 @@ public class GUI {
         items.put(0, CI.createItem(Material.WARPED_PLANKS, 1, -1, DARK_GREEN + "Add 1 day"));
         items.put(2, CI.createItem(Material.WARPED_PLANKS, 1, -1, DARK_GREEN + "Add 1 hour"));
         items.put(4, CI.createItem(Material.WARPED_PLANKS, 1, -1, DARK_GREEN + "Add 1 minute"));
-        items.put(6, CI.createItem(Material.WARPED_PLANKS,   1, -1, DARK_GREEN + "Add 1 second"));
+        items.put(6, CI.createItem(Material.WARPED_PLANKS, 1, -1, DARK_GREEN + "Add 1 second"));
 
         // objects that tell the player the time to add
         items.put(18, CI.createItem(Material.DIAMOND_BLOCK, 1, -1, WHITE + "0 day(s)"));
@@ -128,7 +128,7 @@ public class GUI {
         items.put(36, CI.createItem(Material.CRIMSON_PLANKS, 1, -1, DARK_GREEN + "Remove 1 day"));
         items.put(38, CI.createItem(Material.CRIMSON_PLANKS, 1, -1, DARK_GREEN + "Remove 1 hour"));
         items.put(40, CI.createItem(Material.CRIMSON_PLANKS, 1, -1, DARK_GREEN + "Remove 1 minute"));
-        items.put(42, CI.createItem(Material.CRIMSON_PLANKS,   1, -1, DARK_GREEN + "Remove 1 second"));
+        items.put(42, CI.createItem(Material.CRIMSON_PLANKS, 1, -1, DARK_GREEN + "Remove 1 second"));
 
         // misc
         items.put(17, CI.createItem(Material.LIME_WOOL, 1, -1, GREEN + "Mute"));

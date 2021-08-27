@@ -16,28 +16,28 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 
 public class Wild implements CommandExecutor {
-	public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Workbench" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
-	public static ArrayList<String> l = new ArrayList<>();
+    public static final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Workbench" + ChatColor.GOLD + " >> " + ChatColor.YELLOW;
+    public static ArrayList<String> l = new ArrayList<>();
 
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("wild")) {
-			if (!Main.isLobby()) {
-				Player x = (Player) sender;
-				User p = new User(x);
-				if (Perm.hasPerm(p, PermGroup.MEMBER)) {
-					if (p.getWorld().getEnvironment() == World.Environment.THE_END || p.getWorld().getEnvironment() == World.Environment.NETHER) {
-						p.sendMessage(PREFIX + "You are not allowed to do this in The End or the Nether!");
-						return true;
-					} else {
-						p.wild();
-					}
-				} else {
-					ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/wild");
-				}
-			} else {
-				ErrorMessages.doErrorMessage(sender, Messages.LOBBY, "wild");
-			}
-		}
-		return false;
-	}
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        if (cmd.getName().equalsIgnoreCase("wild")) {
+            if (!Main.isLobby()) {
+                Player x = (Player) sender;
+                User p = new User(x);
+                if (Perm.hasPerm(p, PermGroup.MEMBER)) {
+                    if (p.getWorld().getEnvironment() == World.Environment.THE_END || p.getWorld().getEnvironment() == World.Environment.NETHER) {
+                        p.sendMessage(PREFIX + "You are not allowed to do this in The End or the Nether!");
+                        return true;
+                    } else {
+                        p.wild();
+                    }
+                } else {
+                    ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/wild");
+                }
+            } else {
+                ErrorMessages.doErrorMessage(sender, Messages.LOBBY, "wild");
+            }
+        }
+        return false;
+    }
 }

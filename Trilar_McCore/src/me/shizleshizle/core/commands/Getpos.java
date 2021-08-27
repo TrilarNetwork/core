@@ -14,33 +14,33 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class Getpos implements CommandExecutor {
-	public final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "GameMode" + ChatColor.GOLD + " >> "
-			+ ChatColor.YELLOW;
+    public final String PREFIX = ChatColor.YELLOW.toString() + ChatColor.BOLD + "GameMode" + ChatColor.GOLD + " >> "
+            + ChatColor.YELLOW;
 
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("getpos")) {
-			if (!(sender instanceof Player)) {
-				sender.sendMessage(PREFIX + "You must be a player to perform this command!");
-			} else {
-				Player x = (Player) sender;
-				User p = new User(x);
-				if (Perm.hasPerm(p, PermGroup.HELPER)) {
-					if (args.length != 1) {
-						ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/getpos <player>");
-					} else {
-						User t = new User(Bukkit.getPlayer(args[0]));
-						if (!t.isOnline()) {
-							ErrorMessages.doErrorMessage(p, Messages.PLAYER_OFFLINE, args[0]);
-						} else {
-							p.sendMessage(PREFIX + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + "'s location is:");
-							p.sendMessage(WhoIsUtils.getLoc(t));
-						}
-					}
-				} else {
-					ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/getpos");
-				}
-			}
-		}
-		return false;
-	}
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        if (cmd.getName().equalsIgnoreCase("getpos")) {
+            if (!(sender instanceof Player)) {
+                sender.sendMessage(PREFIX + "You must be a player to perform this command!");
+            } else {
+                Player x = (Player) sender;
+                User p = new User(x);
+                if (Perm.hasPerm(p, PermGroup.HELPER)) {
+                    if (args.length != 1) {
+                        ErrorMessages.doErrorMessage(p, Messages.INVALID_USAGE, "/getpos <player>");
+                    } else {
+                        User t = new User(Bukkit.getPlayer(args[0]));
+                        if (!t.isOnline()) {
+                            ErrorMessages.doErrorMessage(p, Messages.PLAYER_OFFLINE, args[0]);
+                        } else {
+                            p.sendMessage(PREFIX + ChatColor.GOLD + t.getName() + ChatColor.YELLOW + "'s location is:");
+                            p.sendMessage(WhoIsUtils.getLoc(t));
+                        }
+                    }
+                } else {
+                    ErrorMessages.doErrorMessage(p, Messages.NOPERM, "/getpos");
+                }
+            }
+        }
+        return false;
+    }
 }

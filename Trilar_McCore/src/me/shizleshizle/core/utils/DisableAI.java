@@ -2,7 +2,7 @@ package me.shizleshizle.core.utils;
 
 public class DisableAI {
 
-	// CHECK FOR 1.17 VERSION ON HOW TO DISABLE AI
+    // CHECK FOR 1.17 VERSION ON HOW TO DISABLE AI
 	/*public static void disableAI(Entity entity) {
 		net.minecraft.server.v1_15_R1.Entity nmsEntity = ((CraftEntity) entity).getHandle();
 		if (entity instanceof LivingEntity) {

@@ -207,7 +207,7 @@ commands:
     description: Set an item name or description
   nameanimal:
     description: Name an animal
-    aliases: [na, namea]
+    aliases: [ na, namea ]
   nickname:
     description: Change your nickname.
     aliases: [ nick ]
@@ -242,6 +242,8 @@ commands:
     aliases: [ stafflist, sl ]
   suicide:
     description: Kill yourself.
+  untargetable:
+    description: Make yourself untargetable by mobs.
   vanish:
     description: View/hide yourself.
     aliases: [ v ]

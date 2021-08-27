@@ -47,7 +47,7 @@ public class Smelt implements CommandExecutor {
     }
 
     @Nullable
-    private ItemStack smeltOre(ItemStack ore) {
+    public static ItemStack smeltOre(ItemStack ore) {
         String type = ore.getType().toString();
         final int oreSuffix = 4;
         final int deepslatePrefix = 10;

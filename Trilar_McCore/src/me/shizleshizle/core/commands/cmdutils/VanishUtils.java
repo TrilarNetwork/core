@@ -1,21 +1,20 @@
 package me.shizleshizle.core.commands.cmdutils;
 
+import me.shizleshizle.core.ConfigManager;
+import me.shizleshizle.core.Main;
+import me.shizleshizle.core.objects.User;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import me.shizleshizle.core.Main;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-
-import me.shizleshizle.core.ConfigManager;
-import me.shizleshizle.core.objects.User;
-
 public class VanishUtils {
-	private static ConfigManager c = Main.c;
-    private static List<String> cansee = c.getConfig().getStringList("settings.canSeeVanished");
     public static HashMap<String, ItemStack[]> pInv = new HashMap<>();
-    private static Map<String, Inventory> invs = new HashMap<>();
+    private static final ConfigManager c = Main.c;
+    private static final List<String> cansee = c.getConfig().getStringList("settings.canSeeVanished");
+    private static final Map<String, Inventory> invs = new HashMap<>();
 
     public static void addInvs(User p, Inventory i) {
         invs.put(p.getName(), i);
